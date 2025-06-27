@@ -1,0 +1,6 @@
+# Code Owners para extensiones PENTA
+* @odoo-penta/lead-devs
+
+# Módulos core
+penta_base/ @odoo-penta/lead-devs
+penta_* @odoo-penta/devs-core @odoo-penta/lead-devs

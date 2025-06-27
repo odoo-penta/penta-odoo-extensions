@@ -1,6 +1,6 @@
 {
     'name': 'PENTA Report Designer',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Reporting',
     'summary': 'Advanced report designer and templates',
     'author': 'Odoo PENTA',

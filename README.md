@@ -1,6 +1,6 @@
-# PENTA Extensions - Odoo 17.0
+# PENTA Extensions - Odoo 18.0
 
-Módulos de extensión genéricos para Odoo 17.0.
+Módulos de extensión genéricos para Odoo 18.0.
 
 ## Módulos:
 - **penta_base**: Funcionalidades base

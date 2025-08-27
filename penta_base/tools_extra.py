@@ -18,3 +18,9 @@ def sanitize_text(text):
     text = re.sub(r'[^A-Za-z0-9\s]', '', text)
     # Convertir a mayúsculas
     return text.upper().strip()
+
+def extract_numbers(text):
+    if not text:
+        return ''
+    # Extraer solo los dígitos
+    return re.sub(r'\D', '', text)

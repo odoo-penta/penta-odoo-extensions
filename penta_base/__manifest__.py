@@ -5,7 +5,7 @@
 # All Rights Reserved.
 #
 # This module is copyright property of the author mentioned above.
-# You can`t redistribute it and/or modify it.
+# You can`t redistribute it and/or modify it..
 #
 #################################################################################
 

@@ -23,12 +23,13 @@
     'license': 'OPL-1',
     'category': 'Tools/Tools',
     'depends': [
-        'base',
+        'base', 'purchase', 'stock', 'account'
     ],
     'data': [
     ],
     'demo': [
     ],
+    "post_init_hook": "post_init_hook",
     'installable': True,
     "auto_install": True,
     'application': False,

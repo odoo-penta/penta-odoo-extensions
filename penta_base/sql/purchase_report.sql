@@ -40,8 +40,7 @@ WITH pol AS (
         COALESCE(l.date_planned::date, o.date_planned::date) AS po_request_date,
         l.product_id                   AS product_id,
         l.product_qty                  AS qty_ordered,
-        l.price_unit                   AS po_price_unit,
-        o.id_import                    AS import_id
+        l.price_unit                   AS po_price_unit
     FROM purchase_order_line l
     JOIN purchase_order o ON o.id = l.order_id
     WHERE o.state IN ('purchase','done')
@@ -49,17 +48,15 @@ WITH pol AS (
       AND (p_product_id IS NULL OR l.product_id = p_product_id)
 ),
 recv_total AS (
-    SELECT
-        m.purchase_line_id AS pol_id,
-        SUM(m.quantity_done) AS qty_received_total
+    SELECT m.purchase_line_id AS pol_id,
+           SUM(m.quantity_done) AS qty_received_total
     FROM stock_move m
     WHERE m.state='done' AND m.purchase_line_id IS NOT NULL
     GROUP BY m.purchase_line_id
 ),
 inv_total AS (
-    SELECT
-        aml.purchase_line_id AS pol_id,
-        SUM( (CASE WHEN am.move_type='in_refund' THEN -1 ELSE 1 END) * aml.price_subtotal ) AS invoice_amount_total
+    SELECT aml.purchase_line_id AS pol_id,
+           SUM((CASE WHEN am.move_type='in_refund' THEN -1 ELSE 1 END) * aml.price_subtotal) AS invoice_amount_total
     FROM account_move_line aml
     JOIN account_move am ON am.id = aml.move_id
     WHERE aml.purchase_line_id IS NOT NULL
@@ -68,12 +65,10 @@ inv_total AS (
       AND am.move_type IN ('in_invoice','in_refund')
     GROUP BY aml.purchase_line_id
 ),
-imp AS (
-    SELECT i.id AS import_id, i.name AS import_name FROM x_import i
-),
 prod AS (
-    SELECT p.id AS product_id, p.default_code, pt.name
-    FROM product_product p JOIN product_template pt ON pt.id = p.product_tmpl_id
+    SELECT p.id AS product_id, p.default_code, pt.name AS product_name
+    FROM product_product p
+    JOIN product_template pt ON pt.id = p.product_tmpl_id
 ),
 sup AS (
     SELECT rp.id AS partner_id, COALESCE(rp.display_name, rp.name) AS supplier
@@ -115,15 +110,11 @@ all_docs AS (
     SELECT * FROM rec_rows
 )
 SELECT
-    -- OC (concatena importación si existe)
-    CASE WHEN pol.import_id IS NOT NULL AND imp.import_name IS NOT NULL
-         THEN pol.po_name || ' / ' || imp.import_name
-         ELSE pol.po_name
-    END AS po_name,
+    pol.po_name,
     pol.po_date_approve,
     sup.supplier,
     prod.default_code AS product_default_code,
-    prod.name         AS product_name,
+    prod.product_name AS product_name,
     pol.po_create_date,
     pol.po_request_date,
     COALESCE(pol.qty_ordered,0) AS qty_ordered,
@@ -132,17 +123,15 @@ SELECT
     COALESCE(it.invoice_amount_total,0) AS invoice_amount_total,
     COALESCE(pol.qty_ordered,0) - COALESCE(rt.qty_received_total,0) AS diff_units,
     COALESCE(it.invoice_amount_total,0) - (COALESCE(rt.qty_received_total,0) * COALESCE(pol.po_price_unit,0)) AS diff_amount,
-    -- Documento puntual (fila)
     d.doc_type,
     d.doc_name,
     d.doc_date,
     COALESCE(d.doc_qty,0) AS doc_qty,
     COALESCE(d.doc_amount,0) AS doc_amount
 FROM all_docs d
-JOIN pol           ON pol.pol_id = d.pol_id
+JOIN pol               ON pol.pol_id = d.pol_id
 LEFT JOIN recv_total rt ON rt.pol_id = pol.pol_id
 LEFT JOIN inv_total it  ON it.pol_id = pol.pol_id
-LEFT JOIN imp           ON imp.import_id = pol.import_id
 LEFT JOIN prod          ON prod.product_id = pol.product_id
 LEFT JOIN sup           ON sup.partner_id  = pol.partner_id
 ORDER BY pol.po_id, pol.pol_id, d.doc_date NULLS LAST, d.doc_type, d.doc_name;

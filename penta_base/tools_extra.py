@@ -24,3 +24,14 @@ def extract_numbers(text):
         return ''
     # Extraer solo los dígitos
     return re.sub(r'\D', '', text)
+
+def format_invoice_number(text):
+    # Da formato 000-000-00000000
+    digits = extract_numbers(text)
+    # Rellenar con ceros a la derecha hasta 14 dígitos
+    if len(digits) <= 3:
+        return digits
+    elif len(digits) <= 6:
+        return f"{digits[:3]}-{digits[3:]}"
+    else:
+        return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"

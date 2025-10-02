@@ -1,0 +1,137 @@
+<ventas>
+    <datosRegistrador>
+        <numeroRUC>0990304211001</numeroRUC>
+    </datosRegistrador>
+    <datosVentas>
+        <venta>
+            <rucComercializador>0990304211001</rucComercializador>
+            <CAMVCpn>G03329985</CAMVCpn>
+            <serialVin>LWBJA3394S1202971</serialVin>
+            <nombrePropietario>VERA AVILA LUIS ALBERTO</nombrePropietario>
+            <tipoIdentificacionPropietario>C</tipoIdentificacionPropietario>
+            <numeroDocumentoPropietario>1717502171</numeroDocumentoPropietario>
+            <tipoComprobante>1</tipoComprobante>
+            <establecimientoComprobante>030</establecimientoComprobante>
+            <puntoEmisionComprobante>001</puntoEmisionComprobante>
+            <numeroComprobante>2446</numeroComprobante>
+            <numeroAutorizacion>2403202501099030421100120300010000024460425636617</numeroAutorizacion>
+            <fechaVenta>24-03-2025</fechaVenta>
+            <precioVenta>2250.00</precioVenta>
+            <codigoCantonMatriculacion>11304</codigoCantonMatriculacion>
+            <datosDireccion>
+                <tipo>RESIDENCIA</tipo>
+                <calle>EL CARMEN-SUMITA PITA</calle>
+                <numero>0</numero>
+                <interseccion>VIA SUMITA PITA </interseccion>
+            </datosDireccion>
+            <datosTelefono>
+                <provincia>113</provincia>
+                <numero>0499999999</numero>
+            </datosTelefono>
+        </venta>
+        <venta>
+            <rucComercializador>0990304211001</rucComercializador>
+            <CAMVCpn>G03279248</CAMVCpn>
+            <serialVin>LWBJA3398S1201497</serialVin>
+            <nombrePropietario>MENESES RAMOS ROSA JENIFER</nombrePropietario>
+            <tipoIdentificacionPropietario>C</tipoIdentificacionPropietario>
+            <numeroDocumentoPropietario>1205129784</numeroDocumentoPropietario>
+            <tipoComprobante>1</tipoComprobante>
+            <establecimientoComprobante>004</establecimientoComprobante>
+            <puntoEmisionComprobante>001</puntoEmisionComprobante>
+            <numeroComprobante>13774</numeroComprobante>
+            <numeroAutorizacion>2403202501099030421100120040010000137743520262313</numeroAutorizacion>
+            <fechaVenta>24-03-2025</fechaVenta>
+            <precioVenta>2250.00</precioVenta>
+            <codigoCantonMatriculacion>11201</codigoCantonMatriculacion>
+            <datosDireccion>
+                <tipo>RESIDENCIA</tipo>
+                <calle>CIUDADELA LA PUNTILLA</calle>
+                <numero>0</numero>
+                <interseccion>27 DE MAYO Y 1RO DE MAYO</interseccion>
+            </datosDireccion>
+            <datosTelefono>
+                <provincia>112</provincia>
+                <numero>0499999999</numero>
+            </datosTelefono>
+        </venta>
+        <venta>
+            <rucComercializador>0990304211001</rucComercializador>
+            <CAMVCpn>G03331327</CAMVCpn>
+            <serialVin>ME4JK3590SW013564</serialVin>
+            <nombrePropietario>ROMERO BRAVO ROSA IBETH</nombrePropietario>
+            <tipoIdentificacionPropietario>C</tipoIdentificacionPropietario>
+            <numeroDocumentoPropietario>1727073940</numeroDocumentoPropietario>
+            <tipoComprobante>1</tipoComprobante>
+            <establecimientoComprobante>014</establecimientoComprobante>
+            <puntoEmisionComprobante>001</puntoEmisionComprobante>
+            <numeroComprobante>28866</numeroComprobante>
+            <numeroAutorizacion>2403202501099030421100120140010000288669002364014</numeroAutorizacion>
+            <fechaVenta>24-03-2025</fechaVenta>
+            <precioVenta>2280.00</precioVenta>
+            <codigoCantonMatriculacion>22301</codigoCantonMatriculacion>
+            <datosDireccion>
+                <tipo>RESIDENCIA</tipo>
+                <calle>NULL</calle>
+                <numero>0</numero>
+                <interseccion>NULL</interseccion>
+            </datosDireccion>
+            <datosTelefono>
+                <provincia>223</provincia>
+                <numero>0499999999</numero>
+            </datosTelefono>
+        </venta>
+        <venta>
+            <rucComercializador>0990304211001</rucComercializador>
+            <CAMVCpn>G03327090</CAMVCpn>
+            <serialVin>ME4KC3596SA143304</serialVin>
+            <nombrePropietario>VACA DELGADO LUIS MANUEL</nombrePropietario>
+            <tipoIdentificacionPropietario>C</tipoIdentificacionPropietario>
+            <numeroDocumentoPropietario>1723327258</numeroDocumentoPropietario>
+            <tipoComprobante>1</tipoComprobante>
+            <establecimientoComprobante>014</establecimientoComprobante>
+            <puntoEmisionComprobante>001</puntoEmisionComprobante>
+            <numeroComprobante>28867</numeroComprobante>
+            <numeroAutorizacion>2403202501099030421100120140010000288675679676616</numeroAutorizacion>
+            <fechaVenta>24-03-2025</fechaVenta>
+            <precioVenta>3199.00</precioVenta>
+            <codigoCantonMatriculacion>22301</codigoCantonMatriculacion>
+            <datosDireccion>
+                <tipo>RESIDENCIA</tipo>
+                <calle>COOP MARINAPENAHERRERA</calle>
+                <numero>0</numero>
+                <interseccion>SN</interseccion>
+            </datosDireccion>
+            <datosTelefono>
+                <provincia>223</provincia>
+                <numero>0499999999</numero>
+            </datosTelefono>
+        </venta>
+        <venta>
+            <rucComercializador>0990304211001</rucComercializador>
+            <CAMVCpn>G03336591</CAMVCpn>
+            <serialVin>ME4KC3593SA144099</serialVin>
+            <nombrePropietario>FARIAS MENDOZA LILIAN ELIZABETH</nombrePropietario>
+            <tipoIdentificacionPropietario>C</tipoIdentificacionPropietario>
+            <numeroDocumentoPropietario>2300234149</numeroDocumentoPropietario>
+            <tipoComprobante>1</tipoComprobante>
+            <establecimientoComprobante>014</establecimientoComprobante>
+            <puntoEmisionComprobante>001</puntoEmisionComprobante>
+            <numeroComprobante>28868</numeroComprobante>
+            <numeroAutorizacion>2403202501099030421100120140010000288680085017217</numeroAutorizacion>
+            <fechaVenta>24-03-2025</fechaVenta>
+            <precioVenta>3135.03</precioVenta>
+            <codigoCantonMatriculacion>22301</codigoCantonMatriculacion>
+            <datosDireccion>
+                <tipo>RESIDENCIA</tipo>
+                <calle>NULL</calle>
+                <numero>0</numero>
+                <interseccion>NULL</interseccion>
+            </datosDireccion>
+            <datosTelefono>
+                <provincia>223</provincia>
+                <numero>0499999999</numero>
+            </datosTelefono>
+        </venta>
+    </datosVentas>
+</ventas>

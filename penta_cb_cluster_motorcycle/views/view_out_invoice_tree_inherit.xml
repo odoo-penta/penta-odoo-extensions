@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_out_invoice_tree" model="ir.ui.view">
+        <field name="name">inherit.view.out.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/header" position="inside">
+                    <button name="get_xml_invoice" type="object" string="XML Generate"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

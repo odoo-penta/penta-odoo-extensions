@@ -76,7 +76,7 @@
                 <numero>0</numero>
                 <interseccion>NULL</interseccion>
             </datosDireccion>
-            <datosTelefono>
+                <datosTelefono>
                 <provincia>223</provincia>
                 <numero>0499999999</numero>
             </datosTelefono>

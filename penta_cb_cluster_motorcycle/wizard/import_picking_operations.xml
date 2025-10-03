@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_import_picking_operations_wizard" model="ir.ui.view">
+        <field name="name">import.picking.operations.wizard.form</field>
+        <field name="model">import.picking.operations.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import operations of picking">
+                <group>
+                    <field name="file" filename="filename"/>
+                </group>
+                <footer>
+                    <button string="Process" type="object" name="action_process_file" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_picking_operations_wizard" model="ir.actions.act_window">
+        <field name="name">Import Picking</field>
+        <field name="res_model">import.picking.operations.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

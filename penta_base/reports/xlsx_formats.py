@@ -41,4 +41,6 @@ def get_xlsx_formats(workbook):
         'total': workbook.add_format({'bold': True, 'bg_color': '#D9E1F2', 'border': 1}),
         # Numeros negativos en rojo
         'negative_number': workbook.add_format({'num_format': '#,##0.00;[Red]-#,##0.00', 'border': 1}),
+        # Bloquear celda (proteger hoja)
+        'locked': workbook.add_format({'locked': True, 'border': 1}),
     }

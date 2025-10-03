@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_picking_form_cluster" model="ir.ui.view">
+        <field name="name">view.picking.form.cluster</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="print_report" type="object" string="Export" class="oe_highlight" invisible="state != 'assigned' or picking_type_code != 'incoming'"/>
+                <button name="%(action_import_picking_operations_wizard)d" type="action" string="Import" invisible="state != 'assigned' or picking_type_code != 'incoming'"/>
+            </xpath>            
+        </field>
+    </record>
+
+</odoo>

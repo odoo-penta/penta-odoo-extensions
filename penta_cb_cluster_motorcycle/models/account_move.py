@@ -108,7 +108,7 @@ class AccountMove(models.Model):
 
         def build_telefono(parent, partner):
             datos_telefono = LET.SubElement(parent, "datosTelefono")
-            prov = getattr(getattr(partner, "state_id", False), "l10n_ec_penta_code_state", "") or ""
+            prov = getattr(getattr(partner, "state_id", False), "code", "") or ""
             xml_element(datos_telefono, "provincia", prov)
             xml_element(datos_telefono, "numero", partner.phone or "")
 

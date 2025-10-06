@@ -38,8 +38,8 @@ def format_invoice_number(text):
         return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
 
 def xml_element(self, parent , tag, text=None, **attrs):
-        """Helper para crear un elemento XML con atributos opcionales y texto."""
-        el = etree.SubElement(parent, tag, **{k: str(v) for k, v in attrs.items() if v is not None})
-        if text is not None:
-            el.text = str(text)
-        return el
+    """Helper para crear un elemento XML con atributos opcionales y texto."""
+    el = etree.SubElement(parent, tag, **{k: str(v) for k, v in attrs.items() if v is not None})
+    if text is not None:
+        el.text = str(text)
+    return el

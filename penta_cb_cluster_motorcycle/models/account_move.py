@@ -4,7 +4,7 @@ from odoo.exceptions import UserError
 from lxml import etree
 import base64
 from datetime import datetime
-from penta_base.tools_extra import xml_element
+from odoo.tools import xml_element
 
 
 class AccountMove(models.Model):

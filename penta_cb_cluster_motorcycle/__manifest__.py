@@ -1,27 +1,45 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+#################################################################################
+# Author      : PentaLab (<https://pentalab.tech>)
+# Copyright(c): 2025
+# All Rights Reserved.
+#
+# This module is copyright property of the author mentioned above.
+# You can`t redistribute it and/or modify it..
+#
+#################################################################################
+
 {
-    'name': 'XML Invoice',
+    'name': 'Vehicle Data Integration',
+    'summary': 'Integrates vehicle information into products',
     'version': '18.0.0.1',
-    'summary': 'XML generation for invoices',
-    'sequence': 10,
     'description': """
-Generate XML files for invoices.
-==================================================================================
-This module allows you to generate XML files for invoices.""",
-    'category': 'Accounting/Accounting',
-    'website': 'https://www.pentalab.odoo.com/',
-    'author': 'Pentalab',
-    'maintainer': 'Pentalab',
-    'copyright': '© 2025 Pentalab',
+        This module implements vehicle data into products, purchases and sales.
+    """,
+    'author': 'PentaLab',
+    'maintainer': 'PentaLab',
     'contributors': [
+        'AntonyPineda <vini16.av@gmail.com>',
         'Bernardo Bustamante <bbustamante@pentalab.tech>'
-        ],
-    'depends': ['base', 'account_accountant'],
+    ],
+    'website': 'https://pentalab.tech/',
+    'license': 'OPL-1',
+    'category': 'Accounting/Accounting',
+    'depends': [
+        'penta_base',
+        'product',
+        'account_accountant',
+    ],
     'data': [
+        "security/ir.model.access.csv",
+        'wizard/import_picking_operations.xml',
+        'views/view_country_state_tree_inherit.xml',
         'views/view_out_invoice_tree_inherit.xml',
+        'views/stock_lot_views.xml',
+        'views/stock_move_views.xml',
+        'views/stock_picking_views.xml',
+        'views/product_views.xml',
     ],
     'installable': True,
     'application': False,
-    'license': 'LGPL-3',
 }

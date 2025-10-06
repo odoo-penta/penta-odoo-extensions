@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_stock_lot_form" model="ir.ui.view">
+        <field name="name">view.stock.lot.form</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="string">Serial/lote/chasis</attribute>
+            </field>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="motor_number"/>
+                <field name="ramv"/>
+                <field name="national_production_code"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

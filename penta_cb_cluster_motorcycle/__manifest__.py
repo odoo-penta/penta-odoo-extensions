@@ -21,7 +21,6 @@
     'contributors': [
         'AntonyPineda <vini16.av@gmail.com>',
         'Bernardo Bustamante <bbustamante@pentalab.tech>'
-<<<<<<< HEAD
     ],
     'website': 'https://pentalab.tech/',
     'license': 'OPL-1',
@@ -29,19 +28,13 @@
     'depends': [
         'penta_base',
         'product',
-        'account_accountant'
+        'account_accountant',
+        'l10n_ec_city',
     ],
     'data': [
         "security/ir.model.access.csv",
-        
         'wizard/import_picking_operations.xml',
-        
-=======
-        ],
-    'depends': ['base', 'account_accountant', 'l10n_ec_city'],
-    'data': [
         'views/view_country_state_tree_inherit.xml',
->>>>>>> 49b4a94 ([IMP]  penta_cb_cluster_motorcycle: XML invoice)
         'views/view_out_invoice_tree_inherit.xml',
         'views/stock_lot_views.xml',
         'views/stock_move_views.xml',

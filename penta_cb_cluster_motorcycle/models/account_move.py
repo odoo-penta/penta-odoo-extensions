@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-# -*- coding: utf-8 -*-
-from odoo import api, fields, models
-=======
+
 from odoo import api, fields, models, _
->>>>>>> 49b4a94 ([IMP]  penta_cb_cluster_motorcycle: XML invoice)
 from odoo.exceptions import UserError
 from lxml import etree
 import base64

@@ -12,6 +12,10 @@ odoo_tools.sanitize_text = tools_extra.sanitize_text
 odoo_tools.extract_numbers = tools_extra.extract_numbers
 odoo_tools.format_invoice_number = tools_extra.format_invoice_number
 odoo_tools.xml_element = tools_extra.xml_element
+odoo_tools.sanitize_text = tools_extra.sanitize_text
+odoo_tools.split_doc_number = tools_extra.split_doc_number
+odoo_tools.latam_id_code = tools_extra.latam_id_code
+odoo_tools.doc_type_code = tools_extra.doc_type_code
 
 def _run_sql_file(cr, module_name, relative_path):
     path = get_module_resource(module_name, relative_path)

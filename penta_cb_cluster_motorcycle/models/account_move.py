@@ -4,6 +4,7 @@ from odoo.exceptions import UserError
 from lxml import etree
 import base64
 from datetime import datetime
+from penta_base.tools_extra import xml_element
 
 
 class AccountMove(models.Model):
@@ -23,13 +24,6 @@ class AccountMove(models.Model):
         if move.cb_xml_invoice_id:
             move.cb_xml_invoice_id.state = 'posted'
         return move
-    
-    def _xml_element(self, parent , tag, text=None, **attrs):
-        """Helper to create an XML element with optional text and attributes."""
-        el = etree.SubElement(parent, tag, **{k: str(v) for k, v in attrs.items() if v is not None})
-        if text is not None:
-            el.text = str(text)
-        return el
     
     def _format_date(self, date):
         """Format date as ISO simple string (YYYY-MM-DD)."""
@@ -56,22 +50,22 @@ class AccountMove(models.Model):
 
         def build_direccion(parent, partner):
             datos_direccion = etree.SubElement(parent, "datosDireccion")
-            self._xml_element(datos_direccion, "tipo", "RESIDENCIA")
-            self._xml_element(datos_direccion, "calle", partner.street_name or "")
-            self._xml_element(datos_direccion, "numero", getattr(partner, "street_number", "") or "")
-            self._xml_element(datos_direccion, "interseccion", getattr(partner, "street2", "") or "")
+            self.xml_element(datos_direccion, "tipo", "RESIDENCIA")
+            self.xml_element(datos_direccion, "calle", partner.street_name or "")
+            self.xml_element(datos_direccion, "numero", getattr(partner, "street_number", "") or "")
+            self.xml_element(datos_direccion, "interseccion", getattr(partner, "street2", "") or "")
 
         def build_telefono(parent, partner):
             datos_telefono = etree.SubElement(parent, "datosTelefono")
-            self._xml_element(datos_telefono, "provincia", getattr(partner.state_id, "l10n_ec_penta_code_state", "") or "")
-            self._xml_element(datos_telefono, "numero", partner.phone or "")
+            self.xml_element(datos_telefono, "provincia", getattr(partner.state_id, "l10n_ec_penta_code_state", "") or "")
+            self.xml_element(datos_telefono, "numero", partner.phone or "")
 
         def build_venta(parent, company, partner, l10n_latam_document_type_id, l10n_latam_document_number, l10n_ec_authorization_number, invoice_date, price, lot=None):
             venta = etree.SubElement(parent, "venta")
-            self._xml_element(venta, "rucComercializador", company.vat or "")
-            self._xml_element(venta, "CAMVCpn", getattr(lot, "ramv", "") if lot else "")
-            self._xml_element(venta, "serialVin", getattr(lot, "name", "") if lot else "")
-            self._xml_element(venta, "nombrePropietario", partner.name or "")
+            self.xml_element(venta, "rucComercializador", company.vat or "")
+            self.xml_element(venta, "CAMVCpn", getattr(lot, "ramv", "") if lot else "")
+            self.xml_element(venta, "serialVin", getattr(lot, "name", "") if lot else "")
+            self.xml_element(venta, "nombrePropietario", partner.name or "")
             tipo_identificacion = ""
             if partner.l10n_latam_identification_type_id == 5:
                 tipo_identificacion = "C"
@@ -79,21 +73,21 @@ class AccountMove(models.Model):
                 tipo_identificacion = "P"
             elif partner.l10n_latam_identification_type_id == 4:
                 tipo_identificacion = "R"
-            self._xml_element(venta, "tipoIdentificacionPropietario", tipo_identificacion)
-            self._xml_element(venta, "tipoComprobante", getattr(l10n_latam_document_type_id, "l10n_ec_penta_code_state", "") or "")
-            self._xml_element(venta, "establecimientoComprobante", l10n_latam_document_number[:3] if l10n_latam_document_number else "")
-            self._xml_element(venta, "puntoEmisionComprobante", l10n_latam_document_number[4:6] if l10n_latam_document_number else "")
-            self._xml_element(venta, "numeroComprobante", l10n_latam_document_number[7:] if l10n_latam_document_number else "")
-            self._xml_element(venta, "numeroAutorizacion", l10n_ec_authorization_number or "")
-            self._xml_element(venta, "fechaVenta", self._format_date(invoice_date) or "")
-            self._xml_element(venta, "precioVenta", "%.2f" % price if price is not None else "0.00")
-            self._xml_element(venta, "codigoCantonMatriculacion",  partner.city_id.l10n_ec_penta_code_city if partner.city_id else "")
+            self.xml_element(venta, "tipoIdentificacionPropietario", tipo_identificacion)
+            self.xml_element(venta, "tipoComprobante", getattr(l10n_latam_document_type_id, "l10n_ec_penta_code_state", "") or "")
+            self.xml_element(venta, "establecimientoComprobante", l10n_latam_document_number[:3] if l10n_latam_document_number else "")
+            self.xml_element(venta, "puntoEmisionComprobante", l10n_latam_document_number[4:6] if l10n_latam_document_number else "")
+            self.xml_element(venta, "numeroComprobante", l10n_latam_document_number[7:] if l10n_latam_document_number else "")
+            self.xml_element(venta, "numeroAutorizacion", l10n_ec_authorization_number or "")
+            self.xml_element(venta, "fechaVenta", self._format_date(invoice_date) or "")
+            self.xml_element(venta, "precioVenta", "%.2f" % price if price is not None else "0.00")
+            self.xml_element(venta, "codigoCantonMatriculacion",  partner.city_id.l10n_ec_penta_code_city if partner.city_id else "")
             build_direccion(venta, partner)
             build_telefono(venta, partner)
 
         def build_registrador_section(root, invoice):
             datos_registrador = etree.SubElement(root, "datosRegistrador")
-            self._xml_element(datos_registrador, "numeroRUC", invoice.company_id.vat or "")
+            self.xml_element(datos_registrador, "numeroRUC", invoice.company_id.vat or "")
 
         def build_ventas_section(root):
             return etree.SubElement(root, "datosVentas")

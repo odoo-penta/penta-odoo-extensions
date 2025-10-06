@@ -11,6 +11,7 @@ odoo_tools.remove_accents = tools_extra.remove_accents
 odoo_tools.sanitize_text = tools_extra.sanitize_text
 odoo_tools.extract_numbers = tools_extra.extract_numbers
 odoo_tools.format_invoice_number = tools_extra.format_invoice_number
+odoo_tools.xml_element = tools_extra.xml_element
 
 def _run_sql_file(cr, module_name, relative_path):
     path = get_module_resource(module_name, relative_path)

@@ -29,7 +29,6 @@
         'penta_base',
         'product',
         'account_accountant',
-        'l10n_ec_city',
     ],
     'data': [
         "security/ir.model.access.csv",

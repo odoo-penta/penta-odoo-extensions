@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Herencia para añadir información en common_details_info_template -->
+        <template id="common_details_info_template_extend" inherit_id="l10n_ec_edi.common_details_info_template">
+            <xpath expr="//detalle//precioTotalSinImpuesto" position="after">
+                <!-- Construimos una lista con todos los atributos del producto y los unimos con '|' -->
+                <t t-set="lista_atributos" t-value="[]"/>
+                <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
+                    <t t-set="lista_atributos" 
+                    t-value="lista_atributos + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
+                </t>
+                <!-- Obtener la factura asociada desde la línea -->
+                <t t-set="invoice" t-value="line.move_id"/>
+                <t t-set="lista_lotes" t-value="[]"/>
+                <!-- Obtener los valores de los lotes desde la factura -->
+                <t t-set="lot_values" t-value="invoice._get_invoiced_lot_values()"/>
+                <t t-if="lot_values">
+                    <!-- Recorremos los lotes y validamos que pertenezcan al producto de la línea -->
+                    <t t-foreach="lot_values" t-as="lot_line">
+                        <!-- Obtener el id del lote, si no está 'lot_id', usar 'pos_lot_id' -->
+                        <!-- Solo si existe el id del lote, buscamos el registro -->
+                        <t t-set="final_lot_id" t-value="lot_line.get('lot_id') or lot_line.get('pos_lot_id')"/>
+                        <!-- Solo si existe el id del lote o el nombre del lote, buscamos el registro -->
+                        <t t-if="lot_line.get('pos_lot_id')">
+                            <!-- Si existe pos_lot_id, buscar por el nombre del lote -->
+                            <t t-set="lot" t-value="invoice.env['stock.lot'].search([('name', '=', lot_line.get('lot_name'))], limit=1)"/>
+                        </t>
+                        <t t-else="">
+                            <!-- Si no existe pos_lot_id, buscar por lot_id -->
+                            <t t-set="lot" t-value="invoice.env['stock.lot'].browse(lot_line.get('lot_id'))"/>
+                        </t>
+                        <!-- Validar y agregar a la lista si el lote es válido -->
+                        <t t-if="lot and lot.product_id.id == line.product_id.id">
+                            <!-- Agregamos solo los lotes que pertenecen al producto -->
+                            <t t-set="lista_lotes" t-value="lista_lotes + [
+                                'chasis: %s - motor: %s - RAMV: %s' % (
+                                    lot.name or 'N/A', 
+                                    lot.motor_number or 'N/A', 
+                                    lot.ramv or 'N/A'
+                                )
+                            ]"/>
+                        </t>
+                    </t>
+                </t>
+                <!-- Renderizamos detallesAdicionales con la lista validada -->
+                <detallesAdicionales>
+                    <!-- Atributos del producto -->
+                    <detAdicional 
+                        t-att="{'nombre': 'Atributos', 'valor': '|'.join(lista_atributos) if lista_atributos else ' '}"
+                        t-out=" "
+                    /> 
+                    <!-- Lotes validados -->
+                    <detAdicional 
+                        t-att="{'nombre': 'Lotes', 'valor': '|'.join(lista_lotes) if lista_lotes else ' '}"
+                        t-out=" "
+                    />
+                </detallesAdicionales>
+            </xpath>
+        </template>
+    </data>
+</odoo>

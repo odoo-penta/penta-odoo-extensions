@@ -29,9 +29,11 @@
         'penta_base',
         'product',
         'account_accountant',
+        'l10n_ec_edi',
     ],
     'data': [
         "security/ir.model.access.csv",
+        "data/edi_document.xml",
         'wizard/import_picking_operations.xml',
         'views/view_country_state_tree_inherit.xml',
         'views/view_out_invoice_tree_inherit.xml',

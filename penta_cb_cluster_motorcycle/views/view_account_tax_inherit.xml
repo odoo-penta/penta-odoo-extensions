@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_account_tax" model="ir.ui.view">
+        <field name="name">inherit.view.account.tax</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_base_affected']" position="after">
+                <field name="apply_to_unit_price"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

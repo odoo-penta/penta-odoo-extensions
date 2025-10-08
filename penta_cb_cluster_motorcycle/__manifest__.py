@@ -30,6 +30,7 @@
         'product',
         'account_accountant',
         'l10n_ec_edi',
+        'import_module',
     ],
     'data': [
         "security/ir.model.access.csv",
@@ -41,6 +42,7 @@
         'views/stock_move_views.xml',
         'views/stock_picking_views.xml',
         'views/product_views.xml',
+        'views/view_account_tax_inherit.xml',
     ],
     'installable': True,
     'application': False,

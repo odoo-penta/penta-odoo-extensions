@@ -14,7 +14,7 @@
     'summary': 'Integrates vehicle information into products',
     'version': '18.0.0.1',
     'description': """
-        This module implements vehicle data into products, purchases and sales.
+        This module implements vehicle data into products, purchases and sales
     """,
     'author': 'PentaLab',
     'maintainer': 'PentaLab',

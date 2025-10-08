@@ -1,35 +1,22 @@
-from odoo import models, fields, api
-from datetime import datetime
-from functools import partial
+from odoo import models, _
 from uuid import uuid4
-
 from lxml import etree
-from markupsafe import Markup, escape
-
-from odoo import _, models
-
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DTF
-from odoo.tools import float_compare, float_is_zero, float_repr, float_round, html_escape
-from odoo.tools.xml_utils import cleanup_xml_node
-
-from requests.exceptions import ConnectionError as RConnectionError
-from odoo.tools.zeep import Client
-from odoo.tools.zeep.exceptions import Error as ZeepError
+import re
 from odoo.addons.l10n_ec_edi.models.xml_utils import (
     NS_MAP,
     calculate_references_digests,
     cleanup_xml_signature,
     fill_signature,
 )
-import re
-class account_edit_format_module(models.Model):
+
+
+class AccountEdiFormat(models.Model):
     _inherit = 'account.edi.format'
 
     def _l10n_ec_generate_signed_xml(self, company_id, xml_node_or_string):
         """
         Versión heredada del método que elimina la llamada a cleanup_xml_node.
         """
-        import pdb;pdb.set_trace()
         # 1. Si estamos en ambiente demo, tomamos la ruta simplificada.
         if company_id._l10n_ec_is_demo_environment():
             xml_node_or_string = etree.tostring(

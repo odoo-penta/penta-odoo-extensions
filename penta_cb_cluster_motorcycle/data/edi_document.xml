@@ -10,6 +10,14 @@
                     <t t-set="product" t-value="line.product_id"/>
                     <t t-set="product_code" t-value="product and (product.barcode or product.default_code or 'N/A')[:25]"/>
                     <t t-set="line_edi_values" t-value="line._l10n_ec_prepare_edi_vals_to_export_USD()"/>
+                    <!-- Construimos una lista con todos los atributos del producto -->
+                    <t t-set="lista_atributos" t-value="[]"/>
+                    <t t-set="valores_atributos" t-value="[]"/>
+                    <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
+                        <t t-set="lista_atributos" t-value="lista_atributos + ['%s:' % attr.attribute_id.name]"/>
+                        <t t-set="valores_atributos" t-value="valores_atributos + ['%s' % attr.name]"/>
+                    </t>
+
                     <codigoInterno t-if="is_cnote" t-out="product_code"/>
                     <codigoAdicional t-if="is_cnote" t-out="product.l10n_ec_auxiliary_code"/>
                     <codigoPrincipal t-if="is_invoice or is_liquidation" t-out="product_code"/>
@@ -21,15 +29,11 @@
                     <descuento t-out="format_num_2(line_edi_values['price_discount'] + abs(line.balance) - line_items[1]['base_amount'])"/>
                     <precioTotalSinImpuesto t-out="format_num_2(abs(line_items[1]['base_amount']))"/>
 
-                    <!-- Construimos una lista con todos los atributos del producto y los unimos con '|' -->
-                    <t t-set="lista_atributos" t-value="[]"/>
-                    <t t-set="valores_atributos" t-value="[]"/>
-                    <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
-                        <t t-set="lista_atributos" t-value="lista_atributos + ['%s:' % attr.attribute_id.name]"/>
-                        <t t-set="valores_atributos" t-value="valores_atributos + ['%s' % attr.name]"/>
-                    </t>
                     <detallesAdicionales>
-                        <detAdicional t-att="{'nombre': ' CLASE: SUBCLASE:', 'valor': 'MOTO HERO'}" t-out=" "/>
+                        <detAdicional
+                            t-att="{'nombre': '|'.join(lista_atributos) if lista_atributos else ' ', 'valor': '|'.join(valores_atributos) if valores_atributos else ' '}"
+                            t-out=" "
+                        />
                     </detallesAdicionales>
 
                     <impuestos t-if="line_tax_details">

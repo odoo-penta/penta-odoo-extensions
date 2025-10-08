@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo import models, _
 from uuid import uuid4
 from lxml import etree
@@ -5,18 +6,15 @@ import re
 from odoo.addons.l10n_ec_edi.models.xml_utils import (
     NS_MAP,
     calculate_references_digests,
-    cleanup_xml_signature,
     fill_signature,
 )
+from odoo.addons.penta_cb_cluster_motorcycle.models.xml_utils import cleanup_xml_signature
 
 
 class AccountEdiFormat(models.Model):
     _inherit = 'account.edi.format'
 
     def _l10n_ec_generate_signed_xml(self, company_id, xml_node_or_string):
-        """
-        Versión heredada del método que elimina la llamada a cleanup_xml_node.
-        """
         # 1. Si estamos en ambiente demo, tomamos la ruta simplificada.
         if company_id._l10n_ec_is_demo_environment():
             xml_node_or_string = etree.tostring(
@@ -97,5 +95,4 @@ class AccountEdiFormat(models.Model):
         # 9. Retornamos el XML como string
         xml_string = xml_node_or_string.decode('UTF-8')
         return xml_string
-    
     

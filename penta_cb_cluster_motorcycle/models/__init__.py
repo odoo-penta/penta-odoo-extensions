@@ -6,4 +6,4 @@ from . import stock_picking
 from . import product
 from . import res_country_state
 from . import account_edi_format
-from . import  account_tax
+from . import account_tax

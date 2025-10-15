@@ -6,9 +6,9 @@ import re
 from odoo.addons.l10n_ec_edi.models.xml_utils import (
     NS_MAP,
     calculate_references_digests,
+    cleanup_xml_signature,
     fill_signature,
 )
-from odoo.addons.penta_cb_cluster_motorcycle.models.xml_utils import cleanup_xml_signature
 
 
 class AccountEdiFormat(models.Model):
@@ -73,7 +73,6 @@ class AccountEdiFormat(models.Model):
                 # Volvemos a parsear a un nodo lxml
                 doc = etree.fromstring(xml_str.encode('utf-8'))
 
-            
             # 6. Renderizamos la firma y la añadimos al documento
             signature_str = self.env['ir.qweb']._render('l10n_ec_edi.ec_edi_signature', qweb_values)
             # Asumiendo que cleanup_xml_signature es una función que debes mantener

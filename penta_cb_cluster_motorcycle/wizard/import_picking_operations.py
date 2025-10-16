@@ -31,7 +31,6 @@ class ImportPickingOperationsWizard(models.TransientModel):
                 rows.append(row)
             picking_id = self.env.context.get('active_id', False)
             picking = self.env['stock.picking'].browse(picking_id)
-            
             for line in picking.move_ids_without_package:
                 for move_line in line.move_line_ids:
                     for row in rows:
@@ -40,6 +39,7 @@ class ImportPickingOperationsWizard(models.TransientModel):
                             move_line.lot_name = serial
                             move_line.motor_number = motor
                             move_line.ramv = ramv
+                            rows.remove(row)
                             break
         except Exception as e:
             # Si ocurre cualquier error lo mostramos en un popup

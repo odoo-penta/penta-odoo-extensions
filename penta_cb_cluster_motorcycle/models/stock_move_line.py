@@ -7,4 +7,3 @@ class StockMoveLine(models.Model):
 
     motor_number =fields.Char()
     ramv =fields.Char()
-    national_production_code = fields.Char()

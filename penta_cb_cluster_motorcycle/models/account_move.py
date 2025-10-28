@@ -1,7 +1,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from lxml import etree as LET
-from datetime import datetime
+from datetime import datetime, date
 import base64
 import unicodedata
 import re
@@ -42,14 +42,20 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
 
     # ----------------- Helpers de fecha y líneas -----------------
-    def _format_date(self, date):
-        if not date:
+    def _format_date(self, value):
+        if not value:
             return ""
-        if isinstance(date, str):
-            return date
-        if isinstance(date, datetime):
-            return date.date().isoformat()
-        return date.isoformat()
+        if isinstance(value, str):
+            try:
+                # Intentar convertir una cadena tipo '2025-10-28' a datetime
+                dt = datetime.strptime(value, "%Y-%m-%d")
+                return dt.strftime("%d-%m-%Y")
+            except ValueError:
+                # Si ya está en otro formato o no se puede convertir, se devuelve igual
+                return value
+        if isinstance(value, datetime) or isinstance(value, date):
+            return value.strftime("%d-%m-%Y")
+        return str(value)
 
     def _iter_invoice_lines(self):
         return self.invoice_line_ids.filtered(lambda l: not l.display_type)
@@ -67,7 +73,7 @@ class AccountMove(models.Model):
         if not state:
             return ""
 
-        region = ec_region_prefix(state)
+        region = state.l10n_ec_penta_code_state or ''
         state_code = (state.code or "").strip()
 
         # 1) intenta via city_id m2o si existe
@@ -90,7 +96,7 @@ class AccountMove(models.Model):
             city_code = "0" + city_code  # rellena a 2 dígitos
         # Si city_code viene >2 (raro), no lo recortes; es mejor que se note para depurar.
 
-        return f"{region}{state_code}{city_code}" if (region and state_code and city_code) else ""
+        return f"{region}{state_code}{city_code}"
 
     # ----------------- Constructor de XML -----------------
     def _build_invoice_xml_tree(self):
@@ -119,8 +125,9 @@ class AccountMove(models.Model):
             xml_element(venta, "CAMVCpn", getattr(lot, "ramv", "") if lot else "")
             xml_element(venta, "serialVin", getattr(lot, "name", "") if lot else "")
             xml_element(venta, "nombrePropietario", partner.name or "")
+            xml_element(venta, "numeroDocumentoPropietario", partner.vat or "")
             xml_element(venta, "tipoIdentificacionPropietario", latam_id_code(partner))
-            xml_element(venta, "tipoComprobante", doc_type_code(latam_doc_type))
+            xml_element(venta, "tipoComprobante", str(int(doc_type_code(latam_doc_type))))
 
             est, pto, num = split_doc_number(latam_doc_number)
             xml_element(venta, "establecimientoComprobante", est)
@@ -146,18 +153,32 @@ class AccountMove(models.Model):
             return LET.SubElement(root, "datosVentas")
 
         def process_invoice(inv, datos_ventas):
-            lots = getattr(inv, "stock_lot_ids", [])  # ajusta al nombre real de tu campo
+            lots = self.env['stock.lot']
+            for line in inv.invoice_line_ids:
+                if line.sale_line_ids:
+                    line_lots = line.sale_line_ids.move_ids.move_line_ids.mapped('lot_id')
+                    if line_lots:
+                        lots |= line_lots
             if lots:
                 for lot in lots:
+                    sale_order  = lots[0].sale_order_ids[:1]
+                    price_subtotal = 0.00
+                    if sale_order and sale_order.order_line:
+                        lines = sale_order.order_line.filtered(lambda l: l.product_id == lots[0].product_id)
+                        if lines:
+                            price_subtotal = lines[0].price_subtotal
+                        else:
+                            # Si no hay coincidencia exacta, tomamos la primera línea
+                            price_subtotal = sale_order.order_line[0].price_subtotal
                     build_venta(
                         datos_ventas,
-                        inv.company_id,           # company
-                        inv.partner_id,           # partner
+                        inv.company_id,
+                        inv.partner_id,
                         inv.l10n_latam_document_type_id,
                         inv.l10n_latam_document_number,
                         getattr(inv, "l10n_ec_authorization_number", "") or "",
                         inv.invoice_date,
-                        inv.amount_total,
+                        price_subtotal,
                         lot
                     )
             else:

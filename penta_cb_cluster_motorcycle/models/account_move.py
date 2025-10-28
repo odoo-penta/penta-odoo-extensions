@@ -121,12 +121,13 @@ class AccountMove(models.Model):
         def build_venta(parent, company, partner, latam_doc_type, latam_doc_number,
                         auth_number, invoice_date, price, lot=None):
             venta = LET.SubElement(parent, "venta")
+            xml_element(venta, "numeroRUC", company.vat or "")
             xml_element(venta, "rucComercializador", company.vat or "")
             xml_element(venta, "CAMVCpn", getattr(lot, "ramv", "") if lot else "")
             xml_element(venta, "serialVin", getattr(lot, "name", "") if lot else "")
             xml_element(venta, "nombrePropietario", partner.name or "")
-            xml_element(venta, "numeroDocumentoPropietario", partner.vat or "")
             xml_element(venta, "tipoIdentificacionPropietario", latam_id_code(partner))
+            xml_element(venta, "numeroDocumentoPropietario", partner.vat or "")
             xml_element(venta, "tipoComprobante", str(int(doc_type_code(latam_doc_type))))
 
             est, pto, num = split_doc_number(latam_doc_number)

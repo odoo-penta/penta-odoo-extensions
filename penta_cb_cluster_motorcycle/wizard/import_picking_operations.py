@@ -11,7 +11,7 @@ class ImportPickingOperationsWizard(models.TransientModel):
     _description = 'Wizard to import picking operations from an Excel file'
 
     file = fields.Binary(string="File Excel", required=True)
-    filename = fields.Char(string="Nombre del archivo")
+    filename = fields.Char(string="File name")
 
     def action_process_file(self):
         self.ensure_one()

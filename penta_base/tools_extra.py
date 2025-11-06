@@ -78,3 +78,11 @@ def doc_type_code(latam_doc_type):
         if val:
             return str(val)
     return ""
+
+def month_name_es(month_number):
+    """Devuelve el nombre del mes en español dado su número (1-12)."""
+    meses = {
+        1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "junio",
+        7: "julio", 8: "agosto", 9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre"
+    }
+    return meses.get(int(month_number), "")

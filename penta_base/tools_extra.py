@@ -87,3 +87,20 @@ def month_name_es(month_number):
         7: "julio", 8: "agosto", 9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre"
     }
     return meses.get(int(month_number), "")
+
+def local_tz(record, dt):
+    """Convierte un datetime UTC a la zona horaria del usuario."""
+    if not dt:
+        return ''
+
+    tz_name = getattr(record.partner_id, "tz", None) or record.env.user.tz or "UTC"
+    try:
+        user_tz = pytz.timezone(tz_name)
+    except Exception:
+        user_tz = pytz.UTC
+
+    if dt.tzinfo is None:
+        dt = pytz.UTC.localize(dt)
+
+    local_dt = dt.astimezone(user_tz)
+    return local_dt.strftime("%Y-%m-%d %H:%M:%S")

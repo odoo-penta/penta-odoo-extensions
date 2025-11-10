@@ -17,6 +17,7 @@ odoo_tools.split_doc_number = tools_extra.split_doc_number
 odoo_tools.latam_id_code = tools_extra.latam_id_code
 odoo_tools.doc_type_code = tools_extra.doc_type_code
 odoo_tools.month_name_es = tools_extra.month_name_es
+odoo_tools.local_tz = tools_extra.local_tz
 
 def _run_sql_file(cr, module_name, relative_path):
     path = get_module_resource(module_name, relative_path)

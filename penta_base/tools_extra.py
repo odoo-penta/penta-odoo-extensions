@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 import unicodedata
+import pytz
 from lxml import etree
-
+from datetime import datetime
 
 def remove_accents(text):
     return ''.join(

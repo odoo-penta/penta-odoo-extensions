@@ -10,8 +10,8 @@
                 <attribute name="string">Serial/lote/chasis</attribute>
             </field>
             <xpath expr="//field[@name='lot_name']" position="after">
-                <field name="motor_number" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
-                <field name="ramv" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
+                <field name="motor_number" readonly="1" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
+                <field name="ramv" readonly="1" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
             </xpath>
         </field>
     </record>

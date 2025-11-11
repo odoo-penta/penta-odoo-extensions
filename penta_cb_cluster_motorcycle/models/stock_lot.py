@@ -7,3 +7,5 @@ class StockLot(models.Model):
 
     motor_number = fields.Char()
     ramv = fields.Char()
+
+        

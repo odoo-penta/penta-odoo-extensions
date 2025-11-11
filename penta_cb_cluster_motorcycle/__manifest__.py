@@ -43,6 +43,9 @@
         'views/stock_picking_views.xml',
         'views/product_views.xml',
         'views/view_account_tax_inherit.xml',
+        'views/account_move_stock.xml',
+        'views/report_invoice.xml',
+        
     ],
     'installable': True,
     'application': False,

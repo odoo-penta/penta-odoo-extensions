@@ -45,6 +45,9 @@
         'views/view_account_tax_inherit.xml',
         'views/account_move_stock.xml',
         'views/report_invoice.xml',
+        'views/stock_lot_plate_view.xml',
+        'views/project_task.xml',
+        'views/project_wizard.xml',
         
     ],
     'installable': True,

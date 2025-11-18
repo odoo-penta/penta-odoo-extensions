@@ -20,9 +20,9 @@ class ReportProject(models.AbstractModel):
         domain = []
 
         if data.get('date_start'):
-            domain.append(('date_assign', '>=', data['date_start']))
+            domain.append(('create_date', '>=', data['date_start']))
         if data.get('date_end'):
-            domain.append(('date_assign', '<=', data['date_end']))
+            domain.append(('create_date', '<=', data['date_end']))
 
         tasks = self.env['project.task'].search(domain)
         report_lines = []

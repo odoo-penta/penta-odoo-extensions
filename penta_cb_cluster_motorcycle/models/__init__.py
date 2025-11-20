@@ -9,3 +9,5 @@ from . import account_edi_format
 from . import account_tax
 from . import account_move_stock
 from . import account_move_line
+from . import product_template
+from . import sale_order_line

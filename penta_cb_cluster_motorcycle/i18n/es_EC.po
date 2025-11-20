@@ -60,7 +60,7 @@ msgstr "Formato EDI"
 #: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_product_product__is_ensabled
 #: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_product_template__is_ensabled
 msgid "Ensabled product ?"
-msgstr "¿Producto habilitado?"
+msgstr "¿Producto Ensamblado?"
 
 #. module: penta_cb_cluster_motorcycle
 #: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_picking_form_cluster
@@ -73,7 +73,7 @@ msgstr "Exportar"
 #: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_product_product__is_ensabled
 #: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_product_template__is_ensabled
 msgid "Field that indicate if the product is ensabled"
-msgstr "Campo que indica si el producto está habilitado"
+msgstr "Campo que indica si el producto es ensamblado"
 
 #. module: penta_cb_cluster_motorcycle
 #: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__file

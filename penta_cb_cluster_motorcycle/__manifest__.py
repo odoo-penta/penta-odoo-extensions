@@ -31,6 +31,8 @@
         'account_accountant',
         'l10n_ec_edi',
         'import_module',
+        'account',
+        'sale_management',
     ],
     'data': [
         "security/ir.model.access.csv",

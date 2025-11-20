@@ -5,5 +5,7 @@ class AccountTax(models.Model):
     _inherit='account.tax'
     
     
-    apply_to_unit_price = fields.Boolean(string = _("Applied under unit price"),
-                                       help= _("This field is for knowing if the tax applied to unit price"))
+    apply_on_unit_price = fields.Boolean(
+        string="Aplica sobre Precio Unitario?",
+        help="Si está activo, el impuesto se calcula sobre price_unit."
+    )

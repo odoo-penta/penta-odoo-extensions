@@ -7,26 +7,21 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
 
-    @api.depends('price_unit', 'discount', 'quantity', 'tax_ids')
-    def _compute_price(self):
-        # Reutilizamos la lógica de Odoo y la ajustamos
+    def _compute_totals(self):
+        super()._compute_totals()
         for line in self:
-            # Base imponible después del descuento
-            base = line.price_unit * line.quantity * (1 - (line.discount or 0.0) / 100)
-
-            # Calculamos los impuestos (incluye ICE)
-            taxes = line.tax_ids.compute_all(
-                line.price_unit,
-                quantity=line.quantity,
-                currency=line.move_id.currency_id,
-                product=line.product_id,
-                partner=line.move_id.partner_id
-            )
-
-            # Reemplazamos la base para que los impuestos se apliquen sobre base ya ajustada
-            # Esto fuerza el cálculo correcto con descuento aplicado
-            price_subtotal = base
-            price_total = price_subtotal + sum(t['amount'] for t in taxes['taxes'])
-
-            line.price_subtotal = price_subtotal
-            line.price_total = price_total
+            if line.display_type:
+                continue
+            if not line.product_id or not line.product_id.is_ensabled:
+                continue
+            ice_taxes = line.tax_ids.filtered(lambda t: t.apply_on_unit_price)
+            if not ice_taxes:
+                continue
+            ice_total = 0
+            for tax in ice_taxes:
+                if tax.amount_type == "percent":
+                    ice_total += (tax.amount / 100.0) * line.price_unit
+                else:
+                    ice_total += tax.amount
+            line.price_tax = ice_total
+            line.price_total = line.price_subtotal + ice_total

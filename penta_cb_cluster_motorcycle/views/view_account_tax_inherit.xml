@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_tax_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='is_base_affected']" position="after">
-                <field name="apply_to_unit_price"/>
+                <field name="apply_on_unit_price"/>
             </xpath>
         </field>
     </record>

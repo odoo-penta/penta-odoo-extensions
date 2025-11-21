@@ -31,14 +31,44 @@ class ImportPickingOperationsWizard(models.TransientModel):
                 rows.append(row)
             picking_id = self.env.context.get('active_id', False)
             picking = self.env['stock.picking'].browse(picking_id)
+                        
             for line in picking.move_ids_without_package:
                 for move_line in line.move_line_ids:
                     for row in rows:
                         ref, product_name, serial, motor, ramv = row[0], row[1], row[2], row[3], row[4]
+
                         if move_line.product_id.default_code == ref and move_line.product_id.name == product_name:
+
+                            # Buscar si ya existe lote
+                            lot = self.env['stock.lot'].search([
+                                ('name', '=', serial),
+                                ('product_id', '=', move_line.product_id.id)
+                            ], limit=1)
+
+                            # Si no existe → crearlo
+                            if not lot:
+                                lot = self.env['stock.lot'].create({
+                                    'name': serial,
+                                    'product_id': move_line.product_id.id,
+                                    'company_id': move_line.company_id.id,
+                                    'motor_number': motor,
+                                    'ramv': ramv,
+                                })
+                            else:
+                                # Si existe → actualizar campos
+                                lot.write({
+                                    'motor_number': motor,
+                                    'ramv': ramv,
+                                })
+
+                            # Asignar lote al move_line
+                            move_line.lot_id = lot.id
+
+                            # También llenar los campos del move_line
                             move_line.lot_name = serial
                             move_line.motor_number = motor
                             move_line.ramv = ramv
+
                             rows.remove(row)
                             break
         except Exception as e:

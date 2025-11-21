@@ -9,3 +9,5 @@ class AccountTax(models.Model):
         string="Aplica sobre Precio Unitario?",
         help="Si está activo, el impuesto se calcula sobre price_unit."
     )
+
+    

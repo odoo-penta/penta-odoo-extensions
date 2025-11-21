@@ -52,11 +52,6 @@
         'views/project_wizard.xml',
         
     ],
-    'assets': {
-        'web.assets_backend': [
-            'penta_cb_cluster_motorcycle/static/src/js/ice_patch.js',
-        ],
-    },
     'installable': True,
     'application': False,
 }

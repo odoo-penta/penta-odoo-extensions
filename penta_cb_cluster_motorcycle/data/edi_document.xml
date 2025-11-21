@@ -40,7 +40,10 @@
                             <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
                                 <t t-set="atributos_combinados" t-value="atributos_combinados + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
                             </t>
-
+                            <t t-foreach="line.product_id.product_brand_id" t-as="brand">
+                                <t t-set="atributos_combinados" t-value="atributos_combinados + ['Marca: %s' % (brand.name)]"/>
+                            </t>
+                            
                             <!-- Ahora tomamos los datos del lote -->
                             <t t-set="ramv_val" t-value="' '"/>
                             <t t-set="motor_val" t-value="' '"/>
@@ -71,7 +74,7 @@
                                             'valor': (
                                                 '|'.join(atributos_combinados)
                                                 + '| Ramv: ' + ramv_val
-                                                + '| Placa: ' + motor_val
+                                                + '| Numero de Motor: ' + motor_val
                                                 + '| Chasis: ' + lote_val
                                             ) if atributos_combinados or ramv_val.strip() or motor_val.strip() or lote_val.strip() else ' '
                                         }"

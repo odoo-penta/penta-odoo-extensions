@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_import_picking_operations_wizard,import_picking_operations_wizard,model_import_picking_operations_wizard,base.group_user,1,1,1,1
 access_project_wizard,access.project.wizard,model_project_wizard,,1,1,1,0
+access_project_report,access.project.report,model_project_report,,1,1,1,1

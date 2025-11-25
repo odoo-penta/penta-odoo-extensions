@@ -609,3 +609,159 @@ msgstr "Almacen"
 #, python-format
 msgid "Payment term"
 msgstr "Tèrmino de pago"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__date_assign
+msgid "Assignment Date"
+msgstr "Fecha Asignación"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__created_on
+msgid "Create on"
+msgstr "Creado el"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__effective_date
+msgid "Effective date"
+msgstr "Fecha Efectiva"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__date_end
+msgid "Completion date"
+msgstr "Fecha de finalización"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__dispatch_date
+msgid "Length of stay in days"
+msgstr "Tiempo permanencia en días"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__effective_hours
+msgid "Effective Hours"
+msgstr "Horas Efectivas"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__stage_id
+msgid "Work order status"
+msgstr "Estado de orden de trabajo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__user_ids
+msgid "Mechanic"
+msgstr "Mecánico"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__under_warranty
+msgid "Under warranty"
+msgstr "Bajo garantía"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__partner_vat
+msgid "Identification number"
+msgstr "Número de identificación"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__partner_name
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__customer_category
+msgid "Customer category"
+msgstr "Categoría de cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__chassis
+msgid "Chassis"
+msgstr "Chassis"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__motor_number
+msgid "Engine"
+msgstr "Motor"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__placa
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__plate
+msgid "Plate"
+msgstr "Placa"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_name
+msgid "Product (header)"
+msgstr "Producto (cabecera)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__ref_int_product_name
+msgid "Product (Internal Reference)"
+msgstr "Producto (Referencia Interna)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__model
+msgid "Model"
+msgstr "Modelo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__brand
+msgid "Brand"
+msgstr "Marca"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__line_category
+msgid "Line (Product category)"
+msgstr "Lìnea (Categorìa del producto)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_category
+msgid "Product category"
+msgstr "Categorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_subcategory
+msgid "Product subcategory"
+msgstr "Subcategorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__internal_reference
+msgid "Internal reference"
+msgstr "Referencia interna"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__sale_product_name
+msgid "Product (Sales Order)"
+msgstr "Producto (Sale Order)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__unit_price
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__discount
+msgid "Discount"
+msgstr "Descuento"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__net_amount
+msgid "Net Amount"
+msgstr "Importe Neto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_status
+msgid "Invoice Status"
+msgstr "Estado de Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_name
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_date
+msgid "Invoice Date"
+msgstr "Fecha de Factura"

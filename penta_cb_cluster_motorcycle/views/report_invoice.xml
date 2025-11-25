@@ -3,12 +3,12 @@
 
     <template id="report_invoice_document_edi_inherit_2" inherit_id="l10n_ec_edi.report_invoice_document">
         <!-- Insertar columna después de Descripción -->
-        <xpath expr="//table[@name='invoice_line_table']//th[@name='th_auxiliary_code']" position="after">
+        <xpath expr="//table[@name='invoice_line_table']//th[@name='th_auxiliary_code']" position="replace">
             <th name="th_detalles_adicionales" class="text-start">
                 <span>Detalles Adicionales</span>
             </th>
         </xpath>
-        <xpath expr="//table[@name='invoice_line_table']//tbody//td[span][2]" position="inside">
+        <xpath expr="//table[@name='invoice_line_table']//tbody//td[span][2]" position="replace">
             <t t-if="line.move_id.stock_lot_ids">
 
                 <!-- Inicializar listas y valores -->
@@ -38,12 +38,12 @@
                     </t>
                 </t>
 
-                <td>
+                <td style="font-size: 12px;">
                     <!-- Imprimir resultado dentro del td (no creamos td extra) -->
                     <span t-esc="', '.join(atributos_combinados)
-                            + ((' Ramv: ' + ramv_val) if ramv_val else '')
-                            + ((' Numero de Motor: ' + motor_val) if motor_val else '')
-                            + ((' Chasis: ' + lote_val) if lote_val else '')"/>
+                            + ((', Ramv: ' + ramv_val) if ramv_val else '')
+                            + ((', Motor: ' + motor_val) if motor_val else '')
+                            + ((', Chasis: ' + lote_val) if lote_val else '')"/>
                 </td>
             </t>
         </xpath>

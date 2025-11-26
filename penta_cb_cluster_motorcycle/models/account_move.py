@@ -174,16 +174,8 @@ class AccountMove(models.Model):
                     sale_order = lot.sale_order_ids[:1] or \
                                 (getattr(getattr(ml, "move_id", False), "sale_line_id", False) and getattr(getattr(ml.move_id, "sale_line_id", False), "order_id", False)) or \
                                 getattr(getattr(ml.move_id, "picking_id", False), "sale_id", False)
-                    # Determinar precio subtotal basado en la sale_order encontrada (si aplica)
-                    price_subtotal = 0.00
-                    if sale_order and sale_order.order_line:
-                        matched_lines = sale_order.order_line.filtered(lambda l: l.product_id == product)
-                        line_to_use = matched_lines[0] if matched_lines else sale_order.order_line[0]
-                        # Precio unitario sin impuestos y con descuento aplicado
-                        price_unit = line_to_use.price_unit * (1 - (line_to_use.discount or 0.0) / 100)
-                        price_subtotal = price_unit  # Este es el precio real por producto/lote
-                    else:
-                        price_subtotal = 0.0
+                    # Determinar precio subtotal
+                    price_subtotal = line.price_unit * (1 - (line.discount or 0.0) / 100)
                     # Construir la entrada venta por cada lote
                     build_venta(
                         datos_ventas,

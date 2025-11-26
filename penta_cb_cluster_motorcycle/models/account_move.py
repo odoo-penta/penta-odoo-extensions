@@ -152,24 +152,39 @@ class AccountMove(models.Model):
         def build_ventas_section(root):
             return LET.SubElement(root, "datosVentas")
 
-        def process_invoice(inv, datos_ventas):
-            lots = self.env['stock.lot']
+        def process_invoice(inv, datos_ventas, processed_lot_ids):
+            # Recorremos cada línea de factura
             for line in inv.invoice_line_ids:
-                if line.sale_line_ids:
-                    line_lots = line.sale_line_ids.move_ids.move_line_ids.mapped('lot_id')
-                    if line_lots:
-                        lots |= line_lots
-            if lots:
-                for lot in lots:
-                    sale_order  = lots[0].sale_order_ids[:1]
+                product = line.product_id
+                # Movimientos relacionados con las sale.order.line de esta línea de factura
+                moves = line.sale_line_ids.move_ids.filtered(lambda m: m.product_id == product)
+                # Tomamos las move_lines de esos movimientos
+                move_lines = moves.move_line_ids
+                # Recorremos cada move_line y extraemos su lot (si existe)
+                for ml in move_lines:
+                    lot = getattr(ml, "lot_id", False)
+                    if not lot:
+                        continue
+                    # Si ya procesamos este lote en cualquier factura previa, lo saltamos
+                    if lot.id in processed_lot_ids:
+                        continue
+                    # Marcamos como procesado globalmente
+                    processed_lot_ids.add(lot.id)
+                    # Buscar una sale.order asociada al lote / movimiento de forma segura
+                    sale_order = lot.sale_order_ids[:1] or \
+                                (getattr(getattr(ml, "move_id", False), "sale_line_id", False) and getattr(getattr(ml.move_id, "sale_line_id", False), "order_id", False)) or \
+                                getattr(getattr(ml.move_id, "picking_id", False), "sale_id", False)
+                    # Determinar precio subtotal basado en la sale_order encontrada (si aplica)
                     price_subtotal = 0.00
                     if sale_order and sale_order.order_line:
-                        lines = sale_order.order_line.filtered(lambda l: l.product_id == lots[0].product_id)
-                        if lines:
-                            price_subtotal = lines[0].price_subtotal
-                        else:
-                            # Si no hay coincidencia exacta, tomamos la primera línea
-                            price_subtotal = sale_order.order_line[0].price_subtotal
+                        matched_lines = sale_order.order_line.filtered(lambda l: l.product_id == product)
+                        line_to_use = matched_lines[0] if matched_lines else sale_order.order_line[0]
+                        # Precio unitario sin impuestos y con descuento aplicado
+                        price_unit = line_to_use.price_unit * (1 - (line_to_use.discount or 0.0) / 100)
+                        price_subtotal = price_unit  # Este es el precio real por producto/lote
+                    else:
+                        price_subtotal = 0.0
+                    # Construir la entrada venta por cada lote
                     build_venta(
                         datos_ventas,
                         inv.company_id,
@@ -181,7 +196,11 @@ class AccountMove(models.Model):
                         price_subtotal,
                         lot
                     )
-            else:
+            has_any_lot_for_invoice = any(
+                getattr(ml, "lot_id", False) for line in inv.invoice_line_ids
+                for ml in (line.sale_line_ids.move_ids.move_line_ids if line.sale_line_ids else self.env['stock.move.line'])
+            )
+            if not has_any_lot_for_invoice:
                 build_venta(
                     datos_ventas,
                     inv.company_id,
@@ -204,9 +223,9 @@ class AccountMove(models.Model):
         root = LET.Element("ventas")
         build_registrador_section(root, self[0])
         datos_ventas = build_ventas_section(root)
-
+        processed_lot_ids = set()
         for inv in self:
-            process_invoice(inv, datos_ventas)
+            process_invoice(inv, datos_ventas, processed_lot_ids)
 
         return root
 

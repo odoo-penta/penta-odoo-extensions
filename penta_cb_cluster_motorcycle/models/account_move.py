@@ -61,7 +61,7 @@ class AccountMove(models.Model):
         return self.invoice_line_ids.filtered(lambda l: not l.display_type)
 
     # ----------------- Resolución de código de cantón -----------------
-    def _compute_canton_code_from_partner(self, partner):
+    def _compute_canton_code_from_partner(self, establishment, point_of_issue):
         """
         Construye: <region><state.code><city_code(2d)>
         city_code:
@@ -69,6 +69,10 @@ class AccountMove(models.Model):
             - si no existe city_id y existe modelo 'res.country.state.city':
                 busca por (name == partner.city) & (state_id == partner.state_id)
         """
+        warehouse = self.env['stock.warehouse'].search([('l10n_ec_entity', '=', establishment),('l10n_ec_emission', '=', point_of_issue)], limit=1)
+        if not warehouse or not warehouse.partner_id:
+            return ""
+        partner = warehouse.partner_id
         state = partner.state_id
         if not state:
             return ""
@@ -139,7 +143,8 @@ class AccountMove(models.Model):
             xml_element(venta, "precioVenta", "%.2f" % (price if price is not None else 0.0))
 
             # === AQUÍ calculamos el codigoCantonMatriculacion desde account.move ===
-            canton = self._compute_canton_code_from_partner(partner)
+            establishment, point_of_issue, sequential = latam_doc_number.split('-')
+            canton = self._compute_canton_code_from_partner(establishment, point_of_issue)
             xml_element(venta, "codigoCantonMatriculacion", canton)
 
             build_direccion(venta, partner)

@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+<template id="report_invoice_document_edi_inherit_motorcycle"
+          inherit_id="l10n_ec_edi.report_invoice_document">
+
+    <!-- ✔ Insertar columna extra antes de DESCRIPTION -->
+    <xpath expr="//table[@name='invoice_line_table']//th[@name='th_description']"
+           position="before">
+
+        <th name="th_extra_motorcycle" class="text-start">
+            <span>Detalles</span>
+        </th>
+
+    </xpath>
+
+    <!-- ✔ Insertar datos antes de DESCRIPTION en el TBODY -->
+    <xpath expr="//table[@name='invoice_line_table']//td[@name='account_invoice_line_name']"
+           position="before">
+
+        <td name="td_extra_motorcycle" class="text-start" style="font-size:12px;">
+
+            <t t-if="line.move_id.stock_lot_ids">
+
+                <t t-set="attrs" t-value="[]"/>
+                <t t-set="ramv" t-value="''"/>
+                <t t-set="motor" t-value="''"/>
+                <t t-set="lote" t-value="''"/>
+
+                <!-- Atributos -->
+                <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
+                    <t t-set="attrs" t-value="attrs + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
+                </t>
+
+                <!-- Marca -->
+                <t t-if="line.product_id.product_brand_id">
+                    <t t-set="attrs" t-value="attrs + ['Marca: %s' % line.product_id.product_brand_id.name]"/>
+                </t>
+
+                <!-- Lotes -->
+                <t t-foreach="line.move_id.stock_lot_ids" t-as="lot">
+                    <t t-if="lot.product_id.id == line.product_id.id">
+                        <t t-if="not ramv"><t t-set="ramv" t-value="lot.ramv or ''"/></t>
+                        <t t-if="not motor"><t t-set="motor" t-value="lot.motor_number or ''"/></t>
+                        <t t-if="not lote"><t t-set="lote" t-value="lot.name or ''"/></t>
+                    </t>
+                </t>
+
+                <span t-esc="', '.join(attrs)
+                        + ((', Ramv: ' + ramv) if ramv else '')
+                        + ((', Motor: ' + motor) if motor else '')
+                        + ((', Chasis: ' + lote) if lote else '')"/>
+            </t>
+
+        </td>
+
+    </xpath>
+
+</template>
+
+
     <template id="invoice_tbody_inherti_edi" inherit_id="account.report_invoice_document">
         <xpath expr="//tbody[@class='invoice_tbody']" position="replace">
             <t t-set="lotes_linea_usados" t-value="[]"/>

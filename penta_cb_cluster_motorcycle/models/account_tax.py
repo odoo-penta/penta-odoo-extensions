@@ -3,23 +3,31 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
     apply_on_unit_price = fields.Boolean(
         string="Aplica sobre Precio Unitario?",
-        help="Si está activo, el impuesto se calcula sobre price_unit."
+        help="Si está activo, el impuesto (ICE) se calcula sobre price_unit sin descuento."
     )
 
     @api.model
     def _add_tax_details_in_base_line(self, base_line, company, rounding_method=None):
         """
-        Override REAL donde Odoo 18 calcula los impuestos.
-        Aquí aplicamos tu lógica:
-        - Si producto.is_ensabled = True
-        - Y tax.apply_on_unit_price = True
-        -> El ICE se calcula SIN descuento.
+        OVERRIDE :
+        ------------------
+        Este método reemplaza completamente
+        la base del ICE y rehace la base del IVA.
+
+        Lógica implementada:
+        ✓ ICE SIN descuento
+        ✓ IVA sobre:
+            base_con_descuento + ICE_sin_descuento
         """
+
+        # Ejecutamos primero el cálculo ORIGINAL de Odoo (calcula IVA e ICE con descuento)
+        res = super()._add_tax_details_in_base_line(base_line, company, rounding_method=rounding_method)
 
         product = base_line.get("product_id")
         taxes = base_line.get("tax_ids")
@@ -27,43 +35,62 @@ class AccountTax(models.Model):
         price_unit = base_line.get("price_unit", 0)
         quantity = base_line.get("quantity", 1)
 
-        # Llama a Odoo primero (para IVA, etc.)
-        res = super()._add_tax_details_in_base_line(
-            base_line, company, rounding_method=rounding_method
-        )
-
-        # Validación: no producto o no impuestos → no tocar
         if not product or not taxes:
             return res
 
-        # Impuestos ICE
+        # Filtrar impuestos ICE
         ice_taxes = taxes.filtered(lambda t: t.apply_on_unit_price)
 
+        # Si no aplica lógica ICE personalizada, salimos
         if not (product.is_ensabled and ice_taxes):
             return res
 
-        _logger.warning("🔥 RE-CALCULANDO ICE SIN DESCUENTO (override funcionando)")
 
-        # BASE sin descuento (lo que tú necesitas)
-        base_without_discount = price_unit * quantity
+        # -----------------------------
+        # 1) BASES CORRECTAS
+        # -----------------------------
+        base_with_discount = price_unit * quantity * (1 - discount / 100)
+        base_without_discount = price_unit * quantity  # ICE correcto
 
-        # Recorremos los impuestos que ya calculó Odoo
+
+        # -----------------------------
+        # 2) REESCRIBIR ICE
+        # -----------------------------
+        new_ice_amount = 0
+
         for tax_data in base_line["tax_details"]["taxes_data"]:
             tax = tax_data["tax"]
-
             if tax.apply_on_unit_price:
-                _logger.warning("➡️ Base original Odoo (con descuento): %s", tax_data["raw_base_amount_currency"])
-                _logger.warning("➡️ Base corregida SIN descuento: %s", base_without_discount)
-
-                # Reemplazar base
+                # Cambiamos la base
                 tax_data["raw_base_amount_currency"] = base_without_discount
 
-                # Recalcular monto
+                # Recalcular monto ICE
                 if tax.amount_type == "percent":
                     tax_data["raw_tax_amount_currency"] = base_without_discount * (tax.amount / 100)
                 elif tax.amount_type == "fixed":
                     tax_data["raw_tax_amount_currency"] = tax.amount * quantity
 
-                _logger.warning("🧾 ICE NUEVO = %s", tax_data["raw_tax_amount_currency"])
+                new_ice_amount += tax_data["raw_tax_amount_currency"]
+
+        # -----------------------------
+        # 3) RE-CALCULAR IVA sobre
+        #    base_con_desc + ICE_sin_desc
+        # -----------------------------
+        iva_taxes = taxes.filtered(lambda t: not t.apply_on_unit_price)
+
+        base_iva = base_with_discount + new_ice_amount
+
+
+        for tax_data in base_line["tax_details"]["taxes_data"]:
+            tax = tax_data["tax"]
+
+            # Solo impuestos que NO son ICE
+            if tax in iva_taxes:
+                tax_data["raw_base_amount_currency"] = base_iva
+
+                if tax.amount_type == "percent":
+                    tax_data["raw_tax_amount_currency"] = base_iva * (tax.amount / 100)
+                elif tax.amount_type == "fixed":
+                    tax_data["raw_tax_amount_currency"] = tax.amount * quantity
 
         return res

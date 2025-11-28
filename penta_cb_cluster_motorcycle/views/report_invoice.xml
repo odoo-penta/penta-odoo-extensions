@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<template id="report_invoice_document_edi_inherit_motorcycle"
-          inherit_id="l10n_ec_edi.report_invoice_document">
 
- <xpath expr="//table[@name='invoice_line_table']//t[@name='account_invoice_line_accountable']"
-       position="before">
+<template id="report_invoice_document_edi_inherit_2"
+          inherit_id="l10n_ec_edi.report_invoice_document"
+          priority="500">
 
-    <td name="td_extra_motorcycle" class="text-start" style="font-size:12px;">
+    <!-- Reemplazar columna auxiliar por Detalles Adicionales -->
+    <xpath expr="//table[@name='invoice_line_table']//th[@name='th_auxiliary_code']"
+           position="replace">
+        <th name="th_detalles_adicionales" class="text-start">
+            <span>Detalles Adicionales</span>
+        </th>
+    </xpath>
+
+    <!-- Reemplazar contenido de la celda correspondiente -->
+    <xpath expr="//table[@name='invoice_line_table']//tbody//td[span][2]"
+           position="replace">
+
         <t t-if="line.move_id.stock_lot_ids">
 
-            <t t-set="attrs" t-value="[]"/>
-            <t t-set="ramv" t-value="''"/>
-            <t t-set="motor" t-value="''"/>
-            <t t-set="lote" t-value="''"/>
+            <!-- Inicializar variables -->
+            <t t-set="atributos_combinados" t-value="[]"/>
+            <t t-set="ramv_val" t-value="' '"/>
+            <t t-set="motor_val" t-value="' '"/>
+            <t t-set="lote_val" t-value="' '"/>
 
             <!-- Atributos -->
             <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
-                <t t-set="attrs" t-value="attrs + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
+                <t t-set="atributos_combinados"
+                    t-value="atributos_combinados + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
+            </t>
+            <t t-foreach="line.product_id.product_brand_id" t-as="brand">
+                <t t-set="atributos_combinados"
+                    t-value="atributos_combinados + ['Marca: %s' % (brand.name)]"/>
             </t>
 
-            <!-- Marca -->
-            <t t-if="line.product_id.product_brand_id">
-                <t t-set="attrs" t-value="attrs + ['Marca: %s' % line.product_id.product_brand_id.name]"/>
-            </t>
-
-            <!-- Lotes -->
+            <!-- Extraer datos del lote -->
             <t t-foreach="line.move_id.stock_lot_ids" t-as="lot">
-                <t t-if="lot.product_id.id == line.product_id.id">
-                    <t t-if="not ramv"><t t-set="ramv" t-value="lot.ramv or ''"/></t>
-                    <t t-if="not motor"><t t-set="motor" t-value="lot.motor_number or ''"/></t>
-                    <t t-if="not lote"><t t-set="lote" t-value="lot.name or ''"/></t>
+                <t t-if="lot.product_id.id == line.product_id.id and lote_val == ' '">
+                    <t t-set="ramv_val" t-value="lot.ramv or ''"/>
+                    <t t-set="motor_val" t-value="lot.motor_number or ''"/>
+                    <t t-set="lote_val" t-value="lot.name or ''"/>
                 </t>
             </t>
 
-            <span t-esc="', '.join(attrs)
-                    + ((', Ramv: ' + ramv) if ramv else '')
-                    + ((', Motor: ' + motor) if motor else '')
-                    + ((', Chasis: ' + lote) if lote else '')"/>
-        </t>
-    </td>
+            <!-- Celda final -->
+            <td style="font-size: 12px;">
+                <span t-esc="', '.join(atributos_combinados)
+                        + ((', Ramv: ' + ramv_val) if ramv_val else '')
+                        + ((', Motor: ' + motor_val) if motor_val else '')
+                        + ((', Chasis: ' + lote_val) if lote_val else '')"/>
+            </td>
 
-</xpath>
+        </t>
+
+    </xpath>
 
 </template>
 

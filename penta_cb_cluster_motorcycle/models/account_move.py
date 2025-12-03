@@ -5,6 +5,9 @@ from datetime import datetime, date
 import base64
 import unicodedata
 import re
+import logging
+
+_logger = logging.getLogger(__name__)
 from odoo.tools import xml_element, sanitize_text, split_doc_number, latam_id_code, doc_type_code
 
 # ---------- Region por provincia ----------
@@ -41,6 +44,7 @@ def ec_region_prefix(state):
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
+    
     # ----------------- Helpers de fecha y líneas -----------------
     def _format_date(self, value):
         if not value:

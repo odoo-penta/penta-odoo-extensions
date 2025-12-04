@@ -26,7 +26,6 @@ class AccountTax(models.Model):
             base_con_descuento + ICE_sin_descuento
         """
 
-        # Ejecutamos primero el cálculo ORIGINAL de Odoo (calcula IVA e ICE con descuento)
         res = super()._add_tax_details_in_base_line(base_line, company, rounding_method=rounding_method)
 
         product = base_line.get("product_id")
@@ -46,16 +45,10 @@ class AccountTax(models.Model):
             return res
 
 
-        # -----------------------------
-        # 1) BASES CORRECTAS
-        # -----------------------------
         base_with_discount = price_unit * quantity * (1 - discount / 100)
         base_without_discount = price_unit * quantity  # ICE correcto
 
 
-        # -----------------------------
-        # 2) REESCRIBIR ICE
-        # -----------------------------
         new_ice_amount = 0
 
         for tax_data in base_line["tax_details"]["taxes_data"]:
@@ -72,10 +65,6 @@ class AccountTax(models.Model):
 
                 new_ice_amount += tax_data["raw_tax_amount_currency"]
 
-        # -----------------------------
-        # 3) RE-CALCULAR IVA sobre
-        #    base_con_desc + ICE_sin_desc
-        # -----------------------------
         iva_taxes = taxes.filtered(lambda t: not t.apply_on_unit_price)
 
         base_iva = base_with_discount + new_ice_amount

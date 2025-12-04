@@ -12,7 +12,6 @@
 {
     'name': 'Vehicle Data Integration',
     'summary': 'Integrates vehicle information into products',
-    'version': '18.0.0.1',
     'description': """
         This module implements vehicle data into products, purchases and sales
     """,
@@ -25,6 +24,7 @@
     'website': 'https://pentalab.tech/',
     'license': 'OPL-1',
     'category': 'Accounting/Accounting',
+    'version': '18.0.0.0',
     'depends': [
         'penta_base',
         'product',

@@ -12,7 +12,6 @@
 {
     "name": "Penta Base",
     'summary': 'Validations and global methods',
-    "version": "18.0.1.0",
     'description': """
         Add useful and reusable methods throughout the system.
     """,
@@ -22,6 +21,7 @@
     'website': 'https://pentalab.tech/',
     'license': 'OPL-1',
     'category': 'Tools/Tools',
+    'version': '18.0.0.0',
     'depends': [
         'base', 'purchase', 'stock', 'account'
     ],

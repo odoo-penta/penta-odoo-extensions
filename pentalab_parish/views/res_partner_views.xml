@@ -1,0 +1,29 @@
+
+<odoo>
+    <record id="view_res_partner_form_city" model="ir.ui.view">
+        <field name="name">res.partner.form.city</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="replace">
+                <field name="city" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="before">
+                <field name="city_id" placeholder='Ciudad'/>
+                <field name="parroquia_id" placeholder='Parroquia'/>
+            </xpath>
+            <!-- 1) Hacer invisible el campo city dentro del subform de child_ids -->
+            <xpath expr="//field[@name='child_ids']/form//field[@name='city']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- 2) Agregar city_id después de street2 -->
+            <xpath expr="//field[@name='child_ids']/form//field[@name='street2']" position="after">
+                <field name="city_id"
+                    placeholder="City"
+                    options="{'no_open': True, 'no_quick_create': True}"
+                    domain="[('state_id', '=', state_id)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

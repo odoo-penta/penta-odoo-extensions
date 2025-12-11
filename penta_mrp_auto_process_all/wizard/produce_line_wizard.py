@@ -80,8 +80,11 @@ class ProcessLineWizard(models.TransientModel):
 		to_produce = prod_id.product_qty - prod_id.qty_producing 
 		vals['to_produce_qty'] = 1 if prod_id.product_id.tracking == 'serial' else to_produce
 		for line in prod_id.move_raw_ids.mapped('move_line_ids'):
-			# uom_qty = line.product_uom_qty - line.qty_done
-			uom_qty = line.reserved_uom_qty - line.qty_done
+			move = line.move_id
+			# Total consumido del move
+			consumed = sum(move.move_line_ids.mapped("qty_done"))
+			# Cantidad pendiente
+			uom_qty = move.product_uom_qty - consumed
 			if uom_qty <= 0:
 				continue
 			records.append({

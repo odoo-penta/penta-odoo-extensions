@@ -44,11 +44,11 @@
                         confirm="There are no components to consume. Are you still sure you want to continue?"/>
             </xpath>
             <xpath expr="//page[@name='components']" position='after'>
-                <page string="Process Line" name="process_line" invisible="not product_is_serial">
+                <page string="Finished product" name="process_line" invisible="not product_is_serial">
                     <field name="finished_move_line_ids">
                         <list editable="bottom">
-                            <field name="company_id" invisible='1'/>
-                            <field name="product_uom_category_id" invisible='1'/>
+                            <field name="company_id" column_invisible='1'/>
+                            <field name="product_uom_category_id" column_invisible='1'/>
                             <field name="product_id"/>
                             <field name="lot_id"/>
                             <field name="qty_done"/>

@@ -129,9 +129,9 @@ class ProcessOrderLine(models.TransientModel):
 	product_uom_qty = fields.Float('Reserved', readonly=True)
 	qty_done = fields.Float('Done')
 	lot_id = fields.Many2one('stock.lot', 'Lot Number')
+	motor_number = fields.Char(readonly=True)
 	location_id = fields.Many2one('stock.location', readonly=True)
 	product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure')
-
 
 	@api.onchange('product_id')
 	def onchange_product_id(self):

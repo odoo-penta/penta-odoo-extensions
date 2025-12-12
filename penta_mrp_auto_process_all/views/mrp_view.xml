@@ -5,6 +5,22 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
+            <!-- Botones cabecera-->
+            <xpath expr="//header" position="inside">
+                <button name="action_open_generate_cpn_pdi_wizard"
+                        type="object"
+                        string="Generar CPN y PDI"
+                        class="oe_highlight"
+                        invisible="state != 'done'"/>
+                <button name="action_generate_xml"
+                        type="object"
+                        string="Generar XML"
+                        invisible="state != 'done'"/>
+            </xpath>
+            <!-- Debajo de fecha programada  -->
+            <xpath expr="//field[@name='date_start']" position="after">
+                <field name="cpn_pdi_generated_at" readonly="1"/>
+            </xpath>
             <xpath expr="//header/field[@name='show_lock']" position="after">
                 <field name="product_is_serial" invisible="1"/>
             </xpath>

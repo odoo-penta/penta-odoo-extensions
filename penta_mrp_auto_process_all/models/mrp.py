@@ -11,6 +11,7 @@ class MrpProduction(models.Model):
 
     process_line_ids = fields.One2many('process.order.line', 'manufacture_id')
     product_is_serial = fields.Boolean(compute='_compute_product_is_serial')
+    cpn_pdi_generated_at = fields.Datetime(string="CPN/PDI generados", readonly=True, copy=False)
 
     @api.depends('product_id')
     def _compute_product_is_serial(self):
@@ -66,6 +67,66 @@ class MrpProduction(models.Model):
                 'state': 'done',
             })
         return True
+    
+    def _finished_move_lines_to_process(self):
+        self.ensure_one()
+        moves = self.move_finished_ids
+        lines = moves.mapped("move_line_ids").filtered(
+            lambda ml: ml.product_id and ml.product_id.tracking != "none"
+        )
+        return lines
+
+    def action_open_generate_cpn_pdi_wizard(self):
+        self.ensure_one()
+        if self.state not in ("confirmed", "progress"):
+            raise UserError(_("La orden debe estar en estado 'Listo' o 'En Progreso'."))
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "generate.cpn.pdi.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {"default_production_id": self.id},
+        }
+
+    def action_generate_xml(self):
+        for prod in self:
+            if prod.state != "done":
+                raise UserError(_("La orden debe estar en estado 'Hecho' para generar el XML."))
+
+            root = ET.Element("vehiculosEnsambladores")
+            for ml in prod._finished_move_lines_to_process():
+                lot = ml.lot_id
+                if not lot:
+                    continue
+                veh = ET.SubElement(root, "vehiculoEnsamblador")
+                ET.SubElement(veh, "numeroProduccion").text = prod.name or ""
+                ET.SubElement(veh, "producto").text = ml.product_id.display_name or ""
+                ET.SubElement(veh, "lotSerial").text = lot.name or ""
+                ET.SubElement(veh, "cpn").text = lot.cpn or ""
+                ET.SubElement(veh, "pdi").text = lot.pdi or ""
+                subclass = prod.product_id.product_tmpl_id.sri_motor_subclass_id
+                if subclass:
+                    sri = ET.SubElement(veh, "sri")
+                    ET.SubElement(sri, "codigoSubclaseSubcategoria").text = subclass.subclass_subcategory_code or ""
+                    ET.SubElement(sri, "codigoSubclase").text = subclass.subclass_code or ""
+                    ET.SubElement(sri, "idSRI").text = subclass.sri_id or ""
+
+            data = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+            att = self.env["ir.attachment"].create({
+                "name": f"produccion_{prod.name}.xml",
+                "res_model": "mrp.production",
+                "res_id": prod.id,
+                "type": "binary",
+                "datas": base64.b64encode(data).decode(),
+                "mimetype": "application/xml",
+            })
+
+            prod.message_post(
+                body=_("Se generó el XML y se adjuntó al registro."),
+                attachment_ids=[att.id],
+            )
+        return True
+
 
 class StockLot(models.Model):
     _inherit = 'stock.lot'

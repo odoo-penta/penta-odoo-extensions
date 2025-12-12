@@ -41,6 +41,7 @@
                                 <field name="move_id" force_save="1" invisible="1"/>
                                 <field name="product_id" force_save="1"/>
                                 <field name="lot_id" force_save="1"/>
+                                <field name="motor_number" force_save="1"/>
                                 <field name="product_uom_qty" force_save="1"/>
                                 <field name="qty_done" force_save="1"/>
                                 <field name="product_uom_id" force_save="1"/>

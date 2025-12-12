@@ -56,10 +56,12 @@ class AccountTax(models.Model):
             if tax.apply_on_unit_price:
                 # Cambiamos la base
                 tax_data["raw_base_amount_currency"] = base_without_discount
+                tax_data["raw_base_amount"] = base_without_discount
 
                 # Recalcular monto ICE
                 if tax.amount_type == "percent":
                     tax_data["raw_tax_amount_currency"] = base_without_discount * (tax.amount / 100)
+                    tax_data["raw_tax_amount"] = base_without_discount * (tax.amount / 100)
                 elif tax.amount_type == "fixed":
                     tax_data["raw_tax_amount_currency"] = tax.amount * quantity
 
@@ -76,10 +78,13 @@ class AccountTax(models.Model):
             # Solo impuestos que NO son ICE
             if tax in iva_taxes:
                 tax_data["raw_base_amount_currency"] = base_iva
+                tax_data["raw_base_amount"] = base_iva
 
                 if tax.amount_type == "percent":
                     tax_data["raw_tax_amount_currency"] = base_iva * (tax.amount / 100)
+                    tax_data["raw_tax_amount"] = base_iva * (tax.amount / 100)
                 elif tax.amount_type == "fixed":
                     tax_data["raw_tax_amount_currency"] = tax.amount * quantity
+                    tax_data["raw_tax_amount"] = tax.amount * quantity
 
         return res

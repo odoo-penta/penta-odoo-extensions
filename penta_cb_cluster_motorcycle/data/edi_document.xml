@@ -29,12 +29,12 @@
 
                             <!-- precio unitario no cambia -->
                             <precioUnitario t-out="format_num_6(line_edi_values['price_unit'])"/>
-
+                                
                             <!-- Descuento por unidad (dividir por quantity si corresponde) -->
-                            <descuento t-out="format_num_2((line_edi_values['price_discount'] + abs(line.balance) - line_items[1]['base_amount']) / line.quantity)"/>
+                            <descuento t-out="format_num_2(line_edi_values['price_discount'] / line.quantity)"/>
 
                             <!-- Total sin impuesto por unidad -->
-                            <precioTotalSinImpuesto t-out="format_num_2(abs(line_items[1]['base_amount']) / line.quantity)"/>
+                            <precioTotalSinImpuesto t-out="format_num_2(abs((line_items[1]['base_amount'] - line_edi_values['price_discount']) / line.quantity))"/>
 
                             <t t-set="atributos_combinados" t-value="[]"/>
                             <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">

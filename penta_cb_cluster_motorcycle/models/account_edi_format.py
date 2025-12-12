@@ -18,52 +18,6 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DTF
 class AccountEdiFormat(models.Model):
     _inherit = 'account.edi.format'
 
-    def _l10n_ec_get_invoice_totals(self, move):
-
-        totals = super()._l10n_ec_get_invoice_totals(move)
-
-        # Buscar línea con producto ensamblado
-        line = move.invoice_line_ids.filtered(
-            lambda l: l.product_id and l.product_id.is_ensabled
-        )[:1]
-
-        if not line:
-            return totals
-
-        qty = line.quantity
-        price_unit = line.price_unit
-        price_no_disc = price_unit * qty
-
-        ice_tax = line.tax_ids.filtered(lambda t: t.apply_on_unit_price)
-
-        if not ice_tax:
-            return totals
-
-        ice_rate = ice_tax.amount / 100
-        ice_sin_desc = price_no_disc * ice_rate
-
-        _logger.warning(" Ajustando XML ICE e IVA para SRI")
-        _logger.warning(" Base sin descuento = %s", price_no_disc)
-        _logger.warning(" ICE sin descuento = %s", ice_sin_desc)
-
-        for tax in totals['totalImpuestos']:
-
-            # 1️ Corregir ICE
-            if tax['codigo'] == 3 and tax['codigoPorcentaje'] == 3073:
-                tax['baseImponible'] = price_no_disc
-                tax['valor'] = ice_sin_desc
-                _logger.warning("✔ ICE corregido en XML")
-
-            # 2️ Corregir IVA (código 2, porcentaje 4)
-            if tax['codigo'] == 2 and tax['codigoPorcentaje'] == 4:
-                iva_base = price_no_disc + ice_sin_desc
-                iva = iva_base * 0.15
-                tax['baseImponible'] = iva_base
-                tax['valor'] = iva
-                _logger.warning("✔ IVA corregido en XML")
-
-        return totals
-
     def _l10n_ec_generate_signed_xml(self, company_id, xml_node_or_string):
         # 1. Si estamos en ambiente demo, tomamos la ruta simplificada.
         if company_id._l10n_ec_is_demo_environment():

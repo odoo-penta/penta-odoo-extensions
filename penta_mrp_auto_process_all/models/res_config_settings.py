@@ -55,7 +55,7 @@ class ResConfigSettings(models.TransientModel):
         vals = super().get_values()
         company = self.env.company
         if not company.cpn_sequence_id:
-            company.cpn_sequence_id = self.env.ref("penta_cb_mrp_production.seq_cpn_default")
+            company.cpn_sequence_id = self.env.ref("penta_mrp_auto_process_all.seq_cpn_default")
         if not company.pdi_sequence_id:
-            company.pdi_sequence_id = self.env.ref("penta_cb_mrp_production.seq_pdi_default")
+            company.pdi_sequence_id = self.env.ref("penta_mrp_auto_process_all.seq_pdi_default")
         return vals

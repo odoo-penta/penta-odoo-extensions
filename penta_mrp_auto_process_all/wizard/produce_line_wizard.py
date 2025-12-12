@@ -23,12 +23,18 @@ class ProcessLineWizard(models.TransientModel):
 				#self.process_line_ids.mapped('move_id')._action_assign()
 
 				for move in self.production_id.move_finished_ids.filtered(lambda m: m.product_id == self.product_id):
-					vals = move._prepare_move_line_vals(quantity=0)
-					vals['qty_done'] = 1 if self.product_id.tracking == 'serial' else self.to_produce_qty
-					vals['product_uom_id'] = self.product_id.uom_id.id
-					vals['lot_id'] = self.lot_producing_id.id
-					vals['production_id'] = self.production_id.id
-					move_line_id = self.env['stock.move.line'].create(vals)
+					existing_sml = move.move_line_ids.filtered(lambda ml: not ml.lot_id and ml.qty_done == 0)
+					if existing_ml:
+						move_line_id = existing_ml[0]
+					else:
+						vals = move._prepare_move_line_vals(quantity=0)
+						move_line_id = self.env['stock.move.line'].create(vals)
+					move_line_id.write({
+						'qty_done': 1 if self.product_id.tracking == 'serial' else self.to_produce_qty,
+						'product_uom_id': self.product_id.uom_id.id,
+						'lot_id': self.lot_producing_id.id,
+						'production_id': self.production_id.id,
+					})
 					for line in self.process_line_ids:
 						if line.line_id:
 							line.line_id.lot_id = line.lot_id

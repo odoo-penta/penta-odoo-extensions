@@ -129,6 +129,83 @@ class MrpProduction(models.Model):
                 attachment_ids=[att.id],
             )
         return True
+    
+    def action_auto_produce(self):
+        for production in self:
+            product = production.product_id
+            total_qty = production.product_qty # Cantidad total planificada
+            produced_qty = production.qty_producing # Cantidad ya producida
+            pending_qty = total_qty - produced_qty
+            
+            if total_qty <= 0:
+                raise ValidationError(_(
+                    "It cannot be produced because the total quantity set is zero or negative."
+                ))
+                
+            if pending_qty <= 0:
+                raise ValidationError(_(
+                    "The order has already been fully produced. There are no units left."
+                ))
+                
+            # CANTIDAD A PRODUCIR EN ESTA EJECUCIÓN
+            if product.tracking == 'serial':
+                qty_to_make = 1
+            else:
+                qty_to_make = pending_qty  # produce toda la pendiente
+            
+            # 1) Validación de serial si aplica
+            if product.tracking == 'serial':
+                lot = self.env['stock.lot'].create({
+                    'product_id': product.id,
+                    'company_id': production.company_id.id,
+                    'name': self.env['stock.lot']._get_next_serial(production.company_id, product)
+                        or self.env['ir.sequence'].next_by_code('stock.lot.serial'),
+                })
+            else:
+                lot = False
+
+            # 2) Move finished
+            for move in production.move_finished_ids.filtered(lambda m: m.product_id == product):
+                existing_ml = move.move_line_ids.filtered(
+                    lambda ml: not ml.lot_id and ml.qty_done == 0
+                )
+                if existing_ml:
+                    move_line_id = existing_ml[0]
+                else:
+                    vals = move._prepare_move_line_vals(quantity=0)
+                    move_line_id = self.env['stock.move.line'].create(vals)
+
+                move_line_id.write({
+                    'qty_done': qty_to_make,
+                    'product_uom_id': product.uom_id.id,
+                    'lot_id': lot.id if lot else False,
+                    'production_id': production.id,
+                })
+
+            # 3) Consumir materia prima automáticamente
+            for raw_move in production.move_raw_ids:
+                consumed = sum(raw_move.move_line_ids.mapped("qty_done"))
+                pending_raw = raw_move.product_uom_qty - consumed
+                if pending_raw <= 0:
+                    continue
+
+                ml_vals = raw_move._prepare_move_line_vals(quantity=0)
+                ml_vals.update({
+                    'qty_done': pending_raw,
+                    'product_uom_id': raw_move.product_id.uom_id.id,
+                    'lot_id': False,
+                    'production_id': production.id,
+                })
+                self.env['stock.move.line'].create(ml_vals)
+
+            # 4) Actualizar cantidad producida
+            production.qty_producing += qty_to_make
+
+            # 5) Cerrar si está totalmente producida
+            if production.qty_producing >= production.product_qty:
+                production.state = 'to_close'
+
+        return True
 
 
 class StockLot(models.Model):

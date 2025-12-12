@@ -2,8 +2,11 @@
 
 from collections import defaultdict
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 from odoo.tools import float_round
 from odoo.tools.misc import groupby as tools_groupby
+import xml.etree.ElementTree as ET
+import base64
 
 
 class MrpProduction(models.Model):

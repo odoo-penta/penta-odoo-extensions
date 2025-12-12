@@ -22,7 +22,7 @@
     'website': "https://pentalab.tech/",
     'license': 'OPL-1',
     'category': 'Manufacturing',
-    'version': '18.0.2.1.0',
+    'version': '18.0.2.2.0',
     'depends': ['mrp'],
     'data': [
         "data/ir_sequence_data.xml",

@@ -24,8 +24,8 @@ class ProcessLineWizard(models.TransientModel):
 
 				for move in self.production_id.move_finished_ids.filtered(lambda m: m.product_id == self.product_id):
 					existing_sml = move.move_line_ids.filtered(lambda ml: not ml.lot_id and ml.qty_done == 0)
-					if existing_ml:
-						move_line_id = existing_ml[0]
+					if existing_sml:
+						move_line_id = existing_sml[0]
 					else:
 						vals = move._prepare_move_line_vals(quantity=0)
 						move_line_id = self.env['stock.move.line'].create(vals)

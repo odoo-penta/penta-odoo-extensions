@@ -14,7 +14,7 @@ class MrpProduction(models.Model):
 
     process_line_ids = fields.One2many('process.order.line', 'manufacture_id')
     product_is_serial = fields.Boolean(compute='_compute_product_is_serial')
-    cpn_pdi_generated_at = fields.Datetime(string="CPN/PDI generados", readonly=True, copy=False)
+    cpn_pdi_generated_at = fields.Datetime(string="CPN/PDI generated", readonly=True, copy=False)
 
     @api.depends('product_id')
     def _compute_product_is_serial(self):
@@ -81,8 +81,8 @@ class MrpProduction(models.Model):
 
     def action_open_generate_cpn_pdi_wizard(self):
         self.ensure_one()
-        if self.state not in ("confirmed", "progress"):
-            raise UserError(_("La orden debe estar en estado 'Listo' o 'En Progreso'."))
+        if self.state != 'done':
+            raise UserError(_("The order must be in the following status: Done"))
         return {
             "type": "ir.actions.act_window",
             "res_model": "generate.cpn.pdi.wizard",
@@ -94,7 +94,7 @@ class MrpProduction(models.Model):
     def action_generate_xml(self):
         for prod in self:
             if prod.state != "done":
-                raise UserError(_("La orden debe estar en estado 'Hecho' para generar el XML."))
+                raise UserError(_("The order must be in 'Done' state to generate the XML."))
 
             root = ET.Element("vehiculosEnsambladores")
             for ml in prod._finished_move_lines_to_process():
@@ -125,7 +125,7 @@ class MrpProduction(models.Model):
             })
 
             prod.message_post(
-                body=_("Se generó el XML y se adjuntó al registro."),
+                body=_("The XML file was generated and attached to the record."),
                 attachment_ids=[att.id],
             )
         return True

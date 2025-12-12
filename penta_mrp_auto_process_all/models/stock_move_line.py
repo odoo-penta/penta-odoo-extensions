@@ -14,10 +14,10 @@ class StockMoveLine(models.Model):
         """Abrir wizard para GENERAR SOLO ESTA LÍNEA de producto terminado."""
         self.ensure_one()
         prod = self.move_id.production_id
-        if not prod or prod.state not in ("confirmed", "progress"):
-            raise UserError(_("La orden debe estar en estado 'Listo' o 'En Progreso'."))
+        if not prod or prod.state != 'done':
+            raise UserError(_("The order must be in the following status: Done."))
         if self.product_id.tracking == "none":
-            raise UserError(_("La línea seleccionada no requiere lote/serie."))
+            raise UserError(_("The selected line does not require a batch/series."))
 
         return {
             "type": "ir.actions.act_window",

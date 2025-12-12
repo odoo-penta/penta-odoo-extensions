@@ -50,8 +50,8 @@ class GenerateCpnPdiWizard(models.TransientModel):
         prod = self.production_id
         company = prod.company_id
 
-        if prod.state not in ("confirmed", "progress"):
-            raise ValidationError(_("La orden debe estar en estado 'Listo' o 'En Progreso'."))
+        if prod.state != 'done':
+            raise ValidationError(_("The order must be in the following status: Done."))
 
         seq_cpn = company.cpn_sequence_id
         seq_pdi = company.pdi_sequence_id

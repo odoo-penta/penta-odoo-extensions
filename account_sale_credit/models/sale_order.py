@@ -244,6 +244,60 @@ class SaleOrder(models.Model):
                 'tax_id': [(6, 0, product.taxes_id.ids)],
             })
             order.applied_financing = True
+            
+    def _reset_financing(self):
+        self.ensure_one()
+
+        self.active_financing = False
+        self.applied_financing = False
+        self.recalculation_pending = False
+
+        self.factor_to_apply = 0.0
+        self.entry_percentage = 0.0
+        self.risk_percentage = 0.0
+        self.interest = 0.0
+        self.months_of_grace = 0
+        self.apply_interest_grace = False
+        self.minimum_fee = 0.0
+        self.financing_amount = 0.0
+
+        # Limpiar líneas diferidas
+        self.line_deferred_ids.unlink()
+
+            
+    def _program_check_compute_points(self, programs):
+        self.ensure_one()
+
+        result = super()._program_check_compute_points(programs)
+
+        financing_still_applies = False
+
+        for program, status in result.items():
+            # Si el programa ya es inválido, no lo consideramos
+            if 'error' in status:
+                continue
+
+            # Validar reglas por orden (cliente, etiquetas, bodega)
+            valid_rules = program.rule_ids.filtered(
+                lambda r: r._is_order_eligible(self)
+            )
+
+            if not valid_rules:
+                status.clear()
+                status['error'] = _(
+                    'This promotion is not applicable for this customer or warehouse.'
+                )
+                continue
+
+            # Detectar si sigue existiendo financiamiento válido
+            if program.program_type == 'financing_promotion':
+                financing_still_applies = True
+
+        # 🔴 LIMPIEZA DE FINANCIAMIENTO
+        if not financing_still_applies and self.active_financing:
+            self._reset_financing()
+
+        return result
     
 class SaleOrderLineDeferred(models.Model):
     _name = 'sale.order.line.deferred'

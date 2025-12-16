@@ -20,7 +20,7 @@
     ],
     'website': "https://pentalab.tech/",
     'category': 'Accounting',
-    'version': '18.0.0.0.0',
+    'version': '18.0.1.0.0',
     'depends': [
         'l10n_ec_account_penta',
         'loyalty',
@@ -31,6 +31,7 @@
         'views/account_move_views.xml',
         'views/account_payment_term_views.xml',
         'views/loyalty_reward_views.xml',
+        'views/loyalty_rule_views.xml',
         'views/product_views.xml',
         'views/res_partner_views.xml',
         'views/sale_order_views.xml',

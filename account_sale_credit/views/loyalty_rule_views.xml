@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Terminos de pago -->
+    <record id="loyalty_rule_view_form_inherit_penta" model="ir.ui.view">
+        <field name="name">loyalty.rule.form.inherit.penta</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tag_id']" position="after">
+                <field name="partner_ids" widget="many2many_tags"/>
+                <field name="partner_category_ids" widget="many2many_tags"/>
+                <field name="warehouse_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

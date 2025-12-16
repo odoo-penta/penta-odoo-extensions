@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_listar_retenciones_bancarias" model="ir.actions.act_window">
+            <field name="name">Listar Retenciones Bancarias</field>
+            <field name="res_model">account.move</field>
+            <!-- Se pueden usar vistas estándar de account.move -->
+            <field name="view_mode">list,form</field>
+            <!-- Filtra solo los movimientos con documento de código '07' -->
+            <field name="domain">[('l10n_latam_document_type_id.code', '=', '07')]</field>
+            <!-- Deshabilita crear, editar y borrar -->
+            <field name="context">{'create': True, 'edit': True, 'delete': True}</field>
+        </record>
+
+        <record id="action_retenciones_clientes_wizard" model="ir.actions.act_window">
+            <field name="name">Wizard de Retenciones Clientes</field>
+            <field name="res_model">retencion.clientes.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!-- Añade aquí domain, context, etc. si lo requieres -->
+        </record>
+        <!-- 
+        Grupo de Retenciones (sin action) que cuelga de "Customers" (menu_finance_entries).
+        Sirve como contenedor para sub-menús relacionados a retenciones de clientes.
+        -->
+        <menuitem id="menu_finance_entries_retenciones_group"
+                  name="Retenciones"
+                  parent="account.menu_finance_entries"
+                  sequence="120"
+                  groups="account.group_account_invoice" />
+        
+        <!-- 
+        Menú que representará "Retenciones clientes" y que podría tener una acción 
+        (por ejemplo, una vista tree/form de un modelo que maneje retenciones de clientes).
+        -->
+        <menuitem id="menu_finance_entries_retenciones_clientes"
+          name="Crear retenciones bancarias"
+          parent="menu_finance_entries_retenciones_group"
+          sequence="1"
+          action="action_retenciones_clientes_wizard"
+          groups="account.group_account_invoice" />
+
+        <!-- 
+        Ejemplo de la acción (si aún no la tienes, podrías definirla). 
+        El model puede ser el tuyo propio (ej. 'your.model.retencion.cliente') 
+        y la vista podría ser tree + form.
+        -->
+        
+         <!-- Menú para Listar retenciones bancarias (nuevo submenú) -->
+        <menuitem id="menu_finance_entries_listar_retenciones_bancarias"
+                  name="Listar retenciones bancarias"
+                  parent="menu_finance_entries_retenciones_group"
+                  sequence="2"
+                  action="action_listar_retenciones_bancarias"
+                  groups="account.group_account_invoice" />
+    </data>
+
+    <!-- <record id="view_move_form_inherit_editable_journal_items" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.editable.journal.items</field>
+        <field name="model">account.move</field>
+
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='line_ids']" position="attributes">
+
+                <attribute name="readonly">False</attribute>
+                <attribute name="create">True</attribute>
+            </xpath>
+        </field>
+    </record> -->
+
+
+</odoo>

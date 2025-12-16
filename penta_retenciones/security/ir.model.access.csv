@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_retencion_clientes_wizard,retencion_clientes_wizard_module.access_retencion_clientes_wizard,model_retencion_clientes_wizard,base.group_user,1,1,1,1
+access_retencion_clientes_wizard_line,retencion_clientes_wizard_line_module.access_retencion_clientes_wizard_line,model_retencion_clientes_wizard_line,base.group_user,1,1,1,1

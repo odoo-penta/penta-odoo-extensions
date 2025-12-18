@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_sri_motor_subclass_list" model="ir.ui.view">
+    <field name="name">sri.motor.subclass.list</field>
+    <field name="model">sri.motor.subclass</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="subclass_subcategory_code"/>
+        <field name="subclass_code"/>
+        <field name="sri_id"/>
+        <field name="brand_name"/>
+        <field name="model_value_id"/>
+        <field name="year_value_id"/>
+        <field name="country_value_id"/>
+        <field name="class_value_id"/>
+        <field name="type_value_id"/>
+        <field name="tonnage_value_id"/>
+        <field name="sri_value"/>
+        <field name="date_in"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_sri_motor_subclass_form" model="ir.ui.view">
+    <field name="name">sri.motor.subclass.form</field>
+    <field name="model">sri.motor.subclass</field>
+    <field name="arch" type="xml">
+      <form string="SRI Subcategoría Subclase de Motos">
+        <sheet>
+          <group>
+            <group>
+              <field name="subclass_subcategory_code"/>
+              <field name="subclass_code"/>
+              <field name="sri_id"/>
+              <field name="sri_value"/>
+              <field name="date_in"/>
+            </group>
+            <group string="Atributos">
+              <field name="brand_name"/>
+              <field name="model_value_id"/>
+              <field name="year_value_id"/>
+              <field name="country_value_id"/>
+              <field name="class_value_id"/>
+              <field name="type_value_id"/>
+              <field name="tonnage_value_id"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_sri_motor_subclass" model="ir.actions.act_window">
+    <field name="name">SRI Subclase Motos</field>
+    <field name="res_model">sri.motor.subclass</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_sri_motor_root" name="SRI" parent="mrp.menu_mrp_root" sequence="60"/>
+  <menuitem id="menu_sri_motor_subclass" name="Subcategoría Subclase de Motos"
+            parent="menu_sri_motor_root" action="action_sri_motor_subclass" sequence="10"/>
+</odoo>

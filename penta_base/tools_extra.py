@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 import unicodedata
-from xml.etree import ElementTree as etree
-
+import pytz
+from lxml import etree
+from datetime import datetime
 
 def remove_accents(text):
     return ''.join(
@@ -37,9 +38,69 @@ def format_invoice_number(text):
     else:
         return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
 
-def xml_element(self, parent , tag, text=None, **attrs):
-    """Helper para crear un elemento XML con atributos opcionales y texto."""
-    el = etree.SubElement(parent, tag, **{k: str(v) for k, v in attrs.items() if v is not None})
-    if text is not None:
-        el.text = str(text)
-    return el
+def xml_element(parent , tag, text=None, **attrs):
+        """Helper para crear un elemento XML con atributos opcionales y texto."""
+        el = etree.SubElement(parent, tag, **{k: str(v) for k, v in attrs.items() if v is not None})
+        if text is not None:
+            el.text = str(text)
+        return el
+
+def split_doc_number(doc):
+    """'001-002-000000123' -> ('001','002','000000123') con tolerancia."""
+    if not doc:
+        return "", "", ""
+    s = str(doc)
+    est = s[0:3] if len(s) >= 3 else ""
+    pto = s[4:7] if len(s) >= 7 else ""
+    num = s[8:]  if len(s) >= 9 else ""
+    return est, pto, num
+
+def latam_id_code(partner):
+    """Mapea el tipo de identificación del partner a {C,P,R}."""
+    it = partner.l10n_latam_identification_type_id
+    if not it:
+        return ""
+    code = (getattr(it, "code", "") or "").lower()
+    name = (it.name or "").lower()
+    if code in ("cedula", "national_id", "dni") or "cedula" in name or "cédula" in name:
+        return "C"
+    if code in ("passport", "pasaporte") or "pasaporte" in name:
+        return "P"
+    if code in ("ruc", "tax_id") or "ruc" in name:
+        return "R"
+    return ""
+
+def doc_type_code(latam_doc_type):
+    """Obtiene el código del tipo de comprobante."""
+    if not latam_doc_type:
+        return ""
+    for attr in ("l10n_ec_code", "code", "internal_code"):
+        val = getattr(latam_doc_type, attr, None)
+        if val:
+            return str(val)
+    return ""
+
+def month_name_es(month_number):
+    """Devuelve el nombre del mes en español dado su número (1-12)."""
+    meses = {
+        1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "junio",
+        7: "julio", 8: "agosto", 9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre"
+    }
+    return meses.get(int(month_number), "")
+
+def local_tz(record, dt):
+    """Convierte un datetime UTC a la zona horaria del usuario."""
+    if not dt:
+        return ''
+
+    tz_name = getattr(record.partner_id, "tz", None) or record.env.user.tz or "UTC"
+    try:
+        user_tz = pytz.timezone(tz_name)
+    except Exception:
+        user_tz = pytz.UTC
+
+    if dt.tzinfo is None:
+        dt = pytz.UTC.localize(dt)
+
+    local_dt = dt.astimezone(user_tz)
+    return local_dt.strftime("%Y-%m-%d %H:%M:%S")

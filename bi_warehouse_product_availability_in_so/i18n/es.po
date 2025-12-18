@@ -1,0 +1,36 @@
+# Translation for module bi_warehouse_product_availability_in_so
+msgid ""
+msgstr ""
+"Project-Id-Version: bi_warehouse_product_availability_in_so 1.0\n"
+"Language: es\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+# Acción del wizard
+#. module: bi_warehouse_product_availability_in_so
+#: model:ir.actions.act_window,name:bi_warehouse_product_availability_in_so.action_available_quantities_wizard
+msgid "Product Availability"
+msgstr "Producto Disponible"
+
+# Título interno del wizard (si lo usa)
+#. module: bi_warehouse_product_availability_in_so
+#: model:ir.model,name:bi_warehouse_product_availability_in_so.model_available_quantities_wizard
+msgid "Available Quantity Wizard"
+msgstr "Cantidades Disponibles"
+
+# Campo del wizard
+#. module: bi_warehouse_product_availability_in_so
+#: model:ir.model.fields,field_description:bi_warehouse_product_availability_in_so.field_available_quantities_wizard_stock_product_id
+msgid "Product"
+msgstr "Producto"
+
+# Botón Cancelar
+#. module: bi_warehouse_product_availability_in_so
+#: model_terms:ir.ui.view,arch_db:bi_warehouse_product_availability_in_so.view_available_quantities_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+# Botón en venta
+#. module: bi_warehouse_product_availability_in_so
+#: model_terms:ir.ui.view,arch_db:bi_warehouse_product_availability_in_so.inherit_view_sale_order_form
+msgid "Available Quantity"
+msgstr "Producto Disponible"

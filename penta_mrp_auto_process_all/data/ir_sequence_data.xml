@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_cpn_default" model="ir.sequence">
+        <field name="name">CPN Default</field>
+        <field name="code">penta.cb.cpn</field>
+        <field name="prefix"></field>
+        <field name="padding">8</field>
+        <field name="number_next">1</field>
+        <field name="implementation">standard</field>
+    </record>
+    <record id="seq_pdi_default" model="ir.sequence">
+        <field name="name">PDI Default</field>
+        <field name="code">penta.cb.pdi</field>
+        <field name="prefix"></field>
+        <field name="padding">8</field>
+        <field name="number_next">1</field>
+        <field name="implementation">standard</field>
+    </record>
+</odoo>

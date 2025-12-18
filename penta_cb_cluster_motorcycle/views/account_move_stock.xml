@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_account_move_form_stock" model="ir.ui.view">
+        <field name="name">view.account.move.form.stock</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='invoice_tab']" position="after">
+                <page string="Información Adicional" invisible="move_type == 'entry'">
+                    <!-- <field name="stock_lot_numbers" string="Vamos a ver"/> -->
+                    <field name="stock_lot_ids">
+                        <list>
+                            <field name="name" string="Lot/Serial/Número de Chasis"/>
+                            <field name="motor_number" string="Número de Motor"/>
+                            <field name="ramv" string="Número RAMV"/>
+                            <field name="product_id" string="Producto"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

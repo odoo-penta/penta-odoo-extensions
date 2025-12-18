@@ -1,0 +1,767 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* penta_cb_cluster_motorcycle
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-28 21:08+0000\n"
+"PO-Revision-Date: 2025-10-28 16:08-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/models/account_tax.py:0
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_account_tax__apply_to_unit_price
+msgid "Applied under unit price"
+msgstr "Aplicado bajo precio unitario"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_import_picking_operations_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_res_country_state
+msgid "Country state"
+msgstr "Estado"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_account_edi_format
+msgid "EDI format"
+msgstr "Formato EDI"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/models/product.py:0
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_product_product__is_ensabled
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_product_template__is_ensabled
+msgid "Ensabled product ?"
+msgstr "¿Producto Ensamblado?"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_picking_form_cluster
+msgid "Export"
+msgstr "Exportar"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/models/product.py:0
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_product_product__is_ensabled
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_product_template__is_ensabled
+msgid "Field that indicate if the product is ensabled"
+msgstr "Campo que indica si el producto es ensamblado"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__file
+msgid "File Excel"
+msgstr "Archivo Excel"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__filename
+msgid "File name"
+msgstr "Nombre archivo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_product_attribute__hide_pdf
+msgid "Hide Pdf"
+msgstr "Ocultar PDF"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_picking_form_cluster
+msgid "Import"
+msgstr "Importar"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.actions.act_window,name:penta_cb_cluster_motorcycle.action_import_picking_operations_wizard
+msgid "Import Picking"
+msgstr "Importar entregas"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_import_picking_operations_wizard
+msgid "Import operations of picking"
+msgstr "Operaciones de importación de entregas"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_import_picking_operations_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_stock_lot
+msgid "Lot/Serial"
+msgstr "Número de serie/lote"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__motor_number
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_move_line__motor_number
+msgid "Motor Number"
+msgstr "Número motor"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/models/account_move.py:0
+msgid "Only support customer/vendor invoices."
+msgstr "Admite únicamente facturas de clientes/proveedores."
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_import_picking_operations_wizard
+msgid "Process"
+msgstr "Procesar"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_product_attribute
+msgid "Product Attribute"
+msgstr "Atributo de producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimientos de producto (línea de movimiento de stock)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_res_country_state__l10n_ec_penta_code_state
+msgid "Province code according to the SRI (Ecuador)"
+msgstr "Código de provincia según el SRI (Ecuador)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__ramv
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_move_line__ramv
+msgid "Ramv"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_country_state__l10n_ec_penta_code_state
+msgid "Region code"
+msgstr "Código de Región"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_stock_lot_form
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_stock_move_line_operation_list_cluster
+msgid "Serial/lote/chasis"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_account_tax
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/models/account_tax.py:0
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_account_tax__apply_to_unit_price
+msgid "This field is for knowing if the tax applied to unit price"
+msgstr "Este campo es para saber si el impuesto se aplicó al precio unitario."
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir "
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_import_picking_operations_wizard
+msgid "Wizard to import picking operations from an Excel file"
+msgstr "Asistente para importar operaciones de entregas desde un archivo Excel"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.inherit_view_out_invoice_tree
+msgid "XML Generate"
+msgstr "Generar XML"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.project_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_task__lot_id
+msgid "Chassis"
+msgstr "Chassis"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__national_production_code
+msgid "National Production Code"
+msgstr "Código de Producción Nacional"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_config_settings__mail_postpone_delete_days
+msgid "Days to postpone mail deletion"
+msgstr "Días para posponer la eliminación del correo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_stock_lot__plate
+msgid "Enter the license plate number."
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__date_end
+msgid "End date"
+msgstr "Fecha fin"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__date_start
+msgid "Start date"
+msgstr "Fecha inicio"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_stock_lot
+msgid "Lot/Serial"
+msgstr "Número de serie/lote"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:addons/penta_cb_cluster_motorcycle/report/report_project.py:0
+msgid "There is no data from the form to generate the report."
+msgstr "No hay datos del formulario para generar el reporte."
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_res_config_settings__mail_postpone_delete_days
+msgid "Number of days to postpone automatic mail deletion."
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__plate
+msgid "Plate"
+msgstr "Placa"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_config_settings__capture_zero_withholds
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_config_settings__enable_download_xml_background
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_config_settings__environment_type
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_res_config_settings__postpone_sending_emails
+msgid "Pospone Sending Email"
+msgstr "TC Importar retenciones en cero"
+
+#. module: penta_cb_cluster_motorcycle
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.project_wizard_form
+msgid "Print XLS"
+msgstr "Imprimir XLS"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_task__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_project_wizard
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.project_wizard_form
+msgid "Project Wizard"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_report_project_report
+msgid "Project Report PDF"
+msgstr "Reporte Proyecto PDF"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.actions.act_window,name:penta_cb_cluster_motorcycle.project_report_wizard_action
+msgid "Reporte de Proyectos"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.ui.menu,name:penta_cb_cluster_motorcycle.project_reports
+msgid "Reportes de Proyectos"
+msgstr ""
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,help:penta_cb_cluster_motorcycle.field_project_task__lot_id
+msgid "Select the chassis related to this task."
+msgstr "Seleccione el chasis relacionado con esta tarea."
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model,name:penta_cb_cluster_motorcycle.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Assignment Date"
+msgstr "Fecha Asignación"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Effective date"
+msgstr "Fecha Efectiva"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Create on"
+msgstr "Creado el"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Date From:"
+msgstr "Fecha Desde"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Date Until:"
+msgstr "Fecha Hasta"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Print Date:"
+msgstr "Fecha Impresiòn"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "User:"
+msgstr "Usuario"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Completion date"
+msgstr "Fecha de finalización"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Effective Hours"
+msgstr "Horas Efectivas"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Length of stay in days"
+msgstr "Tiempo permanencia en días"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Work order status"
+msgstr "Estado de orden de trabajo"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Mechanic"
+msgstr "Mecánico"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Under warranty"
+msgstr "Bajo garantía"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Identification number"
+msgstr "Número de identificación"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Customer category"
+msgstr "Categoría de cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Chasis"
+msgstr "Chasis"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Engine"
+msgstr "Motor"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Plate"
+msgstr "Placa"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Product (header)"
+msgstr "Producto (cabecera)"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Product (Internal Reference)"
+msgstr "Producto (Referencia Interna)"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Model"
+msgstr "Modelo"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Brand"
+msgstr "Marca"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Line (Product category)"
+msgstr "Lìnea (Categorìa del producto)"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Product category"
+msgstr "Categorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Product subcategory"
+msgstr "Subcategorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Internal reference"
+msgstr "Referencia interna"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Product (Sales Order)"
+msgstr "Producto (Sale Order)"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Discount"
+msgstr "Descuento"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Net Amount"
+msgstr "Importe Neto"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Invoice Status"
+msgstr "Estado de Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Invoice Date"
+msgstr "Fecha de Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Warehouse"
+msgstr "Almacen"
+
+#. module: penta_cb_cluster_motorcycle
+#. odoo-python
+#: code:custom-addons/penta_cb_cluster_motorcycle/wizard/project_wizard.py:0
+#, python-format
+msgid "Payment term"
+msgstr "Tèrmino de pago"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__date_assign
+msgid "Assignment Date"
+msgstr "Fecha Asignación"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__created_on
+msgid "Create on"
+msgstr "Creado el"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__effective_date
+msgid "Effective date"
+msgstr "Fecha Efectiva"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__date_end
+msgid "Completion date"
+msgstr "Fecha de finalización"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__dispatch_date
+msgid "Length of stay in days"
+msgstr "Tiempo permanencia en días"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__effective_hours
+msgid "Effective Hours"
+msgstr "Horas Efectivas"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__stage_id
+msgid "Work order status"
+msgstr "Estado de orden de trabajo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__user_ids
+msgid "Mechanic"
+msgstr "Mecánico"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__under_warranty
+msgid "Under warranty"
+msgstr "Bajo garantía"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__partner_vat
+msgid "Identification number"
+msgstr "Número de identificación"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__partner_name
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__customer_category
+msgid "Customer category"
+msgstr "Categoría de cliente"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__chassis
+msgid "Chassis"
+msgstr "Chassis"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__motor_number
+msgid "Engine"
+msgstr "Motor"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__placa
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__plate
+msgid "Plate"
+msgstr "Placa"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_name
+msgid "Product (header)"
+msgstr "Producto (cabecera)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__ref_int_product_name
+msgid "Product (Internal Reference)"
+msgstr "Producto (Referencia Interna)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__model
+msgid "Model"
+msgstr "Modelo"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__brand
+msgid "Brand"
+msgstr "Marca"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__line_category
+msgid "Line (Product category)"
+msgstr "Lìnea (Categorìa del producto)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_category
+msgid "Product category"
+msgstr "Categorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__product_subcategory
+msgid "Product subcategory"
+msgstr "Subcategorìa del producto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__internal_reference
+msgid "Internal reference"
+msgstr "Referencia interna"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__sale_product_name
+msgid "Product (Sales Order)"
+msgstr "Producto (Sale Order)"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__unit_price
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__discount
+msgid "Discount"
+msgstr "Descuento"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__net_amount
+msgid "Net Amount"
+msgstr "Importe Neto"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_status
+msgid "Invoice Status"
+msgstr "Estado de Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_name
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: penta_cb_cluster_motorcycle
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_project_report__invoice_date
+msgid "Invoice Date"
+msgstr "Fecha de Factura"

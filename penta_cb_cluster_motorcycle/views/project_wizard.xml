@@ -1,0 +1,144 @@
+<odoo>
+    <record id="project_wizard_form" model="ir.ui.view">
+        <field name="name">project.wizard.form</field>
+        <field name="model">project.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Project Wizard">
+                <group>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </group>
+                <footer>
+                    <button string="Print XLS" type="object" name="print_report_xls" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!-- ============================= -->
+    <!-- VISTA LISTA -->
+    <!-- ============================= -->
+    <record id="view_project_report_list" model="ir.ui.view">
+        <field name="name">project.report.list</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <list string="Lista de Reportes de Proyectos">
+                <field name="task_internal_id" string="ID"/>
+                <field name="task_id"/>
+                <field name="create_date"/>
+                <field name="date_assign" optional="hide"/>
+                <field name="effective_date" optional="hide"/>
+                <field name="date_end" optional="hide"/>
+                <field name="dispatch_date" optional="hide"/>
+                <field name="effective_hours" optional="hide"/>
+                <field name="stage_id" widget="badge"/>
+                <field name="user_ids"/>
+                <field name="under_warranty" optional="hide"/>
+                <field name="partner_vat" optional="hide"/>
+                <field name="partner_name"/>
+                <field name="customer_category" optional="hide"/>
+                <field name="chassis" optional="hide"/>
+                <field name="motor_number" optional="hide"/>
+                <field name="placa" optional="hide"/>
+                <field name="product_name"/>
+                <field name="ref_int_product_name" optional="hide"/>
+                <field name="model" optional="hide"/>
+                <field name="brand" optional="hide"/>
+                <field name="line_category" optional="hide"/>
+                <field name="product_category" optional="hide"/>
+                <field name="product_subcategory" optional="hide"/>
+                <field name="internal_reference" optional="hide"/>
+                <field name="sale_product_name"/>
+                <field name="quantity"/>
+                <field name="unit_price" optional="hide"/>
+                <field name="discount" optional="hide"/>
+                <field name="net_amount"/>
+                <field name="invoice_status" widget="badge"/>
+                <field name="invoice_name" optional="hide"/>
+                <field name="invoice_date" optional="hide"/>
+                <field name="warehouse" optional="hide"/>
+                <field name="payment_term" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================= -->
+    <!-- VISTA PIVOT -->
+    <!-- ============================= -->
+    <record id="view_project_report_pivot" model="ir.ui.view">
+        <field name="name">project.report.pivot</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis de Proyectos">
+                 <field name="task_internal_id"/>
+                <field name="task_id"/>
+                <field name="create_date"/>
+                <field name="date_assign" />
+                <field name="effective_date" />
+                <field name="date_end"/>
+                <field name="dispatch_date"/>
+                <field name="effective_hours"/>
+                <field name="stage_id"/>
+                <field name="user_ids"/>
+                <field name="under_warranty"/>
+                <field name="partner_vat"/>
+                <field name="partner_name"/>
+                <field name="customer_category"/>
+                <field name="chassis"/>
+                <field name="motor_number"/>
+                <field name="placa"/>
+                <field name="product_name"/>
+                <field name="ref_int_product_name"/>
+                <field name="model"/>
+                <field name="brand"/>
+                <field name="line_category"/>
+                <field name="product_category"/>
+                <field name="product_subcategory"/>
+                <field name="internal_reference"/>
+                <field name="sale_product_name"/>
+                <field name="quantity"/>
+                <field name="unit_price"/>
+                <field name="discount"/>
+                <field name="net_amount"/>
+                <field name="invoice_status"/>
+                <field name="invoice_name"/>
+                <field name="invoice_date"/>
+                <field name="warehouse" />
+                <field name="payment_term" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="project_report_load_action" model="ir.actions.server">
+        <field name="name">Cargar y Abrir Reporte</field>
+        <field name="model_id" ref="model_project_report"/>
+        <field name="state">code</field>
+        <field name="code">action = env['project.report'].action_load_and_open()</field>
+    </record>
+
+
+    <record id="project_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Reporte de Proyectos</field>
+        <field name="res_model">project.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="project_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+    <record id="project_report_list_action" model="ir.actions.act_window">
+        <field name="name">Lista de Reportes de Proyectos</field>
+        <field name="res_model">project.report</field> 
+        <field name="view_mode">list,pivot</field>
+        <field name="view_id" ref="view_project_report_list"/> 
+        <field name="target">current</field>
+    </record>
+    
+    
+    <menuitem id="project_reports" name="Reportes de Proyectos" sequence="1" parent="industry_fsm.fsm_menu_reporting" action="project_report_wizard_action"/>
+    <menuitem
+        id="project_reports_list_menu"
+        name="Lista de Reportes de Proyectos"
+        parent="industry_fsm.fsm_menu_reporting" 
+        action="project_report_load_action"
+        sequence="5"
+    />
+</odoo>

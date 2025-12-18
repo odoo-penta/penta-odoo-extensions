@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_generate_cpn_pdi_wizard" model="ir.ui.view">
+    <field name="name">generate.cpn.pdi.wizard.form</field>
+    <field name="model">generate.cpn.pdi.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Generar CPN y PDI">
+        <group>
+          <field name="production_id" invisible="1"/>
+          <field name="lotes_a_generar" readonly="1"/>
+          <field name="cpn_preview" readonly="1"/>
+          <field name="pdi_start" placeholder="00000001"/>
+          <div class="text-muted">
+            El valor de PDI es editable; la secuencia se ajustará si es mayor al actual.
+          </div>
+        </group>
+        <footer>
+          <button string="Confirmar" type="object" name="action_confirm" class="btn-primary"/>
+          <button string="Cancelar" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+</odoo>

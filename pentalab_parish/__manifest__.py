@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Contacts',
     'summary': 'Agrega un campo de parroquias en los contactos',
-    'author': 'Penta',
+    'author': 'PentaLab',
     'depends': ['base', 'contacts','account'],
     'data': [
         'views/res_partner_views.xml',

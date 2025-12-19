@@ -82,6 +82,8 @@ class SaleOrder(models.Model):
             program = reward.program_id
         if program:
             product_ids = program.rule_ids.mapped('valid_product_ids').ids
+            # Si NO hay productos definidos en las reglas → financiar todo
+            finance_all_products = not bool(product_ids)
             for line in self.order_line:
                 taxes_res = line.tax_id.compute_all(
                     line.price_unit * (1 - (line.discount / 100)),
@@ -93,7 +95,7 @@ class SaleOrder(models.Model):
                 base_amount = taxes_res['total_excluded']
                 iva_amount = sum(t['amount'] for t in taxes_res['taxes'])
                 # Sumar base e impuestos SOLO para las líneas financiables
-                if line.product_id.id in product_ids:
+                if finance_all_products or line.product_id.id in product_ids:
                     financing_base_amount += base_amount
                     financing_iva += iva_amount
                 else:
@@ -267,36 +269,28 @@ class SaleOrder(models.Model):
             
     def _program_check_compute_points(self, programs):
         self.ensure_one()
-
         result = super()._program_check_compute_points(programs)
-
         financing_still_applies = False
-
         for program, status in result.items():
             # Si el programa ya es inválido, no lo consideramos
             if 'error' in status:
                 continue
-
             # Validar reglas por orden (cliente, etiquetas, bodega)
             valid_rules = program.rule_ids.filtered(
                 lambda r: r._is_order_eligible(self)
             )
-
             if not valid_rules:
                 status.clear()
                 status['error'] = _(
                     'This promotion is not applicable for this customer or warehouse.'
                 )
                 continue
-
             # Detectar si sigue existiendo financiamiento válido
             if program.program_type == 'financing_promotion':
                 financing_still_applies = True
-
-        # 🔴 LIMPIEZA DE FINANCIAMIENTO
+        # LIMPIEZA DE FINANCIAMIENTO
         if not financing_still_applies and self.active_financing:
             self._reset_financing()
-
         return result
     
 class SaleOrderLineDeferred(models.Model):

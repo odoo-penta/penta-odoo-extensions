@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Terminos de pago -->
+    <!-- Filtros en recompensa de recompensas -->
     <record id="loyalty_reward_view_form_inherit_penta" model="ir.ui.view">
         <field name="name">loyalty.reward.form.inherit.penta</field>
         <field name="model">loyalty.reward</field>
         <field name="inherit_id" ref="loyalty.loyalty_reward_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='reward_type_group']" position="after">
+            <!-- Ocultar grupos cuando NO es financiamiento -->
+            <xpath expr="//group[group[field[@name='reward_type']]]" position="attributes">
+                <attribute name="invisible">program_type == 'financing_promotion'</attribute>
+            </xpath>
+            <xpath expr="//group[group[label[@for='required_points']]]" position="attributes">
+                <attribute name="invisible">program_type == 'financing_promotion' or (not user_has_debug and program_type not in ('loyalty', 'buy_x_get_y'))</attribute>
+            </xpath>
+            <xpath expr="//group[field[@name='description']]" position="attributes">
+                <attribute name="invisible">program_type == 'financing_promotion'</attribute>
+            </xpath>
+            <!-- Agregar campos de financiamiento -->
+            <xpath expr="//group[field[@name='description']]" position="after">
                 <group string="Credit" invisible="program_type != 'financing_promotion'">
                     <field name="entry_percentage"/>
                     <field name="risk_percentage"/>
@@ -18,6 +29,38 @@
                     <field name="payment_period"/>
                     <field name="apply_payment_terms" options="{'no_create': True, 'no_open': True}"/>
                 </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="loyalty_reward_view_kanban_inherit_penta" model="ir.ui.view">
+        <field name="name">loyalty.reward.kanban.inherit.penta</field>
+        <field name="model">loyalty.reward</field>
+        <field name="inherit_id" ref="loyalty.loyalty_reward_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/templates/t/div[@name='reward_info']" position="attributes">
+                <attribute name="invisible">program_type == 'financing_promotion'</attribute>
+            </xpath>
+            <xpath expr="//kanban/templates/t/div[2]" position="attributes">
+                <attribute name="invisible">program_type == 'financing_promotion' or (not user_has_debug and program_type not in ('loyalty', 'buy_x_get_y'))</attribute>
+            </xpath>
+            <xpath expr="//kanban/templates/t/div[2]" position="after">
+                <div class="mw-75 flex-grow-1" name="financing_info">
+                    <t t-if="record.program_type.raw_value == 'financing_promotion'">
+                        <div class="fw-bold text-decoration-underline mt-3">Financing:</div>
+
+                        <div t-if="record.interest">
+                            <field name="interest"/> % interest
+                        </div>
+                        <div t-if="record.payment_period">
+                            <field name="payment_period"/> months
+                        </div>
+                        <div t-if="record.months_of_grace">
+                            <field name="months_of_grace"/> months of grace
+                        </div>
+                        
+                    </t>
+                </div>
             </xpath>
         </field>
     </record>

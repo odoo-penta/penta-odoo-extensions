@@ -17,7 +17,7 @@
     'author': 'Pentalab',
     'website': 'https://pentalab.tech',
     'category': 'Accounting/Localization',
-    'depends': ['base','l10n_ec_edi'],
+    'depends': ['base''l10n_ec_edi'],
     'data': [
     ],
     'installable': True,

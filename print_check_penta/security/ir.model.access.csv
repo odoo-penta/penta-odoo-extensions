@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ec_check_print_format,ec.check.print.format,model_ec_check_print_format,base.group_user,1,1,1,1
+access_ec_check_print_format_line,ec.check.print.format.line,model_ec_check_print_format_line,base.group_user,1,1,1,1
+access_print_check_wizard,print.check.wizard,model_print_check_wizard,base.group_user,1,1,1,1

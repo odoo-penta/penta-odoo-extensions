@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_check_a4_portrait_penta" model="report.paperformat">
+        <field name="name">Check A4 Without margin - Portrait</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="paperformat_check_a4_landscape_penta" model="report.paperformat">
+        <field name="name">Check A4 Without margin - Landscape</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_check_portrait_penta" model="ir.actions.report">
+        <field name="name">Check Portrait - Penta</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">print_check_penta.check_printing_penta_template</field>
+        <field name="paperformat_id" ref="paperformat_check_a4_portrait_penta"/>
+    </record>
+
+    <record id="action_report_check_landscape_penta" model="ir.actions.report">
+        <field name="name">Check Landscape - Penta</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">print_check_penta.check_printing_penta_template</field>
+        <field name="paperformat_id" ref="paperformat_check_a4_landscape_penta"/>
+    </record>
+
+</odoo>

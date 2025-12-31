@@ -36,8 +36,6 @@
         'views/check_format_views.xml',
         'views/account_journal_views.xml',
         'views/res_config_settings_views.xml',
-        
-        'wizard/print_check_wizard_views.xml'
     ],
     "installable": True,
     "application": True,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="check_printing_penta_template">
+    <template id="check_printing_portrait_penta_template">
         <main>
             <meta charset="utf-8"/>
             <t t-foreach="docs" t-as="o">
@@ -47,6 +47,89 @@
 
                                     <t t-if="line.field_key == 'check_number'">
                                         <t t-esc="o.check_number"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'city'">
+                                        <t t-esc="o.company_id.partner_id.city_id.name or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'account_name'">
+                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'account_code'">
+                                        <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'payment_number'">
+                                        <t t-esc="o.name or ''"/>
+                                    </t>
+
+                                </div>
+
+                            </t>
+
+                        </div>
+                    </t>
+                </div>
+            </t>
+            
+            
+
+        </main>
+        
+    </template>
+
+    <template id="check_printing_landscape_penta_template">
+        <main>
+            <meta charset="utf-8"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
+                    <t t-foreach="docs" t-as="o">
+                        <!-- formato seleccionado -->
+                        <t t-set="fmt"
+                            t-value="
+                                o.journal_id.ec_check_print_format_id
+                                or env['ec.check.print.format'].browse(
+                                    int(
+                                        env['ir.config_parameter'].sudo()
+                                        .get_param('print_check_penta.ec_check_print_format_id', 0)
+                                    )
+                                )
+                        "/>
+
+                        <div class="page">
+
+                            <t t-foreach="fmt.line_ids" t-as="line">
+
+                                <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace;' % (line.pos_x, line.pos_y, line.font_size)">
+
+                                    <t t-if="line.field_key == 'date'">
+                                        <t t-esc="o.date or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'partner'">
+                                        <t t-esc="o.partner_id.name or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'amount'">
+                                        <t t-esc="o.amount or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'amount_text'">
+                                        <t t-esc="o.check_amount_in_words or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'reference'">
+                                        <t t-esc="o.ref or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'check_number'">
+                                        <t t-esc="o.check_number or ''"/>
+                                    </t>
+
+                                    <t t-if="line.field_key == 'city'">
+                                        <t t-esc="o.company_id.partner_id.city_id.name or ''"/>
                                     </t>
 
                                 </div>

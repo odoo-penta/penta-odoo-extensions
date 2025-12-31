@@ -27,7 +27,7 @@
         <field name="name">Check Portrait - Penta</field>
         <field name="model">account.payment</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">print_check_penta.check_printing_penta_template</field>
+        <field name="report_name">print_check_penta.check_printing_portrait_penta_template</field>
         <field name="paperformat_id" ref="paperformat_check_a4_portrait_penta"/>
     </record>
 
@@ -35,7 +35,7 @@
         <field name="name">Check Landscape - Penta</field>
         <field name="model">account.payment</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">print_check_penta.check_printing_penta_template</field>
+        <field name="report_name">print_check_penta.check_printing_landscape_penta_template</field>
         <field name="paperformat_id" ref="paperformat_check_a4_landscape_penta"/>
     </record>
 

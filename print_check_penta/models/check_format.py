@@ -37,6 +37,10 @@ class EcCheckPrintFormatLine(models.Model):
         ('amount_text', 'Amount in words'),
         ('reference', 'Reference'),
         ('check_number', 'Check number'),
+        ('city', 'City'),
+        ('account_name', 'Account Name'),
+        ('account_code', 'Account Code'),
+        ('payment_number', 'Payment Number'),
     ], required=True)
     pos_x = fields.Float(string="X (mm)", required=True)
     pos_y = fields.Float(string="Y (mm)", required=True)

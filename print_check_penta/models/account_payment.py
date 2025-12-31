@@ -21,22 +21,7 @@ class AccountPayment(models.Model):
                 return fmt
 
         raise UserError(_("There is no check format configured. Configure one in the journal or in the general settings."))
-    
-    def do_print_checks(self):
-        self.ensure_one()
-        if self.payment_method_line_id.code != 'check_printing':
-            raise UserError(_("This payment is not set up to print checks."))
-        return {
-            'name': _('Print check'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'print.check.wizard',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {
-                'default_payment_id': self.id,
-            }
-        }
-    """
+
     def do_print_checks(self):
         self.ensure_one()
         
@@ -52,6 +37,6 @@ class AccountPayment(models.Model):
         if not report_action:
             raise UserError(_("The configured check layout was not found."))
         #self.write({'is_sent': True})
-        import pdb;pdb.set_trace()
+        #import pdb;pdb.set_trace()
         return report_action.report_action(self)
-    """
+

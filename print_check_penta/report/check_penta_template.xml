@@ -20,10 +20,14 @@
                         "/>
 
                         <div class="page">
+                            <!-- Separamos lineas fijas y de apuntes -->
+                            <t t-set="fixed_lines" t-value="fmt.line_ids.filtered(lambda l: not l.field_key.startswith('move_'))"/>
+                            <t t-set="move_lines_fmt" t-value="fmt.line_ids.filtered(lambda l: l.field_key.startswith('move_'))"/>
 
-                            <t t-foreach="fmt.line_ids" t-as="line">
+                            <!-- LINEAS FIJAS -->
+                            <t t-foreach="fixed_lines" t-as="line">
 
-                                <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace;' % (line.pos_x, line.pos_y, line.font_size)">
+                                <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
 
                                     <t t-if="line.field_key == 'date'">
                                         <t t-esc="o.date"/>
@@ -34,7 +38,7 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'amount'">
-                                        <t t-esc="o.amount"/>
+                                        <t t-esc="'%.2f' % o.amount"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'amount_text'">
@@ -65,16 +69,67 @@
                                         <t t-esc="o.name or ''"/>
                                     </t>
 
+                                    <t t-if="line.field_key == 'payment_concept'">
+                                        <t t-esc="(o.memo or '') + ' ' + (o.payment_reference or '')"/>
+                                    </t>
+
                                 </div>
 
+                            </t>
+
+                            <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
+
+                            <!-- TOTALES LINEAS APUNTES -->
+                            <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
+                            <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
+
+
+                            <!-- Definir espacio de mm en filas de apuntes (10) -->
+                            <t t-set="row_spacing" t-value="10"/>
+
+                            <!-- LINEAS DE APUNTES -->
+                            <t t-foreach="enumerate(move_lines)" t-as="row_data">
+                                <t t-set="row" t-value="row_data[0]"/>
+                                <t t-set="ml" t-value="row_data[1]"/>
+
+                                <t t-foreach="move_lines_fmt" t-as="line">
+
+                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y + (row * row_spacing), line.font_size, line.text_align, line.width or 'auto')">
+
+                                        <t t-if="line.field_key == 'move_account_code'">
+                                            <t t-esc="ml.account_id.code"/>
+                                        </t>
+                                        <t t-if="line.field_key == 'move_account_name'">
+                                            <t t-esc="ml.account_id.name"/>
+                                        </t>
+                                        <t t-if="line.field_key == 'move_account_debit'">
+                                            <t t-esc="'%.2f' % ml.debit"/>
+                                        </t>
+                                        <t t-if="line.field_key == 'move_account_credit'">
+                                            <t t-esc="'%.2f' % ml.credit"/>
+                                        </t>
+
+                                    </div>
+
+                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
+
+                                        <t t-if="line.field_key == 'move_account_total_debit'">
+                                            <t t-esc="'%.2f' % total_debit"/>
+                                        </t>
+                                        <t t-if="line.field_key == 'move_account_total_credit'">
+                                            <t t-esc="'%.2f' % total_credit"/>
+                                        </t>
+
+                                    </div>
+
+                                </t>
+                                
                             </t>
 
                         </div>
                     </t>
                 </div>
             </t>
-            
-            
 
         </main>
         

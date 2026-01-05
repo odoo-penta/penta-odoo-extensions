@@ -41,6 +41,7 @@ class EcCheckPrintFormatLine(models.Model):
         ('city', 'City'),
         ('account_name', 'Account Name'),
         ('account_code', 'Account Code'),
+        ('payment_name', 'Payment Name'),
         ('payment_number', 'Payment Number'),
         ('payment_concept', 'Payment Concept'),
         ('move_account_code', 'Move Account Code'),
@@ -52,7 +53,7 @@ class EcCheckPrintFormatLine(models.Model):
     ], required=True)
     pos_x = fields.Float(string="X (mm)", required=True)
     pos_y = fields.Float(string="Y (mm)", required=True)
-    font_size = fields.Float(string="Font size (pt)", default=10.0, help="Font size in points (pt)")
+    font_size = fields.Float(string="Font size (pt)", default=12.0, help="Font size in points (pt)")
     text_align = fields.Selection([
         ('left', 'Left'),
         ('center', 'Center'),

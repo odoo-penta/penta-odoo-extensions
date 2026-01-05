@@ -104,3 +104,9 @@ def local_tz(record, dt):
 
     local_dt = dt.astimezone(user_tz)
     return local_dt.strftime("%Y-%m-%d %H:%M:%S")
+
+def split_amount(amount):
+    """Divide un monto decimal en parte entera y decimal."""
+    integer_part = int(amount)
+    decimal_part = int(round((amount - integer_part) * 100))
+    return integer_part, decimal_part

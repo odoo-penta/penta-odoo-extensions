@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, _
+from odoo import models, api, _
 from odoo.exceptions import UserError
+from odoo.tools import split_amount
 
 class AccountPayment(models.Model):
     _inherit = "account.payment"
@@ -39,4 +40,19 @@ class AccountPayment(models.Model):
         #self.write({'is_sent': True})
         #import pdb;pdb.set_trace()
         return report_action.report_action(self)
+    
+    @api.depends('payment_method_line_id', 'currency_id', 'amount')
+    def _compute_check_amount_in_words(self):
+        """ Override to support the specific format for the cheques."""
+        super(AccountPayment, self)._compute_check_amount_in_words()
+        for pay in self:
+            integer_part, decimal_part = split_amount(pay.amount)
+            if pay.currency_id:
+                amount_text = pay.currency_id.amount_to_text(integer_part).strip()
+                amount_text = amount_text.replace('Dollars', '').replace('Dollar', '').replace('Dólares', '').replace('Dólar', '').strip()
+                amount_text += f' {str(decimal_part).ljust(2, "0")}/100 Dólares'
+                pay.check_amount_in_words = amount_text
+            else:
+                pay.check_amount_in_words = False
+        
 

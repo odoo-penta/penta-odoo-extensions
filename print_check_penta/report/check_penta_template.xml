@@ -34,7 +34,7 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'partner'">
-                                        <t t-esc="o.partner_id.name"/>
+                                        <t t-esc="o.partner_id.name.upper() if o.partner_id else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'amount'">
@@ -42,11 +42,11 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'amount_text'">
-                                        <t t-esc="o.check_amount_in_words"/>
+                                        <t t-esc="o.check_amount_in_words.upper()"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'reference'">
-                                        <t t-esc="o.ref or ''"/>
+                                        <t t-esc="o.ref.upper() or ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'check_number'">
@@ -58,19 +58,23 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'account_name'">
-                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name or ''"/>
+                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'account_code'">
                                         <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
                                     </t>
 
+                                    <t t-if="line.field_key == 'payment_name'">
+                                        <t t-esc="o.name.upper() or ''"/>
+                                    </t>
+
                                     <t t-if="line.field_key == 'payment_number'">
-                                        <t t-esc="o.name or ''"/>
+                                        <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'payment_concept'">
-                                        <t t-esc="(o.memo or '') + ' ' + (o.payment_reference or '')"/>
+                                        <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
                                     </t>
 
                                 </div>
@@ -85,7 +89,7 @@
 
 
                             <!-- Definir espacio de mm en filas de apuntes (10) -->
-                            <t t-set="row_spacing" t-value="10"/>
+                            <t t-set="row_spacing" t-value="5"/>
 
                             <!-- LINEAS DE APUNTES -->
                             <t t-foreach="enumerate(move_lines)" t-as="row_data">
@@ -100,7 +104,7 @@
                                             <t t-esc="ml.account_id.code"/>
                                         </t>
                                         <t t-if="line.field_key == 'move_account_name'">
-                                            <t t-esc="ml.account_id.name"/>
+                                            <t t-esc="ml.account_id.name.upper()"/>
                                         </t>
                                         <t t-if="line.field_key == 'move_account_debit'">
                                             <t t-esc="'%.2f' % ml.debit"/>
@@ -167,7 +171,7 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'partner'">
-                                        <t t-esc="o.partner_id.name"/>
+                                        <t t-esc="o.partner_id.name.upper() if o.partner_id else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'amount'">
@@ -175,11 +179,11 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'amount_text'">
-                                        <t t-esc="o.check_amount_in_words"/>
+                                        <t t-esc="o.check_amount_in_words.upper()"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'reference'">
-                                        <t t-esc="o.ref or ''"/>
+                                        <t t-esc="o.ref.upper() or ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'check_number'">
@@ -191,19 +195,23 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'account_name'">
-                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name or ''"/>
+                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'account_code'">
                                         <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
                                     </t>
 
+                                    <t t-if="line.field_key == 'payment_name'">
+                                        <t t-esc="o.name.upper() or ''"/>
+                                    </t>
+
                                     <t t-if="line.field_key == 'payment_number'">
-                                        <t t-esc="o.name or ''"/>
+                                        <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'payment_concept'">
-                                        <t t-esc="(o.memo or '') + ' ' + (o.payment_reference or '')"/>
+                                        <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
                                     </t>
 
                                 </div>
@@ -233,7 +241,7 @@
                                             <t t-esc="ml.account_id.code"/>
                                         </t>
                                         <t t-if="line.field_key == 'move_account_name'">
-                                            <t t-esc="ml.account_id.name"/>
+                                            <t t-esc="ml.account_id.name.upper()"/>
                                         </t>
                                         <t t-if="line.field_key == 'move_account_debit'">
                                             <t t-esc="'%.2f' % ml.debit"/>

@@ -14,7 +14,7 @@
                                 or env['ec.check.print.format'].browse(
                                     int(
                                         env['ir.config_parameter'].sudo()
-                                        .get_param('print_check_penta.ec_check_print_format_id', 0)
+                                        .get_param('penta_print_check.ec_check_print_format_id', 0)
                                     )
                                 )
                         "/>
@@ -151,7 +151,7 @@
                                 or env['ec.check.print.format'].browse(
                                     int(
                                         env['ir.config_parameter'].sudo()
-                                        .get_param('print_check_penta.ec_check_print_format_id', 0)
+                                        .get_param('penta_print_check.ec_check_print_format_id', 0)
                                     )
                                 )
                         "/>

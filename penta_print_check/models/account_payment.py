@@ -14,7 +14,7 @@ class AccountPayment(models.Model):
             return self.journal_id.ec_check_print_format_id
 
         param = self.env['ir.config_parameter'].sudo().get_param(
-            'print_check_penta.default_format_id'
+            'penta_print_check.default_format_id'
         )
         if param:
             fmt = self.env['ec.check.print.format'].browse(int(param))
@@ -29,9 +29,9 @@ class AccountPayment(models.Model):
         fmt = self._get_check_print_format()
         
         if fmt.orientation == 'landscape':
-            check_layout = 'print_check_penta.action_report_check_landscape_penta'
+            check_layout = 'penta_print_check.action_report_check_landscape_penta'
         else:
-            check_layout = 'print_check_penta.action_report_check_portrait_penta'
+            check_layout = 'penta_print_check.action_report_check_portrait_penta'
         
         report_action = self.env.ref(check_layout, False)
         

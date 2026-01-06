@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, api, _
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.tools import split_amount
 
 class AccountPayment(models.Model):
     _inherit = "account.payment"
-    
+
+    check_beneficiary = fields.Many2one('res.partner', string='Check Beneficiary', help='The beneficiary of the check.')
+
     def _get_check_print_format(self):
         self.ensure_one()
 
@@ -53,5 +55,11 @@ class AccountPayment(models.Model):
                 pay.check_amount_in_words = amount_text
             else:
                 pay.check_amount_in_words = False
+                
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        for record in self:
+            if record.partner_id and not record.check_beneficiary:
+                record.check_beneficiary = record.partner_id
         
 

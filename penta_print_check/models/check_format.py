@@ -4,7 +4,7 @@ from odoo import models, fields
 
 class EcCheckPrintFormat(models.Model):
     _name = "ec.check.print.format"
-    _description = "Formato de Impresión de Cheques"
+    _description = "Check printing format"
     _order = "name"
 
     name = fields.Char(required=True)

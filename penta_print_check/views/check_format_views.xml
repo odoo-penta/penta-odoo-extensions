@@ -43,14 +43,14 @@
     </record>
 
     <record id="action_ec_check_print_format" model="ir.actions.act_window">
-        <field name="name">Formatos de Cheque (Penta)</field>
+        <field name="name">Check Formats (Penta)</field>
         <field name="res_model">ec.check.print.format</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
         id="menu_ec_check_print_format"
-        name="Formatos de Cheque (Penta)"
+        name="Check Formats (Penta)"
         parent="account.menu_finance_configuration"
         action="action_ec_check_print_format"
     />

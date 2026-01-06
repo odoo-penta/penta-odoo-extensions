@@ -1,0 +1,354 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* penta_print_check
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06 16:17+0000\n"
+"PO-Revision-Date: 2026-01-06 11:28-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__account_code
+msgid "Account Code"
+msgstr "Código cuenta"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__account_name
+msgid "Account Name"
+msgstr "Nombre cuenta"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__amount_text
+msgid "Amount in words"
+msgstr "Importe en letras"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__partner
+msgid "Beneficiary"
+msgstr "Beneficiario"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__text_align__center
+msgid "Center"
+msgstr "Centrado"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_account_payment__check_beneficiary
+msgid "Check Beneficiary"
+msgstr "Beneficiario cheque"
+
+#. module: penta_print_check
+#: model:ir.actions.report,name:penta_print_check.action_report_check_landscape_penta
+msgid "Check Landscape - Penta"
+msgstr "Cheque Horizontal - Penta"
+
+#. module: penta_print_check
+#: model:ir.actions.report,name:penta_print_check.action_report_check_portrait_penta
+msgid "Check Portrait - Penta"
+msgstr "Cheque Vertical - Penta"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_account_journal__ec_check_print_format_id
+msgid "Check format"
+msgstr "Formato de cheque"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__check_number
+msgid "Check number"
+msgstr "Número cheque"
+
+#. module: penta_print_check
+#: model_terms:ir.ui.view,arch_db:penta_print_check.view_res_config_settings_check_penta
+msgid "Checks Penta"
+msgstr "Cheques Penta"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_ec_check_print_format_line
+msgid "Cheque Print Line"
+msgstr "Cheque línea impresión"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__create_uid
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__create_date
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_res_company__ec_check_print_format_id
+msgid "Default check format"
+msgstr "Formato de cheque predeterminado"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_res_config_settings__ec_check_print_format_id
+msgid "Default check print format"
+msgstr "Formato de impresión de cheque predeterminado"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__display_name
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_account_journal__ec_check_print_format_id
+msgid "Editable format for printing checks"
+msgstr "Formato editable para imprimir cheques"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__field_key
+msgid "Field Key"
+msgstr "Campo"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__font_size
+msgid "Font size (pt)"
+msgstr "Tamaño de fuente (pt)"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_ec_check_print_format_line__font_size
+msgid "Font size in points (pt)"
+msgstr "Tamaño de fuente en puntos (pt)"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__format_id
+msgid "Format"
+msgstr "Formato"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_res_company__ec_check_print_format_id
+msgid "Format used when printing checks"
+msgstr "Formato utilizado al imprimir cheques"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_ec_check_print_format
+msgid "Formato de Impresión de Cheques"
+msgstr "Formato de Impresión de Cheques"
+
+#. module: penta_print_check
+#: model:ir.actions.act_window,name:penta_print_check.action_ec_check_print_format
+#: model:ir.ui.menu,name:penta_print_check.menu_ec_check_print_format
+msgid "Formatos de Cheque (Penta)"
+msgstr "Formatos de Cheque (Penta)"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__id
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format__orientation__landscape
+msgid "Landscape"
+msgstr "Horizontal"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__write_uid
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualización por"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__write_date
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización el"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__text_align__left
+msgid "Left"
+msgstr "Izquierda"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_code
+msgid "Move Account Code"
+msgstr "Código cuenta apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_credit
+msgid "Move Account Credit"
+msgstr "Crédito cuenta apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_debit
+msgid "Move Account Debit"
+msgstr "Débito cuenta apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_name
+msgid "Move Account Name"
+msgstr "Nombre cuenta apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_total_credit
+msgid "Move Account Total Credit"
+msgstr "Crédito total apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__move_account_total_debit
+msgid "Move Account Total Debit"
+msgstr "Débito total apunte"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__orientation
+msgid "Orientation"
+msgstr "Orientación"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_ec_check_print_format__orientation
+msgid "Orientation used for this check layout"
+msgstr "Orientación utilizada para este diseño de verificación"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__payment_concept
+msgid "Payment Concept"
+msgstr "Concepto pago"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__payment_name
+msgid "Payment Name"
+msgstr "Nombre pago"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__payment_number
+msgid "Payment Number"
+msgstr "Número pago"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format__orientation__portrait
+msgid "Portrait"
+msgstr "Vertical"
+
+#. module: penta_print_check
+#: model_terms:ir.ui.view,arch_db:penta_print_check.view_res_config_settings_check_penta
+msgid "Print checks to pay your vendors"
+msgstr "Imprima cheques para pagar a sus proveedores"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__line_ids
+#: model_terms:ir.ui.view,arch_db:penta_print_check.view_ec_check_print_format_form
+msgid "Print lines"
+msgstr "Líneas de impresión"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__reference
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: penta_print_check
+#: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__text_align__right
+msgid "Right"
+msgstr "Derecha"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__text_align
+msgid "Text alignment"
+msgstr "Alineación texto"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_account_payment__check_beneficiary
+msgid "The beneficiary of the check."
+msgstr "El beneficiario del cheque."
+
+#. module: penta_print_check
+#. odoo-python
+#: code:addons/penta_print_check/models/account_payment.py:0
+msgid "The configured check layout was not found."
+msgstr "No se encontró el diseño de cheque configurado."
+
+#. module: penta_print_check
+#. odoo-python
+#: code:addons/penta_print_check/models/account_payment.py:0
+msgid ""
+"There is no check format configured. Configure one in the journal or in the "
+"general settings."
+msgstr ""
+"No hay ningún formato de cheque configurado. Configure uno en el diario o "
+"en la configuración general."
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_res_config_settings__ec_check_print_format_id
+msgid "This check format will be used by default when printing checks."
+msgstr ""
+"Este formato de cheque se utilizará de forma predeterminada al imprimir "
+"cheques."
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__width
+msgid "Width (mm)"
+msgstr "Ancho (mm)"
+
+#. module: penta_print_check
+#: model:ir.model.fields,help:penta_print_check.field_ec_check_print_format_line__width
+msgid "Width of the field in millimeters"
+msgstr "Ancho del campo en milímetros"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__pos_x
+msgid "X (mm)"
+msgstr "X (mm)"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__pos_y
+msgid "Y (mm)"
+msgstr "Y (mm)"

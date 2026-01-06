@@ -33,6 +33,7 @@
                                     <field name="font_size"/>
                                     <field name="text_align"/>
                                     <field name="width"/>
+                                    <field name="height"/>
                                 </list>
                             </field>
                         </page>

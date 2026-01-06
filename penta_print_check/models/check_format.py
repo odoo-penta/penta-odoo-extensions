@@ -60,4 +60,9 @@ class EcCheckPrintFormatLine(models.Model):
         ('right', 'Right'),
     ], string="Text alignment", default='left')
     width = fields.Float(string="Width (mm)", help="Width of the field in millimeters")
+    height = fields.Float(
+        string="Height (pt)",
+        help="Height in points (pt). If not defined, 1.2 * font_size will be used."
+    )
+
     

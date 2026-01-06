@@ -27,7 +27,25 @@
                             <!-- LINEAS FIJAS -->
                             <t t-foreach="fixed_lines" t-as="line">
 
-                                <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
+                                <div t-att-style="
+                                   'position: absolute;
+                                    font-family: Courier New, monospace;
+                                    white-space: normal;
+                                    word-wrap: break-word;
+                                    left: %smm;
+                                    top: %smm;
+                                    font-size: %spt;
+                                    text-align: %s;
+                                    width: %smm;
+                                    line-height: %spt;'
+                                    % (
+                                        line.pos_x,
+                                        line.pos_y,
+                                        line.font_size,
+                                        line.text_align,
+                                        line.width or 'auto',
+                                        line.line_height or (line.font_size * 1.2),
+                                    )">
 
                                     <t t-if="line.field_key == 'date'">
                                         <t t-esc="o.date"/>
@@ -98,7 +116,25 @@
 
                                 <t t-foreach="move_lines_fmt" t-as="line">
 
-                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y + (row * row_spacing), line.font_size, line.text_align, line.width or 'auto')">
+                                    <div t-att-style="
+                                       'position: absolute;
+                                        font-family: Courier New, monospace;
+                                        white-space: normal;
+                                        word-wrap: break-word;
+                                        left: %smm;
+                                        top: %smm;
+                                        font-size: %spt;
+                                        text-align: %s;
+                                        width: %smm;
+                                        line-height: %spt;'
+                                        % (
+                                            line.pos_x,
+                                            line.pos_y + (row * row_spacing),
+                                            line.font_size,
+                                            line.text_align,
+                                            line.width or 'auto',
+                                            line.line_height or (line.font_size * 1.2),
+                                        )">
 
                                         <t t-if="line.field_key == 'move_account_code'">
                                             <t t-esc="ml.account_id.code"/>
@@ -115,7 +151,25 @@
 
                                     </div>
 
-                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
+                                    <div t-att-style="
+                                       'position:absolute;
+                                        font-family: Courier New, monospace;
+                                        white-space: normal;
+                                        word-wrap: break-word;
+                                        left: %smm;
+                                        top: %smm;
+                                        font-size: %spt;
+                                        text-align: %s;
+                                        width: %smm;
+                                        line-height: %spt;'
+                                        % (
+                                            line.pos_x,
+                                            line.pos_y,
+                                            line.font_size,
+                                            line.text_align,
+                                            line.width or 'auto',
+                                            line.line_height or (line.font_size * 1.2),
+                                        )">
 
                                         <t t-if="line.field_key == 'move_account_total_debit'">
                                             <t t-esc="'%.2f' % total_debit"/>
@@ -164,7 +218,25 @@
                             <!-- LINEAS FIJAS -->
                             <t t-foreach="fixed_lines" t-as="line">
 
-                                <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
+                                <div t-att-style="
+                                   'position: absolute;
+                                    font-family: Courier New, monospace;
+                                    white-space: normal;
+                                    word-wrap: break-word;
+                                    left: %smm;
+                                    top: %smm;
+                                    font-size: %spt;
+                                    text-align: %s;
+                                    width: %smm;
+                                    line-height: %spt;'
+                                    % (
+                                        line.pos_x,
+                                        line.pos_y,
+                                        line.font_size,
+                                        line.text_align,
+                                        line.width or 'auto',
+                                        line.line_height or (line.font_size * 1.2),
+                                    )">
 
                                     <t t-if="line.field_key == 'date'">
                                         <t t-esc="o.date"/>
@@ -226,7 +298,7 @@
 
 
                             <!-- Definir espacio de mm en filas de apuntes (10) -->
-                            <t t-set="row_spacing" t-value="10"/>
+                            <t t-set="row_spacing" t-value="5"/>
 
                             <!-- LINEAS DE APUNTES -->
                             <t t-foreach="enumerate(move_lines)" t-as="row_data">
@@ -235,7 +307,25 @@
 
                                 <t t-foreach="move_lines_fmt" t-as="line">
 
-                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y + (row * row_spacing), line.font_size, line.text_align, line.width or 'auto')">
+                                    <div t-att-style="
+                                       'position: absolute;
+                                        font-family: Courier New, monospace;
+                                        white-space: normal;
+                                        word-wrap: break-word;
+                                        left: %smm;
+                                        top: %smm;
+                                        font-size: %spt;
+                                        text-align: %s;
+                                        width: %smm;
+                                        line-height: %spt;'
+                                        % (
+                                            line.pos_x,
+                                            line.pos_y + (row * row_spacing),
+                                            line.font_size,
+                                            line.text_align,
+                                            line.width or 'auto',
+                                            line.line_height or (line.font_size * 1.2),
+                                        )">
 
                                         <t t-if="line.field_key == 'move_account_code'">
                                             <t t-esc="ml.account_id.code"/>
@@ -252,7 +342,25 @@
 
                                     </div>
 
-                                    <div t-att-style="'position:absolute; left:%smm; top:%smm; font-size:%spt; font-family: Courier New, monospace; text-align:%s; width:%smm' % (line.pos_x, line.pos_y, line.font_size, line.text_align, line.width or 'auto')">
+                                    <div t-att-style="
+                                       'position:absolute;
+                                        font-family: Courier New, monospace;
+                                        white-space: normal;
+                                        word-wrap: break-word;
+                                        left: %smm;
+                                        top: %smm;
+                                        font-size: %spt;
+                                        text-align: %s;
+                                        width: %smm;
+                                        line-height: %spt;'
+                                        % (
+                                            line.pos_x,
+                                            line.pos_y,
+                                            line.font_size,
+                                            line.text_align,
+                                            line.width or 'auto',
+                                            line.line_height or (line.font_size * 1.2),
+                                        )">
 
                                         <t t-if="line.field_key == 'move_account_total_debit'">
                                             <t t-esc="'%.2f' % total_debit"/>

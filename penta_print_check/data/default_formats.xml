@@ -3,6 +3,7 @@
 
     <record id="ec_check_format_generic" model="ec.check.print.format">
         <field name="name">Generic format - Penta</field>
+        <field name="orientation">portrait</field>
     </record>
 
 </odoo>

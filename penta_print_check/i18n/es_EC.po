@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-06 16:17+0000\n"
-"PO-Revision-Date: 2026-01-06 11:28-0500\n"
+"POT-Creation-Date: 2026-01-06 16:36+0000\n"
+"PO-Revision-Date: 2026-01-06 11:37-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_EC\n"
@@ -58,6 +58,12 @@ msgid "Check Beneficiary"
 msgstr "Beneficiario cheque"
 
 #. module: penta_print_check
+#: model:ir.actions.act_window,name:penta_print_check.action_ec_check_print_format
+#: model:ir.ui.menu,name:penta_print_check.menu_ec_check_print_format
+msgid "Check Formats (Penta)"
+msgstr "Formatos de Cheque (Penta)"
+
+#. module: penta_print_check
 #: model:ir.actions.report,name:penta_print_check.action_report_check_landscape_penta
 msgid "Check Landscape - Penta"
 msgstr "Cheque Horizontal - Penta"
@@ -76,6 +82,11 @@ msgstr "Formato de cheque"
 #: model:ir.model.fields.selection,name:penta_print_check.selection__ec_check_print_format_line__field_key__check_number
 msgid "Check number"
 msgstr "Número cheque"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_ec_check_print_format
+msgid "Check printing format"
+msgstr "Formato de Impresión de Cheques"
 
 #. module: penta_print_check
 #: model_terms:ir.ui.view,arch_db:penta_print_check.view_res_config_settings_check_penta
@@ -148,7 +159,7 @@ msgstr "Campo"
 #. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__font_size
 msgid "Font size (pt)"
-msgstr "Tamaño de fuente (pt)"
+msgstr "Fuente (pt)"
 
 #. module: penta_print_check
 #: model:ir.model.fields,help:penta_print_check.field_ec_check_print_format_line__font_size
@@ -166,21 +177,10 @@ msgid "Format used when printing checks"
 msgstr "Formato utilizado al imprimir cheques"
 
 #. module: penta_print_check
-#: model:ir.model,name:penta_print_check.model_ec_check_print_format
-msgid "Formato de Impresión de Cheques"
-msgstr "Formato de Impresión de Cheques"
-
-#. module: penta_print_check
-#: model:ir.actions.act_window,name:penta_print_check.action_ec_check_print_format
-#: model:ir.ui.menu,name:penta_print_check.menu_ec_check_print_format
-msgid "Formatos de Cheque (Penta)"
-msgstr "Formatos de Cheque (Penta)"
-
-#. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__id
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: penta_print_check
 #: model:ir.model,name:penta_print_check.model_account_journal
@@ -311,22 +311,6 @@ msgid "The beneficiary of the check."
 msgstr "El beneficiario del cheque."
 
 #. module: penta_print_check
-#. odoo-python
-#: code:addons/penta_print_check/models/account_payment.py:0
-msgid "The configured check layout was not found."
-msgstr "No se encontró el diseño de cheque configurado."
-
-#. module: penta_print_check
-#. odoo-python
-#: code:addons/penta_print_check/models/account_payment.py:0
-msgid ""
-"There is no check format configured. Configure one in the journal or in the "
-"general settings."
-msgstr ""
-"No hay ningún formato de cheque configurado. Configure uno en el diario o "
-"en la configuración general."
-
-#. module: penta_print_check
 #: model:ir.model.fields,help:penta_print_check.field_res_config_settings__ec_check_print_format_id
 msgid "This check format will be used by default when printing checks."
 msgstr ""
@@ -346,9 +330,9 @@ msgstr "Ancho del campo en milímetros"
 #. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__pos_x
 msgid "X (mm)"
-msgstr "X (mm)"
+msgstr ""
 
 #. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format_line__pos_y
 msgid "Y (mm)"
-msgstr "Y (mm)"
+msgstr ""

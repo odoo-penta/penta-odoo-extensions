@@ -37,8 +37,7 @@ class AccountPayment(models.Model):
         
         if not report_action:
             raise UserError(_("The configured check layout was not found."))
-        #self.write({'is_sent': True})
-        #import pdb;pdb.set_trace()
+        self.write({'is_sent': True})
         return report_action.report_action(self)
     
     @api.depends('payment_method_line_id', 'currency_id', 'amount')

@@ -6,29 +6,153 @@
             <meta charset="utf-8"/>
             <t t-foreach="docs" t-as="o">
                 <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
-                    <t t-foreach="docs" t-as="o">
-                        <!-- formato seleccionado -->
-                        <t t-set="fmt"
-                            t-value="
-                                o.journal_id.ec_check_print_format_id
-                                or env['ec.check.print.format'].browse(
-                                    int(
-                                        env['ir.config_parameter'].sudo()
-                                        .get_param('penta_print_check.ec_check_print_format_id', 0)
-                                    )
+                        
+                    <!-- formato seleccionado -->
+                    <t t-set="fmt"
+                        t-value="
+                            o.journal_id.ec_check_print_format_id
+                            or env['ec.check.print.format'].browse(
+                                int(
+                                    env['ir.config_parameter'].sudo()
+                                    .get_param('penta_print_check.ec_check_print_format_id', 0)
                                 )
-                        "/>
+                            )
+                    "/>
 
-                        <div class="page">
-                            <!-- Separamos lineas fijas y de apuntes -->
-                            <t t-set="fixed_lines" t-value="fmt.line_ids.filtered(lambda l: not l.field_key.startswith('move_'))"/>
-                            <t t-set="move_lines_fmt" t-value="fmt.line_ids.filtered(lambda l: l.field_key.startswith('move_'))"/>
+                    <div class="page" style="page-break-after: always;">
+                        <!-- Separamos lineas fijas y de apuntes -->
+                        <t t-set="fixed_lines" t-value="fmt.line_ids.filtered(lambda l: not l.field_key.startswith('move_'))"/>
+                        <t t-set="move_lines_fmt" t-value="fmt.line_ids.filtered(lambda l: l.field_key.startswith('move_'))"/>
 
-                            <!-- LINEAS FIJAS -->
-                            <t t-foreach="fixed_lines" t-as="line">
+                        <!-- LINEAS FIJAS -->
+                        <t t-foreach="fixed_lines" t-as="line">
+
+                            <div t-att-style="
+                                'position: absolute;
+                                font-family: Courier New, monospace;
+                                white-space: normal;
+                                word-wrap: break-word;
+                                left: %smm;
+                                top: %smm;
+                                font-size: %spt;
+                                text-align: %s;
+                                width: %smm;
+                                line-height: %spt;'
+                                % (
+                                    line.pos_x,
+                                    line.pos_y,
+                                    line.font_size,
+                                    line.text_align,
+                                    line.width or 'auto',
+                                    line.height or (line.font_size * 1.2),
+                                )">
+
+                                <t t-if="line.field_key == 'date'">
+                                    <t t-esc="o.date"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'partner'">
+                                    <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'amount'">
+                                    <t t-esc="'%.2f' % o.amount"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'amount_text'">
+                                    <t t-esc="o.check_amount_in_words.upper()"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'reference'">
+                                    <t t-esc="o.ref.upper() or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'check_number'">
+                                    <t t-esc="o.check_number"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'city'">
+                                    <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'account_name'">
+                                    <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'account_code'">
+                                    <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_name'">
+                                    <t t-esc="o.name.upper() or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_number'">
+                                    <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_concept'">
+                                    <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
+                                </t>
+
+                            </div>
+
+                        </t>
+
+                        <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
+
+                        <!-- TOTALES LINEAS APUNTES -->
+                        <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
+                        <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
+
+
+                        <!-- Definir espacio de mm en filas de apuntes (10) -->
+                        <t t-set="row_spacing" t-value="5"/>
+
+                        <!-- LINEAS DE APUNTES -->
+                        <t t-foreach="enumerate(move_lines)" t-as="row_data">
+                            <t t-set="row" t-value="row_data[0]"/>
+                            <t t-set="ml" t-value="row_data[1]"/>
+
+                            <t t-foreach="move_lines_fmt" t-as="line">
 
                                 <div t-att-style="
-                                   'position: absolute;
+                                    'position: absolute;
+                                    font-family: Courier New, monospace;
+                                    white-space: normal;
+                                    word-wrap: break-word;
+                                    left: %smm;
+                                    top: %smm;
+                                    font-size: %spt;
+                                    text-align: %s;
+                                    width: %smm;
+                                    line-height: %spt;'
+                                    % (
+                                        line.pos_x,
+                                        line.pos_y + (row * row_spacing),
+                                        line.font_size,
+                                        line.text_align,
+                                        line.width or 'auto',
+                                        line.height or (line.font_size * 1.2),
+                                    )">
+
+                                    <t t-if="line.field_key == 'move_account_code'">
+                                        <t t-esc="ml.account_id.code"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_name'">
+                                        <t t-esc="ml.account_id.name.upper()"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_debit'">
+                                        <t t-esc="'%.2f' % ml.debit"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_credit'">
+                                        <t t-esc="'%.2f' % ml.credit"/>
+                                    </t>
+
+                                </div>
+
+                                <div t-att-style="
+                                    'position:absolute;
                                     font-family: Courier New, monospace;
                                     white-space: normal;
                                     word-wrap: break-word;
@@ -47,145 +171,21 @@
                                         line.height or (line.font_size * 1.2),
                                     )">
 
-                                    <t t-if="line.field_key == 'date'">
-                                        <t t-esc="o.date"/>
+                                    <t t-if="line.field_key == 'move_account_total_debit'">
+                                        <t t-esc="'%.2f' % total_debit"/>
                                     </t>
-
-                                    <t t-if="line.field_key == 'partner'">
-                                        <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'amount'">
-                                        <t t-esc="'%.2f' % o.amount"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'amount_text'">
-                                        <t t-esc="o.check_amount_in_words.upper()"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'reference'">
-                                        <t t-esc="o.ref.upper() or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'check_number'">
-                                        <t t-esc="o.check_number"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'city'">
-                                        <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'account_name'">
-                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'account_code'">
-                                        <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_name'">
-                                        <t t-esc="o.name.upper() or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_number'">
-                                        <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_concept'">
-                                        <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
+                                    <t t-if="line.field_key == 'move_account_total_credit'">
+                                        <t t-esc="'%.2f' % total_credit"/>
                                     </t>
 
                                 </div>
 
                             </t>
+                            
+                        </t>
 
-                            <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
+                    </div>
 
-                            <!-- TOTALES LINEAS APUNTES -->
-                            <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
-                            <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
-
-
-                            <!-- Definir espacio de mm en filas de apuntes (10) -->
-                            <t t-set="row_spacing" t-value="5"/>
-
-                            <!-- LINEAS DE APUNTES -->
-                            <t t-foreach="enumerate(move_lines)" t-as="row_data">
-                                <t t-set="row" t-value="row_data[0]"/>
-                                <t t-set="ml" t-value="row_data[1]"/>
-
-                                <t t-foreach="move_lines_fmt" t-as="line">
-
-                                    <div t-att-style="
-                                       'position: absolute;
-                                        font-family: Courier New, monospace;
-                                        white-space: normal;
-                                        word-wrap: break-word;
-                                        left: %smm;
-                                        top: %smm;
-                                        font-size: %spt;
-                                        text-align: %s;
-                                        width: %smm;
-                                        line-height: %spt;'
-                                        % (
-                                            line.pos_x,
-                                            line.pos_y + (row * row_spacing),
-                                            line.font_size,
-                                            line.text_align,
-                                            line.width or 'auto',
-                                            line.height or (line.font_size * 1.2),
-                                        )">
-
-                                        <t t-if="line.field_key == 'move_account_code'">
-                                            <t t-esc="ml.account_id.code"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_name'">
-                                            <t t-esc="ml.account_id.name.upper()"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_debit'">
-                                            <t t-esc="'%.2f' % ml.debit"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_credit'">
-                                            <t t-esc="'%.2f' % ml.credit"/>
-                                        </t>
-
-                                    </div>
-
-                                    <div t-att-style="
-                                       'position:absolute;
-                                        font-family: Courier New, monospace;
-                                        white-space: normal;
-                                        word-wrap: break-word;
-                                        left: %smm;
-                                        top: %smm;
-                                        font-size: %spt;
-                                        text-align: %s;
-                                        width: %smm;
-                                        line-height: %spt;'
-                                        % (
-                                            line.pos_x,
-                                            line.pos_y,
-                                            line.font_size,
-                                            line.text_align,
-                                            line.width or 'auto',
-                                            line.height or (line.font_size * 1.2),
-                                        )">
-
-                                        <t t-if="line.field_key == 'move_account_total_debit'">
-                                            <t t-esc="'%.2f' % total_debit"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_total_credit'">
-                                            <t t-esc="'%.2f' % total_credit"/>
-                                        </t>
-
-                                    </div>
-
-                                </t>
-                                
-                            </t>
-
-                        </div>
-                    </t>
                 </div>
             </t>
 
@@ -197,29 +197,153 @@
             <meta charset="utf-8"/>
             <t t-foreach="docs" t-as="o">
                 <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
-                    <t t-foreach="docs" t-as="o">
-                        <!-- formato seleccionado -->
-                        <t t-set="fmt"
-                            t-value="
-                                o.journal_id.ec_check_print_format_id
-                                or env['ec.check.print.format'].browse(
-                                    int(
-                                        env['ir.config_parameter'].sudo()
-                                        .get_param('penta_print_check.ec_check_print_format_id', 0)
-                                    )
+
+                    <!-- formato seleccionado -->
+                    <t t-set="fmt"
+                        t-value="
+                            o.journal_id.ec_check_print_format_id
+                            or env['ec.check.print.format'].browse(
+                                int(
+                                    env['ir.config_parameter'].sudo()
+                                    .get_param('penta_print_check.ec_check_print_format_id', 0)
                                 )
-                        "/>
+                            )
+                    "/>
 
-                        <div class="page">
-                            <!-- Separamos lineas fijas y de apuntes -->
-                            <t t-set="fixed_lines" t-value="fmt.line_ids.filtered(lambda l: not l.field_key.startswith('move_'))"/>
-                            <t t-set="move_lines_fmt" t-value="fmt.line_ids.filtered(lambda l: l.field_key.startswith('move_'))"/>
+                    <div class="page" style="page-break-after: always;">
+                        <!-- Separamos lineas fijas y de apuntes -->
+                        <t t-set="fixed_lines" t-value="fmt.line_ids.filtered(lambda l: not l.field_key.startswith('move_'))"/>
+                        <t t-set="move_lines_fmt" t-value="fmt.line_ids.filtered(lambda l: l.field_key.startswith('move_'))"/>
 
-                            <!-- LINEAS FIJAS -->
-                            <t t-foreach="fixed_lines" t-as="line">
+                        <!-- LINEAS FIJAS -->
+                        <t t-foreach="fixed_lines" t-as="line">
+
+                            <div t-att-style="
+                                'position: absolute;
+                                font-family: Courier New, monospace;
+                                white-space: normal;
+                                word-wrap: break-word;
+                                left: %smm;
+                                top: %smm;
+                                font-size: %spt;
+                                text-align: %s;
+                                width: %smm;
+                                line-height: %spt;'
+                                % (
+                                    line.pos_x,
+                                    line.pos_y,
+                                    line.font_size,
+                                    line.text_align,
+                                    line.width or 'auto',
+                                    line.height or (line.font_size * 1.2),
+                                )">
+
+                                <t t-if="line.field_key == 'date'">
+                                    <t t-esc="o.date"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'partner'">
+                                    <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'amount'">
+                                    <t t-esc="'%.2f' % o.amount"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'amount_text'">
+                                    <t t-esc="o.check_amount_in_words.upper()"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'reference'">
+                                    <t t-esc="o.ref.upper() or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'check_number'">
+                                    <t t-esc="o.check_number"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'city'">
+                                    <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'account_name'">
+                                    <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'account_code'">
+                                    <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_name'">
+                                    <t t-esc="o.name.upper() or ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_number'">
+                                    <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
+                                </t>
+
+                                <t t-if="line.field_key == 'payment_concept'">
+                                    <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
+                                </t>
+
+                            </div>
+
+                        </t>
+
+                        <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
+
+                        <!-- TOTALES LINEAS APUNTES -->
+                        <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
+                        <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
+
+
+                        <!-- Definir espacio de mm en filas de apuntes (10) -->
+                        <t t-set="row_spacing" t-value="5"/>
+
+                        <!-- LINEAS DE APUNTES -->
+                        <t t-foreach="enumerate(move_lines)" t-as="row_data">
+                            <t t-set="row" t-value="row_data[0]"/>
+                            <t t-set="ml" t-value="row_data[1]"/>
+
+                            <t t-foreach="move_lines_fmt" t-as="line">
 
                                 <div t-att-style="
-                                   'position: absolute;
+                                    'position: absolute;
+                                    font-family: Courier New, monospace;
+                                    white-space: normal;
+                                    word-wrap: break-word;
+                                    left: %smm;
+                                    top: %smm;
+                                    font-size: %spt;
+                                    text-align: %s;
+                                    width: %smm;
+                                    line-height: %spt;'
+                                    % (
+                                        line.pos_x,
+                                        line.pos_y + (row * row_spacing),
+                                        line.font_size,
+                                        line.text_align,
+                                        line.width or 'auto',
+                                        line.height or (line.font_size * 1.2),
+                                    )">
+
+                                    <t t-if="line.field_key == 'move_account_code'">
+                                        <t t-esc="ml.account_id.code"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_name'">
+                                        <t t-esc="ml.account_id.name.upper()"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_debit'">
+                                        <t t-esc="'%.2f' % ml.debit"/>
+                                    </t>
+                                    <t t-if="line.field_key == 'move_account_credit'">
+                                        <t t-esc="'%.2f' % ml.credit"/>
+                                    </t>
+
+                                </div>
+
+                                <div t-att-style="
+                                    'position:absolute;
                                     font-family: Courier New, monospace;
                                     white-space: normal;
                                     word-wrap: break-word;
@@ -238,145 +362,21 @@
                                         line.height or (line.font_size * 1.2),
                                     )">
 
-                                    <t t-if="line.field_key == 'date'">
-                                        <t t-esc="o.date"/>
+                                    <t t-if="line.field_key == 'move_account_total_debit'">
+                                        <t t-esc="'%.2f' % total_debit"/>
                                     </t>
-
-                                    <t t-if="line.field_key == 'partner'">
-                                        <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'amount'">
-                                        <t t-esc="'%.2f' % o.amount"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'amount_text'">
-                                        <t t-esc="o.check_amount_in_words.upper()"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'reference'">
-                                        <t t-esc="o.ref.upper() or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'check_number'">
-                                        <t t-esc="o.check_number"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'city'">
-                                        <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'account_name'">
-                                        <t t-esc="o.journal_id.bank_account_id.bank_id.name.upper() if o.journal_id.bank_account_id.bank_id else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'account_code'">
-                                        <t t-esc="o.journal_id.bank_account_id.acc_number or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_name'">
-                                        <t t-esc="o.name.upper() or ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_number'">
-                                        <t t-esc="o.name.split('/')[-1] if o.name else ''"/>
-                                    </t>
-
-                                    <t t-if="line.field_key == 'payment_concept'">
-                                        <t t-esc="(o.memo.upper() if o.memo else '') + ' ' + (o.payment_reference.upper() if o.payment_reference else '')"/>
+                                    <t t-if="line.field_key == 'move_account_total_credit'">
+                                        <t t-esc="'%.2f' % total_credit"/>
                                     </t>
 
                                 </div>
 
                             </t>
+                            
+                        </t>
 
-                            <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
+                    </div>
 
-                            <!-- TOTALES LINEAS APUNTES -->
-                            <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
-                            <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
-
-
-                            <!-- Definir espacio de mm en filas de apuntes (10) -->
-                            <t t-set="row_spacing" t-value="5"/>
-
-                            <!-- LINEAS DE APUNTES -->
-                            <t t-foreach="enumerate(move_lines)" t-as="row_data">
-                                <t t-set="row" t-value="row_data[0]"/>
-                                <t t-set="ml" t-value="row_data[1]"/>
-
-                                <t t-foreach="move_lines_fmt" t-as="line">
-
-                                    <div t-att-style="
-                                       'position: absolute;
-                                        font-family: Courier New, monospace;
-                                        white-space: normal;
-                                        word-wrap: break-word;
-                                        left: %smm;
-                                        top: %smm;
-                                        font-size: %spt;
-                                        text-align: %s;
-                                        width: %smm;
-                                        line-height: %spt;'
-                                        % (
-                                            line.pos_x,
-                                            line.pos_y + (row * row_spacing),
-                                            line.font_size,
-                                            line.text_align,
-                                            line.width or 'auto',
-                                            line.height or (line.font_size * 1.2),
-                                        )">
-
-                                        <t t-if="line.field_key == 'move_account_code'">
-                                            <t t-esc="ml.account_id.code"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_name'">
-                                            <t t-esc="ml.account_id.name.upper()"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_debit'">
-                                            <t t-esc="'%.2f' % ml.debit"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_credit'">
-                                            <t t-esc="'%.2f' % ml.credit"/>
-                                        </t>
-
-                                    </div>
-
-                                    <div t-att-style="
-                                       'position:absolute;
-                                        font-family: Courier New, monospace;
-                                        white-space: normal;
-                                        word-wrap: break-word;
-                                        left: %smm;
-                                        top: %smm;
-                                        font-size: %spt;
-                                        text-align: %s;
-                                        width: %smm;
-                                        line-height: %spt;'
-                                        % (
-                                            line.pos_x,
-                                            line.pos_y,
-                                            line.font_size,
-                                            line.text_align,
-                                            line.width or 'auto',
-                                            line.height or (line.font_size * 1.2),
-                                        )">
-
-                                        <t t-if="line.field_key == 'move_account_total_debit'">
-                                            <t t-esc="'%.2f' % total_debit"/>
-                                        </t>
-                                        <t t-if="line.field_key == 'move_account_total_credit'">
-                                            <t t-esc="'%.2f' % total_credit"/>
-                                        </t>
-
-                                    </div>
-
-                                </t>
-                                
-                            </t>
-
-                        </div>
-                    </t>
                 </div>
             </t>
 

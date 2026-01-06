@@ -10,8 +10,6 @@ class AccountPayment(models.Model):
     check_beneficiary = fields.Many2one('res.partner', string='Check Beneficiary', help='The beneficiary of the check.')
 
     def _get_check_print_format(self):
-        self.ensure_one()
-
         if self.journal_id.ec_check_print_format_id:
             return self.journal_id.ec_check_print_format_id
 
@@ -26,8 +24,6 @@ class AccountPayment(models.Model):
         raise UserError(_("There is no check format configured. Configure one in the journal or in the general settings."))
 
     def do_print_checks(self):
-        self.ensure_one()
-        
         fmt = self._get_check_print_format()
         
         if fmt.orientation == 'landscape':

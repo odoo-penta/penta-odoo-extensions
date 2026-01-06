@@ -72,7 +72,7 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'city'">
-                                        <t t-esc="o.company_id.partner_id.city_id.name or ''"/>
+                                        <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'account_name'">
@@ -263,7 +263,7 @@
                                     </t>
 
                                     <t t-if="line.field_key == 'city'">
-                                        <t t-esc="o.company_id.partner_id.city_id.name or ''"/>
+                                        <t t-esc="o.company_id.partner_id.city_id.name + ',' or ''"/>
                                     </t>
 
                                     <t t-if="line.field_key == 'account_name'">

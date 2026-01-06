@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account_check_printing.view_account_payment_form_inherited"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='check_number']" position="after">
-                <field name="check_beneficiary" readonly="state != 'draft'" invisible="not show_check_number" required="show_check_number"/>
+                <field name="check_beneficiary" readonly="state not in ('draft','in_process')" invisible="not show_check_number" required="show_check_number"/>
             </xpath>
         </field>
     </record>

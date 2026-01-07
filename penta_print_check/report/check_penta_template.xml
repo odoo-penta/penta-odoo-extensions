@@ -30,6 +30,7 @@
                             <div t-att-style="
                                 'position: absolute;
                                 font-family: Courier New, monospace;
+                                font-weight: bold;
                                 white-space: normal;
                                 word-wrap: break-word;
                                 left: %smm;
@@ -119,6 +120,7 @@
                                 <div t-att-style="
                                     'position: absolute;
                                     font-family: Courier New, monospace;
+                                    font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;
                                     left: %smm;
@@ -221,6 +223,7 @@
                             <div t-att-style="
                                 'position: absolute;
                                 font-family: Courier New, monospace;
+                                font-weight: bold;
                                 white-space: normal;
                                 word-wrap: break-word;
                                 left: %smm;
@@ -310,6 +313,7 @@
                                 <div t-att-style="
                                     'position: absolute;
                                     font-family: Courier New, monospace;
+                                    font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;
                                     left: %smm;

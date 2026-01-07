@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="mrp_workorder_operation_form_view_inherit_penta" model="ir.ui.view">
+            <field name="name">mrp_workorder.mrp_workorder.operation.form.view.inherit.penta</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='time_cycle_manual']" position="after">
+                    <field name="time_cycle_minutes" class="oe_inline"/> minutes
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* penta_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-07 22:01+0000\n"
+"PO-Revision-Date: 2026-01-07 17:03-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "Default Duration"
+msgstr "Duración predeterminada"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_routing_workcenter__time_cycle_minutes
+msgid "Time Cycle"
+msgstr "Duración predeterminada"
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_routing_workcenter__time_cycle_minutes
+msgid "Time cycle in minutes for the work center operation."
+msgstr "Duración en minutos para la operación del centro de trabajo."
+
+#. module: penta_mrp
+#: model:ir.model,name:penta_mrp.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr "Uso del centro de producción"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "hours:minutes"
+msgstr "horas:minutos"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "minutes"
+msgstr "minutos"

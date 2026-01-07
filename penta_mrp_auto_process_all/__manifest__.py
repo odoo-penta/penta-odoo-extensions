@@ -23,7 +23,9 @@
     'license': 'OPL-1',
     'category': 'Manufacturing',
     'version': '18.0.2.4.0',
-    'depends': ['mrp'],
+    'depends': [
+        'penta_mrp'
+    ],
     'data': [
         "data/ir_sequence_data.xml",
         

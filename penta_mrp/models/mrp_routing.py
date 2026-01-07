@@ -7,7 +7,7 @@ class MrpRoutingWorkcenter(models.Model):
     _inherit = 'mrp.routing.workcenter'
     
     time_cycle_minutes = fields.Integer(
-        string='Time Cycle (Minutes)',
+        string='Time Cycle',
         compute='_compute_time_cycle_minutes',
         inverse='_inverse_time_cycle_minutes',
         store=True,

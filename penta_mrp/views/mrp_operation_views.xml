@@ -7,8 +7,14 @@
             <field name="model">mrp.routing.workcenter</field>
             <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='time_cycle_manual']" position="after">
-                    <field name="time_cycle_minutes" class="oe_inline"/> minutes
+                <xpath expr="//field[@name='time_cycle_manual']" position="replace">
+                    <field name="time_cycle_manual" widget="float_time" class="oe_inline"/> hours:minutes
+                </xpath>
+                <xpath expr="//div[field[@name='time_cycle_manual']]" position="after">
+                    <label for="time_cycle_minutes" invisible="time_mode == 'auto' and workorder_count != 0" string="Default Duration"/>
+                    <div invisible="time_mode == 'auto' and workorder_count != 0">
+                        <field name="time_cycle_minutes" class="oe_inline"/> minutes
+                    </div>
                 </xpath>
             </field>
         </record>

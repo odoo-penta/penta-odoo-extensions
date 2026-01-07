@@ -24,7 +24,7 @@ class EcCheckPrintFormat(models.Model):
 class EcCheckPrintFormatLine(models.Model):
     _name = "ec.check.print.format.line"
     _description = "Cheque Print Line"
-    _order = "pos_y asc"
+    _order = "pos_y asc, pos_x asc"
 
     format_id = fields.Many2one(
         "ec.check.print.format",

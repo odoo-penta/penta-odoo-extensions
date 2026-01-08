@@ -26,6 +26,7 @@
     'depends': ['cost_standard_eljuri'],
     'data': [
         'views/mrp_operation_views.xml',
+        'views/mrp_routing_views.xml',
     ],
     'installable': True,
     'application': True,

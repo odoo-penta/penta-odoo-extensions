@@ -14,6 +14,11 @@ class MrpRoutingWorkcenter(models.Model):
         default=0,
         help='Time cycle in minutes for the work center operation.'
     )
+    workcenter_team_costs_hour = fields.Float(
+        related='workcenter_id.workcenter_team_costs_hour',
+        depends=['workcenter_id'],
+        readonly=True,
+    )
     
     @api.depends('time_cycle_manual')
     def _compute_time_cycle_minutes(self):

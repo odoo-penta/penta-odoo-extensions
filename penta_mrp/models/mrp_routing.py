@@ -19,6 +19,21 @@ class MrpRoutingWorkcenter(models.Model):
         depends=['workcenter_id'],
         readonly=True,
     )
+    total_operation_cost = fields.Float(
+        string='Total Operation Cost',
+        compute='_compute_total_operation_cost',
+        store=True,
+        help='Total cost based on workcenter hourly cost and time cycle.'
+    )
+    
+    @api.depends('time_cycle', 'workcenter_team_costs_hour')
+    def _compute_total_operation_cost(self):
+        for record in self:
+            record.total_operation_cost = (
+                record.workcenter_team_costs_hour * record.time_cycle
+            )
+
+
     
     @api.depends('time_cycle_manual')
     def _compute_time_cycle_minutes(self):

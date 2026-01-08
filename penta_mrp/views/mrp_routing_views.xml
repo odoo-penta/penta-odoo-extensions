@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='time_cycle']" position="after">
                     <field name="workcenter_team_costs_hour"/>
+                    <field name="total_operation_cost"/>
                 </xpath>
             </field>
         </record>

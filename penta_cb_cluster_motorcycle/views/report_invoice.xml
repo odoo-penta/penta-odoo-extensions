@@ -104,15 +104,32 @@
 
                     <!-- Inicializar listas y valores -->
                     <t t-set="atributos_combinados" t-value="[]"/>
-                    <t t-set="ramv_val" t-value="' '"/>
-                    <t t-set="motor_val" t-value="' '"/>
-                    <t t-set="lote_val" t-value="' '"/>
+                    <t t-set="ramv_val" t-value="False"/>
+                    <t t-set="motor_val" t-value="False"/>
+                    <t t-set="lote_val" t-value="False"/>
 
-                    <!-- Recolectar atributos -->
+                    <!-- Inicializar listas -->
+                   <t t-set="atributos_combinados" t-value="[]"/>
+                    <t t-set="atributos_usados" t-value="set()"/>
+                    
+                    <!-- 1️⃣ ATRIBUTOS DEL VARIANT -->
                     <t t-foreach="line.product_id.product_template_attribute_value_ids" t-as="attr">
                         <t t-set="atributos_combinados"
                             t-value="atributos_combinados + ['%s: %s' % (attr.attribute_id.name, attr.name)]"/>
+                    
+                        <!-- Guardar nombre del atributo -->
+                        <t t-set="atributos_usados"
+                            t-value="atributos_usados | set([attr.attribute_id.name])"/>
                     </t>
+                    
+                    <!-- 2️⃣ ATRIBUTOS DEL TEMPLATE (SOLO NO USADOS) -->
+                    <t t-foreach="line.product_id.product_tmpl_id.attribute_line_ids" t-as="attr_line">
+                        <t t-if="attr_line.attribute_id.name not in atributos_usados">
+                            <t t-set="atributos_combinados"
+                                t-value="atributos_combinados + ['%s: %s' % (attr_line.attribute_id.name, attr_line.value_ids[0].name)]"/>
+                        </t>
+                    </t>
+                    
                     <t t-foreach="line.product_id.product_brand_id" t-as="brand">
                         <t t-set="atributos_combinados"
                             t-value="atributos_combinados + ['Marca: %s' % (brand.name)]"/>
@@ -120,21 +137,37 @@
 
                     <!-- Buscar el primer lote válido -->
                     <t t-foreach="line.move_id.stock_lot_ids" t-as="lot">
-                        <t t-if="lot.product_id.id == line.product_id.id and (lot.name not in lotes_linea_usados) and lote_val == ' '">
-                            <t t-set="ramv_val" t-value="lot.ramv or ''"/>
-                            <t t-set="motor_val" t-value="lot.motor_number or ''"/>
-                            <t t-set="lote_val" t-value="lot.name or ''"/>
-
-                            <t t-set="lotes_linea_usados" t-value="lotes_linea_usados + [lot.name]"/>
+                        <t t-if="lot.product_id.id == line.product_id.id
+                                  and lot.name not in lotes_linea_usados
+                                  and not lote_val">
+                    
+                            <t t-set="ramv_val" t-value="lot.ramv or False"/>
+                            <t t-set="motor_val" t-value="lot.motor_number or False"/>
+                            <t t-set="lote_val" t-value="lot.name or False"/>
+                    
+                            <t t-set="lotes_linea_usados"
+                               t-value="lotes_linea_usados + [lot.name]"/>
                         </t>
                     </t>
 
                     <!-- Mostrar contenido -->
-                    <span t-esc="', '.join(atributos_combinados)
-                            + ((', Ramv: ' + ramv_val) if ramv_val else '')
-                            + ((', Motor: ' + motor_val) if motor_val else '')
-                            + ((', Chasis: ' + lote_val) if lote_val else '')"/>
-
+                    
+                    <t t-if="atributos_combinados">
+                        <span t-esc="', '.join(atributos_combinados)"/>
+                    </t>
+                    
+                    <t t-if="ramv_val">
+                        <span>, Ramv: </span><span t-esc="ramv_val"/>
+                    </t>
+                    
+                    <t t-if="motor_val">
+                        <span>, Motor: </span><span t-esc="motor_val"/>
+                    </t>
+                    
+                    <t t-if="lote_val">
+                        <span>, Chasis: </span><span t-esc="lote_val"/>
+                    </t>
+                  
                 </t>
 
                 <!-- Si no hay lotes → deja un espacio en blanco -->

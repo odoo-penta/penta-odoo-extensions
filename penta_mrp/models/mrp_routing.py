@@ -32,8 +32,6 @@ class MrpRoutingWorkcenter(models.Model):
             record.total_operation_cost = (
                 record.workcenter_team_costs_hour * record.time_cycle
             )
-
-
     
     @api.depends('time_cycle_manual')
     def _compute_time_cycle_minutes(self):

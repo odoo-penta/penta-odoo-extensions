@@ -27,6 +27,7 @@
     'data': [
         'views/mrp_operation_views.xml',
         'views/mrp_routing_views.xml',
+        'views/mrp_bom_views.xml',
     ],
     'installable': True,
     'application': True,

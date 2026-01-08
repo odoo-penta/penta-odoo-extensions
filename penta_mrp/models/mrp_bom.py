@@ -1,11 +1,36 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models,  _
+from odoo import models, fields, _
 
 
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
     
+    unit_cost_mp = fields.Float(
+        string='Material Cost',
+        compute='_compute_unit_cost_mp',
+        help='Unit cost of materials in the BOM.'
+    )
+    unit_cost_mod = fields.Float(
+        string='Labor Cost',
+        compute='_compute_unit_cost_mod',
+        help='Unit cost of labor in the BOM.'
+    )
+
+    def _compute_unit_cost_mp(self):
+        for record in self:
+            total = 0.0
+            for line in record.bom_line_ids:
+                total += line.total_mp_cost
+            record.unit_cost_mp = total / (record.product_qty or 1.0)
+            
+    def _compute_unit_cost_mod(self):
+        for record in self:
+            total = 0.0
+            for operation in record.operation_ids:
+                total += operation.total_operation_cost
+            record.unit_cost_mod = total / (record.product_qty or 1.0)
+
     def bom_get_cost(self):
         """
         Obtiene el costo unitario de la lista de materiales (BOM).

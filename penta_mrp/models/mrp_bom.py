@@ -27,21 +27,21 @@ class MrpBom(models.Model):
             total = 0.0
             for line in record.bom_line_ids:
                 total += line.total_mp_cost
-            record.unit_cost_mp = round(total / (record.product_qty or 1.0), 2)
+            record.unit_cost_mp = total / (record.product_qty or 1.0)
             
     def _compute_unit_cost_mod(self):
         for record in self:
             total = 0.0
             for operation in record.operation_ids:
                 total += operation.total_operation_cost
-            record.unit_cost_mod = round(total / (record.product_qty or 1.0), 2)
+            record.unit_cost_mod = total / (record.product_qty or 1.0)
 
     def _compute_unit_cost_cif(self):
         for record in self:
             total = 0.0
             for aditional in record.mrp_bom_cost_ids:
                 total += aditional.value
-            record.unit_cost_cif = round(total / (record.product_qty or 1.0), 2)
+            record.unit_cost_cif = total / (record.product_qty or 1.0)
 
     def bom_get_cost(self):
         """

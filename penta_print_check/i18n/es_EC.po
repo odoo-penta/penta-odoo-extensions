@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-06 17:19+0000\n"
-"PO-Revision-Date: 2026-01-06 12:20-0500\n"
+"POT-Creation-Date: 2026-01-08 14:40+0000\n"
+"PO-Revision-Date: 2026-01-08 09:42-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_EC\n"
@@ -84,6 +84,11 @@ msgid "Check number"
 msgstr "Número cheque"
 
 #. module: penta_print_check
+#: model_terms:ir.ui.view,arch_db:penta_print_check.view_partner_property_form_inherit_penta_check
+msgid "Check printing"
+msgstr "Impresión cheques"
+
+#. module: penta_print_check
 #: model:ir.model,name:penta_print_check.model_ec_check_print_format
 msgid "Check printing format"
 msgstr "Formato de Impresión de Cheques"
@@ -112,6 +117,11 @@ msgstr "Empresas"
 #: model:ir.model,name:penta_print_check.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ajustes de configuración"
+
+#. module: penta_print_check
+#: model:ir.model,name:penta_print_check.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__create_uid
@@ -253,6 +263,12 @@ msgstr "Débito total apunte"
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__name
 msgid "Name"
 msgstr "Nombre"
+
+#. module: penta_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_res_partner__name_print_check
+#: model:ir.model.fields,field_description:penta_print_check.field_res_users__name_print_check
+msgid "Name Print Check"
+msgstr "Nombre impresión cheque"
 
 #. module: penta_print_check
 #: model:ir.model.fields,field_description:penta_print_check.field_ec_check_print_format__orientation

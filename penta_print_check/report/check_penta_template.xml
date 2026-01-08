@@ -53,7 +53,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'partner'">
-                                    <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
+                                    <t t-esc="(o.check_beneficiary.name_print_check or o.check_beneficiary.name).upper() if o.check_beneficiary else ''"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
@@ -247,7 +247,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'partner'">
-                                    <t t-esc="o.check_beneficiary.name.upper() if o.check_beneficiary else ''"/>
+                                    <t t-esc="(o.check_beneficiary.name_print_check or o.check_beneficiary.name).upper() if o.check_beneficiary else ''"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">

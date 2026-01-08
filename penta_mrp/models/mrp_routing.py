@@ -16,7 +16,7 @@ class MrpRoutingWorkcenter(models.Model):
     )
     workcenter_team_costs_hour = fields.Float(
         related='workcenter_id.workcenter_team_costs_hour',
-        depends=['workcenter_id'],
+        store=True,
         readonly=True,
     )
     total_operation_cost = fields.Float(

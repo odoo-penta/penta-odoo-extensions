@@ -15,19 +15,21 @@ class MrpProduction(models.Model):
         return res
     
     def _recompute_workorder_durations(self):
+        # Obtener tiempo real por unidad de cada operacion de la lista de materiales
+        bom = self.bom_id
+        bom_product_qty = bom.product_qty
+        operations = {}
+        
+        for operation in bom.operation_ids:
+            operations[operation.id] = operation.time_cycle_manual / bom_product_qty
+        
         for wo in self.workorder_ids:
-            if wo.state not in ('draft', 'ready'):
+            if wo.state not in ('pending', 'ready', 'waiting'):
                 continue
 
             op = wo.operation_id
-            wc = op.workcenter_id
+            
+            if op.id not in operations:
+                continue
 
-            qty = self.product_qty
-            cycle = wc.time_cycle_manual or 1
-
-            wo.duration_expected = (
-                op.time_start +
-                op.time_stop +
-                (qty / cycle) * op.time_cycle
-            )
-
+            wo.duration_expected = operations[op.id] * self.product_qty

@@ -81,7 +81,7 @@ class SaleOrder(models.Model):
         else:
             program = reward.program_id
         if program:
-            product_ids = program.rule_ids.mapped('valid_product_ids').ids
+            product_ids = program.rule_ids.mapped('product_ids').ids if program.rule_ids.mapped('product_ids') else False
             # Si NO hay productos definidos en las reglas → financiar todo
             finance_all_products = not bool(product_ids)
             for line in self.order_line:

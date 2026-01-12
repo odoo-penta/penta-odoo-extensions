@@ -34,8 +34,8 @@
                         <t t-foreach="fixed_lines" t-as="line">
 
                             <div t-att-style="
-                                'position: absolute;
-                                font-family: Courier New, monospace;
+                               'position: absolute;
+                                font-family: Liberation Mono, monospace;
                                 font-weight: bold;
                                 white-space: normal;
                                 word-wrap: break-word;
@@ -63,7 +63,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
+                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">
@@ -125,7 +125,7 @@
 
                                 <div t-att-style="
                                     'position: absolute;
-                                    font-family: Courier New, monospace;
+                                    font-family: Liberation Mono, monospace;
                                     font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;
@@ -161,7 +161,7 @@
 
                                 <div t-att-style="
                                    'position: absolute;
-                                    font-family: Courier New, monospace;
+                                    font-family: Liberation Mono, monospace;
                                     font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;
@@ -235,7 +235,7 @@
 
                             <div t-att-style="
                                 'position: absolute;
-                                font-family: Courier New, monospace;
+                                font-family: Liberation Mono, monospace;
                                 font-weight: bold;
                                 white-space: normal;
                                 word-wrap: break-word;
@@ -325,7 +325,7 @@
 
                                 <div t-att-style="
                                     'position: absolute;
-                                    font-family: Courier New, monospace;
+                                    font-family: Liberation Mono, monospace;
                                     font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;
@@ -361,7 +361,7 @@
 
                                 <div t-att-style="
                                    'position: absolute;
-                                    font-family: Courier New, monospace;
+                                    font-family: Liberation Mono, monospace;
                                     font-weight: bold;
                                     white-space: normal;
                                     word-wrap: break-word;

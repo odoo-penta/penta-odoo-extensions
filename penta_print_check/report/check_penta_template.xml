@@ -104,8 +104,8 @@
                         <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
 
                         <!-- TOTALES LINEAS APUNTES -->
-                        <t t-set="total_debit" t-value="sum(move_lines.mapped('check_debit'))"/>
-                        <t t-set="total_credit" t-value="sum(move_lines.mapped('check_credit'))"/>
+                        <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
+                        <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
 
 
                         <!-- Definir espacio de mm en filas de apuntes (10) -->
@@ -299,8 +299,8 @@
                         <t t-set="move_lines" t-value="o.move_id.line_ids.sorted(key=lambda l: l.debit, reverse=True)"/>
 
                         <!-- TOTALES LINEAS APUNTES -->
-                        <t t-set="total_debit" t-value="sum(move_lines.mapped('check_debit'))"/>
-                        <t t-set="total_credit" t-value="sum(move_lines.mapped('check_credit'))"/>
+                        <t t-set="total_debit" t-value="sum(move_lines.mapped('debit'))"/>
+                        <t t-set="total_credit" t-value="sum(move_lines.mapped('credit'))"/>
 
 
                         <!-- Definir espacio de mm en filas de apuntes (10) -->

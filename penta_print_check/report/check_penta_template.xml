@@ -57,7 +57,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="'%.2f' % o.amount"/>
+                                    <t t-esc="format_amount(o.amount, o.currency_id)"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">
@@ -145,10 +145,10 @@
                                         <t t-esc="ml.account_id.name.upper()"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_debit'">
-                                        <t t-esc="'%.2f' % ml.debit"/>
+                                        <t t-esc="format_amount(ml.debit, o.currency_id)"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_credit'">
-                                        <t t-esc="'%.2f' % ml.credit"/>
+                                        <t t-esc="format_amount(ml.credit, o.currency_id)"/>
                                     </t>
 
                                 </div>
@@ -175,10 +175,10 @@
                                     )">
 
                                     <t t-if="line.field_key == 'move_account_total_debit'">
-                                        <t t-esc="'%.2f' % total_debit"/>
+                                        <t t-esc="format_amount(total_debit, o.currency_id)"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_total_credit'">
-                                        <t t-esc="'%.2f' % total_credit"/>
+                                        <t t-esc="format_amount(total_credit, o.currency_id)"/>
                                     </t>
 
                                 </div>
@@ -200,7 +200,7 @@
             <meta charset="utf-8"/>
             <t t-foreach="docs" t-as="o">
                 <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
-
+                        
                     <!-- formato seleccionado -->
                     <t t-set="fmt"
                         t-value="
@@ -251,7 +251,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="'%.2f' % o.amount"/>
+                                    <t t-esc="format_amount(o.amount, o.currency_id)"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">
@@ -339,16 +339,16 @@
                                         <t t-esc="ml.account_id.name.upper()"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_debit'">
-                                        <t t-esc="'%.2f' % ml.debit"/>
+                                        <t t-esc="format_amount(ml.debit, o.currency_id)"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_credit'">
-                                        <t t-esc="'%.2f' % ml.credit"/>
+                                        <t t-esc="format_amount(ml.credit, o.currency_id)"/>
                                     </t>
 
                                 </div>
 
                                 <div t-att-style="
-                                   'position:absolute;
+                                   'position: absolute;
                                     font-family: Courier New, monospace;
                                     font-weight: bold;
                                     white-space: normal;
@@ -369,10 +369,10 @@
                                     )">
 
                                     <t t-if="line.field_key == 'move_account_total_debit'">
-                                        <t t-esc="'%.2f' % total_debit"/>
+                                        <t t-esc="format_amount(total_debit, o.currency_id)"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_total_credit'">
-                                        <t t-esc="'%.2f' % total_credit"/>
+                                        <t t-esc="format_amount(total_credit, o.currency_id)"/>
                                     </t>
 
                                 </div>

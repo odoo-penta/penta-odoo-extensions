@@ -8,6 +8,19 @@ class AccountPayment(models.Model):
     _inherit = "account.payment"
 
     check_beneficiary = fields.Many2one('res.partner', string='Check Beneficiary', help='The beneficiary of the check.')
+    check_amount = fields.Char(compute="_compute_check_amount", string="Check amount", help="Amount with decimals to print on the check")
+    
+    @api.depends('amount')
+    def _compute_check_amount(self):
+        for payment in self:
+            if payment.currency_id:
+                payment.check_amount = payment.currency_id.format(
+                    payment.amount,
+                    currency=payment.currency_id,
+                    grouping=True
+                )
+            else:
+                payment.check_amount = str(payment.amount or 0.0)
 
     def _get_check_print_format(self):
         if self.journal_id.ec_check_print_format_id:

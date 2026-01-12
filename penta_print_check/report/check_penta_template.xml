@@ -63,7 +63,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    <t t-esc="o.chek_amount"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">

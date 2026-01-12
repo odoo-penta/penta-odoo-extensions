@@ -4,6 +4,12 @@
     <template id="check_printing_portrait_penta_template">
         <main>
             <meta charset="utf-8"/>
+            <!-- OCULTAR SIMBOLO DE MONEDA EN TODO EL REPORTE -->
+            <style>
+                .oe_currency_symbol {
+                    display: none !important;
+                }
+            </style>
             <t t-foreach="docs" t-as="o">
                 <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
                         
@@ -198,6 +204,12 @@
     <template id="check_printing_landscape_penta_template">
         <main>
             <meta charset="utf-8"/>
+            <!-- OCULTAR SIMBOLO DE MONEDA EN TODO EL REPORTE -->
+            <style>
+                .oe_currency_symbol {
+                    display: none !important;
+                }
+            </style>
             <t t-foreach="docs" t-as="o">
                 <div class="article" t-att-data-oe-model="'account.payment'" t-att-data-oe-id="o.id">
                         

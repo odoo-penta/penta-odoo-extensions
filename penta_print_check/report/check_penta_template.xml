@@ -57,7 +57,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">
@@ -145,10 +145,10 @@
                                         <t t-esc="ml.account_id.name.upper()"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_debit'">
-                                        <t t-esc="ml.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="ml.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_credit'">
-                                        <t t-esc="ml.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="ml.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
 
                                 </div>
@@ -175,10 +175,10 @@
                                     )">
 
                                     <t t-if="line.field_key == 'move_account_total_debit'">
-                                        <t t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_total_credit'">
-                                        <t t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
 
                                 </div>
@@ -251,7 +251,7 @@
                                 </t>
 
                                 <t t-if="line.field_key == 'amount'">
-                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    <t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                 </t>
 
                                 <t t-if="line.field_key == 'amount_text'">
@@ -339,10 +339,10 @@
                                         <t t-esc="ml.account_id.name.upper()"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_debit'">
-                                        <t t-esc="ml.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="ml.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_credit'">
-                                        <t t-esc="ml.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="ml.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
 
                                 </div>
@@ -369,10 +369,10 @@
                                     )">
 
                                     <t t-if="line.field_key == 'move_account_total_debit'">
-                                        <t t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="total_debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
                                     <t t-if="line.field_key == 'move_account_total_credit'">
-                                        <t t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                        <t t-esc="total_credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'no_symbol': True}"/>
                                     </t>
 
                                 </div>

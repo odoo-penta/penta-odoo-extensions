@@ -14,11 +14,7 @@ class AccountPayment(models.Model):
     def _compute_check_amount(self):
         for payment in self:
             if payment.currency_id:
-                payment.check_amount = payment.currency_id.format(
-                    payment.amount,
-                    currency=payment.currency_id,
-                    grouping=True
-                )
+                payment.check_amount = payment.currency_id.format(payment.amount).replace('$', '').replace('\u00A0', '').strip()
             else:
                 payment.check_amount = str(payment.amount or 0.0)
 

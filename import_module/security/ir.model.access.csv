@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_x_import,import_module.x_import,model_x_import,base.group_user,1,1,1,1
+access_purchase_order,purchase_module.purchase_order,model_purchase_order,base.group_user,1,1,1,1
+access_account_move,account_move_module.account_move,model_account_move,base.group_user,1,1,1,1
+access_stock_landed_cost,stock_landed_cost_module.stock_landed_cost,model_stock_landed_cost,base.group_user,1,1,1,1
+access_stock_picking,stock_picking_module.stock_picking,model_stock_picking,base.group_user,1,1,1,1
+access_x_customs_regime,x_customs_regime_module.x_customs_regime,model_x_customs_regime,base.group_user,1,1,1,1
+access_choose_landed_cost_wizard,choose_landed_cost_wizard_module.choose_landed_cost_wizard,model_choose_landed_cost_wizard,base.group_user,1,1,1,1
+access_import_boarding,import_boarding_module.import_boarding,model_import_boarding,base.group_user,1,1,1,1
+access_tariff_item,tariff_item_module.tariff_item,model_tariff_item,base.group_user,1,1,1,1
+access_tariff_item_line,tariff_item_line_module.tariff_item_line,model_tariff_item_line,base.group_user,1,1,1,1
+access_stock_landed_cost_taxes,stock_landed_cost_taxes_module.stock_landed_cost_taxes,model_stock_landed_cost_taxes,base.group_user,1,1,1,1
+access_lc_taxes_io_wizard,lc_taxes_io_wizard_module.lc_taxes_io_wizard,model_lc_taxes_io_wizard,base.group_user,1,1,1,1
+access_penta_import_report_wizard,penta.import.report.wizard,model_penta_import_report_wizard,base.group_user,1,1,1,0
+access_penta_import_report_field_user,penta.import.report.field,model_penta_import_report_field,base.group_user,1,1,1,0
+access_penta_import_report_line_user,penta.import.report.line,model_penta_import_report_line,base.group_user,1,1,1,0
+access_penta_import_report_run_user,penta.import.report.run user,model_penta_import_report_run,base.group_user,1,0,0,0

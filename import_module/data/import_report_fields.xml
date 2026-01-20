@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- ====== x.import ====== -->
+  <record id="pif_import_name" model="penta.import.report.field">
+    <field name="name">Importación</field>
+    <field name="technical_key">IMPORT_NAME</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.name</field>
+    <field name="sequence">10</field>
+  </record>
+
+  <record id="pif_freight_agent" model="penta.import.report.field">
+    <field name="name">Embarcador</field>
+    <field name="technical_key">FREIGHT_AGENT</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.freight_agent.display_name</field>
+    <field name="sequence">20</field>
+  </record>
+
+  <record id="pif_guide_bl" model="penta.import.report.field">
+    <field name="name">Guía de importación</field>
+    <field name="technical_key">GUIDE_BL</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.guide_bl</field>
+    <field name="sequence">30</field>
+  </record>
+
+  <record id="pif_containers_number" model="penta.import.report.field">
+    <field name="name">Número de contenedores</field>
+    <field name="technical_key">CONTAINERS_NUMBER</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.containers_number</field>
+    <field name="sequence">40</field>
+  </record>
+
+  <record id="pif_type_of_load" model="penta.import.report.field">
+    <field name="name">Tipo de carga</field>
+    <field name="technical_key">TYPE_OF_LOAD</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_type_of_load_es</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">50</field>
+  </record>
+
+  <record id="pif_date_shipment" model="penta.import.report.field">
+    <field name="name">Fecha de guía de importación</field>
+    <field name="technical_key">DATE_SHIPMENT</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.date_shipment</field>
+    <field name="sequence">60</field>
+  </record>
+
+  <record id="pif_eta" model="penta.import.report.field">
+    <field name="name">Fecha estimada de llegada</field>
+    <field name="technical_key">ETA</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.estimated_time_of_arriva</field>
+    <field name="sequence">70</field>
+  </record>
+
+  <record id="pif_transit_time" model="penta.import.report.field">
+    <field name="name">Tiempo de tránsito</field>
+    <field name="technical_key">TRANSIT_TIME</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.transit_time</field>
+    <field name="sequence">80</field>
+  </record>
+
+  <record id="pif_hazardous" model="penta.import.report.field">
+    <field name="name">Carga</field>
+    <field name="technical_key">HAZARDOUS_LOAD</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.hazardous_load</field>
+    <field name="sequence">90</field>
+  </record>
+
+  <record id="pif_incoterm" model="penta.import.report.field">
+    <field name="name">Incoterm</field>
+    <field name="technical_key">INCOTERM</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.incoterm.display_name</field>
+    <field name="sequence">100</field>
+  </record>
+
+  <record id="pif_customs_regime" model="penta.import.report.field">
+    <field name="name">Tipo de regimen</field>
+    <field name="technical_key">CUSTOMS_REGIME</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.customs_regime_id.display_name</field>
+    <field name="sequence">110</field>
+  </record>
+
+  <record id="pif_real_eta" model="penta.import.report.field">
+    <field name="name">Fecha de llegada real</field>
+    <field name="technical_key">REAL_ETA</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.real_estimated_time_of_delivery</field>
+    <field name="sequence">120</field>
+  </record>
+
+  <record id="pif_departure_port" model="penta.import.report.field">
+    <field name="name">Fecha de salida de puerto</field>
+    <field name="technical_key">DEPARTURE_PORT</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.date_of_departure_from_customs</field>
+    <field name="sequence">130</field>
+  </record>
+
+  <record id="pif_free_days" model="penta.import.report.field">
+    <field name="name">Días libres devolucion contenedor</field>
+    <field name="technical_key">FREE_DAYS_RET</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.free_days_container_return</field>
+    <field name="sequence">140</field>
+  </record>
+
+  <record id="pif_free_days_due" model="penta.import.report.field">
+    <field name="name">Fecha de vencimiento dias libres</field>
+    <field name="technical_key">FREE_DAYS_DUE</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.free_days_due_date</field>
+    <field name="sequence">150</field>
+  </record>
+
+  <record id="pif_supplier_receipt" model="penta.import.report.field">
+    <field name="name">Fecha de recepcion de proveedor</field>
+    <field name="technical_key">SUPPLIER_RECEIPT_DATE</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.supplier_receipt_date</field>
+    <field name="sequence">160</field>
+  </record>
+
+  <record id="pif_agent_send_date" model="penta.import.report.field">
+    <field name="name">Fecha envío agente</field>
+    <field name="technical_key">AGENT_SEND_DATE</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.agent_send_date</field>
+    <field name="sequence">170</field>
+  </record>
+
+  <record id="pif_policy_number" model="penta.import.report.field">
+    <field name="name">Número de poliza</field>
+    <field name="technical_key">INS_POL_NUMBER</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.insurance_policy_number</field>
+    <field name="sequence">180</field>
+  </record>
+
+  <record id="pif_virtual_billing" model="penta.import.report.field">
+    <field name="name">Facturación virtual</field>
+    <field name="technical_key">VIRTUAL_BILL</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.virtual_billing</field>
+    <field name="sequence">190</field>
+  </record>
+
+  <record id="pif_dai_field" model="penta.import.report.field">
+    <field name="name">DAI</field>
+    <field name="technical_key">DAI_FIELD</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.dai</field>
+    <field name="sequence">200</field>
+  </record>
+
+  <record id="pif_liq_id" model="penta.import.report.field">
+    <field name="name">ID Liquidación</field>
+    <field name="technical_key">LIQ_ID</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.id_liquidation</field>
+    <field name="sequence">210</field>
+  </record>
+
+  <record id="pif_liq_date" model="penta.import.report.field">
+    <field name="name">Fecha de liquidación</field>
+    <field name="technical_key">LIQ_DATE</field>
+    <field name="model_name">x.import</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">import_rec.date_liquidation</field>
+    <field name="sequence">220</field>
+  </record>
+
+  <!-- ANTES
+  <record id="pif_line_name" model="penta.import.report.field">
+    <field name="name">Número de orden del proveedor</field>
+    <field name="technical_key">PO_LINE_NAME</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">name</field>
+    <field name="sequence">300</field>
+  </record>
+  -->
+
+  <!-- DESPUÉS -->
+  <record id="pif_line_name" model="penta.import.report.field">
+    <field name="name">Número de orden del proveedor</field>
+    <field name="technical_key">PO_LINE_NAME</field>
+    <field name="model_name">purchase.order</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">po.name</field>
+    <field name="sequence">300</field>
+  </record>
+
+  <!-- ====== purchase.order.line / producto ====== -->
+  
+
+  <record id="pif_product" model="penta.import.report.field">
+    <field name="name">Producto</field>
+    <field name="technical_key">PRODUCT</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">product.display_name</field>
+    <field name="sequence">310</field>
+  </record>
+
+  <!-- Atributos/variantes: Categoria, Tipo, Año, Color -->
+  <record id="pif_attr_categoria" model="penta.import.report.field">
+    <field name="name">Categoria</field>
+    <field name="technical_key">ATTR_CATEGORIA</field>
+    <field name="model_name">product.attribute</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_attr_categoria</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">320</field>
+  </record>
+
+  <record id="pif_attr_tipo" model="penta.import.report.field">
+    <field name="name">Tipo</field>
+    <field name="technical_key">ATTR_TIPO</field>
+    <field name="model_name">product.attribute</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_attr_tipo</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">330</field>
+  </record>
+
+  <record id="pif_attr_anio" model="penta.import.report.field">
+    <field name="name">Año</field>
+    <field name="technical_key">ATTR_ANIO</field>
+    <field name="model_name">product.attribute</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_attr_anio</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">340</field>
+  </record>
+
+  <record id="pif_attr_color" model="penta.import.report.field">
+    <field name="name">Color</field>
+    <field name="technical_key">ATTR_COLOR</field>
+    <field name="model_name">product.attribute</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_attr_color</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">350</field>
+  </record>
+
+  <record id="pif_sri_subcat" model="penta.import.report.field">
+    <field name="name">Subcategoría SRI</field>
+    <field name="technical_key">SRI_SUBCATEGORY</field>
+    <field name="model_name">product.template</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">product.product_tmpl_id.sri_subcategory</field>
+    <field name="sequence">360</field>
+  </record>
+
+  <record id="pif_qty_any" model="penta.import.report.field">
+    <field name="name">Cantidad</field>
+    <field name="technical_key">QTY</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_qty_any</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">370</field>
+  </record>
+
+  <record id="pif_price_unit" model="penta.import.report.field">
+    <field name="name">Valor unitario</field>
+    <field name="technical_key">PRICE_UNIT</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">price_unit</field>
+    <field name="sequence">380</field>
+  </record>
+
+  <record id="pif_price_subtotal" model="penta.import.report.field">
+    <field name="name">Valor total</field>
+    <field name="technical_key">PRICE_SUBTOTAL</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">expr</field>
+    <field name="field_expr">price_subtotal</field>
+    <field name="sequence">390</field>
+  </record>
+
+  <!-- ====== Landed Costs (prorrateados por línea) ====== -->
+  <record id="pif_lc_freight" model="penta.import.report.field">
+    <field name="name">Valor de flete</field>
+    <field name="technical_key">LC_FREIGHT</field>
+    <field name="model_name">stock.landed.cost</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_lc_freight</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">500</field>
+  </record>
+
+  <record id="pif_lc_cif_seguro" model="penta.import.report.field">
+    <field name="name">Valor de seguro</field>
+    <field name="technical_key">LC_CIF_INSURANCE</field>
+    <field name="model_name">stock.landed.cost</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_lc_insurance</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">530</field>
+  </record>
+
+  <!-- ====== Impuestos de destino (tabla taxes) ====== --> 
+  <record id="pif_tax_adval" model="penta.import.report.field">
+    <field name="name">Ad Valorem</field>
+    <field name="technical_key">LC_TAX_ADVAL</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_ad_valorem_prorated</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">600</field>
+  </record>
+
+  <record id="pif_tax_fodinfa" model="penta.import.report.field">
+    <field name="name">Fodinfa</field>
+    <field name="technical_key">LC_TAX_FOD</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_from_invoices_fodinfa</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">610</field>
+  </record>
+
+  <record id="pif_tax_ice" model="penta.import.report.field">
+    <field name="name">Ice</field>
+    <field name="technical_key">LC_TAX_ICE</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_from_invoices_ice</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">620</field>
+  </record>
+
+  <record id="pif_tax_recargo" model="penta.import.report.field">
+    <field name="name">Recargo Ice</field>
+    <field name="technical_key">LC_TAX_RECARGO</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_from_invoices_recargo_ice</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">630</field>
+  </record>
+
+  <record id="pif_total_aranceles" model="penta.import.report.field">
+    <field name="name">Total Aranceles</field>
+    <field name="technical_key">TOTAL_ARANCELES</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_total_aranceles_from_components</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">640</field>
+  </record>
+
+  <record id="pif_tax_interes" model="penta.import.report.field">
+    <field name="name">Valor de interes</field>
+    <field name="technical_key">LC_TAX_INTERES</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_lc_tax_interes</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">650</field>
+  </record>
+
+  <record id="pif_total_aranceles_interes" model="penta.import.report.field">
+    <field name="name">Total aranceles + Valor de interés</field>
+    <field name="technical_key">TOTAL_ARANCELES_INTERES</field>
+    <field name="model_name">stock.landed.cost.taxes</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_aranceles_mas_interes</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">660</field>
+  </record>
+
+  <record id="pif_other_costs_unassigned_lct" model="penta.import.report.field">
+    <field name="name">Otros costos</field>
+    <field name="technical_key">OTHER_COSTS_UNASSIGNED_LCT</field>
+    <field name="model_name">account.move</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_other_costs_unassigned_lct</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">665</field>
+  </record>
+
+  <!-- ====== CFR / CIF / IVA ====== -->
+  <record id="pif_cfr" model="penta.import.report.field">
+    <field name="name">CFR</field>
+    <field name="technical_key">CFR</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_cfr</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">700</field>
+  </record>
+
+  <record id="pif_cif" model="penta.import.report.field">
+    <field name="name">CIF</field>
+    <field name="technical_key">CIF</field>
+    <field name="model_name">purchase.order.line</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_cif</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">710</field>
+  </record>
+
+  <record id="pif_iva_customs" model="penta.import.report.field">
+    <field name="name">IVA</field>
+    <field name="technical_key">IVA_CUSTOMS</field>
+    <field name="model_name">account.move</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_iva_from_flagged_products</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">720</field>
+  </record>
+
+  <!-- ====== Factura & Pago ====== -->
+  <record id="pif_inv_number" model="penta.import.report.field">
+    <field name="name">Numero de factura</field>
+    <field name="technical_key">INV_NUMBER</field>
+    <field name="model_name">account.move</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_invoice_name</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">800</field>
+  </record>
+
+  <record id="pif_inv_date" model="penta.import.report.field">
+    <field name="name">Fecha de factura</field>
+    <field name="technical_key">INV_DATE</field>
+    <field name="model_name">account.move</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_invoice_date</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">810</field>
+  </record>
+
+  <record id="pif_inv_total" model="penta.import.report.field">
+    <field name="name">Importe de factura</field>
+    <field name="technical_key">INV_TOTAL</field>
+    <field name="model_name">account.move</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_invoice_amount_total</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">820</field>
+  </record>
+
+  <record id="pif_pay_date" model="penta.import.report.field">
+    <field name="name">Fecha de pago</field>
+    <field name="technical_key">PAY_DATE</field>
+    <field name="model_name">account.payment</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_payment_last_date</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">830</field>
+  </record>
+
+  <record id="pif_pay_method" model="penta.import.report.field">
+    <field name="name">Método de pago</field>
+    <field name="technical_key">PAY_METHOD</field>
+    <field name="model_name">account.payment</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_payment_last_method</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">840</field>
+  </record>
+
+  <record id="pif_pay_number" model="penta.import.report.field">
+    <field name="name">Número de pago</field>
+    <field name="technical_key">PAY_NUMBER</field>
+    <field name="model_name">account.payment</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_payment_last_name</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">850</field>
+  </record>
+
+  <record id="pif_pay_journal" model="penta.import.report.field">
+    <field name="name">Diario de pago</field>
+    <field name="technical_key">PAY_JOURNAL</field>
+    <field name="model_name">account.payment</field>
+    <field name="compute_type">method</field>
+    <field name="method_name">_compute_payment_last_journal</field>
+    <field name="field_expr">-</field>
+    <field name="sequence">860</field>
+  </record>
+  <record id="pif_total_importacion" model="penta.import.report.field">
+  <field name="name">Total importación</field>
+  <field name="technical_key">TOTAL_IMPORTACION</field>
+  <field name="model_name">account.move</field>
+  <field name="compute_type">method</field>
+  <field name="method_name">_compute_total_importacion</field>
+  <field name="field_expr">-</field>
+  <field name="sequence">900</field>
+</record>
+
+</odoo>

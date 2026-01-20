@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_stock_landed_cost_form_custom" model="ir.ui.view">
+        <field name="name">stock_landed_cost_form_custom</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_ids']" position="after">
+                <field name="id_import" string="Guía de importación"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_calcular_impuesto"
+                        string="Calcular impuesto"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="not picking_ids"
+                        />
+                <button name="action_open_taxes_io_wizard"
+                type="object"
+                string="Exportar Impuestos"
+                class="oe_highlight"
+                        invisible="not picking_ids"/>
+                 <button name="action_push_tax_to_original_lines"
+                string="Actualizar impuestos"
+                type="object"
+                class="btn-primary"
+                invisible="not picking_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_landed_cost_form_inherit_add_invoice_ref" model="ir.ui.view">
+        <field name="name">stock.landed.cost.form.inherit.invoice.ref</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cost_lines']/list/field[@name='price_unit']" position="after">
+                <field name="account_move_id"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+</odoo>

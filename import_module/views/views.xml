@@ -1,0 +1,24 @@
+<odoo>
+  
+  <!-- Vista de inicio y me manda los campos a visualizar -->
+  <record id="import_tree_view" model="ir.ui.view">
+    <field name="name">import.property.views</field>
+    <field name="model">x.import</field>
+    <field name="arch" type="xml">
+      <list string="Import">
+        <field name="name" string="Nombre"/>
+        <field name="date" string="Fecha"/>
+        <field name="country" string="Origen"/>
+        <field name="reference" string="Referencia"/>
+        <field name="state" string="Estado"/>
+      </list>
+    </field>
+  </record>
+  
+  <record id="action_import_module" model="ir.actions.act_window">
+    <field name="name">Importaciones</field>
+    <field name="res_model">x.import</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+</odoo>

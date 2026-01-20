@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_stock_valuation_layer_list_inherit_import" model="ir.ui.view">
+    <field name="name">stock.valuation.layer.list.inherit.import</field>
+    <field name="model">stock.valuation.layer</field>
+    <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+    <field name="arch" type="xml">
+      <!-- Colocar después del asiento contable -->
+      <xpath expr="//list/field[@name='reference']" position="after">
+        <field name="id_import" readonly="1"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

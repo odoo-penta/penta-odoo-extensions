@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_product_template_import_tab" model="ir.ui.view">
+        <field name="name">product.template.import.section</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Insertamos después del campo description_purchase dentro del group col="1" -->
+            <xpath expr="//field[@name='description_purchase']" position="after">
+                <group string="Importaciones" col="2" invisible="type != 'service'">
+                    <field name="landed_cost_type"/>
+                    <field name="type_classification"/>
+                    <field name="import_iva_flag"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='inventory']" position="inside">
+                <group string="Subcategoría SRI" col="2">
+                    <field name="sri_subcategory"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

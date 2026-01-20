@@ -1,0 +1,43 @@
+<odoo>
+  <record id="view_stock_landed_cost_form_inherit_taxes" model="ir.ui.view">
+    <field name="name">stock.landed.cost.form.inherit.taxes</field>
+    <field name="model">stock.landed.cost</field>
+    <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='valuation_adjustments']" position="after">
+        <page string="Calculo de Impuestos" name="landed_cost_taxes" invisible="not picking_ids">
+          <field name="tax_lines" readonly="state == 'done'">
+            <form string="Líneas de Impuesto">
+              <group>
+                <group>
+                  <field name="cost_line" readonly="1"/>
+                  <field name="product_id" domain="[('type','=','product')]"/>
+                  <field name="tariff_item_id" readonly="1"/>
+                </group>
+                <group>
+                  <field name="quantity"/>
+                  <field name="value_original_unit" readonly="1"/>
+                  <field name="cif" readonly="1"/>
+                </group>
+                <group>
+                  <field name="percentage" readonly="1"/>
+                  <field name="tax_value" readonly="1"/>
+                </group>
+              </group>
+            </form>
+            <list editable="bottom">
+              <field name="cost_line"/>
+              <field name="product_id"/>
+              <field name="tariff_item_id"/>
+              <field name="quantity"/>
+              <field name="value_original_unit"/>
+              <field name="cif"/>
+              <field name="percentage"/>
+              <field name="tax_value"/>
+            </list>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

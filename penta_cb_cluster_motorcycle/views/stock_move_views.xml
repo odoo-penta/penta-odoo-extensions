@@ -28,4 +28,23 @@
         </field>
     </record>
 
+    <record id="view_stock_move_line_search_inherit_motor" model="ir.ui.view">
+        <field name="name">stock.move.search.inherit.motor</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="motor_number" string="Motor"/>
+                <field name="ramv" string="RAMV"/>
+                <filter string="Motor Number"
+                    name="filter_with_motor"
+                    domain="[('motor_number','!=',False)]"/>
+
+                <filter string="RAMV"
+                        name="filter_with_ramv"
+                        domain="[('ramv','!=',False)]"/>
+            </search>
+        </field>
+    </record>
+
 </odoo>

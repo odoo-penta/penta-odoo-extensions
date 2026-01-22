@@ -50,6 +50,8 @@
         'views/stock_lot_plate_view.xml',
         'views/project_task.xml',
         'views/project_wizard.xml',
+        'views/stock_quant_views.xml',
+        'views/stock_valuation_layer_views.xml',
         
     ],
     'installable': True,

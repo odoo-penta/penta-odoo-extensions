@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_stock_valuation_autoprocess_list_inherit" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.autoprocess.list.inherit</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity']" position="before">
+                <field name="lot_pdi" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="view_stock_valuation_layer_search_autoprocess_inherit" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.autoprocess.search.inherit</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.view_inventory_valuation_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="lot_pdi" string="PDI"/>
+                <filter string="PDI"
+                        name="filter_with_pdi"
+                        domain="[('lot_pdi','!=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

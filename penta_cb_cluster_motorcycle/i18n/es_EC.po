@@ -133,6 +133,11 @@ msgstr "Número de serie/lote"
 #. module: penta_cb_cluster_motorcycle
 #: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_lot__motor_number
 #: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_move_line__motor_number
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_quant__lot_motor_number
+#: model:ir.model.fields,field_description:penta_cb_cluster_motorcycle.field_stock_valuation_layer__lot_motor_number
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_stock_move_line_search_inherit_motor
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_stock_quant_search_inherit_motor
+#: model_terms:ir.ui.view,arch_db:penta_cb_cluster_motorcycle.view_stock_valuation_layer_search_inherit_motor
 msgid "Motor Number"
 msgstr "Número motor"
 

@@ -9,6 +9,58 @@ class StockLot(models.Model):
     ramv = fields.Char()
     plate = fields.Char(string="Plate",help="Enter the license plate number.")
 
+class StockQuantityInherit(models.Model):
+    _inherit = 'stock.quant'
+
+    lot_motor_number = fields.Char(
+        string="Motor Number",
+        related='lot_id.motor_number',
+        store=True,
+        readonly=True
+    )
+    lot_ramv = fields.Char(
+        string="RAMV",
+        related='lot_id.ramv',
+        store=True,
+        readonly=True
+    )
+
+class StockValuationLayer(models.Model):
+    _inherit = 'stock.valuation.layer'
+
+    lot_id = fields.Many2one(
+        'stock.lot',
+        string='Lot',
+        compute='_compute_lot_id',
+        store=False,
+        readonly=True
+    )
+
+    lot_motor_number = fields.Char(
+        related='lot_id.motor_number',
+        store=False,
+        readonly=True
+    )
+
+    lot_ramv = fields.Char(
+        related='lot_id.ramv',
+        store=False,
+        readonly=True
+    )
+
+    @api.depends('stock_move_id.move_line_ids.lot_id')
+    def _compute_lot_id(self):
+        for svl in self:
+            print(svl)
+            lot = False
+            move = svl.stock_move_id
+            if move:
+                move_lines = move.move_line_ids.filtered('lot_id')
+                if move_lines:
+                    lot = move_lines[0].lot_id
+            svl.lot_id = lot
+
+
 class ProjectTaskInherit(models.Model):
     _inherit = 'project.task'
 

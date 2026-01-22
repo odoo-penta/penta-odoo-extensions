@@ -5,12 +5,24 @@
         <field name="arch" type="xml">
             <form string="Generación de archivo bancario">
                 <sheet>
-                        <field name="batch_payment_id" readonly="1" string="Pago seleccionado"/>
-                        <field name="bank_format_id" string="Banco"
-                            domain="[('id', 'in', bank_format_ids)]"/>
+                    <group>
+                        <field name="batch_payment_id"
+                               readonly="1"
+                               string="Pago seleccionado"/>
+
+                        <field name="bank_format_id"
+                               string="Banco"
+                               domain="[('id', 'in', bank_format_ids)]"/>
+                    </group>
+
                     <footer>
-                        <button string="Cancelar" class="btn btn-secondary" special="cancel"/>
-						<button name="generate_report" string="Generar reporte" type="object" class="oe_highlight"/>
+                        <button string="Cancelar"
+                                class="btn btn-secondary"
+                                special="cancel"/>
+                        <button name="generate_report"
+                                string="Generar reporte"
+                                type="object"
+                                class="oe_highlight"/>
                     </footer>
                 </sheet>
             </form>

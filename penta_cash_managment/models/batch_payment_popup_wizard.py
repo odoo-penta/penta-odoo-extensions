@@ -34,10 +34,6 @@ class BatchPaymentPopupWizardModel(models.TransientModel):
                 return self.report_austro(selected_batch_payment)
             else:
                 raise UserError('Contactese con Pentalab para un Reporte de Banco')
-            
-        
-
-
 
     def report_austro(self,selected_batch_payment):
         # Inicializa la variable content

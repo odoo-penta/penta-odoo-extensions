@@ -11,7 +11,7 @@ Produce reports in txt format according to the bank's structure
     "data":[
         "security/ir.model.access.csv",
         #Data
-        "data/penta_cash_managment_bank.csv",
+        "data/penta.cash.managment.bank.csv",
         #Views
         "views/account_journal_from.xml",
         "views/account_batch_payment_from.xml",

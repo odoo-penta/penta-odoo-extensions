@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_batch_payment_popup_wizard_form" model="ir.ui.view">
+        <field name="name">batch.payment.popup.wizard.form</field>
+        <field name="model">batch.payment.popup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generación de archivo bancario">
+                <sheet>
+                    <group string="Banco / Formato">
+                        <field name="batch_payment_id" readonly="1"/>
+                        <field name="bank_format_id"
+                            domain="[('id', 'in', bank_format_ids)]"/>
+                    </group>
+                    <footer>
+                        <button string="Cancelar" class="btn btn-secondary" special="cancel"/>
+						<button name="generate_report" string="Generar reporte" type="object" class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_account_journal_form_custom" model="ir.ui.view">
+        <field name="name">account_journal_form_custom</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@id='outbound_payment_settings']" position="inside">
+                <!-- Inserta el campo después del grupo -->
+                 <group string="PAGOS CASH MANAGMENT">
+                    <field name="penta_cash_bank_format_ids" widget="many2many_tags"/>
+                    <field name="penta_cash_management_code"/>
+                    <field name="penta_company_code"/>
+                    <field name="penta_company_mnemonic"/>
+                 </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -13,7 +13,7 @@ class AccountBatchPaymentModel(models.Model):
         })
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Asistente de reportes',
+            'name': 'Generación de archivo bancario',
             'res_model': 'batch.payment.popup.wizard',
             'view_mode': 'form',
             'target': 'new',

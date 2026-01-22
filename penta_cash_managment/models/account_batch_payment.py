@@ -17,7 +17,7 @@ class AccountBatchPaymentModel(models.Model):
             'res_model': 'batch.payment.popup.wizard',
             'view_mode': 'form',
             'target': 'new',
-            'view_id': self.env.ref('module_cash_managment.view_batch_payment_popup_wizard_form').id,
+            'view_id': self.env.ref('penta_cash_managment.view_batch_payment_popup_wizard_form').id,
             'res_id': wizard.id,  # Aquí pasamos el ID del wizard recién creado
         }
     

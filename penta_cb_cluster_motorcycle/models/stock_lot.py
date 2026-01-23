@@ -9,6 +9,22 @@ class StockLot(models.Model):
     ramv = fields.Char()
     plate = fields.Char(string="Plate",help="Enter the license plate number.")
 
+    def write(self, vals):
+        res = super().write(vals)
+
+        trigger_fields = {'motor_number', 'ramv', 'pdi'}
+        if trigger_fields.intersection(vals.keys()):
+            svls = self.env['stock.valuation.layer'].search([
+                ('lot_id', 'in', self.ids)
+            ])
+
+            if svls:
+                svls._recompute_field('lot_motor_number')
+                svls._recompute_field('lot_ramv')
+                svls._recompute_field('lot_pdi')
+
+        return res
+
 class StockQuantityInherit(models.Model):
     _inherit = 'stock.quant'
 
@@ -32,26 +48,49 @@ class StockValuationLayer(models.Model):
         'stock.lot',
         string='Lot',
         compute='_compute_lot_id',
-        store=False,
+        store=True,
         readonly=True
     )
 
     lot_motor_number = fields.Char(
         related='lot_id.motor_number',
-        store=False,
+        store=True,
         readonly=True
     )
 
     lot_ramv = fields.Char(
         related='lot_id.ramv',
-        store=False,
+        store=True,
         readonly=True
     )
+
+    def _recompute_fields(self):
+        # Recalcula el lote
+        self._compute_lot_id()
+
+        # Fuerza recompute de related almacenados
+        self._recompute_field('lot_motor_number')
+        self._recompute_field('lot_ramv')
+        self._recompute_field('lot_pdi')
+
+    # @api.depends(
+    #     'stock_move_id.move_line_ids.lot_id',
+    #     'stock_move_id.move_line_ids.lot_id.motor_number',
+    #     'stock_move_id.move_line_ids.lot_id.ramv',
+    # )
+    # def _compute_lot_id(self):
+    #     for svl in self:
+    #         lot = False
+    #         move = svl.stock_move_id
+    #         if move:
+    #             move_lines = move.move_line_ids.filtered('lot_id')
+    #             if move_lines:
+    #                 lot = move_lines[0].lot_id
+    #         svl.lot_id = lot
 
     @api.depends('stock_move_id.move_line_ids.lot_id')
     def _compute_lot_id(self):
         for svl in self:
-            print(svl)
             lot = False
             move = svl.stock_move_id
             if move:

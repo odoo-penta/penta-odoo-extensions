@@ -33,6 +33,6 @@ class StockValuationLayer(models.Model):
     lot_pdi = fields.Char(
         string="PDI",
         related='lot_id.pdi',
-        store=False,
+        store=True,
         readonly=True
     )

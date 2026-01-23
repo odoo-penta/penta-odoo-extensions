@@ -23,11 +23,11 @@
                 <field name="lot_motor_number" string="Motor"/>
                 <field name="lot_ramv" string="RAMV"/>
                 <filter string="Motor Number"
-                    name="filter_with_motor"
+                    name="filter_wit_motor"
                     domain="[('lot_motor_number','!=',False)]"/>
 
                 <filter string="RAMV"
-                        name="filter_with_ramv"
+                        name="filter_wit_ramv"
                         domain="[('lot_ramv','!=',False)]"/>
             </search>
         </field>

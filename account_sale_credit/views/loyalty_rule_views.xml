@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Terminos de pago -->
+    <!-- Filtros en reglas de recompensas -->
     <record id="loyalty_rule_view_form_inherit_penta" model="ir.ui.view">
         <field name="name">loyalty.rule.form.inherit.penta</field>
         <field name="model">loyalty.rule</field>
@@ -10,6 +10,36 @@
                 <field name="partner_ids" widget="many2many_tags"/>
                 <field name="partner_category_ids" widget="many2many_tags"/>
                 <field name="warehouse_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="loyalty_rule_view_kanban_inherit_penta" model="ir.ui.view">
+        <field name="name">loyalty.rule.kanban.inherit.penta</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_has_debug']" position="after">
+                <field name="partner_ids"/>
+                <field name="partner_category_ids"/>
+                <field name="warehouse_ids"/>
+            </xpath>
+            <xpath expr="//kanban/templates/t" position="inside">
+                <div class="mw-75 flex-grow-1">
+                    <t t-if="record.partner_ids.raw_value.length != 0 || record.partner_category_ids.raw_value.length != 0 || record.warehouse_ids.raw_value.length != 0">
+                        <div class="fw-bold text-decoration-underline mt-3">Among:</div>
+
+                        <div t-if="record.partner_ids.raw_value.length > 0" class="d-flex">
+                            <i class="fa fa-cube fa-fw" title="Partners"/> <field name="partner_ids" widget="many2many_tags"/>
+                        </div>
+                        <div t-if="record.partner_category_ids.raw_value.length > 0" class="d-flex">
+                            <i class="fa fa-tags fa-fw" title="Partners Category"/> <field name="partner_category_ids" widget="many2many_tags"/>
+                        </div>
+                        <div t-if="record.warehouse_ids.raw_value.length > 0" class="d-flex">
+                            <i class="fa fa-cubes fa-fw" title="Warehouses"/> <field name="warehouse_ids" widget="many2many_tags"/>
+                        </div>
+                    </t>
+                </div>  
             </xpath>
         </field>
     </record>

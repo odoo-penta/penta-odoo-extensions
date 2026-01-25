@@ -1,0 +1,4182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+    <record id="import_boarding_gebmn" model="import.boarding">
+        <field name="code">GEBMN</field>
+        <field name="name">BREMEN</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_gebhv" model="import.boarding">
+        <field name="code">GEBHV</field>
+        <field name="name">BREMERHAVEN</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_geddf" model="import.boarding">
+        <field name="code">GEDDF</field>
+        <field name="name">DUSSELDORF</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_geffu" model="import.boarding">
+        <field name="code">GEFFU</field>
+        <field name="name">FRANKFURT</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_geham" model="import.boarding">
+        <field name="code">GEHAM</field>
+        <field name="name">HAMBURGO</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_ecpqy" model="import.boarding">
+        <field name="code">ECPQY</field>
+        <field name="name">CALLO</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_eceda" model="import.boarding">
+        <field name="code">ECEDA</field>
+        <field name="name">ESMERALDAS</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_ecguq" model="import.boarding">
+        <field name="code">ECGUQ</field>
+        <field name="name">GUAYAQUIL</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_ecmta" model="import.boarding">
+        <field name="code">ECMTA</field>
+        <field name="name">MANTA</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_ecpbv" model="import.boarding">
+        <field name="code">ECPBV</field>
+        <field name="name">PUERTO BOLIVAR</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_brarc" model="import.boarding">
+        <field name="code">BRARC</field>
+        <field name="name">ARACAJU</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brbah" model="import.boarding">
+        <field name="code">BRBAH</field>
+        <field name="name">BAHIA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brpaa" model="import.boarding">
+        <field name="code">BRPAA</field>
+        <field name="name">BELEM</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brhor" model="import.boarding">
+        <field name="code">BRHOR</field>
+        <field name="name">BELLO HORIZONTE</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brcbl" model="import.boarding">
+        <field name="code">BRCBL</field>
+        <field name="name">CABEDELLO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brpdm" model="import.boarding">
+        <field name="code">BRPDM</field>
+        <field name="name">CEARA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brflo" model="import.boarding">
+        <field name="code">BRFLO</field>
+        <field name="name">FLORIANOPOLIS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brilh" model="import.boarding">
+        <field name="code">BRILH</field>
+        <field name="name">ILHEUS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brimb" model="import.boarding">
+        <field name="code">BRIMB</field>
+        <field name="name">IMBITUBA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_britj" model="import.boarding">
+        <field name="code">BRITJ</field>
+        <field name="name">ITAJAI</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brmce" model="import.boarding">
+        <field name="code">BRMCE</field>
+        <field name="name">MACEIO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brmxo" model="import.boarding">
+        <field name="code">BRMXO</field>
+        <field name="name">MANAOS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brnat" model="import.boarding">
+        <field name="code">BRNAT</field>
+        <field name="name">NATAL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brpgu" model="import.boarding">
+        <field name="code">BRPGU</field>
+        <field name="name">PARANAGUA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brpja" model="import.boarding">
+        <field name="code">BRPJA</field>
+        <field name="name">PORTO ALEGRE</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brrio" model="import.boarding">
+        <field name="code">BRRIO</field>
+        <field name="name">RIO DE JANEIRO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brrgn" model="import.boarding">
+        <field name="code">BRRGN</field>
+        <field name="name">RIO GRANDE</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brscs" model="import.boarding">
+        <field name="code">BRSCS</field>
+        <field name="name">S.CAETANO DO SUL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brsvd" model="import.boarding">
+        <field name="code">BRSVD</field>
+        <field name="name">SALVADOR</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brspa" model="import.boarding">
+        <field name="code">BRSPA</field>
+        <field name="name">SAN PABLO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brstc" model="import.boarding">
+        <field name="code">BRSTC</field>
+        <field name="name">SANTA CATARINA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brsts" model="import.boarding">
+        <field name="code">BRSTS</field>
+        <field name="name">SANTOS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brsfs" model="import.boarding">
+        <field name="code">BRSFS</field>
+        <field name="name">SAO FRANCISCO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brsua" model="import.boarding">
+        <field name="code">BRSUA</field>
+        <field name="name">SUAPE</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brtbr" model="import.boarding">
+        <field name="code">BRTBR</field>
+        <field name="name">TUBARAO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_brvtr" model="import.boarding">
+        <field name="code">BRVTR</field>
+        <field name="name">VICTORIA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_ukstj" model="import.boarding">
+        <field name="code">UKSTJ</field>
+        <field name="name">ANTIGUA</field>
+        <field name="country_id" ref="base.ag"/>
+    </record>
+    
+    <record id="import_boarding_arabn" model="import.boarding">
+        <field name="code">ARABN</field>
+        <field name="name">ALMIRANTE BROWN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arbbl" model="import.boarding">
+        <field name="code">ARBBL</field>
+        <field name="name">BAHIA BLANCA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsbc" model="import.boarding">
+        <field name="code">ARSBC</field>
+        <field name="name">BAHIA SAN BLAS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arbsx" model="import.boarding">
+        <field name="code">ARBSX</field>
+        <field name="name">BAHIA SAN SEBASTIAN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arbrq" model="import.boarding">
+        <field name="code">ARBRQ</field>
+        <field name="name">BARRANQUERAS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arbai" model="import.boarding">
+        <field name="code">ARBAI</field>
+        <field name="name">BUENOS AIRES</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcdb" model="import.boarding">
+        <field name="code">ARCDB</field>
+        <field name="name">CALETA CORDOBA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arolv" model="import.boarding">
+        <field name="code">AROLV</field>
+        <field name="name">CALETA OLIVIA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcma" model="import.boarding">
+        <field name="code">ARCMA</field>
+        <field name="name">CAMPANA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcdp" model="import.boarding">
+        <field name="code">ARCDP</field>
+        <field name="name">CARMEN DE PATAGONES</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcol" model="import.boarding">
+        <field name="code">ARCOL</field>
+        <field name="name">COLON</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcdd" model="import.boarding">
+        <field name="code">ARCDD</field>
+        <field name="name">COMODORO RIVADAVIA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcdy" model="import.boarding">
+        <field name="code">ARCDY</field>
+        <field name="name">CONCEPTION DEL URUGUAY</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcka" model="import.boarding">
+        <field name="code">ARCKA</field>
+        <field name="name">CONCORDIA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arcor" model="import.boarding">
+        <field name="code">ARCOR</field>
+        <field name="name">CORRIENTES</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpfo" model="import.boarding">
+        <field name="code">ARPFO</field>
+        <field name="name">DECEPCION</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_ardia" model="import.boarding">
+        <field name="code">ARDIA</field>
+        <field name="name">DIAMANTE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_aredo" model="import.boarding">
+        <field name="code">AREDO</field>
+        <field name="name">EMPEDRADO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_areso" model="import.boarding">
+        <field name="code">ARESO</field>
+        <field name="name">ESQUINA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpfa" model="import.boarding">
+        <field name="code">ARPFA</field>
+        <field name="name">FORMOSA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arave" model="import.boarding">
+        <field name="code">ARAVE</field>
+        <field name="name">GENERAL ALVEAR</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arbel" model="import.boarding">
+        <field name="code">ARBEL</field>
+        <field name="name">GENERAL BELGRANO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_argsm" model="import.boarding">
+        <field name="code">ARGSM</field>
+        <field name="name">GENERAL SAN MARTIN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arhes" model="import.boarding">
+        <field name="code">ARHES</field>
+        <field name="name">HERNANDARIAS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_aribc" model="import.boarding">
+        <field name="code">ARIBC</field>
+        <field name="name">IBICUY</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arlpl" model="import.boarding">
+        <field name="code">ARLPL</field>
+        <field name="name">LA PLATA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_armpl" model="import.boarding">
+        <field name="code">ARMPL</field>
+        <field name="name">MAR DEL PLATA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arnec" model="import.boarding">
+        <field name="code">ARNEC</field>
+        <field name="name">NECOCHEA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpna" model="import.boarding">
+        <field name="code">ARPNA</field>
+        <field name="name">PARANA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpbe" model="import.boarding">
+        <field name="code">ARPBE</field>
+        <field name="name">PUERTO BELGRANO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpbj" model="import.boarding">
+        <field name="code">ARPBJ</field>
+        <field name="name">PUERTO BERMEJO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpqd" model="import.boarding">
+        <field name="code">ARPQD</field>
+        <field name="name">PUERTO DESEADO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arxpo" model="import.boarding">
+        <field name="code">ARXPO</field>
+        <field name="name">PUERTO GOYA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpiy" model="import.boarding">
+        <field name="code">ARPIY</field>
+        <field name="name">PUERTO IBICUY</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpiw" model="import.boarding">
+        <field name="code">ARPIW</field>
+        <field name="name">PUERTO INGENIERO WHITE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpjy" model="import.boarding">
+        <field name="code">ARPJY</field>
+        <field name="name">PUERTO MADRYN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arppy" model="import.boarding">
+        <field name="code">ARPPY</field>
+        <field name="name">PUERTO PILCOMAYO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arprd" model="import.boarding">
+        <field name="code">ARPRD</field>
+        <field name="name">PUERTO PIRAMIDE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arpqq" model="import.boarding">
+        <field name="code">ARPQQ</field>
+        <field name="name">PUERTO QUEQUEN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arxzf" model="import.boarding">
+        <field name="code">ARXZF</field>
+        <field name="name">PUERTO SAN CARLOS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arrlp" model="import.boarding">
+        <field name="code">ARRLP</field>
+        <field name="name">RADA LA PLATA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arxpw" model="import.boarding">
+        <field name="code">ARXPW</field>
+        <field name="name">RAMALLO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arrcd" model="import.boarding">
+        <field name="code">ARRCD</field>
+        <field name="name">RECALADA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arprq" model="import.boarding">
+        <field name="code">ARPRQ</field>
+        <field name="name">RECONQUISTA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arrgg" model="import.boarding">
+        <field name="code">ARRGG</field>
+        <field name="name">RIO GALLEGOS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arrgd" model="import.boarding">
+        <field name="code">ARRGD</field>
+        <field name="name">RIO GRANDE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arros" model="import.boarding">
+        <field name="code">ARROS</field>
+        <field name="name">ROSARIO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_aralj" model="import.boarding">
+        <field name="code">ARALJ</field>
+        <field name="name">SAN ANTONIO-ALIJE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arslj" model="import.boarding">
+        <field name="code">ARSLJ</field>
+        <field name="name">SAN ANTONIO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsjq" model="import.boarding">
+        <field name="code">ARSJQ</field>
+        <field name="name">SAN JULIAN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsjt" model="import.boarding">
+        <field name="code">ARSJT</field>
+        <field name="name">SAN LORENZO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsmv" model="import.boarding">
+        <field name="code">ARSMV</field>
+        <field name="name">SAN MARTIN</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arasm" model="import.boarding">
+        <field name="code">ARASM</field>
+        <field name="name">SAN MATIAS-ALIJE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arxsp" model="import.boarding">
+        <field name="code">ARXSP</field>
+        <field name="name">SAN PEDRO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsxz" model="import.boarding">
+        <field name="code">ARSXZ</field>
+        <field name="name">SANTA CRUZ</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arsfg" model="import.boarding">
+        <field name="code">ARSFG</field>
+        <field name="name">SANTA FE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arusu" model="import.boarding">
+        <field name="code">ARUSU</field>
+        <field name="name">USHUAIA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arvco" model="import.boarding">
+        <field name="code">ARVCO</field>
+        <field name="name">VILLA CONSTITUCION</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_arzar" model="import.boarding">
+        <field name="code">ARZAR</field>
+        <field name="name">ZARATE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_bbbwn" model="import.boarding">
+        <field name="code">BBBWN</field>
+        <field name="name">BARBADOS</field>
+        <field name="country_id" ref="base.bb"/>
+    </record>
+    
+    <record id="import_boarding_ukbez" model="import.boarding">
+        <field name="code">UKBEZ</field>
+        <field name="name">BELIZE</field>
+        <field name="country_id" ref="base.bz"/>
+    </record>
+    
+    <record id="import_boarding_cacpq" model="import.boarding">
+        <field name="code">CACPQ</field>
+        <field name="name">ALBERTON</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cahal" model="import.boarding">
+        <field name="code">CAHAL</field>
+        <field name="name">HALIFAX</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cajkb" model="import.boarding">
+        <field name="code">CAJKB</field>
+        <field name="name">JACKSON BAY</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cawmh" model="import.boarding">
+        <field name="code">CAWMH</field>
+        <field name="name">LABRADOR</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_camon" model="import.boarding">
+        <field name="code">CAMON</field>
+        <field name="name">MONTREAL</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_caszj" model="import.boarding">
+        <field name="code">CASZJ</field>
+        <field name="name">NEW BRUNSWICK</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_capct" model="import.boarding">
+        <field name="code">CAPCT</field>
+        <field name="name">NOVA SCOTIA</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_caont" model="import.boarding">
+        <field name="code">CAONT</field>
+        <field name="name">ONTARIO</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_caott" model="import.boarding">
+        <field name="code">CAOTT</field>
+        <field name="name">OTTAWA</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_caqbc" model="import.boarding">
+        <field name="code">CAQBC</field>
+        <field name="name">QUEBEC</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_caqhr" model="import.boarding">
+        <field name="code">CAQHR</field>
+        <field name="name">QUEBEC HARBOUR</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cator" model="import.boarding">
+        <field name="code">CATOR</field>
+        <field name="name">TORONTO</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_catto" model="import.boarding">
+        <field name="code">CATTO</field>
+        <field name="name">TRENTON</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cavic" model="import.boarding">
+        <field name="code">CAVIC</field>
+        <field name="name">VICTORIA</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cawnp" model="import.boarding">
+        <field name="code">CAWNP</field>
+        <field name="name">WINNIPEG</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cayrm" model="import.boarding">
+        <field name="code">CAYRM</field>
+        <field name="name">YARMOUTH</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_cobqa" model="import.boarding">
+        <field name="code">COBQA</field>
+        <field name="name">BARRANQUILLA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cobgt" model="import.boarding">
+        <field name="code">COBGT</field>
+        <field name="name">BOGOTA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cobfa" model="import.boarding">
+        <field name="code">COBFA</field>
+        <field name="name">BUENAVENTURA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cocal" model="import.boarding">
+        <field name="code">COCAL</field>
+        <field name="name">CALI</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cocga" model="import.boarding">
+        <field name="code">COCGA</field>
+        <field name="name">CARTAGENA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cosxf" model="import.boarding">
+        <field name="code">COSXF</field>
+        <field name="name">SANTA MARTA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_cscdr" model="import.boarding">
+        <field name="code">CSCDR</field>
+        <field name="name">CALDERA</field>
+        <field name="country_id" ref="base.cr"/>
+    </record>
+    
+    <record id="import_boarding_cslim" model="import.boarding">
+        <field name="code">CSLIM</field>
+        <field name="name">LIMON</field>
+        <field name="country_id" ref="base.cr"/>
+    </record>
+    
+    <record id="import_boarding_cspfw" model="import.boarding">
+        <field name="code">CSPFW</field>
+        <field name="name">PORT LIMON</field>
+        <field name="country_id" ref="base.cr"/>
+    </record>
+    
+    <record id="import_boarding_cssjo" model="import.boarding">
+        <field name="code">CSSJO</field>
+        <field name="name">SAN JOSE</field>
+        <field name="country_id" ref="base.cr"/>
+    </record>
+    
+    <record id="import_boarding_cucmn" model="import.boarding">
+        <field name="code">CUCMN</field>
+        <field name="name">BOQUERON</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cucnf" model="import.boarding">
+        <field name="code">CUCNF</field>
+        <field name="name">CIENFUEGOS</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cumzs" model="import.boarding">
+        <field name="code">CUMZS</field>
+        <field name="name">MATANZAS</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cuxpa" model="import.boarding">
+        <field name="code">CUXPA</field>
+        <field name="name">PUERTO MANATI</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cusfu" model="import.boarding">
+        <field name="code">CUSFU</field>
+        <field name="name">SANTA LUCIA</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cusiu" model="import.boarding">
+        <field name="code">CUSIU</field>
+        <field name="name">SANTIAGO DE CUBA</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_ciafa" model="import.boarding">
+        <field name="code">CIAFA</field>
+        <field name="name">ANTOFAGASTA</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_ciara" model="import.boarding">
+        <field name="code">CIARA</field>
+        <field name="name">ARICA</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_citlc" model="import.boarding">
+        <field name="code">CITLC</field>
+        <field name="name">CONCEPCION</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cicqo" model="import.boarding">
+        <field name="code">CICQO</field>
+        <field name="name">COQUIMBO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_ciiqq" model="import.boarding">
+        <field name="code">CIIQQ</field>
+        <field name="name">IQUIQUE</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cilqw" model="import.boarding">
+        <field name="code">CILQW</field>
+        <field name="name">LIRQUEN</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cioso" model="import.boarding">
+        <field name="code">CIOSO</field>
+        <field name="name">OSORNO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cipuc" model="import.boarding">
+        <field name="code">CIPUC</field>
+        <field name="name">PUCON</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cipxm" model="import.boarding">
+        <field name="code">CIPXM</field>
+        <field name="name">PUERTO MONTT</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cipar" model="import.boarding">
+        <field name="code">CIPAR</field>
+        <field name="name">PUNTA ARENAS</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cirbo" model="import.boarding">
+        <field name="code">CIRBO</field>
+        <field name="name">RIO BUENO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cisow" model="import.boarding">
+        <field name="code">CISOW</field>
+        <field name="name">SAN ANTONIO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cisvc" model="import.boarding">
+        <field name="code">CISVC</field>
+        <field name="name">SAN VICENTE</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cisgo" model="import.boarding">
+        <field name="code">CISGO</field>
+        <field name="name">SANTIAGO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_cital" model="import.boarding">
+        <field name="code">CITAL</field>
+        <field name="name">TALCAHUANO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_citem" model="import.boarding">
+        <field name="code">CITEM</field>
+        <field name="name">TEMUCO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_civva" model="import.boarding">
+        <field name="code">CIVVA</field>
+        <field name="name">VALDIVIA</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_civlp" model="import.boarding">
+        <field name="code">CIVLP</field>
+        <field name="name">VALPARAISO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_frrse" model="import.boarding">
+        <field name="code">FRRSE</field>
+        <field name="name">DOMINICA</field>
+        <field name="country_id" ref="base.dm"/>
+    </record>
+    
+    <record id="import_boarding_esacj" model="import.boarding">
+        <field name="code">ESACJ</field>
+        <field name="name">ACAJUTLA</field>
+        <field name="country_id" ref="base.sv"/>
+    </record>
+    
+    <record id="import_boarding_usala" model="import.boarding">
+        <field name="code">USALA</field>
+        <field name="name">ALABAMA</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usanc" model="import.boarding">
+        <field name="code">USANC</field>
+        <field name="name">ANCHORAGE</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usblt" model="import.boarding">
+        <field name="code">USBLT</field>
+        <field name="name">BALTIMORE</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_bos" model="import.boarding">
+        <field name="code">BOS</field>
+        <field name="name">BOSTON</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usbbd" model="import.boarding">
+        <field name="code">USBBD</field>
+        <field name="name">BROOKLYN</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uscvd" model="import.boarding">
+        <field name="code">USCVD</field>
+        <field name="name">CLEVELAND</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uschr" model="import.boarding">
+        <field name="code">USCHR</field>
+        <field name="name">CHARLESTON</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usrtr" model="import.boarding">
+        <field name="code">USRTR</field>
+        <field name="name">CHARLOTTE</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uscig" model="import.boarding">
+        <field name="code">USCIG</field>
+        <field name="name">CHICAGO</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usdav" model="import.boarding">
+        <field name="code">USDAV</field>
+        <field name="name">DAVENPORT</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usezp" model="import.boarding">
+        <field name="code">USEZP</field>
+        <field name="name">ELIZABETHPORT</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usftl" model="import.boarding">
+        <field name="code">USFTL</field>
+        <field name="name">FORT LAUDERDALE</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usfrp" model="import.boarding">
+        <field name="code">USFRP</field>
+        <field name="name">FREEPORT</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usgvs" model="import.boarding">
+        <field name="code">USGVS</field>
+        <field name="name">GALVESTON</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uslos" model="import.boarding">
+        <field name="code">USLOS</field>
+        <field name="name">LOS ANGELES</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usmia" model="import.boarding">
+        <field name="code">USMIA</field>
+        <field name="name">MIAMI</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usmis" model="import.boarding">
+        <field name="code">USMIS</field>
+        <field name="name">MISSISSIPPI</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnjy" model="import.boarding">
+        <field name="code">USNJY</field>
+        <field name="name">NEW JERSEY</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnwo" model="import.boarding">
+        <field name="code">USNWO</field>
+        <field name="name">NEW ORLEANS</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnyo" model="import.boarding">
+        <field name="code">USNYO</field>
+        <field name="name">NEW YORK</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uspwk" model="import.boarding">
+        <field name="code">USPWK</field>
+        <field name="name">NEWARK</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnet" model="import.boarding">
+        <field name="code">USNET</field>
+        <field name="name">NEWPORT</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnup" model="import.boarding">
+        <field name="code">USNUP</field>
+        <field name="name">NEWPORT</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usnfk" model="import.boarding">
+        <field name="code">USNFK</field>
+        <field name="name">NORFOLK</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usoak" model="import.boarding">
+        <field name="code">USOAK</field>
+        <field name="name">OAKLAND</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_usphl" model="import.boarding">
+        <field name="code">USPHL</field>
+        <field name="name">PHILADELPHIA</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_uspvg" model="import.boarding">
+        <field name="code">USPVG</field>
+        <field name="name">PORT EVERGLADES</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ussdw" model="import.boarding">
+        <field name="code">USSDW</field>
+        <field name="name">SAN DIEGO</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ussfc" model="import.boarding">
+        <field name="code">USSFC</field>
+        <field name="name">SAN FRANCISCO</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ussja" model="import.boarding">
+        <field name="code">USSJA</field>
+        <field name="name">SEATTLE</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ustmp" model="import.boarding">
+        <field name="code">USTMP</field>
+        <field name="name">TAMPA</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_gtlvo" model="import.boarding">
+        <field name="code">GTLVO</field>
+        <field name="name">LIVINGSTON</field>
+        <field name="country_id" ref="base.gt"/>
+    </record>
+    
+    <record id="import_boarding_gtqtz" model="import.boarding">
+        <field name="code">GTQTZ</field>
+        <field name="name">PUERTO QUETZAL</field>
+        <field name="country_id" ref="base.gt"/>
+    </record>
+    
+    <record id="import_boarding_gtsjs" model="import.boarding">
+        <field name="code">GTSJS</field>
+        <field name="name">SAN JOSE</field>
+        <field name="country_id" ref="base.gt"/>
+    </record>
+    
+    <record id="import_boarding_ukggt" model="import.boarding">
+        <field name="code">UKGGT</field>
+        <field name="name">GEORGE TOWN</field>
+        <field name="country_id" ref="base.gy"/>
+    </record>
+    
+    <record id="import_boarding_holce" model="import.boarding">
+        <field name="code">HOLCE</field>
+        <field name="name">LA CEIBA</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_hopqc" model="import.boarding">
+        <field name="code">HOPQC</field>
+        <field name="name">PUERTO CASTILLA</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_hopyz" model="import.boarding">
+        <field name="code">HOPYZ</field>
+        <field name="name">PUERTO CORTES</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_hosjw" model="import.boarding">
+        <field name="code">HOSJW</field>
+        <field name="name">SAN LORENZO</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_hoteg" model="import.boarding">
+        <field name="code">HOTEG</field>
+        <field name="name">TEGUCIGALPA</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_frftf" model="import.boarding">
+        <field name="code">FRFTF</field>
+        <field name="name">FORT DE FRANCE</field>
+        <field name="country_id" ref="base.mq"/>
+    </record>
+    
+    <record id="import_boarding_mxacp" model="import.boarding">
+        <field name="code">MXACP</field>
+        <field name="name">ACAPULCO</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxaem" model="import.boarding">
+        <field name="code">MXAEM</field>
+        <field name="name">ALTAMIRA</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxbjz" model="import.boarding">
+        <field name="code">MXBJZ</field>
+        <field name="name">BENITO JUAREZ</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxcce" model="import.boarding">
+        <field name="code">MXCCE</field>
+        <field name="name">CAMPECHE</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxczm" model="import.boarding">
+        <field name="code">MXCZM</field>
+        <field name="name">COZUMEL</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxgua" model="import.boarding">
+        <field name="code">MXGUA</field>
+        <field name="name">GUADALAJARA</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxlcd" model="import.boarding">
+        <field name="code">MXLCD</field>
+        <field name="name">LAZARO CARDENAS</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxmzn" model="import.boarding">
+        <field name="code">MXMZN</field>
+        <field name="name">MANZANILLO</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxmex" model="import.boarding">
+        <field name="code">MXMEX</field>
+        <field name="name">MEJICO</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxtpc" model="import.boarding">
+        <field name="code">MXTPC</field>
+        <field name="name">TAMPICO</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mxvrc" model="import.boarding">
+        <field name="code">MXVRC</field>
+        <field name="name">VERACRUZ</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_nuctx" model="import.boarding">
+        <field name="code">NUCTX</field>
+        <field name="name">CORINTO</field>
+        <field name="country_id" ref="base.ni"/>
+    </record>
+    
+    <record id="import_boarding_nupbz" model="import.boarding">
+        <field name="code">NUPBZ</field>
+        <field name="name">PUERTO CABEZAS</field>
+        <field name="country_id" ref="base.ni"/>
+    </record>
+    
+    <record id="import_boarding_nusjl" model="import.boarding">
+        <field name="code">NUSJL</field>
+        <field name="name">SAN JUAN DEL SUR</field>
+        <field name="country_id" ref="base.ni"/>
+    </record>
+    
+    <record id="import_boarding_pnblb" model="import.boarding">
+        <field name="code">PNBLB</field>
+        <field name="name">BALBOA</field>
+        <field name="country_id" ref="base.pa"/>
+    </record>
+    
+    <record id="import_boarding_pncxt" model="import.boarding">
+        <field name="code">PNCXT</field>
+        <field name="name">COLON</field>
+        <field name="country_id" ref="base.pa"/>
+    </record>
+    
+    <record id="import_boarding_pncrs" model="import.boarding">
+        <field name="code">PNCRS</field>
+        <field name="name">CRISTOBAL</field>
+        <field name="country_id" ref="base.pa"/>
+    </record>
+    
+    <record id="import_boarding_pnpfz" model="import.boarding">
+        <field name="code">PNPFZ</field>
+        <field name="name">PANAMA CITY</field>
+        <field name="country_id" ref="base.pa"/>
+    </record>
+    
+    <record id="import_boarding_paasu" model="import.boarding">
+        <field name="code">PAASU</field>
+        <field name="name">ASUNCION</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+    
+    <record id="import_boarding_paluq" model="import.boarding">
+        <field name="code">PALUQ</field>
+        <field name="name">LUQUE</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+    
+    <record id="import_boarding_paslz" model="import.boarding">
+        <field name="code">PASLZ</field>
+        <field name="name">SAN LORENZO</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+    
+    <record id="import_boarding_pecao" model="import.boarding">
+        <field name="code">PECAO</field>
+        <field name="name">CALLAO</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_peilo" model="import.boarding">
+        <field name="code">PEILO</field>
+        <field name="name">ILO</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_peiqu" model="import.boarding">
+        <field name="code">PEIQU</field>
+        <field name="name">IQUITOS</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_pelim" model="import.boarding">
+        <field name="code">PELIM</field>
+        <field name="name">LIMA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_pepai" model="import.boarding">
+        <field name="code">PEPAI</field>
+        <field name="name">PAITA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_pexpp" model="import.boarding">
+        <field name="code">PEXPP</field>
+        <field name="name">PUERTO PAITA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_petac" model="import.boarding">
+        <field name="code">PETAC</field>
+        <field name="name">TACNA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_ussju" model="import.boarding">
+        <field name="code">USSJU</field>
+        <field name="name">SAN   JUAN</field>
+        <field name="country_id" ref="base.pr"/>
+    </record>
+    
+    <record id="import_boarding_drxpq" model="import.boarding">
+        <field name="code">DRXPQ</field>
+        <field name="name">PUERTO PLATA</field>
+        <field name="country_id" ref="base.do"/>
+    </record>
+    
+    <record id="import_boarding_nsprb" model="import.boarding">
+        <field name="code">NSPRB</field>
+        <field name="name">PARAMARIBO</field>
+        <field name="country_id" ref="base.sr"/>
+    </record>
+    
+    <record id="import_boarding_tdptf" model="import.boarding">
+        <field name="code">TDPTF</field>
+        <field name="name">POINT FORTIN</field>
+        <field name="country_id" ref="base.tt"/>
+    </record>
+    
+    <record id="import_boarding_tdpns" model="import.boarding">
+        <field name="code">TDPNS</field>
+        <field name="name">POINT LISAS</field>
+        <field name="country_id" ref="base.tt"/>
+    </record>
+    
+    <record id="import_boarding_tdppr" model="import.boarding">
+        <field name="code">TDPPR</field>
+        <field name="name">POINTE A PIERRE</field>
+        <field name="country_id" ref="base.tt"/>
+    </record>
+    
+    <record id="import_boarding_tdpop" model="import.boarding">
+        <field name="code">TDPOP</field>
+        <field name="name">PORT OF SPAIN</field>
+        <field name="country_id" ref="base.tt"/>
+    </record>
+    
+    <record id="import_boarding_uycan" model="import.boarding">
+        <field name="code">UYCAN</field>
+        <field name="name">CANELONES</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uycar" model="import.boarding">
+        <field name="code">UYCAR</field>
+        <field name="name">CARRASCO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uycal" model="import.boarding">
+        <field name="code">UYCAL</field>
+        <field name="name">CARRO LARGO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uycoa" model="import.boarding">
+        <field name="code">UYCOA</field>
+        <field name="name">COLONIA</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uyfbn" model="import.boarding">
+        <field name="code">UYFBN</field>
+        <field name="name">FRAY BENTOS</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uymdo" model="import.boarding">
+        <field name="code">UYMDO</field>
+        <field name="name">MALDONADO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uymvd" model="import.boarding">
+        <field name="code">UYMVD</field>
+        <field name="name">MONTEVIDEO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uynvp" model="import.boarding">
+        <field name="code">UYNVP</field>
+        <field name="name">NUEVA PALMIRA</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_uyslt" model="import.boarding">
+        <field name="code">UYSLT</field>
+        <field name="name">SALTO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_veccv" model="import.boarding">
+        <field name="code">VECCV</field>
+        <field name="name">CARACAS</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vegua" model="import.boarding">
+        <field name="code">VEGUA</field>
+        <field name="name">GUANTA</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_velgx" model="import.boarding">
+        <field name="code">VELGX</field>
+        <field name="name">LA GUAIRA</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vemar" model="import.boarding">
+        <field name="code">VEMAR</field>
+        <field name="name">MARACAIBO</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vepyu" model="import.boarding">
+        <field name="code">VEPYU</field>
+        <field name="name">PUERTO CABELLO</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vepdz" model="import.boarding">
+        <field name="code">VEPDZ</field>
+        <field name="name">PUERTO ORDAZ</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vesjr" model="import.boarding">
+        <field name="code">VESJR</field>
+        <field name="name">SAN LORENZO</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_vesbo" model="import.boarding">
+        <field name="code">VESBO</field>
+        <field name="name">SIMON BOLIVAR</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_beanw" model="import.boarding">
+        <field name="code">BEANW</field>
+        <field name="name">ANTWERP</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_bebxl" model="import.boarding">
+        <field name="code">BEBXL</field>
+        <field name="name">BRUSSELS</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_begen" model="import.boarding">
+        <field name="code">BEGEN</field>
+        <field name="name">GENT</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_begnt" model="import.boarding">
+        <field name="code">BEGNT</field>
+        <field name="name">GAND</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_belie" model="import.boarding">
+        <field name="code">BELIE</field>
+        <field name="name">LIEJA</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_bezee" model="import.boarding">
+        <field name="code">BEZEE</field>
+        <field name="name">ZEEBRUGGE</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_busof" model="import.boarding">
+        <field name="code">BUSOF</field>
+        <field name="name">SOFIA</field>
+        <field name="country_id" ref="base.bg"/>
+    </record>
+    
+    <record id="import_boarding_buvar" model="import.boarding">
+        <field name="code">BUVAR</field>
+        <field name="name">VARNA</field>
+        <field name="country_id" ref="base.bg"/>
+    </record>
+    
+    <record id="import_boarding_dacpg" model="import.boarding">
+        <field name="code">DACPG</field>
+        <field name="name">COPENHAGEN</field>
+        <field name="country_id" ref="base.dk"/>
+    </record>
+    
+    <record id="import_boarding_dathu" model="import.boarding">
+        <field name="code">DATHU</field>
+        <field name="name">THULE</field>
+        <field name="country_id" ref="base.dk"/>
+    </record>
+    
+    <record id="import_boarding_spags" model="import.boarding">
+        <field name="code">SPAGS</field>
+        <field name="name">ALGECIRAS</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spbre" model="import.boarding">
+        <field name="code">SPBRE</field>
+        <field name="name">BARCELONA</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_spbbo" model="import.boarding">
+        <field name="code">SPBBO</field>
+        <field name="name">BILBAO</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spcaz" model="import.boarding">
+        <field name="code">SPCAZ</field>
+        <field name="name">CADIZ</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spcaf" model="import.boarding">
+        <field name="code">SPCAF</field>
+        <field name="name">CARTAGENA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spelf" model="import.boarding">
+        <field name="code">SPELF</field>
+        <field name="name">EL FERROL</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spfer" model="import.boarding">
+        <field name="code">SPFER</field>
+        <field name="name">FERROL</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spgij" model="import.boarding">
+        <field name="code">SPGIJ</field>
+        <field name="name">GIJON</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spibi" model="import.boarding">
+        <field name="code">SPIBI</field>
+        <field name="name">IBIZA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_splcu" model="import.boarding">
+        <field name="code">SPLCU</field>
+        <field name="name">LA CORUÑA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_sppez" model="import.boarding">
+        <field name="code">SPPEZ</field>
+        <field name="name">LAS PALMAS</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spmad" model="import.boarding">
+        <field name="code">SPMAD</field>
+        <field name="name">MADRID</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spmga" model="import.boarding">
+        <field name="code">SPMGA</field>
+        <field name="name">MALAGA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spsse" model="import.boarding">
+        <field name="code">SPSSE</field>
+        <field name="name">SAN SEBASTIAN</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_sptur" model="import.boarding">
+        <field name="code">SPTUR</field>
+        <field name="name">TENERIFE</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spvlc" model="import.boarding">
+        <field name="code">SPVLC</field>
+        <field name="name">VALENCIA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_spvgo" model="import.boarding">
+        <field name="code">SPVGO</field>
+        <field name="name">VIGO</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_fihel" model="import.boarding">
+        <field name="code">FIHEL</field>
+        <field name="name">HELSINGFORS</field>
+        <field name="country_id" ref="base.fi"/>
+    </record>
+    
+    <record id="import_boarding_fikot" model="import.boarding">
+        <field name="code">FIKOT</field>
+        <field name="name">KOTKA</field>
+        <field name="country_id" ref="base.fi"/>
+    </record>
+    
+    <record id="import_boarding_fitur" model="import.boarding">
+        <field name="code">FITUR</field>
+        <field name="name">TURKU</field>
+        <field name="country_id" ref="base.fi"/>
+    </record>
+    
+    <record id="import_boarding_frbye" model="import.boarding">
+        <field name="code">FRBYE</field>
+        <field name="name">BAYONNE</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frbrz" model="import.boarding">
+        <field name="code">FRBRZ</field>
+        <field name="name">BIARRITZ</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frbsm" model="import.boarding">
+        <field name="code">FRBSM</field>
+        <field name="name">BOULOGNE-SUR-MER</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frbes" model="import.boarding">
+        <field name="code">FRBES</field>
+        <field name="name">BREST</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frcnq" model="import.boarding">
+        <field name="code">FRCNQ</field>
+        <field name="name">CAEN</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frcal" model="import.boarding">
+        <field name="code">FRCAL</field>
+        <field name="name">CALAIS</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frcnn" model="import.boarding">
+        <field name="code">FRCNN</field>
+        <field name="name">CANNES</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frceg" model="import.boarding">
+        <field name="code">FRCEG</field>
+        <field name="name">CHERBOURG</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frfsm" model="import.boarding">
+        <field name="code">FRFSM</field>
+        <field name="name">FOS SUR MER</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frleh" model="import.boarding">
+        <field name="code">FRLEH</field>
+        <field name="name">HAVRE</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frlil" model="import.boarding">
+        <field name="code">FRLIL</field>
+        <field name="name">LILLE</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frlyn" model="import.boarding">
+        <field name="code">FRLYN</field>
+        <field name="name">LYON</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frorl" model="import.boarding">
+        <field name="code">FRORL</field>
+        <field name="name">ORLY</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frors" model="import.boarding">
+        <field name="code">FRORS</field>
+        <field name="name">ORSAY</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frpar" model="import.boarding">
+        <field name="code">FRPAR</field>
+        <field name="name">PARIS</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_frtou" model="import.boarding">
+        <field name="code">FRTOU</field>
+        <field name="name">TOULOUSE</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_grari" model="import.boarding">
+        <field name="code">GRARI</field>
+        <field name="name">AGRIA</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    
+    <record id="import_boarding_grpir" model="import.boarding">
+        <field name="code">GRPIR</field>
+        <field name="name">ATHENS</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    
+    <record id="import_boarding_grsqo" model="import.boarding">
+        <field name="code">GRSQO</field>
+        <field name="name">SKOPELOS</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    
+    <record id="import_boarding_grvol" model="import.boarding">
+        <field name="code">GRVOL</field>
+        <field name="name">VOLOS</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    
+    <record id="import_boarding_itbpi" model="import.boarding">
+        <field name="code">ITBPI</field>
+        <field name="name">BARI</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itbol" model="import.boarding">
+        <field name="code">ITBOL</field>
+        <field name="name">BOLONIA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itbre" model="import.boarding">
+        <field name="code">ITBRE</field>
+        <field name="name">BRESCIA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itbib" model="import.boarding">
+        <field name="code">ITBIB</field>
+        <field name="name">BRINDISI</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itcgi" model="import.boarding">
+        <field name="code">ITCGI</field>
+        <field name="name">CAGLIARI</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itctm" model="import.boarding">
+        <field name="code">ITCTM</field>
+        <field name="name">CASTELLAMMARE</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itcai" model="import.boarding">
+        <field name="code">ITCAI</field>
+        <field name="name">CATANIA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itgen" model="import.boarding">
+        <field name="code">ITGEN</field>
+        <field name="name">GENOVA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itlsz" model="import.boarding">
+        <field name="code">ITLSZ</field>
+        <field name="name">LA SPEZIA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itleg" model="import.boarding">
+        <field name="code">ITLEG</field>
+        <field name="name">LIVORNO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itmes" model="import.boarding">
+        <field name="code">ITMES</field>
+        <field name="name">MESSINA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itmil" model="import.boarding">
+        <field name="code">ITMIL</field>
+        <field name="name">MILAN</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itnap" model="import.boarding">
+        <field name="code">ITNAP</field>
+        <field name="name">NAPOLES</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itpal" model="import.boarding">
+        <field name="code">ITPAL</field>
+        <field name="name">PALERMO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itrom" model="import.boarding">
+        <field name="code">ITROM</field>
+        <field name="name">ROMA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itsor" model="import.boarding">
+        <field name="code">ITSOR</field>
+        <field name="name">SORRENTO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_ittra" model="import.boarding">
+        <field name="code">ITTRA</field>
+        <field name="name">TARANTO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_itvdl" model="import.boarding">
+        <field name="code">ITVDL</field>
+        <field name="name">VADO LIGURE</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_mtvle" model="import.boarding">
+        <field name="code">MTVLE</field>
+        <field name="name">LA VALETTA</field>
+        <field name="country_id" ref="base.mt"/>
+    </record>
+    
+    <record id="import_boarding_nonar" model="import.boarding">
+        <field name="code">NONAR</field>
+        <field name="name">NARVIK</field>
+        <field name="country_id" ref="base.no"/>
+    </record>
+    
+    <record id="import_boarding_noslo" model="import.boarding">
+        <field name="code">NOSLO</field>
+        <field name="name">OSLO</field>
+        <field name="country_id" ref="base.no"/>
+    </record>
+    
+    <record id="import_boarding_plgdk" model="import.boarding">
+        <field name="code">PLGDK</field>
+        <field name="name">GDANSK</field>
+        <field name="country_id" ref="base.pl"/>
+    </record>
+    
+    <record id="import_boarding_plgdy" model="import.boarding">
+        <field name="code">PLGDY</field>
+        <field name="name">GDYNIA</field>
+        <field name="country_id" ref="base.pl"/>
+    </record>
+    
+    <record id="import_boarding_plzop" model="import.boarding">
+        <field name="code">PLZOP</field>
+        <field name="name">SOPOT</field>
+        <field name="country_id" ref="base.pl"/>
+    </record>
+    
+    <record id="import_boarding_plvar" model="import.boarding">
+        <field name="code">PLVAR</field>
+        <field name="name">VARSOVIA</field>
+        <field name="country_id" ref="base.pl"/>
+    </record>
+    
+    <record id="import_boarding_poarq" model="import.boarding">
+        <field name="code">POARQ</field>
+        <field name="name">ANGRA (HARBOUR)</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_pohor" model="import.boarding">
+        <field name="code">POHOR</field>
+        <field name="name">AZORES</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_polib" model="import.boarding">
+        <field name="code">POLIB</field>
+        <field name="name">LISBOA</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_popjq" model="import.boarding">
+        <field name="code">POPJQ</field>
+        <field name="name">OPORTO</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_posbl" model="import.boarding">
+        <field name="code">POSBL</field>
+        <field name="name">SETUBAL</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_tuist" model="import.boarding">
+        <field name="code">TUIST</field>
+        <field name="name">ESTAMBUL</field>
+        <field name="country_id" ref="base.tr"/>
+    </record>
+    
+    <record id="import_boarding_tuizr" model="import.boarding">
+        <field name="code">TUIZR</field>
+        <field name="name">IZMIR</field>
+        <field name="country_id" ref="base.tr"/>
+    </record>
+    
+    <record id="import_boarding_tumer" model="import.boarding">
+        <field name="code">TUMER</field>
+        <field name="name">MERSIN</field>
+        <field name="country_id" ref="base.tr"/>
+    </record>
+    
+    <record id="import_boarding_aspdl" model="import.boarding">
+        <field name="code">ASPDL</field>
+        <field name="name">ADELAIDE</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_asaly" model="import.boarding">
+        <field name="code">ASALY</field>
+        <field name="name">ALBANY</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_asbbn" model="import.boarding">
+        <field name="code">ASBBN</field>
+        <field name="name">BRISBANE</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_asfrm" model="import.boarding">
+        <field name="code">ASFRM</field>
+        <field name="name">FREMANTLE</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_asjrb" model="import.boarding">
+        <field name="code">ASJRB</field>
+        <field name="name">JERVIS BAY</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_iioxx" model="import.boarding">
+        <field name="code">IIOXX</field>
+        <field name="name">MELBOURNE</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_ukpth" model="import.boarding">
+        <field name="code">UKPTH</field>
+        <field name="name">PERTH</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_assdn" model="import.boarding">
+        <field name="code">ASSDN</field>
+        <field name="name">SYDNEY</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_knsmp" model="import.boarding">
+        <field name="code">KNSMP</field>
+        <field name="name">SHINHO</field>
+        <field name="country_id" ref="base.kp"/>
+    </record>
+    
+    <record id="import_boarding_kspus" model="import.boarding">
+        <field name="code">KSPUS</field>
+        <field name="name">PUSAN</field>
+        <field name="country_id" ref="base.kr"/>
+    </record>
+    
+    <record id="import_boarding_chcng" model="import.boarding">
+        <field name="code">CHCNG</field>
+        <field name="name">CHAN CHIANG</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chang" model="import.boarding">
+        <field name="code">CHANG</field>
+        <field name="name">CHANGCHUN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chcxx" model="import.boarding">
+        <field name="code">CHCXX</field>
+        <field name="name">CHIU CHIANG</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chwan" model="import.boarding">
+        <field name="code">CHWAN</field>
+        <field name="name">CHIWAN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chcug" model="import.boarding">
+        <field name="code">CHCUG</field>
+        <field name="name">CHUNG CHING</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chdln" model="import.boarding">
+        <field name="code">CHDLN</field>
+        <field name="name">DALIAN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chfuz" model="import.boarding">
+        <field name="code">CHFUZ</field>
+        <field name="name">FUZHOU</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chgua" model="import.boarding">
+        <field name="code">CHGUA</field>
+        <field name="name">GUANGZHOU</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chhon" model="import.boarding">
+        <field name="code">CHHON</field>
+        <field name="name">HONG KONG</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chlgk" model="import.boarding">
+        <field name="code">CHLGK</field>
+        <field name="name">LUNG KOU</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chngo" model="import.boarding">
+        <field name="code">CHNGO</field>
+        <field name="name">NINGBO</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chpki" model="import.boarding">
+        <field name="code">CHPKI</field>
+        <field name="name">PEKING</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chqin" model="import.boarding">
+        <field name="code">CHQIN</field>
+        <field name="name">QINGDAO</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chsha" model="import.boarding">
+        <field name="code">CHSHA</field>
+        <field name="name">SHANGHAI</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chtia" model="import.boarding">
+        <field name="code">CHTIA</field>
+        <field name="name">TIANJIN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chwzu" model="import.boarding">
+        <field name="code">CHWZU</field>
+        <field name="name">WENZHOU</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chxmn" model="import.boarding">
+        <field name="code">CHXMN</field>
+        <field name="name">XIAMEN</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_chyan" model="import.boarding">
+        <field name="code">CHYAN</field>
+        <field name="name">YANTAI</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_rpmny" model="import.boarding">
+        <field name="code">RPMNY</field>
+        <field name="name">MANILA</field>
+        <field name="country_id" ref="base.ph"/>
+    </record>
+    
+    <record id="import_boarding_inbqm" model="import.boarding">
+        <field name="code">INBQM</field>
+        <field name="name">BOMBAY</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_incat" model="import.boarding">
+        <field name="code">INCAT</field>
+        <field name="name">CALCUTTA</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_incho" model="import.boarding">
+        <field name="code">INCHO</field>
+        <field name="name">INCHON</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_inmdr" model="import.boarding">
+        <field name="code">INMDR</field>
+        <field name="name">MADRAS</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_inmqr" model="import.boarding">
+        <field name="code">INMQR</field>
+        <field name="name">MANGALORE</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_inndh" model="import.boarding">
+        <field name="code">INNDH</field>
+        <field name="name">NEW DELHI</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_insra" model="import.boarding">
+        <field name="code">INSRA</field>
+        <field name="name">SURAT</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_idjak" model="import.boarding">
+        <field name="code">IDJAK</field>
+        <field name="name">JAKARTA</field>
+        <field name="country_id" ref="base.id"/>
+    </record>
+    
+    <record id="import_boarding_idsuy" model="import.boarding">
+        <field name="code">IDSUY</field>
+        <field name="name">SOERABAJA</field>
+        <field name="country_id" ref="base.id"/>
+    </record>
+    
+    <record id="import_boarding_kumhd" model="import.boarding">
+        <field name="code">KUMHD</field>
+        <field name="name">AL FUHAYHIL</field>
+        <field name="country_id" ref="base.kw"/>
+    </record>
+    
+    <record id="import_boarding_kualk" model="import.boarding">
+        <field name="code">KUALK</field>
+        <field name="name">AL KUWAYT</field>
+        <field name="country_id" ref="base.kw"/>
+    </record>
+    
+    <record id="import_boarding_mybnu" model="import.boarding">
+        <field name="code">MYBNU</field>
+        <field name="name">BRUNEI TOWN</field>
+        <field name="country_id" ref="base.my"/>
+    </record>
+    
+    <record id="import_boarding_mygtw" model="import.boarding">
+        <field name="code">MYGTW</field>
+        <field name="name">GEORGE TOWN</field>
+        <field name="country_id" ref="base.my"/>
+    </record>
+    
+    <record id="import_boarding_mypkr" model="import.boarding">
+        <field name="code">MYPKR</field>
+        <field name="name">PANGKOR</field>
+        <field name="country_id" ref="base.my"/>
+    </record>
+    
+    <record id="import_boarding_nzauc" model="import.boarding">
+        <field name="code">NZAUC</field>
+        <field name="name">AUCKLAND</field>
+        <field name="country_id" ref="base.nz"/>
+    </record>
+    
+    <record id="import_boarding_nzpft" model="import.boarding">
+        <field name="code">NZPFT</field>
+        <field name="name">CHRISTCHURCH</field>
+        <field name="country_id" ref="base.nz"/>
+    </record>
+    
+    <record id="import_boarding_nzwel" model="import.boarding">
+        <field name="code">NZWEL</field>
+        <field name="name">WELLINGTON</field>
+        <field name="country_id" ref="base.nz"/>
+    </record>
+    
+    <record id="import_boarding_iioov" model="import.boarding">
+        <field name="code">IIOOV</field>
+        <field name="name">SINGAPUR</field>
+        <field name="country_id" ref="base.sg"/>
+    </record>
+    
+    <record id="import_boarding_thaop" model="import.boarding">
+        <field name="code">THAOP</field>
+        <field name="name">AO PHUKET</field>
+        <field name="country_id" ref="base.th"/>
+    </record>
+    
+    <record id="import_boarding_thbnk" model="import.boarding">
+        <field name="code">THBNK</field>
+        <field name="name">BANGKOK</field>
+        <field name="country_id" ref="base.th"/>
+    </record>
+    
+    <record id="import_boarding_thbsh" model="import.boarding">
+        <field name="code">THBSH</field>
+        <field name="name">BASS HARBOUR</field>
+        <field name="country_id" ref="base.th"/>
+    </record>
+    
+    <record id="import_boarding_twksg" model="import.boarding">
+        <field name="code">TWKSG</field>
+        <field name="name">KAOSHSIUNG</field>
+        <field name="country_id" ref="base.tw"/>
+    </record>
+    
+    <record id="import_boarding_twcil" model="import.boarding">
+        <field name="code">TWCIL</field>
+        <field name="name">KEELUNG=CHILUNG</field>
+        <field name="country_id" ref="base.tw"/>
+    </record>
+    
+    <record id="import_boarding_twchg" model="import.boarding">
+        <field name="code">TWCHG</field>
+        <field name="name">TAI CHUNG</field>
+        <field name="country_id" ref="base.tw"/>
+    </record>
+    
+    <record id="import_boarding_twtai" model="import.boarding">
+        <field name="code">TWTAI</field>
+        <field name="name">TAIWAN</field>
+        <field name="country_id" ref="base.tw"/>
+    </record>
+    
+    <record id="import_boarding_vnhah" model="import.boarding">
+        <field name="code">VNHAH</field>
+        <field name="name">HAIPHONG</field>
+        <field name="country_id" ref="base.vn"/>
+    </record>
+    
+    <record id="import_boarding_vnhan" model="import.boarding">
+        <field name="code">VNHAN</field>
+        <field name="name">HANOI</field>
+        <field name="country_id" ref="base.vn"/>
+    </record>
+    
+    <record id="import_boarding_vnhcm" model="import.boarding">
+        <field name="code">VNHCM</field>
+        <field name="name">HO CHI MINH (SAIGON)</field>
+        <field name="country_id" ref="base.vn"/>
+    </record>
+    
+    <record id="import_boarding_slftn" model="import.boarding">
+        <field name="code">SLFTN</field>
+        <field name="name">FREETOWN</field>
+        <field name="country_id" ref="base.sl"/>
+    </record>
+    
+    <record id="import_boarding_slpep" model="import.boarding">
+        <field name="code">SLPEP</field>
+        <field name="name">PEPEL</field>
+        <field name="country_id" ref="base.sl"/>
+    </record>
+    
+    <record id="import_boarding_tolom" model="import.boarding">
+        <field name="code">TOLOM</field>
+        <field name="name">LOME</field>
+        <field name="country_id" ref="base.tg"/>
+    </record>
+    
+    <record id="import_boarding_mocsa" model="import.boarding">
+        <field name="code">MOCSA</field>
+        <field name="name">CASABLANCA</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_momfi" model="import.boarding">
+        <field name="code">MOMFI</field>
+        <field name="name">MELILLA</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_morab" model="import.boarding">
+        <field name="code">MORAB</field>
+        <field name="name">RABAT</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_motan" model="import.boarding">
+        <field name="code">MOTAN</field>
+        <field name="name">TANGIER</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_tstun" model="import.boarding">
+        <field name="code">TSTUN</field>
+        <field name="name">TUNIS</field>
+        <field name="country_id" ref="base.tn"/>
+    </record>
+    
+    <record id="import_boarding_sgdak" model="import.boarding">
+        <field name="code">SGDAK</field>
+        <field name="name">DAKAR</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+    
+    <record id="import_boarding_sgstl" model="import.boarding">
+        <field name="code">SGSTL</field>
+        <field name="name">ST LOUIS</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+    
+    <record id="import_boarding_gvcoy" model="import.boarding">
+        <field name="code">GVCOY</field>
+        <field name="name">CONAKRY</field>
+        <field name="country_id" ref="base.gn"/>
+    </record>
+    
+    <record id="import_boarding_gvdeb" model="import.boarding">
+        <field name="code">GVDEB</field>
+        <field name="name">DEBREEKA</field>
+        <field name="country_id" ref="base.gn"/>
+    </record>
+    
+    <record id="import_boarding_gvdgh" model="import.boarding">
+        <field name="code">GVDGH</field>
+        <field name="name">DREGER HARBOUR</field>
+        <field name="country_id" ref="base.gn"/>
+    </record>
+    
+    <record id="import_boarding_gvsox" model="import.boarding">
+        <field name="code">GVSOX</field>
+        <field name="name">SORONG</field>
+        <field name="country_id" ref="base.gn"/>
+    </record>
+    
+    <record id="import_boarding_libch" model="import.boarding">
+        <field name="code">LIBCH</field>
+        <field name="name">BUCHANAN</field>
+        <field name="country_id" ref="base.lr"/>
+    </record>
+    
+    <record id="import_boarding_limvi" model="import.boarding">
+        <field name="code">LIMVI</field>
+        <field name="name">MONROVIA</field>
+        <field name="country_id" ref="base.lr"/>
+    </record>
+    
+    <record id="import_boarding_lirbp" model="import.boarding">
+        <field name="code">LIRBP</field>
+        <field name="name">ROBERT PORT</field>
+        <field name="country_id" ref="base.lr"/>
+    </record>
+    
+    <record id="import_boarding_ivabj" model="import.boarding">
+        <field name="code">IVABJ</field>
+        <field name="name">ABIDJAN</field>
+        <field name="country_id" ref="base.ci"/>
+    </record>
+    
+    <record id="import_boarding_ivoxx" model="import.boarding">
+        <field name="code">IVOXX</field>
+        <field name="name">RIJEKA</field>
+        <field name="country_id" ref="base.ci"/>
+    </record>
+    
+    <record id="import_boarding_ghacc" model="import.boarding">
+        <field name="code">GHACC</field>
+        <field name="name">ACCRA</field>
+        <field name="country_id" ref="base.gh"/>
+    </record>
+    
+    <record id="import_boarding_ghcpc" model="import.boarding">
+        <field name="code">GHCPC</field>
+        <field name="name">CAPE COAST</field>
+        <field name="country_id" ref="base.gh"/>
+    </record>
+    
+    <record id="import_boarding_nifoc" model="import.boarding">
+        <field name="code">NIFOC</field>
+        <field name="name">FORCADOS</field>
+        <field name="country_id" ref="base.ng"/>
+    </record>
+    
+    <record id="import_boarding_nilag" model="import.boarding">
+        <field name="code">NILAG</field>
+        <field name="name">APAPA</field>
+        <field name="country_id" ref="base.ng"/>
+    </record>
+    
+    <record id="import_boarding_niphr" model="import.boarding">
+        <field name="code">NIPHR</field>
+        <field name="name">PORT HARCOURT</field>
+        <field name="country_id" ref="base.ng"/>
+    </record>
+    
+    <record id="import_boarding_cmdua" model="import.boarding">
+        <field name="code">CMDUA</field>
+        <field name="name">DOUALA</field>
+        <field name="country_id" ref="base.cm"/>
+    </record>
+    
+    <record id="import_boarding_gblbr" model="import.boarding">
+        <field name="code">GBLBR</field>
+        <field name="name">LIBREVILLE</field>
+        <field name="country_id" ref="base.ga"/>
+    </record>
+    
+    <record id="import_boarding_aolob" model="import.boarding">
+        <field name="code">AOLOB</field>
+        <field name="name">LOBITO</field>
+        <field name="country_id" ref="base.ao"/>
+    </record>
+    
+    <record id="import_boarding_aolua" model="import.boarding">
+        <field name="code">AOLUA</field>
+        <field name="name">LUANDA</field>
+        <field name="country_id" ref="base.ao"/>
+    </record>
+    
+    <record id="import_boarding_sfcto" model="import.boarding">
+        <field name="code">SFCTO</field>
+        <field name="name">CAPE TOWN</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sfdur" model="import.boarding">
+        <field name="code">SFDUR</field>
+        <field name="name">DURBAN</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sfeln" model="import.boarding">
+        <field name="code">SFELN</field>
+        <field name="name">EAST LONDON</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sfjoh" model="import.boarding">
+        <field name="code">SFJOH</field>
+        <field name="name">JOHANNESBURG</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sfpfl" model="import.boarding">
+        <field name="code">SFPFL</field>
+        <field name="name">PORT ELIZABETH</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sfwal" model="import.boarding">
+        <field name="code">SFWAL</field>
+        <field name="name">WALVIS BAY</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_sodjb" model="import.boarding">
+        <field name="code">SODJB</field>
+        <field name="name">DJIBOUTI</field>
+        <field name="country_id" ref="base.so"/>
+    </record>
+    
+    <record id="import_boarding_somog" model="import.boarding">
+        <field name="code">SOMOG</field>
+        <field name="name">MOGADISCIO</field>
+        <field name="country_id" ref="base.so"/>
+    </record>
+    
+    <record id="import_boarding_sdpud" model="import.boarding">
+        <field name="code">SDPUD</field>
+        <field name="name">PORT SUDAN</field>
+        <field name="country_id" ref="base.sd"/>
+    </record>
+    
+    <record id="import_boarding_sdsua" model="import.boarding">
+        <field name="code">SDSUA</field>
+        <field name="name">SAWAKIN</field>
+        <field name="country_id" ref="base.sd"/>
+    </record>
+    
+    <record id="import_boarding_egpqz" model="import.boarding">
+        <field name="code">EGPQZ</field>
+        <field name="name">PORT SAID</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egrga" model="import.boarding">
+        <field name="code">EGRGA</field>
+        <field name="name">RAS GHARIB</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egrgu" model="import.boarding">
+        <field name="code">EGRGU</field>
+        <field name="name">HAMATA</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egrsg" model="import.boarding">
+        <field name="code">EGRSG</field>
+        <field name="name">RAS GIMSAH</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egrsh" model="import.boarding">
+        <field name="code">EGRSH</field>
+        <field name="name">RASHID</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egsuc" model="import.boarding">
+        <field name="code">EGSUC</field>
+        <field name="name">SUEZ CANAL</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_egwad" model="import.boarding">
+        <field name="code">EGWAD</field>
+        <field name="name">WADI FEIRAN</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_lybnz" model="import.boarding">
+        <field name="code">LYBNZ</field>
+        <field name="name">BANGHAZI</field>
+        <field name="country_id" ref="base.ly"/>
+    </record>
+    
+    <record id="import_boarding_lysrt" model="import.boarding">
+        <field name="code">LYSRT</field>
+        <field name="name">SIRTE</field>
+        <field name="country_id" ref="base.ly"/>
+    </record>
+    
+    <record id="import_boarding_lytrs" model="import.boarding">
+        <field name="code">LYTRS</field>
+        <field name="name">TARABULUS (TRIPOLI)</field>
+        <field name="country_id" ref="base.ly"/>
+    </record>
+    
+    <record id="import_boarding_lytup" model="import.boarding">
+        <field name="code">LYTUP</field>
+        <field name="name">TOBRUCH</field>
+        <field name="country_id" ref="base.ly"/>
+    </record>
+    
+    <record id="import_boarding_ukbft" model="import.boarding">
+        <field name="code">UKBFT</field>
+        <field name="name">BELFAST</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukbir" model="import.boarding">
+        <field name="code">UKBIR</field>
+        <field name="name">BIRMINGHAN</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukbos" model="import.boarding">
+        <field name="code">UKBOS</field>
+        <field name="name">BOSTON</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukbig" model="import.boarding">
+        <field name="code">UKBIG</field>
+        <field name="name">BRIGHTON</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukbri" model="import.boarding">
+        <field name="code">UKBRI</field>
+        <field name="name">BRISTOL</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukcdf" model="import.boarding">
+        <field name="code">UKCDF</field>
+        <field name="name">CARDIFF</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukfxw" model="import.boarding">
+        <field name="code">UKFXW</field>
+        <field name="name">FELIXSTOWE</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukgat" model="import.boarding">
+        <field name="code">UKGAT</field>
+        <field name="name">GATWICK</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukgct" model="import.boarding">
+        <field name="code">UKGCT</field>
+        <field name="name">GLOUCESTER</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_uklee" model="import.boarding">
+        <field name="code">UKLEE</field>
+        <field name="name">LEEDS</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_uklvp" model="import.boarding">
+        <field name="code">UKLVP</field>
+        <field name="name">LIVERPOOL</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_uklnr" model="import.boarding">
+        <field name="code">UKLNR</field>
+        <field name="name">LONDRES</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukmct" model="import.boarding">
+        <field name="code">UKMCT</field>
+        <field name="name">MANCHESTER</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukpgw" model="import.boarding">
+        <field name="code">UKPGW</field>
+        <field name="name">PORT GLASGOW</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukpkx" model="import.boarding">
+        <field name="code">UKPKX</field>
+        <field name="name">PORTLAND</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ukptm" model="import.boarding">
+        <field name="code">UKPTM</field>
+        <field name="name">PORTSMOUTH</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_uksou" model="import.boarding">
+        <field name="code">UKSOU</field>
+        <field name="name">SOUTHAMPTON</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_uktdx" model="import.boarding">
+        <field name="code">UKTDX</field>
+        <field name="name">TILBURY</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_nlams" model="import.boarding">
+        <field name="code">NLAMS</field>
+        <field name="name">AMSTERDAM</field>
+        <field name="country_id" ref="base.nl"/>
+    </record>
+    
+    <record id="import_boarding_nlrot" model="import.boarding">
+        <field name="code">NLROT</field>
+        <field name="name">ROTTERDAM</field>
+        <field name="country_id" ref="base.nl"/>
+    </record>
+    
+    <record id="import_boarding_urkgb" model="import.boarding">
+        <field name="code">URKGB</field>
+        <field name="name">KALININGRADO</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_urksh" model="import.boarding">
+        <field name="code">URKSH</field>
+        <field name="name">KRONSHTADT</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_urmos" model="import.boarding">
+        <field name="code">URMOS</field>
+        <field name="name">MOSCU</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_urods" model="import.boarding">
+        <field name="code">URODS</field>
+        <field name="name">ODESSA</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_ursxx" model="import.boarding">
+        <field name="code">URSXX</field>
+        <field name="name">SEVASTOPOL</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_swmmo" model="import.boarding">
+        <field name="code">SWMMO</field>
+        <field name="name">MALMO</field>
+        <field name="country_id" ref="base.se"/>
+    </record>
+    
+    <record id="import_boarding_swswk" model="import.boarding">
+        <field name="code">SWSWK</field>
+        <field name="name">SANDVIK</field>
+        <field name="country_id" ref="base.se"/>
+    </record>
+    
+    <record id="import_boarding_swsto" model="import.boarding">
+        <field name="code">SWSTO</field>
+        <field name="name">STOCKHOLM</field>
+        <field name="country_id" ref="base.se"/>
+    </record>
+    
+    <record id="import_boarding_agora" model="import.boarding">
+        <field name="code">AGORA</field>
+        <field name="name">ORAN</field>
+        <field name="country_id" ref="base.dz"/>
+    </record>
+    
+    <record id="import_boarding_txl" model="import.boarding">
+        <field name="code">TXL</field>
+        <field name="name">TEGEL</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_thf" model="import.boarding">
+        <field name="code">THF</field>
+        <field name="name">TEMPELHOF</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_sxf" model="import.boarding">
+        <field name="code">SXF</field>
+        <field name="name">SCHONEFELD</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_cgn" model="import.boarding">
+        <field name="code">CGN</field>
+        <field name="name">COLONIA</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_dus" model="import.boarding">
+        <field name="code">DUS</field>
+        <field name="name">DUSSELDORF</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_fra" model="import.boarding">
+        <field name="code">FRA</field>
+        <field name="name">FRANKFURT INT.</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_ham" model="import.boarding">
+        <field name="code">HAM</field>
+        <field name="name">FUHLSBUETTEL</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_muc" model="import.boarding">
+        <field name="code">MUC</field>
+        <field name="name">FRANZ STRAUSS</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_str" model="import.boarding">
+        <field name="code">STR</field>
+        <field name="name">ECHTERDINGEN</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_lad" model="import.boarding">
+        <field name="code">LAD</field>
+        <field name="name">4 DE FEVEREIRO</field>
+        <field name="country_id" ref="base.ao"/>
+    </record>
+    
+    <record id="import_boarding_anu" model="import.boarding">
+        <field name="code">ANU</field>
+        <field name="name">V. C. BIRD INT.</field>
+        <field name="country_id" ref="base.ag"/>
+    </record>
+    
+    <record id="import_boarding_alg" model="import.boarding">
+        <field name="code">ALG</field>
+        <field name="name">HOUARI-BOUMEDIENNE</field>
+        <field name="country_id" ref="base.dz"/>
+    </record>
+    
+    <record id="import_boarding_brc" model="import.boarding">
+        <field name="code">BRC</field>
+        <field name="name">BARILOCHE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_bue" model="import.boarding">
+        <field name="code">BUE</field>
+        <field name="name">EZEIZA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_aep" model="import.boarding">
+        <field name="code">AEP</field>
+        <field name="name">AEROPARQUE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_fte" model="import.boarding">
+        <field name="code">FTE</field>
+        <field name="name">CALAFATE</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_cor" model="import.boarding">
+        <field name="code">COR</field>
+        <field name="name">CÓRDOBA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_igr" model="import.boarding">
+        <field name="code">IGR</field>
+        <field name="name">PUERTO IGUAZÚ</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_ros" model="import.boarding">
+        <field name="code">ROS</field>
+        <field name="name">ISLAS MALVINAS</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_mdz" model="import.boarding">
+        <field name="code">MDZ</field>
+        <field name="name">PLUMERILLO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_sfn" model="import.boarding">
+        <field name="code">SFN</field>
+        <field name="name">SAUCE VIEJO</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_ush" model="import.boarding">
+        <field name="code">USH</field>
+        <field name="name">USHUAIA</field>
+        <field name="country_id" ref="base.ar"/>
+    </record>
+    
+    <record id="import_boarding_aua" model="import.boarding">
+        <field name="code">AUA</field>
+        <field name="name">REINA BEATRIX</field>
+        <field name="country_id" ref="base.aw"/>
+    </record>
+    
+    <record id="import_boarding_mel" model="import.boarding">
+        <field name="code">MEL</field>
+        <field name="name">TULLAMARINE</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_syd" model="import.boarding">
+        <field name="code">SYD</field>
+        <field name="name">KINGSFORD SMITH</field>
+        <field name="country_id" ref="base.au"/>
+    </record>
+    
+    <record id="import_boarding_grz" model="import.boarding">
+        <field name="code">GRZ</field>
+        <field name="name">THALERHOF</field>
+        <field name="country_id" ref="base.at"/>
+    </record>
+    
+    <record id="import_boarding_vie" model="import.boarding">
+        <field name="code">VIE</field>
+        <field name="name">VIENA INT.</field>
+        <field name="country_id" ref="base.at"/>
+    </record>
+    
+    <record id="import_boarding_nas" model="import.boarding">
+        <field name="code">NAS</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.bs"/>
+    </record>
+    
+    <record id="import_boarding_pid" model="import.boarding">
+        <field name="code">PID</field>
+        <field name="name">PARADISE ISLAND</field>
+        <field name="country_id" ref="base.bs"/>
+    </record>
+    
+    <record id="import_boarding_bgi" model="import.boarding">
+        <field name="code">BGI</field>
+        <field name="name">G. ADAMS INT.</field>
+        <field name="country_id" ref="base.bb"/>
+    </record>
+    
+    <record id="import_boarding_bru" model="import.boarding">
+        <field name="code">BRU</field>
+        <field name="name">NATIONAL</field>
+        <field name="country_id" ref="base.be"/>
+    </record>
+    
+    <record id="import_boarding_cbb" model="import.boarding">
+        <field name="code">CBB</field>
+        <field name="name">WILSTERMAN</field>
+        <field name="country_id" ref="base.bo"/>
+    </record>
+    
+    <record id="import_boarding_lpb" model="import.boarding">
+        <field name="code">LPB</field>
+        <field name="name">EL ALTO</field>
+        <field name="country_id" ref="base.bo"/>
+    </record>
+    
+    <record id="import_boarding_vvi" model="import.boarding">
+        <field name="code">VVI</field>
+        <field name="name">VIRU VIRU INT.</field>
+        <field name="country_id" ref="base.bo"/>
+    </record>
+    
+    <record id="import_boarding_sjj" model="import.boarding">
+        <field name="code">SJJ</field>
+        <field name="name">BUTMIR</field>
+        <field name="country_id" ref="base.ba"/>
+    </record>
+    
+    <record id="import_boarding_bel" model="import.boarding">
+        <field name="code">BEL</field>
+        <field name="name">VAL DE CANS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_cnf" model="import.boarding">
+        <field name="code">CNF</field>
+        <field name="name">TANCREDO NEVES</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_plu" model="import.boarding">
+        <field name="code">PLU</field>
+        <field name="name">PAMPULHA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_bsb" model="import.boarding">
+        <field name="code">BSB</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_cpq" model="import.boarding">
+        <field name="code">CPQ</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_cwb" model="import.boarding">
+        <field name="code">CWB</field>
+        <field name="name">ALFONSO PENA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_fln" model="import.boarding">
+        <field name="code">FLN</field>
+        <field name="name">HERCILIO LUZ</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_for" model="import.boarding">
+        <field name="code">FOR</field>
+        <field name="name">PINTO MARTINS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_igu" model="import.boarding">
+        <field name="code">IGU</field>
+        <field name="name">CATARATAS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_ios" model="import.boarding">
+        <field name="code">IOS</field>
+        <field name="name">EDUARDO GOMES</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_mcz" model="import.boarding">
+        <field name="code">MCZ</field>
+        <field name="name">PALMARES</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_mao" model="import.boarding">
+        <field name="code">MAO</field>
+        <field name="name">EDUARDO GÓMES INT.</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_poa" model="import.boarding">
+        <field name="code">POA</field>
+        <field name="name">SALGADO FILHO</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_pvh" model="import.boarding">
+        <field name="code">PVH</field>
+        <field name="name">BELMONTE</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_rec" model="import.boarding">
+        <field name="code">REC</field>
+        <field name="name">GUARARAPES INT.</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_gig" model="import.boarding">
+        <field name="code">GIG</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_sdu" model="import.boarding">
+        <field name="code">SDU</field>
+        <field name="name">SANTOS DUMONT</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_ssa" model="import.boarding">
+        <field name="code">SSA</field>
+        <field name="name">LUIS E. MAGALHAES</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_slz" model="import.boarding">
+        <field name="code">SLZ</field>
+        <field name="name">MAL CUNHA MACHA</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_cgh" model="import.boarding">
+        <field name="code">CGH</field>
+        <field name="name">CONGONHAS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_gru" model="import.boarding">
+        <field name="code">GRU</field>
+        <field name="name">GUARULHOS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_vcp" model="import.boarding">
+        <field name="code">VCP</field>
+        <field name="name">VIRACOPOS</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_tbt" model="import.boarding">
+        <field name="code">TBT</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.br"/>
+    </record>
+    
+    <record id="import_boarding_sof" model="import.boarding">
+        <field name="code">SOF</field>
+        <field name="name">VRAZHDEBNA</field>
+        <field name="country_id" ref="base.bg"/>
+    </record>
+    
+    <record id="import_boarding_yul" model="import.boarding">
+        <field name="code">YUL</field>
+        <field name="name">DORVAL</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_ymx" model="import.boarding">
+        <field name="code">YMX</field>
+        <field name="name">MIRABEL INT.</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_yow" model="import.boarding">
+        <field name="code">YOW</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_yyz" model="import.boarding">
+        <field name="code">YYZ</field>
+        <field name="name">PEARSON INT.</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_ykz" model="import.boarding">
+        <field name="code">YKZ</field>
+        <field name="name">BUTTONVILLE</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_yvr" model="import.boarding">
+        <field name="code">YVR</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    
+    <record id="import_boarding_svo" model="import.boarding">
+        <field name="code">SVO</field>
+        <field name="name">SHEREMETYEVO</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_dme" model="import.boarding">
+        <field name="code">DME</field>
+        <field name="name">DOMODEDOVO</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_vko" model="import.boarding">
+        <field name="code">VKO</field>
+        <field name="name">VNUKOVO</field>
+        <field name="country_id" ref="base.ru"/>
+    </record>
+    
+    <record id="import_boarding_anf" model="import.boarding">
+        <field name="code">ANF</field>
+        <field name="name">CERRO MORENO</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_ari" model="import.boarding">
+        <field name="code">ARI</field>
+        <field name="name">CHACALLUTA</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_iqq" model="import.boarding">
+        <field name="code">IQQ</field>
+        <field name="name">DIEGO ARACENA</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_pmc" model="import.boarding">
+        <field name="code">PMC</field>
+        <field name="name">TEPUAL</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_puq" model="import.boarding">
+        <field name="code">PUQ</field>
+        <field name="name">PRESIDENTE IBÁÑEZ</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_scl" model="import.boarding">
+        <field name="code">SCL</field>
+        <field name="name">A. M. BENÍTEZ</field>
+        <field name="country_id" ref="base.cl"/>
+    </record>
+    
+    <record id="import_boarding_bjs" model="import.boarding">
+        <field name="code">BJS</field>
+        <field name="name">BEIJING</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_sha" model="import.boarding">
+        <field name="code">SHA</field>
+        <field name="name">HONGQIAO</field>
+        <field name="country_id" ref="base.cn"/>
+    </record>
+    
+    <record id="import_boarding_baq" model="import.boarding">
+        <field name="code">BAQ</field>
+        <field name="name">E. CORTISSOZ</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_bog" model="import.boarding">
+        <field name="code">BOG</field>
+        <field name="name">EL DORADO</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_clo" model="import.boarding">
+        <field name="code">CLO</field>
+        <field name="name">A. BONILLA ARAGÓN</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_ctg" model="import.boarding">
+        <field name="code">CTG</field>
+        <field name="name">RAFAEL NUÑEZ INT.</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_pei" model="import.boarding">
+        <field name="code">PEI</field>
+        <field name="name">INT. MATECAÑA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_mde" model="import.boarding">
+        <field name="code">MDE</field>
+        <field name="name">JOSÉ MARÍA CORDOVA</field>
+        <field name="country_id" ref="base.co"/>
+    </record>
+    
+    <record id="import_boarding_bzv" model="import.boarding">
+        <field name="code">BZV</field>
+        <field name="name">MAYA MAYA</field>
+        <field name="country_id" ref="base.cg"/>
+    </record>
+    
+    <record id="import_boarding_sel" model="import.boarding">
+        <field name="code">SEL</field>
+        <field name="name">INCHEON INTERNACIONAL</field>
+        <field name="country_id" ref="base.kr"/>
+    </record>
+    
+    <record id="import_boarding_sjo" model="import.boarding">
+        <field name="code">SJO</field>
+        <field name="name">JUAN SANTAMARÍA INT.</field>
+        <field name="country_id" ref="base.cr"/>
+    </record>
+    
+    <record id="import_boarding_hav" model="import.boarding">
+        <field name="code">HAV</field>
+        <field name="name">JOSÉ MARTÍ INT.</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_vra" model="import.boarding">
+        <field name="code">VRA</field>
+        <field name="name">JUAN GUALBERTO GÓMEZ</field>
+        <field name="country_id" ref="base.cu"/>
+    </record>
+    
+    <record id="import_boarding_cph" model="import.boarding">
+        <field name="code">CPH</field>
+        <field name="name">COPENHAGUE</field>
+        <field name="country_id" ref="base.dk"/>
+    </record>
+    
+    <record id="import_boarding_gye" model="import.boarding">
+        <field name="code">GYE</field>
+        <field name="name">SIMÓN BOLÍVAR</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_uio" model="import.boarding">
+        <field name="code">UIO</field>
+        <field name="name">QUITO</field>
+        <field name="country_id" ref="base.ec"/>
+    </record>
+    
+    <record id="import_boarding_cai" model="import.boarding">
+        <field name="code">CAI</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.eg"/>
+    </record>
+    
+    <record id="import_boarding_sal" model="import.boarding">
+        <field name="code">SAL</field>
+        <field name="name">COMALAPA INT.</field>
+        <field name="country_id" ref="base.sv"/>
+    </record>
+    
+    <record id="import_boarding_gla" model="import.boarding">
+        <field name="code">GLA</field>
+        <field name="name">GLASGOW</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_pik" model="import.boarding">
+        <field name="code">PIK</field>
+        <field name="name">PRESTWICK</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_bts" model="import.boarding">
+        <field name="code">BTS</field>
+        <field name="name">IVANKA</field>
+        <field name="country_id" ref="base.sk"/>
+    </record>
+    
+    <record id="import_boarding_lju" model="import.boarding">
+        <field name="code">LJU</field>
+        <field name="name">BRNIK</field>
+        <field name="country_id" ref="base.si"/>
+    </record>
+    
+    <record id="import_boarding_ali" model="import.boarding">
+        <field name="code">ALI</field>
+        <field name="name">EL ALTET</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_bcn" model="import.boarding">
+        <field name="code">BCN</field>
+        <field name="name">EL PRAT</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_bio" model="import.boarding">
+        <field name="code">BIO</field>
+        <field name="name">SONDICA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_ibz" model="import.boarding">
+        <field name="code">IBZ</field>
+        <field name="name">IBIZA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_ace" model="import.boarding">
+        <field name="code">ACE</field>
+        <field name="name">LANZAROTE</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_lpa" model="import.boarding">
+        <field name="code">LPA</field>
+        <field name="name">GANDO</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_mad" model="import.boarding">
+        <field name="code">MAD</field>
+        <field name="name">BARAJAS</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_agp" model="import.boarding">
+        <field name="code">AGP</field>
+        <field name="name">PABLO PICASSO</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_pmi" model="import.boarding">
+        <field name="code">PMI</field>
+        <field name="name">SON SAN JUAN</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_scq" model="import.boarding">
+        <field name="code">SCQ</field>
+        <field name="name">LA BACOLLA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_tfn" model="import.boarding">
+        <field name="code">TFN</field>
+        <field name="name">LOS RODEOS</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_tfs" model="import.boarding">
+        <field name="code">TFS</field>
+        <field name="name">REINA SOFÍA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_vlc" model="import.boarding">
+        <field name="code">VLC</field>
+        <field name="name">MANISES</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_vgo" model="import.boarding">
+        <field name="code">VGO</field>
+        <field name="name">PEINADOR</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    <record id="import_boarding_mnl" model="import.boarding">
+        <field name="code">MNL</field>
+        <field name="name">NINOY AQUINO INT.</field>
+        <field name="country_id" ref="base.ph"/>
+    </record>
+    
+    <record id="import_boarding_hel" model="import.boarding">
+        <field name="code">HEL</field>
+        <field name="name">HELSINKI-VANTAA</field>
+        <field name="country_id" ref="base.fi"/>
+    </record>
+    
+    <record id="import_boarding_lys" model="import.boarding">
+        <field name="code">LYS</field>
+        <field name="name">SATOLAS</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_cdg" model="import.boarding">
+        <field name="code">CDG</field>
+        <field name="name">CHARLES DE GAULLE</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_ory" model="import.boarding">
+        <field name="code">ORY</field>
+        <field name="name">ORLY</field>
+        <field name="country_id" ref="base.fr"/>
+    </record>
+    
+    <record id="import_boarding_ath" model="import.boarding">
+        <field name="code">ATH</field>
+        <field name="name">ELEFTHERIOS VENIZELOS</field>
+        <field name="country_id" ref="base.gr"/>
+    </record>
+    
+    <record id="import_boarding_ptp" model="import.boarding">
+        <field name="code">PTP</field>
+        <field name="name">LE RAIZET</field>
+        <field name="country_id" ref="base.gp"/>
+    </record>
+    
+    <record id="import_boarding_gua" model="import.boarding">
+        <field name="code">GUA</field>
+        <field name="name">LA AURORA</field>
+        <field name="country_id" ref="base.gt"/>
+    </record>
+    
+    <record id="import_boarding_cay" model="import.boarding">
+        <field name="code">CAY</field>
+        <field name="name">ROCHAMBEAU</field>
+        <field name="country_id" ref="base.gf"/>
+    </record>
+    
+    <record id="import_boarding_geo" model="import.boarding">
+        <field name="code">GEO</field>
+        <field name="name">CHEDDI JAGAN</field>
+        <field name="country_id" ref="base.gy"/>
+    </record>
+    
+    <record id="import_boarding_pap" model="import.boarding">
+        <field name="code">PAP</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.ht"/>
+    </record>
+    
+    <record id="import_boarding_hnl" model="import.boarding">
+        <field name="code">HNL</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ams" model="import.boarding">
+        <field name="code">AMS</field>
+        <field name="name">SCHIPHOL INT.</field>
+        <field name="country_id" ref="base.nl"/>
+    </record>
+    
+    <record id="import_boarding_rtm" model="import.boarding">
+        <field name="code">RTM</field>
+        <field name="name">ROTTERDAM</field>
+        <field name="country_id" ref="base.nl"/>
+    </record>
+    
+    <record id="import_boarding_tgu" model="import.boarding">
+        <field name="code">TGU</field>
+        <field name="name">TONCONTIN</field>
+        <field name="country_id" ref="base.hn"/>
+    </record>
+    
+    <record id="import_boarding_hkg" model="import.boarding">
+        <field name="code">HKG</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.hk"/>
+    </record>
+    
+    <record id="import_boarding_bud" model="import.boarding">
+        <field name="code">BUD</field>
+        <field name="name">FERIHEGY</field>
+        <field name="country_id" ref="base.hu"/>
+    </record>
+    
+    <record id="import_boarding_ccu" model="import.boarding">
+        <field name="code">CCU</field>
+        <field name="name">NETAJI SUBHAS</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_del" model="import.boarding">
+        <field name="code">DEL</field>
+        <field name="name">INDIRA GANDHI INT.</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_bom" model="import.boarding">
+        <field name="code">BOM</field>
+        <field name="name">BOMBAY</field>
+        <field name="country_id" ref="base.in"/>
+    </record>
+    
+    <record id="import_boarding_cgk" model="import.boarding">
+        <field name="code">CGK</field>
+        <field name="name">SOEKARNO-HATTA INT.</field>
+        <field name="country_id" ref="base.id"/>
+    </record>
+    
+    <record id="import_boarding_hlp" model="import.boarding">
+        <field name="code">HLP</field>
+        <field name="name">HALIM PERDANA KUSAMA</field>
+        <field name="country_id" ref="base.id"/>
+    </record>
+    
+    <record id="import_boarding_bfs" model="import.boarding">
+        <field name="code">BFS</field>
+        <field name="name">BELFAST INT.</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_bhd" model="import.boarding">
+        <field name="code">BHD</field>
+        <field name="name">BELFAST CITY</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_lhr" model="import.boarding">
+        <field name="code">LHR</field>
+        <field name="name">HEATHROW</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_lgw" model="import.boarding">
+        <field name="code">LGW</field>
+        <field name="name">GATWICK</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_stn" model="import.boarding">
+        <field name="code">STN</field>
+        <field name="name">STANSTED</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_ltn" model="import.boarding">
+        <field name="code">LTN</field>
+        <field name="name">LUTON INT.</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_lcy" model="import.boarding">
+        <field name="code">LCY</field>
+        <field name="name">LONDON CITY AIRPORT</field>
+        <field name="country_id" ref="base.uk"/>
+    </record>
+    
+    <record id="import_boarding_thr" model="import.boarding">
+        <field name="code">THR</field>
+        <field name="name">MEHRABAD</field>
+        <field name="country_id" ref="base.ir"/>
+    </record>
+    
+    <record id="import_boarding_snn" model="import.boarding">
+        <field name="code">SNN</field>
+        <field name="name">SHANNON</field>
+        <field name="country_id" ref="base.ie"/>
+    </record>
+    
+    <record id="import_boarding_tlv" model="import.boarding">
+        <field name="code">TLV</field>
+        <field name="name">BEN GURION</field>
+        <field name="country_id" ref="base.il"/>
+    </record>
+    
+    <record id="import_boarding_bri" model="import.boarding">
+        <field name="code">BRI</field>
+        <field name="name">PALESE</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_goa" model="import.boarding">
+        <field name="code">GOA</field>
+        <field name="name">C. COLOMBO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_lin" model="import.boarding">
+        <field name="code">LIN</field>
+        <field name="name">LINATE</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_mxp" model="import.boarding">
+        <field name="code">MXP</field>
+        <field name="name">MALPENSA</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_nap" model="import.boarding">
+        <field name="code">NAP</field>
+        <field name="name">NÁPOLES INT.</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_fco" model="import.boarding">
+        <field name="code">FCO</field>
+        <field name="name">FIUMICINO</field>
+        <field name="country_id" ref="base.it"/>
+    </record>
+    
+    <record id="import_boarding_kin" model="import.boarding">
+        <field name="code">KIN</field>
+        <field name="name">NORMAN MANLEY</field>
+        <field name="country_id" ref="base.jm"/>
+    </record>
+    
+    <record id="import_boarding_ktp" model="import.boarding">
+        <field name="code">KTP</field>
+        <field name="name">TINSON</field>
+        <field name="country_id" ref="base.jm"/>
+    </record>
+    
+    <record id="import_boarding_ngo" model="import.boarding">
+        <field name="code">NGO</field>
+        <field name="name">KOMAKI</field>
+        <field name="country_id" ref="base.jp"/>
+    </record>
+    
+    <record id="import_boarding_kix" model="import.boarding">
+        <field name="code">KIX</field>
+        <field name="name">KANSAI INT.</field>
+        <field name="country_id" ref="base.jp"/>
+    </record>
+    
+    <record id="import_boarding_hnd" model="import.boarding">
+        <field name="code">HND</field>
+        <field name="name">HANEDA</field>
+        <field name="country_id" ref="base.jp"/>
+    </record>
+    
+    <record id="import_boarding_nrt" model="import.boarding">
+        <field name="code">NRT</field>
+        <field name="name">NARITA</field>
+        <field name="country_id" ref="base.jp"/>
+    </record>
+    
+    <record id="import_boarding_nbo" model="import.boarding">
+        <field name="code">NBO</field>
+        <field name="name">KENYATTA</field>
+        <field name="country_id" ref="base.ke"/>
+    </record>
+    
+    <record id="import_boarding_wil" model="import.boarding">
+        <field name="code">WIL</field>
+        <field name="name">WILSON</field>
+        <field name="country_id" ref="base.ke"/>
+    </record>
+    
+    <record id="import_boarding_bey" model="import.boarding">
+        <field name="code">BEY</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.lb"/>
+    </record>
+    
+    <record id="import_boarding_kul" model="import.boarding">
+        <field name="code">KUL</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.my"/>
+    </record>
+    
+    <record id="import_boarding_mla" model="import.boarding">
+        <field name="code">MLA</field>
+        <field name="name">LUQA</field>
+        <field name="country_id" ref="base.mt"/>
+    </record>
+    
+    <record id="import_boarding_cmn" model="import.boarding">
+        <field name="code">CMN</field>
+        <field name="name">MOHAMMED V</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_rba" model="import.boarding">
+        <field name="code">RBA</field>
+        <field name="name">SALE</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    
+    <record id="import_boarding_aca" model="import.boarding">
+        <field name="code">ACA</field>
+        <field name="name">INTERNACIONAL GRAL. JUAN ALVAREZ</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_cun" model="import.boarding">
+        <field name="code">CUN</field>
+        <field name="name">CANCÚN</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mid" model="import.boarding">
+        <field name="code">MID</field>
+        <field name="name">MANUEL REJON</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_mex" model="import.boarding">
+        <field name="code">MEX</field>
+        <field name="name">BENITO JUÁREZ</field>
+        <field name="country_id" ref="base.mx"/>
+    </record>
+    
+    <record id="import_boarding_rgn" model="import.boarding">
+        <field name="code">RGN</field>
+        <field name="name">YANGON INT.</field>
+        <field name="country_id" ref="base.mm"/>
+    </record>
+    
+    <record id="import_boarding_mga" model="import.boarding">
+        <field name="code">MGA</field>
+        <field name="name">INT. AUGUSTO SANDINO</field>
+        <field name="country_id" ref="base.ni"/>
+    </record>
+    
+    <record id="import_boarding_l0s" model="import.boarding">
+        <field name="code">L0S</field>
+        <field name="name">MURTALA MUHAMMED</field>
+        <field name="country_id" ref="base.ng"/>
+    </record>
+    
+    <record id="import_boarding_bgo" model="import.boarding">
+        <field name="code">BGO</field>
+        <field name="name">FLESLAND</field>
+        <field name="country_id" ref="base.no"/>
+    </record>
+    
+    <record id="import_boarding_fbu" model="import.boarding">
+        <field name="code">FBU</field>
+        <field name="name">FORNEBU</field>
+        <field name="country_id" ref="base.no"/>
+    </record>
+    
+    <record id="import_boarding_gen" model="import.boarding">
+        <field name="code">GEN</field>
+        <field name="name">GARDERMOEN</field>
+        <field name="country_id" ref="base.no"/>
+    </record>
+    
+    <record id="import_boarding_akl" model="import.boarding">
+        <field name="code">AKL</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.nz"/>
+    </record>
+    
+    <record id="import_boarding_khi" model="import.boarding">
+        <field name="code">KHI</field>
+        <field name="name">QUAID - E - AZAM</field>
+        <field name="country_id" ref="base.pk"/>
+    </record>
+    
+    <record id="import_boarding_pty" model="import.boarding">
+        <field name="code">PTY</field>
+        <field name="name">TOCUMEN INTL.</field>
+        <field name="country_id" ref="base.pa"/>
+    </record>
+    
+    <record id="import_boarding_asu" model="import.boarding">
+        <field name="code">ASU</field>
+        <field name="name">SILVIO PETTIROSSI</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+    
+    <record id="import_boarding_iqt" model="import.boarding">
+        <field name="code">IQT</field>
+        <field name="name">FCO. SECADA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_lim" model="import.boarding">
+        <field name="code">LIM</field>
+        <field name="name">JORGE CHAVEZ INT.</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_piu" model="import.boarding">
+        <field name="code">PIU</field>
+        <field name="name">PIURA</field>
+        <field name="country_id" ref="base.pe"/>
+    </record>
+    
+    <record id="import_boarding_ppt" model="import.boarding">
+        <field name="code">PPT</field>
+        <field name="name">FAAA</field>
+        <field name="country_id" ref="base.pf"/>
+    </record>
+    
+    <record id="import_boarding_waw" model="import.boarding">
+        <field name="code">WAW</field>
+        <field name="name">OKECIE</field>
+        <field name="country_id" ref="base.pl"/>
+    </record>
+    
+    <record id="import_boarding_lis" model="import.boarding">
+        <field name="code">LIS</field>
+        <field name="name">LISBOA</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_opo" model="import.boarding">
+        <field name="code">OPO</field>
+        <field name="name">PORTO</field>
+        <field name="country_id" ref="base.pt"/>
+    </record>
+    
+    <record id="import_boarding_sju" model="import.boarding">
+        <field name="code">SJU</field>
+        <field name="name">L. MUÑÓZ MARÍN INT.</field>
+        <field name="country_id" ref="base.pr"/>
+    </record>
+    
+    <record id="import_boarding_sig" model="import.boarding">
+        <field name="code">SIG</field>
+        <field name="name">ISLA GRANDE</field>
+        <field name="country_id" ref="base.pr"/>
+    </record>
+    
+    <record id="import_boarding_prg" model="import.boarding">
+        <field name="code">PRG</field>
+        <field name="name">RUZYNE</field>
+        <field name="country_id" ref="base.cz"/>
+    </record>
+    
+    <record id="import_boarding_sdq" model="import.boarding">
+        <field name="code">SDQ</field>
+        <field name="name">LAS AMÉRICAS</field>
+        <field name="country_id" ref="base.do"/>
+    </record>
+    
+    <record id="import_boarding_bbu" model="import.boarding">
+        <field name="code">BBU</field>
+        <field name="name">BANEASA</field>
+        <field name="country_id" ref="base.ro"/>
+    </record>
+    
+    <record id="import_boarding_otp" model="import.boarding">
+        <field name="code">OTP</field>
+        <field name="name">OTOPENI</field>
+        <field name="country_id" ref="base.ro"/>
+    </record>
+    
+    <record id="import_boarding_dkr" model="import.boarding">
+        <field name="code">DKR</field>
+        <field name="name">YOFF</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+    
+    <record id="import_boarding_sin" model="import.boarding">
+        <field name="code">SIN</field>
+        <field name="name">CHANGI</field>
+        <field name="country_id" ref="base.sg"/>
+    </record>
+    
+    <record id="import_boarding_cpt" model="import.boarding">
+        <field name="code">CPT</field>
+        <field name="name">CAPETOWN INT.</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_jnb" model="import.boarding">
+        <field name="code">JNB</field>
+        <field name="name">JOHANNESBURG INT.</field>
+        <field name="country_id" ref="base.za"/>
+    </record>
+    
+    <record id="import_boarding_arn" model="import.boarding">
+        <field name="code">ARN</field>
+        <field name="name">ARLANDA</field>
+        <field name="country_id" ref="base.se"/>
+    </record>
+    
+    <record id="import_boarding_bma" model="import.boarding">
+        <field name="code">BMA</field>
+        <field name="name">BROMMA</field>
+        <field name="country_id" ref="base.se"/>
+    </record>
+    
+    <record id="import_boarding_bsl" model="import.boarding">
+        <field name="code">BSL</field>
+        <field name="name">BASEL</field>
+        <field name="country_id" ref="base.ch"/>
+    </record>
+    
+    <record id="import_boarding_gva" model="import.boarding">
+        <field name="code">GVA</field>
+        <field name="name">GENEVA/COINTRIN</field>
+        <field name="country_id" ref="base.ch"/>
+    </record>
+    
+    <record id="import_boarding_zrh" model="import.boarding">
+        <field name="code">ZRH</field>
+        <field name="name">ZURICH</field>
+        <field name="country_id" ref="base.ch"/>
+    </record>
+    
+    <record id="import_boarding_pmb" model="import.boarding">
+        <field name="code">PMB</field>
+        <field name="name">ZANDERIJ</field>
+        <field name="country_id" ref="base.sr"/>
+    </record>
+    
+    <record id="import_boarding_tpe" model="import.boarding">
+        <field name="code">TPE</field>
+        <field name="name">CHIANG KAI SHEK INT.</field>
+        <field name="country_id" ref="base.tw"/>
+    </record>
+    
+    <record id="import_boarding_bkk" model="import.boarding">
+        <field name="code">BKK</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.th"/>
+    </record>
+    
+    <record id="import_boarding_pos" model="import.boarding">
+        <field name="code">POS</field>
+        <field name="name">PIARCO</field>
+        <field name="country_id" ref="base.tt"/>
+    </record>
+    
+    <record id="import_boarding_ist" model="import.boarding">
+        <field name="code">IST</field>
+        <field name="name">ATATURK</field>
+        <field name="country_id" ref="base.tr"/>
+    </record>
+    
+    <record id="import_boarding_kbp" model="import.boarding">
+        <field name="code">KBP</field>
+        <field name="name">BORISPOL</field>
+        <field name="country_id" ref="base.ua"/>
+    </record>
+    
+    <record id="import_boarding_iev" model="import.boarding">
+        <field name="code">IEV</field>
+        <field name="name">ZHULHANY</field>
+        <field name="country_id" ref="base.ua"/>
+    </record>
+    
+    <record id="import_boarding_mvd" model="import.boarding">
+        <field name="code">MVD</field>
+        <field name="name">CARRASCO</field>
+        <field name="country_id" ref="base.uy"/>
+    </record>
+    
+    <record id="import_boarding_mco" model="import.boarding">
+        <field name="code">MCO</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_atl" model="import.boarding">
+        <field name="code">ATL</field>
+        <field name="name">HARTSFIELD INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_bwi" model="import.boarding">
+        <field name="code">BWI</field>
+        <field name="name">BALTIMORE-WASH INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_bos" model="import.boarding">
+        <field name="code">BOS</field>
+        <field name="name">LOGAN INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ord" model="import.boarding">
+        <field name="code">ORD</field>
+        <field name="name">O'HARE-INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_mdw" model="import.boarding">
+        <field name="code">MDW</field>
+        <field name="name">MIDWAY</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_cgx" model="import.boarding">
+        <field name="code">CGX</field>
+        <field name="name">MEIGS FIELD</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_dfw" model="import.boarding">
+        <field name="code">DFW</field>
+        <field name="name">DALLAS/FT.WORTH INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_hou" model="import.boarding">
+        <field name="code">HOU</field>
+        <field name="name">HOBBY</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_iah" model="import.boarding">
+        <field name="code">IAH</field>
+        <field name="name">GEORGE BUSH</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_lax" model="import.boarding">
+        <field name="code">LAX</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_mem" model="import.boarding">
+        <field name="code">MEM</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_mia" model="import.boarding">
+        <field name="code">MIA</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_msy" model="import.boarding">
+        <field name="code">MSY</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_jfk" model="import.boarding">
+        <field name="code">JFK</field>
+        <field name="name">J. F. KENNEDY INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_lga" model="import.boarding">
+        <field name="code">LGA</field>
+        <field name="name">LA GUARDIA</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ewr" model="import.boarding">
+        <field name="code">EWR</field>
+        <field name="name">NEWARK INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_pdx" model="import.boarding">
+        <field name="code">PDX</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_sfo" model="import.boarding">
+        <field name="code">SFO</field>
+        <field name="name">INTERNATIONAL</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_oak" model="import.boarding">
+        <field name="code">OAK</field>
+        <field name="name">METROPOLITAN OAKLAND</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_sea" model="import.boarding">
+        <field name="code">SEA</field>
+        <field name="name">SEATTLE-TACOMA INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_iad" model="import.boarding">
+        <field name="code">IAD</field>
+        <field name="name">DULLES INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_dca" model="import.boarding">
+        <field name="code">DCA</field>
+        <field name="name">REAGAN INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_bwi" model="import.boarding">
+        <field name="code">BWI</field>
+        <field name="name">BALTIMORE/WASHINGTON INT.</field>
+        <field name="country_id" ref="base.us"/>
+    </record>
+    
+    <record id="import_boarding_ccs" model="import.boarding">
+        <field name="code">CCS</field>
+        <field name="name">SIMÓN BOLÍVAR</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_mar" model="import.boarding">
+        <field name="code">MAR</field>
+        <field name="name">LA CHINITA</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_pmv" model="import.boarding">
+        <field name="code">PMV</field>
+        <field name="name">DEL CARIBE</field>
+        <field name="country_id" ref="base.ve"/>
+    </record>
+    
+    <record id="import_boarding_stu" model="import.boarding">
+        <field name="code">STU</field>
+        <field name="name">STUTTGART</field>
+        <field name="country_id" ref="base.de"/>
+    </record>
+    
+    <record id="import_boarding_geham" model="import.boarding">
+        <field name="code">GEHAM</field>
+        <field name="name">HAMBURGO</field>
+        <field name="country_id" ref="base.ch"/>
+    </record>
+    
+    <record id="import_boarding_spbre" model="import.boarding">
+        <field name="code">SPBRE</field>
+        <field name="name">BARCELONA</field>
+        <field name="country_id" ref="base.es"/>
+    </record>
+    
+    </data>
+</odoo>

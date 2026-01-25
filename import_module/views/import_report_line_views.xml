@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista lista -->
+    <record id="view_penta_import_report_line_list" model="ir.ui.view">
+        <field name="name">penta.import.report.line.list</field>
+        <field name="model">penta.import.report.line</field>
+        <field name="arch" type="xml">
+            <list string="Reporte Importaciones" create="false" edit="false">
+
+                <header>
+                    <!-- Botón header: abre el wizard -->
+                    <button name="%(import_module.action_penta_import_report_wizard)d"
+                            type="action"
+                            string="Generar / Exportar"
+                            class="btn-primary"
+                            display="always"/>
+                </header>
+                <field name="x_import_name"/>
+                <field name="x_po_line_name"/>
+                <field name="x_product"/>
+                <field name="x_qty"/>
+                <field name="x_price_unit"/>
+                <field name="x_price_subtotal"/>
+                <field name="x_incoterm"/>
+                <field name="x_eta"/>
+                <field name="x_real_eta"/>
+                <field name="x_cfr"/>
+                <field name="x_cif"/>
+                <field name="x_total_importacion"/>
+                <field name="x_inv_number"/>
+                <field name="x_inv_date"/>
+                <field name="x_inv_total"/>
+                <field name="purchase_line_id" optional="hide"/>
+                <field name="x_freight_agent" optional="hide"/>
+                <field name="x_guide_bl" optional="hide"/>
+                <field name="x_containers_number" optional="hide"/>
+                <field name="x_type_of_load" optional="hide"/>
+                <field name="x_date_shipment" optional="hide"/>
+                <field name="x_transit_time" optional="hide"/>
+                <field name="x_hazardous_load" optional="hide"/>
+                <field name="x_customs_regime" optional="hide"/>
+                <field name="x_departure_port" optional="hide"/>
+                <field name="x_free_days_ret" optional="hide"/>
+                <field name="x_free_days_due" optional="hide"/>
+                <field name="x_supplier_receipt_date" optional="hide"/>
+                <field name="x_agent_send_date" optional="hide"/>
+                <field name="x_ins_pol_number" optional="hide"/>
+                <field name="x_virtual_bill" optional="hide"/>
+                <field name="x_dai_field" optional="hide"/>
+                <field name="x_liq_id" optional="hide"/>
+                <field name="x_liq_date" optional="hide"/>
+                <field name="x_attr_categoria" optional="hide"/>
+                <field name="x_attr_tipo" optional="hide"/>
+                <field name="x_attr_anio" optional="hide"/>
+                <field name="x_attr_color" optional="hide"/>
+                <field name="x_sri_subcategory" optional="hide"/>
+                <field name="x_lc_freight" optional="hide"/>
+                <field name="x_lc_cif_insurance" optional="hide"/>
+                <field name="x_lc_tax_adval" optional="hide"/>
+                <field name="x_lc_tax_fod" optional="hide"/>
+                <field name="x_lc_tax_ice" optional="hide"/>
+                <field name="x_lc_tax_recargo" optional="hide"/>
+                <field name="x_total_aranceles" optional="hide"/>
+                <field name="x_lc_tax_interes" optional="hide"/>
+                <field name="x_total_aranceles_interes" optional="hide"/>
+                <field name="x_other_costs_unassigned_lct" optional="hide"/>
+                <field name="x_iva_customs" optional="hide"/>
+                <field name="x_pay_date" optional="hide"/>
+                <field name="x_pay_method" optional="hide"/>
+                <field name="x_pay_number" optional="hide"/>
+                <field name="x_pay_journal" optional="hide"/>
+
+            </list>
+        </field>
+    </record>
+
+
+
+</odoo>

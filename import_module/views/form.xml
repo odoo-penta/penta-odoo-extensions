@@ -1,0 +1,198 @@
+<odoo>
+     <!-- Definir la vista de búsqueda -->
+    <record id="import_search_view" model="ir.ui.view">
+        <field name="name">import.property.search</field>
+        <field name="model">x.import</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre"/>
+                <field name="date" string="Fecha"/>
+                <field name="country" string="Origen"/>
+                <field name="incoterm" string="Referencia"/>
+                <field name="state" string="Estado"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="import_form_view" model="ir.ui.view">
+        <field name="name">import.request.view.form</field>
+        <field name="model">x.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Request">
+                <header>
+                    <button name="change_state"
+                            string="Confirmar"
+                            type="object"
+                            class="oe_highlight"
+                            confirm="¿Está seguro que desea cambiar el estado?"
+                            invisible="state in ('ready', 'new')"/>
+                    <field name="state"
+                           widget="statusbar"
+                           nolabel="1"
+                            readonly="1"
+                           statusbar_visible="process,ready"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="get_purchase_order_count"
+                                type="object"
+                                icon="fa-shopping-cart"
+                                invisible="state == 'new'">
+                            <field string="Compras" name="purchase_order_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button"
+                                name="get_account_move_count"
+                                type="object"
+                                icon="fa-pencil-square-o"
+                                invisible="state == 'new'">
+                            <field string="Facturas" name="account_move_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button"
+                                name="get_landed_costs_count"
+                                type="object"
+                                icon="fa-plus-square"
+                                invisible="state == 'new'">
+                            <field string="Costes en destino" name="landed_costs_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button"
+                                name="get_stock_picking_count"
+                                type="object"
+                                icon="fa-cubes"
+                                invisible="state == 'new'">
+                            <field string="Movimientos de Stock" name="stock_picking_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button"
+                                name="get_related_payments_action"
+                                type="object"
+                                icon="fa-credit-card"
+                                invisible="state == 'new'">
+                            <field name="payment_count" string="Pagos" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                            <field name="state" invisible="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="record_count" invisible="1"/>
+                            <field name="sequence_number" string="Sequencia de nuevo"
+                                   invisible="record_count != 0"/>
+                            <field name="reference" string="Referencia" class="custom-field-color"/>
+                            <field name="user_id" string="Responsable"/>
+                            <field name="guide_bl" string="Guía de importación"/>
+                            <field name="date_shipment" string="Fecha estimada de embarque"/>
+                            <field name="estimated_time_of_arriva" string="Fecha estimada de llegada"/>
+                            <field name="transit_time" string="Tiempo de tránsito" readonly="1"/>
+                            <field name="real_estimated_time_of_delivery" string="Fecha de llegada real"/>
+                            <field name="date_of_departure_from_customs" string="Fecha de salida de puerto"/>
+                            <field name="arrival_date_at_warehouse" string="Fecha de llegada al almacén"/>
+                            <field name="date_last_delivery_warehouse" string="Fecha de última entrega en almacén"/>
+                            <field name="date_entry_into_inventory" string="Fecha de ingreso a inventario" readonly="1"/>
+                            <field name="supplier_receipt_date" string="Fecha recepción proveedor"/>
+                            <field name="country" string="País de origen"/>
+                            <field name="port_of_loading_id" string="Puerto de embarque"/>
+                            <field name="port_of_discharge_id" string="Puerto de llegada"/>
+                            <field name="journal_id"/>
+                            <field name="payment_method_id" 
+                                domain="[('payment_type', '=', 'outbound'), ('journal_id', '=', journal_id)]"/>
+                            <field name="payment_reference"/>
+                        </group>
+                        <group>
+                            <field name="date" string="Fecha guía de importación"/>
+                            
+                            <field name="dai" string="DAI"/>
+                            <field name="id_liquidation" string="ID Liquidación"/>
+                            <field name="date_liquidation" string="Fecha de liquidación"/>
+                            <field name="date_of_payment" string="Fecha de pago de liquidación"/>
+                            <field name="days_clearance" string="Días de desaduanización"/>
+                            <field name="freight_agent" string="Agente de carga"/>
+                            <field name="agent_send_date" string="Fecha envío agente"/>
+                            <field name="via" string="Vía"/>
+                            <field name="type_of_load" string="Tipo de carga"/>
+                            <field name="hazardous_load" string="Carga peligrosa"/>
+                            <field name="containers_number" string="Número de contenedores"/>
+                            <field name="free_days_container_return" string="Días libres devolución contenedor"/>
+                            <field name="free_days_due_date" string="Fecha de vencimiento días libres" readonly="1"/>
+                            <field name="incoterm" string="Incoterm"/>
+                            <field name="customs_regime_id"/>
+                            <field name="insurance_policy_number" string="Número de póliza de seguro"/>
+                            <field name="virtual_billing" string="Facturación virtual"/>
+                            <field name="liquidation_value" string="Valor de liquidación"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Línea de compra">
+                            <group>
+                                <field name="purchase_order_line_ids" string="">
+                                    <list>
+                                        <field name="currency_id" column_invisible="True" />
+                                        <field name="order_id" string="Referencia del pedido"/>
+                                        <field name="product_id" string="Descripción"/>
+                                        <field name="partner_id" string="Proveedor"/>
+                                        <field name="name" string="Producto"/>
+                                        <field name="price_unit" string="Precio Unitario"/>
+                                        <field name="product_uom_qty" sum="Cantidad" decoration-bf="1" string="Cantidad"/>
+                                        <field name="product_uom" string="Unidad de medida"/>
+                                        <field name="price_subtotal" sum="Subtotal" decoration-bf="1" string="Subtotal"/>
+                                        <field name="date_planned" string="Entrega esperada"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Movimiento de existencia">
+                            <group>
+                                <field name="stock_move_ids" string="">
+                                    <list>
+                                        <field name="origin" string="Documento de origen"/>
+                                        <field name="product_id" string="Producto"/>
+                                        <field name="product_uom_qty" sum="Demanda" decoration-bf="1" string="Demanda"/>
+                                        <field name="product_uom" string="Unidad de medida" column_invisible="True"/>
+                                        <field name="state" string="Estado"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Línea de gasto">
+                            <group>
+                                <field name="landed_cost_move_line_ids" string="">
+                                    <list>
+                                        <field name="currency_id" column_invisible="True" />
+                                        <field name="date" string="Fecha"/>
+                                        <field name="company_id" string="Compañía"/>
+                                        <field name="move_id" string="Asiento Contable"/>
+                                        <field name="account_id" string="Cuenta"/>
+                                        <field name="partner_id" string="Empresa"/>
+                                        <field name="name" string="Etiqueta"/>
+                                        <field name="matching_number" string="Conciliación"/>
+                                        <field name="debit" sum="Debe" decoration-bf="1" string="Debe"/> 
+                                        <field name="credit" sum="Haber" decoration-bf="1" string="Haber"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Líneas de costo">
+                            <group>
+                                <field name="stock_landed_cost_line_ids" string="">
+                                    <list>
+                                        <field name="currency_id" column_invisible="True" />
+                                        <field name="product_id" string="Producto"/>
+                                        <field name="name" string="Descripción"/>
+                                        <field name="account_id" string="Cuenta"/>
+                                        <field name="split_method" string="Método de división"/>
+                                        <field name="price_unit" sum="Coste" decoration-bf="1" string="Coste"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

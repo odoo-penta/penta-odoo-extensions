@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Vista de lista -->
+    <record id="view_import_boarding_list" model="ir.ui.view">
+        <field name="name">import.boarding.list</field>
+        <field name="model">import.boarding</field>
+        <field name="arch" type="xml">
+            <list string="Puertos / Ciudades de Embarque">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="country_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+    <record id="view_import_boarding_form" model="ir.ui.view">
+        <field name="name">import.boarding.form</field>
+        <field name="model">import.boarding</field>
+        <field name="arch" type="xml">
+            <form string="Puerto / Ciudad de Embarque">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="country_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista -->
+    <record id="action_import_boarding" model="ir.actions.act_window">
+        <field name="name">Puertos / Ciudades de Embarque</field>
+        <field name="res_model">import.boarding</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea y gestiona los puertos o ciudades de embarque utilizados en importaciones.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menú Importaciones -->
+    <menuitem
+        id="menu_purchase_config_importaciones"
+        name="Importaciones"
+        parent="purchase.menu_purchase_config"
+        sequence="40"
+    />
+
+    <!-- Submenú Embarque -->
+    <menuitem
+        id="menu_import_boarding"
+        name="Embarque"
+        parent="menu_purchase_config_importaciones"
+        action="action_import_boarding"
+        sequence="10"
+    />
+</odoo>

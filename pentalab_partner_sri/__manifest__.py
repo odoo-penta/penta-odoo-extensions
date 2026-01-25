@@ -2,7 +2,7 @@
     'name': 'Pentalab Partner Sri',
     'version': '1.0',
     'category': 'POS',
-    'author': 'Pentalab',
+    'author': 'PentaLab',
     'website': 'https://pentalab.tech/',
     'license': 'LGPL-3',
     'depends': [

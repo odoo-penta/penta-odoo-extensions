@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_only_form_inherit_view_penta_mrp" model="ir.ui.view">
+        <field name="name">product.template.only.form.inherit.view.penta.mrp</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="cost_standard_eljuri.product_template_only_form_inherit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price_customer']" position="attributes">
+                <attribute name="readonly">not can_edit_stardard_price</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

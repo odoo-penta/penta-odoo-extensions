@@ -22,8 +22,10 @@
     'website': "https://pentalab.tech/",
     'license': 'OPL-1',
     'category': 'Manufacturing',
-    'version': '18.0.2.4.0',
-    'depends': ['mrp'],
+    'version': '18.0.3.0.0',
+    'depends': [
+        'mrp'
+    ],
     'data': [
         "data/ir_sequence_data.xml",
         
@@ -37,6 +39,9 @@
         "views/stock_lot_views.xml",
         "views/sri_motor_subclass_views.xml",
         "views/wizard_views.xml",
+        'views/stock_quant_views.xml',
+        'views/stock_move_views.xml',
+        'views/stock_valuation_layer_views.xml',
     ],
     'installable': True,
     'application': True,

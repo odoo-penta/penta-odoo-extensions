@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="mrp_bom_form_view_inherit_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.bom.form.view.inherit.penta.mrp</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='components']/field[@name='bom_line_ids']/list/field[@name='product_uom_id']" position="after">
+                    <field name="total_mp_cost" sum="Total"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_bom_form_inherit_view_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.bom.form.inherit.view.penta.mrp</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="cost_standard_eljuri.mrp_bom_form_inherit_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='costs']/field[@name='mrp_bom_cost_ids']/list/field[@name='value']" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </xpath>
+                <xpath expr="//div[field[@name='cost_per_unit']]" position="after">
+                    <label for="unit_cost_mp" id="unit_cost_mp_label" invisible="standard_cost == False"/>
+                    <div name="unit_cost_mp" invisible="standard_cost == False">
+                        <field name="unit_cost_mp" class="oe_inline"/>
+                    </div>
+
+                    <label for="unit_cost_mod" id="unit_cost_mod_label" invisible="standard_cost == False"/>
+                    <div name="unit_cost_mod" invisible="standard_cost == False">
+                        <field name="unit_cost_mod" class="oe_inline"/>
+                    </div>
+
+                    <label for="unit_cost_cif" id="unit_cost_cif_label" invisible="standard_cost == False"/>
+                    <div name="unit_cost_cif" invisible="standard_cost == False">
+                        <field name="unit_cost_cif" class="oe_inline"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

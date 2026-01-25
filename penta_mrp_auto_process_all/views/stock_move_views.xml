@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_stock_autoprocess_list_cluster" model="ir.ui.view">
+        <field name="name">stock.move.line.autoprocess.list.cluster</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="before">
+                <field name="lot_pdi"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_autoprocess_search_inherit" model="ir.ui.view">
+        <field name="name">stock.autoprocess.inherit.search</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="lot_pdi" string="PDI"/>
+                <filter string="PDI"
+                    name="filter_with_pdi"
+                    domain="[('lot_pdi','!=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="mrp_routing_workcenter_tree_view_inherit_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.tree.view.inherit.penta.mrp</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='time_cycle']" position="after">
+                    <field name="workcenter_team_costs_hour" sum="Total costs hour"/>
+                    <field name="total_operation_cost" sum="Total cost operation"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_bom_tree_view_inherit_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.bom.tree.view.inherit.penta.mrp</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_bom_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='time_cycle']" position="after">
+                    <field name="workcenter_team_costs_hour" sum="Total costs hour"/>
+                    <field name="total_operation_cost" sum="Total cost operation"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_bom_form_view_inherit_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.bom.form.view.inherit.penta.mrp</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='operation_ids']" position="replace">
+                    <field name="operation_ids"
+                            invisible="type not in ('normal', 'phantom')"
+                            groups="mrp.group_mrp_routings"
+                            context="{'bom_id_invisible': True, 'default_bom_id': id, 'list_view_ref': 'penta_mrp.mrp_routing_workcenter_bom_tree_view_inherit_penta_mrp'}"/>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

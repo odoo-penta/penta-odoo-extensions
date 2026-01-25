@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class StockProductionLot(models.Model):
@@ -15,3 +15,24 @@ class StockProductionLot(models.Model):
         ("uniq_cpn_company", "unique(company_id, cpn)", "El CPN debe ser único por compañía."),
         ("uniq_pdi_company", "unique(company_id, pdi)", "El PDI debe ser único por compañía."),
     ]
+
+
+class StockQuantAutoProcess(models.Model):
+    _inherit = 'stock.quant'
+
+    lot_pdi = fields.Char(
+        string="PDI",
+        related='lot_id.pdi',
+        store=True  ,
+        readonly=True
+    )
+
+class StockValuationLayer(models.Model):
+    _inherit = 'stock.valuation.layer'
+
+    lot_pdi = fields.Char(
+        string="PDI",
+        related='lot_id.pdi',
+        store=True,
+        readonly=True
+    )

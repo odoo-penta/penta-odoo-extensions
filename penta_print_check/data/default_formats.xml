@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ec_check_format_generic" model="ec.check.print.format">
+        <field name="name">Generic format - Penta</field>
+        <field name="orientation">portrait</field>
+    </record>
+
+</odoo>

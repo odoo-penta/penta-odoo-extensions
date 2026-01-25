@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción del reporte PDF (aparece en Imprimir del formulario de x.import) -->
+    <record id="action_report_x_import_header" model="ir.actions.report">
+        <field name="name">Ficha de Importación (encabezado)</field>
+        <field name="model">x.import</field>
+        <!-- Debe apuntar al <template> con el documento -->
+        <field name="report_name">import_module.report_x_import_header_document</field>
+        <field name="report_type">qweb-pdf</field>
+
+        <!-- Enlaza el reporte al engranaje (binding) del modelo -->
+        <field name="binding_model_id" ref="import_module.model_x_import"/>
+        <field name="binding_type">report</field>
+
+        <!-- Opcional: imprime en cada registro seleccionado -->
+        <field name="print_report_name">'Ficha_Import_' + (object.name or 'sin_nombre')</field>
+    </record>
+</odoo>

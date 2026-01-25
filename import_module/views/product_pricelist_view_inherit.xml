@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_pricelist_form_inherit_sri" model="ir.ui.view">
+    <field name="name">product.pricelist.form.inherit.sri</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view"/>
+    <field name="arch" type="xml">
+        <field name="company_id" position="after">
+            <field name="sri_list_price"/>
+        </field>
+    </field>
+</record>
+
+</odoo>
+
+

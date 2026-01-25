@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="kardex_report">
+        <t t-call="web.external_layout">
+            <t t-set="doc_ids" t-value="doc_ids"/>
+            <t t-set="doc_model" t-value="doc_model"/>
+            <t t-set="docs" t-value="docs"/>
+            
+            <main class="page" style="font-size: 10px;">
+                <div class="label" style="text-align: center; margin-bottom: 10px;">
+                    <h2>Kardex Report</h2>
+                </div>
+
+                <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f0f0f0;">
+                            <th>Date</th>
+                            <th>Movement Type</th>
+                            <th>Reference</th>
+                            <th>Voucher</th>
+                            <th>Quantity In</th>
+                            <th>Cost Unit In</th>
+                            <th>Cost Total In</th>
+                            <th>Quantity Out</th>
+                            <th>Cost Unit Out</th>
+                            <th>Cost Total Out</th>
+                            <th>Quantity Balance</th>
+                            <th>Cost Avg Unit</th>
+                            <th>Cost Total Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="get_kardex_lines">
+                            <tr t-foreach="get_kardex_lines" t-as="line">
+                                <td><t t-esc="line['date']"/></td>
+                                <td><t t-esc="line['type']"/></td>
+                                <td><t t-esc="line['reference']"/></td>
+                                <td><t t-esc="line['voucher']"/></td>
+                                <td><t t-esc="line['qty_in']"/></td>
+                                <td><t t-esc="line['cost_in_unit']"/></td>
+                                <td><t t-esc="line['cost_in_total']"/></td>
+                                <td><t t-esc="line['qty_out']"/></td>
+                                <td><t t-esc="line['cost_out_unit']"/></td>
+                                <td><t t-esc="line['cost_out_total']"/></td>
+                                <td><t t-esc="line['qty_balance']"/></td>
+                                <td><t t-esc="line['cost_avg_unit']"/></td>
+                                <td><t t-esc="line['cost_total_balance']"/></td>
+                            </tr>
+                        </t>
+                        <t t-if="not get_kardex_lines">
+                            <tr>
+                                <td colspan="13" style="text-align: center;">No data available</td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </main>
+        </t>
+    </template>
+</odoo>

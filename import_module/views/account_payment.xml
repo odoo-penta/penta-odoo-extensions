@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_account_payment_form_inherit_import" model="ir.ui.view">
+    <field name="name">account.payment.form.inherit.import</field>
+    <field name="model">account.payment</field>
+    <field name="inherit_id" ref="account.view_account_payment_form"/>
+    <field name="arch" type="xml">
+
+       <!-- Insertar DEBAJO del campo memo -->
+      <xpath expr="//field[@name='memo']" position="after">
+        <field name="id_import"
+               string="Guía de importación"
+               invisible="payment_type != 'outbound'"
+               colspan="2"/>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>

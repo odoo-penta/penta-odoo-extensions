@@ -10,6 +10,13 @@ class StockMoveLine(models.Model):
     cpn_display = fields.Char(string="CPN", related="lot_id.cpn", store=False, readonly=True)
     pdi_display = fields.Char(string="PDI", related="lot_id.pdi", store=False, readonly=True)
 
+    lot_pdi = fields.Char(
+        string="PDI",
+        related='lot_id.pdi',
+        store=True,
+        readonly=True
+    )
+    
     def action_generate_cpn_pdi_line(self):
         """Abrir wizard para GENERAR SOLO ESTA LÍNEA de producto terminado."""
         self.ensure_one()

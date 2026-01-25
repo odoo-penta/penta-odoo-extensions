@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* penta_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-08 16:21+0000\n"
+"PO-Revision-Date: 2026-01-08 11:24-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: penta_mrp
+#: model:ir.model,name:penta_mrp.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de materiales"
+
+#. module: penta_mrp
+#: model:ir.model,name:penta_mrp.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Línea de lista de materiales"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_bom__unit_cost_cif
+msgid "Cost unit - CIF"
+msgstr "Costo unidad - CIF"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_bom__unit_cost_mod
+msgid "Cost unit - MOD"
+msgstr "Costo unidad - MOD"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_bom__unit_cost_mp
+msgid "Cost unit - MP"
+msgstr "Costo unidad - MP"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_routing_workcenter__workcenter_team_costs_hour
+msgid "Coste por Hora"
+msgstr "Costo por hora"
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_routing_workcenter__workcenter_team_costs_hour
+msgid "Coste por hora del centro de trabajo"
+msgstr "Costo por hora del centro de trabajo"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "Default Duration"
+msgstr "Duración predeterminada"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_routing_workcenter__time_cycle_minutes
+msgid "Time Cycle"
+msgstr "Duración predeterminada"
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_routing_workcenter__time_cycle_minutes
+msgid "Time cycle in minutes for the work center operation."
+msgstr "Duración en minutos para la operación del centro de trabajo."
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_bom_form_inherit_view_penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_bom_form_view_inherit_penta_mrp
+msgid "Total"
+msgstr ""
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_bom_line__total_mp_cost
+msgid "Total Material Cost"
+msgstr "Costo total MP"
+
+#. module: penta_mrp
+#: model:ir.model.fields,field_description:penta_mrp.field_mrp_routing_workcenter__total_operation_cost
+msgid "Total Operation Cost"
+msgstr "Costo total MOD"
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_routing_workcenter__total_operation_cost
+msgid "Total cost based on workcenter hourly cost and time cycle."
+msgstr "Costo total basado en el costo por hora del centro de trabajo y el ciclo de tiempo."
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_routing_workcenter_bom_tree_view_inherit_penta_mrp
+msgid "Total cost operation"
+msgstr "Costo total operación"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_routing_workcenter_bom_tree_view_inherit_penta_mrp
+msgid "Total costs hour"
+msgstr "Costos totales por hora"
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_bom_line__total_mp_cost
+msgid "Total material cost based on standard price and quantity."
+msgstr "Costo total del material basado en precio y cantidad estándar."
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_bom__unit_cost_cif
+msgid "Unit cost of indirect manufacturing costs in the BOM."
+msgstr "Coste unitario de los costes indirectos de fabricación en la lista de materiales."
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_bom__unit_cost_mod
+msgid "Unit cost of labor in the BOM."
+msgstr "Costo unitario de mano de obra en la lista de materiales."
+
+#. module: penta_mrp
+#: model:ir.model.fields,help:penta_mrp.field_mrp_bom__unit_cost_mp
+msgid "Unit cost of materials in the BOM."
+msgstr "Costo unitario de los materiales en la lista de materiales."
+
+#. module: penta_mrp
+#: model:ir.model,name:penta_mrp.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr "Uso del centro de producción"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "hours:minutes"
+msgstr "horas:minutos"
+
+#. module: penta_mrp
+#: model_terms:ir.ui.view,arch_db:penta_mrp.mrp_workorder_operation_form_view_inherit_penta
+msgid "minutes"
+msgstr "minutos"

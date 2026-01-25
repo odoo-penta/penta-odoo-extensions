@@ -1,0 +1,9 @@
+<odoo>
+    <record id="action_open_kardex_product" model="ir.actions.server">
+        <field name="name">View Kardex</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_open_kardex()</field>
+    </record>
+</odoo>

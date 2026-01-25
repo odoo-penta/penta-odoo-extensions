@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_stock_valuation_layer_list_inherit_motor" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.list.inherit.motor</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="lot_motor_number" optional="show"/>
+                <field name="lot_ramv" optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+     <record id="view_stock_valuation_layer_search_inherit_motor" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.search.inherit.motor</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.view_inventory_valuation_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="lot_motor_number" string="Motor"/>
+                <field name="lot_ramv" string="RAMV"/>
+                <filter string="Motor Number"
+                    name="filter_wit_motor"
+                    domain="[('lot_motor_number','!=',False)]"/>
+
+                <filter string="RAMV"
+                        name="filter_wit_ramv"
+                        domain="[('lot_ramv','!=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

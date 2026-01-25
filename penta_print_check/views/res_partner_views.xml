@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_property_form_inherit_penta_check" model="ir.ui.view">
+        <field name="name">res.partner.property.form.inherit.penta.check</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='accounting_automation']" position="after">
+                <group name='print_check' string='Check printing'>
+                    <field name="name_print_check"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

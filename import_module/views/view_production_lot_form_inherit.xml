@@ -1,0 +1,15 @@
+<odoo>
+  <record id="view_stock_lot_form_inherit_import_id" model="ir.ui.view">
+    <field name="name">stock.lot.form.import.id</field>
+    <field name="model">stock.lot</field>
+    <field name="inherit_id" ref="stock.view_production_lot_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='main_group']/group[2]" position="inside">
+        <label for="import_id"/>
+        <div class="o_row">
+          <field name="import_id" string="Carpeta de importación" options="{'no_create': True}" readonly="1"/>
+        </div>
+      </xpath>
+    </field>
+  </record>
+</odoo>

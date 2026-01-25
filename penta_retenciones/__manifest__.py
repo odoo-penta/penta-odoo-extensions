@@ -1,7 +1,7 @@
 {
     'name': 'Pentalab Retenciones',
     'sumary':'Pentalab Retenciones',
-    'version': '18.0.0.0',
+    'version': '18.0.0.1',
     'author': 'Pentalab',
     'license': 'LGPL-3',
     'category': 'Development',

@@ -1,6 +1,6 @@
 {
     'name': 'Extended Remission',
-    'version': '1.0',
+    'version': '1.1',
     'summary': 'Adds extra fields to the remission document.',
     'description': """
         This module adds the following fields to the remission document:

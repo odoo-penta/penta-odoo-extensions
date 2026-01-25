@@ -21,7 +21,7 @@
     'website': 'https://pentalab.tech/',
     'license': 'OPL-1',
     'category': 'Tools/Tools',
-    'version': '18.0.0.0',
+    'version': '18.0.0.1',
     'depends': [
         'base', 'purchase', 'stock', 'account'
     ],

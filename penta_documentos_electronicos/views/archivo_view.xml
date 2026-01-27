@@ -1,0 +1,243 @@
+<odoo>
+
+     <!-- Vista de Formulario para Product Homologation -->
+     <record id="view_product_homologation_form" model="ir.ui.view">
+        <field name="name">product.homologation.form</field>
+        <field name="model">product.homologation</field>
+        <field name="arch" type="xml">
+            <form string="Product Homologation">
+                <sheet>
+                    <group>
+                        <field name="etiqueta"/>
+                        <field name="product_variant_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Lista para Product Homologation -->
+    <record id="view_product_homologation_tree" model="ir.ui.view">
+        <field name="name">product.homologation.tree</field>
+        <field name="model">product.homologation</field>
+        <field name="arch" type="xml">
+            <list string="Product Homologation" editable="bottom" create="true">
+                <field name="etiqueta"/>
+                <field name="product_variant_id"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Vista de Formulario para Subir Archivos Simplificada -->
+    <record id="view_archivo_form" model="ir.ui.view">
+        <field name="name">archivo.model.form</field>
+        <field name="model">archivo.model</field>
+        <field name="arch" type="xml">
+            <form string="Subir Archivo">
+                <header>
+                    <button name="action_confirm_register"
+                            type="object"
+                            string="Descargar XML"
+                            class="oe_highlight"
+                            groups="base.group_user"
+                            invisible="state != 'importado' and state != 'rechazado'"/>
+
+                    <button name="action_generate_invoice"
+                        string="Crear factura"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'descargado'"/>
+
+                    <button name="update_products"
+                        string="Actualizar Productos Homologados"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'descargado'"/>
+
+                </header>
+                
+                <sheet>
+                    <group>
+                        <field name="type_doc" readonly="1"/>
+                        <field name="fecha_subida" readonly="1"/>
+                        <field name="company_id" readonly="1" invisible='1'/>
+                        <field name="clave_acceso" readonly="1"/>
+                        <field name="numero_factura" readonly="1"/>
+                        <field name="factura_id" readonly="1"/>
+                        <field name="estado_factura" readonly="1"/>
+                        <field name="serie_comprobante" readonly="1"/>
+                        <field name="fecha_autorizacion" readonly="1"/>
+                        <field name="fecha_emision" readonly="1"/>
+                        <field name="identificacion_receptor" readonly="1"/>
+                        <field name="identificacion_emisor" readonly="1"/>
+                        <field name="valor_sin_impuestos" readonly="1"/>
+                        <field name="iva" readonly="1"/>
+                        <field name="importe_total" readonly="1"/>
+                        <field name="numero_documento_modificado" readonly="1"/>
+                        <field name="xml_file" filename="xml_filename" readonly="1"/>
+                        <field name="xml_filename" readonly="1" invisible="True"/>
+                        <field name="state" readonly="1" decoration-warning="state == 'importado'" decoration-info ="state == 'descargado'"
+                        decoration-success="state == 'validado'" decoration-danger=" state == 'rechazado'"/>
+                        <field name="etiquetas_xml_html" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Lista sin Creación -->
+    <record id="view_archivo_tree" model="ir.ui.view">
+        <field name="name">archivo.model.tree</field>
+        <field name="model">archivo.model</field>
+        <field name="arch" type="xml">
+            
+            <list string="Archivos" create='false'>
+                <field  name="numero_factura" decoration-warning="state == 'importado'" decoration-info="state == 'descargado'"
+                decoration-success="state == 'validado'" decoration-danger=" state == 'rechazado'"/>
+                <field name="identificacion_emisor"/>
+                <field name="name_emisor"/>
+                <field name="type_doc"/>
+                <field name="clave_acceso"/>
+                <field name="importe_total"/>
+                <field name="fecha_emision"/>
+                <field name="fecha_subida"/>
+                <field name="state" decoration-warning="state == 'importado'" decoration-info ="state == 'descargado'"
+                decoration-success="state == 'validado'" decoration-danger=" state == 'rechazado'"/>
+                <field name="estado_factura" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_archivo_search" model="ir.ui.view">
+        <field name="name">archivo.model.search</field>
+        <field name="model">archivo.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Archivos">
+                <field name="numero_factura"/>
+                <field name="identificacion_emisor"/>
+                <field name="name_emisor"/>
+                <field name="type_doc"/>
+                <field name="clave_acceso"/>
+                <field name="importe_total"/>
+                <field name="fecha_emision"/>
+                <field name="fecha_subida"/>
+                <field name="state"/>
+
+                <!-- Filtros personalizados -->
+                <filter name="filter_facturas" string="Facturas" domain="[('type_doc','=','Factura')]" />
+                <filter name="filter_retenciones" string="Retenciones" domain="[('type_doc', 'ilike', 'Ret')]" />
+
+                <!-- Agrupaciones -->
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_emisor" string="Emisor" context="{'group_by': 'identificacion_emisor'}"/>
+                    <filter name="group_by_fecha" string="Mes de Emisión" context="{'group_by': 'fecha_emision:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_archivo_model_procesar" model="ir.actions.server">
+        <field name="name">Procesar Documentos</field>
+        <field name="model_id" ref="model_archivo_model"/>
+        <field name="binding_model_id" ref="model_archivo_model"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.procesar_archivos()
+        </field>
+    </record>
+
+
+
+    <!-- Acción para abrir una nueva ventana para Subir Archivos -->
+    <record id="action_upload_file" model="ir.actions.act_window">
+        <field name="name">Subir Archivo</field>
+        <field name="res_model">archivo.model</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_archivo_form"/> <!-- Referencia a la vista modificada -->
+        <field name="target">new</field>
+    </record>
+
+    <!-- Acción de Vista para Archivos -->
+    <record id="action_archivo" model="ir.actions.act_window">
+        <field name="name">Importaciones</field>
+        <field name="res_model">archivo.model</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_archivo_tree"/>
+        <field name="search_view_id" ref="view_archivo_search"/>
+        
+    </record>
+
+    <!-- Vista Árbol -->
+    <record id="configuration_docs_tree_view" model="ir.ui.view">
+        <field name="name">configuration.docs.tree</field>
+        <field name="model">advance.config.docs</field>
+        <field name="arch" type="xml">
+            <list string="Diario de Retenciones" create="false" edit="true">
+                <field name="advance_docs_journal_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista Formulario -->
+    <record id="configuration_docs_form_view" model="ir.ui.view">
+        <field name="name">configuration.docs.form</field>
+        <field name="model">advance.config.docs</field>
+        <field name="arch" type="xml">
+            <form string="Diario de Retenciones" create="false" edit="true">
+                <sheet>
+                    <group>
+                        <field name="advance_docs_journal_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_configuration_docs" model="ir.actions.act_window">
+        <field name="name">Diario de Retenciones</field>
+        <field name="res_model">advance.config.docs</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Haga clic para crear una nueva razón de bloqueo.
+            </p>
+        </field>
+    </record>
+    <!-- Menú Principal -->
+    <menuitem id="menu_archivo_root" name="Documentos electrónicos" sequence="10" groups="account.group_account_user,account.group_account_manager,account.group_account_basic"/>
+
+    <!-- Menú -->
+    <menuitem id="menu_docs_config" name="Configuración" parent="menu_archivo_root" action="action_configuration_docs" sequence="35" groups="account.group_account_user,account.group_account_manager"/>
+
+    <!-- Menú Archivos -->
+    <menuitem id="menu_archivo" name="Importaciones" parent="menu_archivo_root" action="action_archivo" sequence="10" groups="account.group_account_user,account.group_account_manager,account.group_account_basic"/>
+    
+    <!-- Menú Subir Archivo -->
+    <menuitem id="menu_upload_file" name="Subir Archivo" parent="menu_archivo_root" sequence="20" groups="account.group_account_user,account.group_account_manager"/>
+
+
+    <record id="action_popup_wizard" model="ir.actions.act_window">
+        <field name="name">Subir Archivo</field>
+        <field name="res_model">popup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item Report -->
+    <menuitem id="menu_put_invoices" name="Ingresar facturas TXT" parent="menu_upload_file" sequence="2"  action="action_popup_wizard" groups="account.group_account_user,account.group_account_manager"/>
+
+    <!-- Acción para Product Homologation -->
+    <record id="action_product_homologation" model="ir.actions.act_window">
+        <field name="name">Product Homologation</field>
+        <field name="res_model">product.homologation</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_product_homologation_tree"/>
+    </record>
+
+    <!-- Menú para Product Homologation -->
+    <menuitem id="menu_product_homologation" name="Producto Homologacion" parent="menu_archivo_root" action="action_product_homologation" sequence="30" groups="account.group_account_user,account.group_account_manager"/>
+</odoo>

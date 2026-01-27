@@ -1,0 +1,9 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="advance_docs_default_config" model="advance.config.docs">
+            <field name="advance_docs_journal_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

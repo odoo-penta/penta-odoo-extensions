@@ -1,0 +1,7 @@
+<odoo>
+    <record id="rule_waybill_carrier_company" model="ir.rule">
+        <field name="name">Waybill Carrier Record Rule</field>
+        <field name="model_id" ref="model_archivo_model"/>
+        <field name="domain_force">[('company_id', 'parent_of', company_ids)]</field>
+    </record>
+</odoo>

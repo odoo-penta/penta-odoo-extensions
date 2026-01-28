@@ -16,6 +16,7 @@ SOAP_NS = "{http://schemas.xmlsoap.org/soap/envelope/}"
 
 class ArchivoModel(models.Model):
     _name = 'archivo.model'
+    _rec_name = 'numero_factura'
     _description = 'Modelo para gestionar archivos de texto'
 
     fecha_subida = fields.Datetime(string='Fecha de Subida', default=fields.Datetime.now)
@@ -496,12 +497,20 @@ class ArchivoModel(models.Model):
                 raise UserError(_(
                     "El RUC del proveedor (%s) no coincide con el RUC del emisor en el XML (%s)."
                 ) % (receptor.vat, registro.get('RUC_EMISOR', '')))
+                
+            get_journal = self.env['account.journal'].search([
+                ('type', '=', 'purchase'),
+                ('company_id', '=', self.env.company.id),
+                ('l10n_ec_is_purchase_liquidation', '=', False),
+                ('l10n_latam_use_documents', '=', True),
+            ], limit=1) or False
 
             factura = self.env['account.move'].create({
                 'move_type': 'in_invoice',
                 'partner_id': receptor.id,
                 'invoice_date': fecha_formateada,
                 'company_id': self.env.company.id,
+                'journal_id': get_journal.id,
                 'ref': registro.get('SERIE_COMPROBANTE'),
                 'date': fecha_formateada,
                 # Se comenta para que no asigne secuencia de factura automatico hasta definir bien el diario

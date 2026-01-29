@@ -21,7 +21,7 @@ class ResCountryStateRegion(models.Model):
 
     name = fields.Char(required=True, index=True)
 
-    code = fields.Char(string="Código (2 dígitos)", required=True, index=True)  # <- 2 dígitos finales del cantón
+    code = fields.Char(string="Código (2 dígitos)", required=False, index=True)
 
     state_id = fields.Many2one(
         "res.country.state", 

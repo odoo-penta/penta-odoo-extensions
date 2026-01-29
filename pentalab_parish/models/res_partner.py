@@ -22,7 +22,6 @@ class ResPartner(models.Model):
     region_id = fields.Many2one(
         "res.country.state.region", 
         string="Region", 
-        domain = "[('state_id', '=', state_id)]",
     )
 
     @api.onchange("state_id")
@@ -33,10 +32,7 @@ class ResPartner(models.Model):
 
 
             if rec.state_id:
-                region = self.env['res.country.state.region'].search(
-                [('state_id', '=', rec.state_id.id)], limit=1
-                )
-                rec.region_id = region.id
+                rec.region_id = rec.state_id.region_id.id
             else:
                 rec.region_id = False
 

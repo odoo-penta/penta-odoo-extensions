@@ -1,0 +1,89 @@
+<odoo>
+    <!-- Regiones -->
+    <record id="region_sierra" model="res.country.state.region">
+        <field name="name">Sierra</field>
+    </record>
+    <record id="region_costa" model="res.country.state.region">
+        <field name="name">Costa</field>
+    </record>
+    <record id="region_oriente" model="res.country.state.region">
+        <field name="name">Oriente</field>
+    </record>
+    <record id="region_insular" model="res.country.state.region">
+        <field name="name">Insular</field>
+    </record>
+
+    <!-- Provincias -->
+    <record id="base.state_ec_01" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_02" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_03" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_04" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_05" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_06" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_07" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+    <record id="base.state_ec_08" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+    <record id="base.state_ec_09" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+    <record id="base.state_ec_10" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_11" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_12" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+    <record id="base.state_ec_13" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+    <record id="base.state_ec_14" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_15" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_16" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_17" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_18" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_19" model="res.country.state">
+        <field name="region_id" ref="region_insular"/>
+    </record>
+    <record id="base.state_ec_20" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_21" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_22" model="res.country.state">
+        <field name="region_id" ref="region_oriente"/>
+    </record>
+    <record id="base.state_ec_23" model="res.country.state">
+        <field name="region_id" ref="region_sierra"/>
+    </record>
+    <record id="base.state_ec_24" model="res.country.state">
+        <field name="region_id" ref="region_costa"/>
+    </record>
+</odoo>

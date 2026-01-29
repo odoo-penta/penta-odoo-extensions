@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <list string="Regiones" create="false" edit="false" delete="false">
                 <field name="name"/>
-                <field name="state_id"/>
             </list>
         </field>
     </record>

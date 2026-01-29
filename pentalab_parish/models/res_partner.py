@@ -3,7 +3,7 @@ from odoo import models, fields, api
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-# TODO: Cambiar bien a computado el campo base city
+    # TODO: Cambiar bien a computado el campo base city
 
     city_id = fields.Many2one(
         "res.country.state.city", 
@@ -29,7 +29,6 @@ class ResPartner(models.Model):
         for rec in self:
             rec.city_id = False
             rec.parroquia_id = False
-
 
             if rec.state_id:
                 rec.region_id = rec.state_id.region_id.id

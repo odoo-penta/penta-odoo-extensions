@@ -1,6 +1,6 @@
 {
     'name': 'Partner Parroquias',
-    'version': '1.1',
+    'version': '1.0',
     'category': 'Contacts',
     'summary': 'Agrega un campo de parroquias en los contactos',
     'author': 'PentaLab',
@@ -9,6 +9,7 @@
         'views/res_partner_views.xml',
         'views/res_country_state_city.xml',
         'views/res_country_state_city_parroquia_views.xml',
+        'views/res_country_state_region_views.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

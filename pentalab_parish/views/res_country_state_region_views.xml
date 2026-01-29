@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="view_res_country_state_region_list" model="ir.ui.view">
+        <field name="name">res.country.state.region.list</field>
+        <field name="model">res.country.state.region</field>
+        <field name="arch" type="xml">
+            <list string="Regiones" create="false" edit="false" delete="false">
+                <field name="name"/>
+                <field name="state_id"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_res_country_state_region" model="ir.actions.act_window">
+    <field name="name">Regiones</field>
+    <field name="res_model">res.country.state.region</field>
+    <field name="view_mode">list</field>
+    <field name="view_id" ref="view_res_country_state_region_list"/>  <!-- Asociación explícita -->
+    </record>
+
+    <menuitem id="menu_action_region"
+              name="Regiones"
+              parent="contacts.menu_localisation"
+              action="action_res_country_state_region"
+              sequence="10"/>
+
+
+</odoo>

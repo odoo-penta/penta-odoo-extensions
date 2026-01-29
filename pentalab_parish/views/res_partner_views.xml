@@ -10,7 +10,8 @@
             </xpath>
             <xpath expr="//field[@name='country_id']" position="before">
                 <field name="city_id" placeholder='Ciudad'/>
-                <field name="parroquia_id" placeholder='Parroquia'/>
+                <field name="parroquia_id" placeholder='Parroquia' options="{'no_create': True,}"/>
+                <field name="region_id" placeholder='Region' options="{'no_create': True}"/>
             </xpath>
             <!-- 1) Hacer invisible el campo city dentro del subform de child_ids -->
             <xpath expr="//field[@name='child_ids']/form//field[@name='city']" position="attributes">

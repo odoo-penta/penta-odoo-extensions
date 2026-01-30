@@ -26,7 +26,7 @@
             </xpath>
             <xpath expr="//header/button[@name='action_confirm']" position='after'>
                 <button class="btn-primary" name="%(penta_mrp_auto_process_all.process_line_wizard_action)d" string="Production" type="action" invisible="not product_is_serial or state not in ('confirmed', 'progress') or qty_producing == product_qty"/>
-                <button class="btn-primary" name="action_auto_produce" string="Auto Production" type="object" invisible="not product_is_serial or state not in ('confirmed', 'progress') or qty_producing == product_qty"/>
+                <button class="btn-primary" name="action_auto_produce" string="Auto Production" type="object" invisible="not product_is_serial or state not in ('confirmed', 'progress')"/>
                 <button name="action_button_done" invisible="state in ('draft', 'cancel', 'done', 'confirmed', 'progress') or not product_is_serial" string="Mark as Done" type="object" class="oe_highlight" data-hotkey="g"/>
             </xpath>
             <xpath expr="//sheet/group/group/label[3]" position='replace'>

@@ -22,7 +22,7 @@
     'website': "https://pentalab.tech/",
     'license': 'OPL-1',
     'category': 'Manufacturing',
-    'version': '18.0.3.0.1',
+    'version': '18.0.3.0.2',
     'depends': [
         'mrp'
     ],

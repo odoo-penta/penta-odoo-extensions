@@ -134,10 +134,12 @@ class MrpProduction(models.Model):
         for production in self:
 
             product = production.product_id
+            """
             qty_to_produce = int(production.product_qty - production.qty_producing)
 
             if qty_to_produce <= 0:
                 raise UserError(_("The production order is already completed."))
+            """
 
             # ==============================
             # 1) OBTENER CKD (materia prima serializada)

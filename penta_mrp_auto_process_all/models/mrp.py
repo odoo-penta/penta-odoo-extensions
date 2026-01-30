@@ -134,127 +134,85 @@ class MrpProduction(models.Model):
         for production in self:
 
             product = production.product_id
-            total_qty = production.product_qty
-            produced_qty = production.qty_producing
-            pending_qty = total_qty - produced_qty
+            qty_to_produce = int(production.product_qty - production.qty_producing)
 
-            # VALIDACIONES
-            if total_qty <= 0:
-                raise ValidationError("La cantidad planificada es cero o negativa.")
-            if pending_qty <= 0:
-                raise ValidationError("La orden ya está completamente producida.")
+            if qty_to_produce <= 0:
+                raise UserError(_("The production order is already completed."))
 
-            qty_to_make = pending_qty
+            # ==============================
+            # 1) OBTENER CKD (materia prima serializada)
+            # ==============================
+            ckd_moves = production.move_raw_ids.filtered(
+                lambda m: m.product_id.tracking == 'serial'
+            )
 
-            # -------------------------------
-            # 1) LOTES / SERIES
-            # -------------------------------
-            if product.tracking == "serial":
-                lot_ids = []
-                for i in range(int(qty_to_make)):
-                    lot = self.env['stock.lot'].create({
-                        'product_id': product.id,
-                        'company_id': production.company_id.id,
-                        'name': (
-                            self.env['stock.lot']._get_next_serial(production.company_id, product)
-                            or self.env['ir.sequence'].next_by_code('stock.lot.serial')
-                        ),
-                    })
-                    lot_ids.append(lot)
-            else:
-                lot_ids = [False]
+            if not ckd_moves:
+                raise UserError(_("No CKD serial-tracked raw material found."))
 
+            ckd_move = ckd_moves[0]
 
-            # ======================================================================
-            # 2) PRODUCTO TERMINADO – REUSAR STOCK.MOVE.LINE SI YA EXISTEN
-            # ======================================================================
+            ckd_lines = ckd_move.move_line_ids.filtered(
+                lambda ml: ml.lot_id and ml.qty_done == 0
+            )
 
-            finished_move = production.move_finished_ids.filtered(lambda m: m.product_id == product)
+            if len(ckd_lines) < qty_to_produce:
+                raise UserError(_("Not enough CKD lots to complete the production."))
 
-            if product.tracking == 'serial':
-                # Crear una línea por cada unidad, reutilizando si hay disponibles
-                for lot in lot_ids:
+            # ==============================
+            # 2) MOVIMIENTO DE PRODUCTO TERMINADO
+            # ==============================
+            finished_move = production.move_finished_ids.filtered(
+                lambda m: m.product_id == product
+            )
 
-                    # buscar líneas sin lote y sin qty_done
-                    existing_ml = finished_move.move_line_ids.filtered(
-                        lambda ml: not ml.lot_id and ml.qty_done == 0
-                    )
+            # ==============================
+            # 3) PRODUCIR 1 UNIDAD POR CADA CKD
+            # ==============================
+            for i in range(qty_to_produce):
 
-                    if existing_ml:
-                        move_line = existing_ml[0]
-                    else:
-                        vals = finished_move._prepare_move_line_vals(quantity=0)
-                        move_line = self.env['stock.move.line'].create(vals)
+                ckd_line = ckd_lines[i]
+                ckd_lot = ckd_line.lot_id
 
-                    move_line.write({
-                        'qty_done': 1,
-                        'product_uom_id': product.uom_id.id,
-                        'lot_id': lot.id,
-                        'production_id': production.id,
-                    })
-            else:
-                # No serial: una sola línea, reutilizando existente
-                existing_ml = finished_move.move_line_ids.filtered(
-                    lambda ml: ml.qty_done == 0 and not ml.lot_id
-                )
+                # 3.1 Crear lote del producto terminado
+                finished_lot = self.env['stock.lot'].create({
+                    'product_id': product.id,
+                    'company_id': production.company_id.id,
+                    'name': ckd_lot.name,
+                })
 
-                if existing_ml:
-                    move_line = existing_ml[0]
+                # 3.2 Línea de producto terminado
+                finished_ml = finished_move.move_line_ids.filtered(
+                    lambda ml: not ml.lot_id and ml.qty_done == 0
+                )[:1]
+
+                if finished_ml:
+                    finished_ml = finished_ml[0]
                 else:
                     vals = finished_move._prepare_move_line_vals(quantity=0)
-                    move_line = self.env['stock.move.line'].create(vals)
+                    finished_ml = self.env['stock.move.line'].create(vals)
 
-                move_line.write({
-                    'qty_done': qty_to_make,
-                    'product_uom_id': product.uom_id.id,
-                    'lot_id': False,
+                finished_ml.write({
+                    'qty_done': 1,
+                    'lot_id': finished_lot.id,
                     'production_id': production.id,
                 })
 
+                # 3.3 Consumir CKD (1 a 1)
+                ckd_line.write({
+                    'qty_done': 1,
+                    'production_id': production.id,
+                })
 
-            # ======================================================================
-            # 3) MATERIA PRIMA – REUSAR LÍNEAS EXISTENTES (move_line_ids)
-            # ======================================================================
+                production.qty_producing += 1
 
-            for raw_move in production.move_raw_ids:
-
-                # líneas existentes de consumo
-                existing_raw_lines = raw_move.move_line_ids.filtered(lambda ml: ml.qty_done < ml.product_uom_qty)
-
-                qty_needed = raw_move.product_uom_qty - sum(raw_move.move_line_ids.mapped("qty_done"))
-                if qty_needed <= 0:
-                    continue
-
-                # 3.1 Reutilizar líneas existentes
-                for line in existing_raw_lines:
-                    available = raw_move.product_uom_qty - sum(raw_move.move_line_ids.mapped("qty_done"))
-                    if available <= 0:
-                        break
-
-                    to_consume = min(available, qty_needed)
-                    line.qty_done += to_consume
-                    qty_needed -= to_consume
-
-                # 3.2 Crear líneas solo si no hay suficientes existentes
-                if qty_needed > 0:
-                    vals = raw_move._prepare_move_line_vals(quantity=0)
-                    vals.update({
-                        'qty_done': qty_needed,
-                        'product_uom_id': raw_move.product_id.uom_id.id,
-                        'production_id': production.id,
-                    })
-                    self.env['stock.move.line'].create(vals)
-
-
-            # ======================================================================
-            # 4) ACTUALIZAR CANTIDAD PRODUCIDA
-            # ======================================================================
-            production.qty_producing += qty_to_make
-
+            # ==============================
+            # 4) ESTADO
+            # ==============================
             if production.qty_producing >= production.product_qty:
                 production.state = 'to_close'
 
         return True
+
 
 
 

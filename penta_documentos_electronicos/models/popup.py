@@ -76,13 +76,28 @@ class popup(models.TransientModel):
                     })
 
             action = self.env['ir.actions.actions'].sudo().search([('name', '=', '{"en_US": "Imports"}')], limit=1)
+            # return {
+            #     'type': 'ir.actions.client',
+            #     'tag': 'reload',
+            #     'params': {
+            #         'action': action.id,
+            #     },
+            # }
             return {
                 'type': 'ir.actions.client',
-                'tag': 'reload',
+                'tag': 'display_notification', 
                 'params': {
-                    'action': action.id,
+                    'message': 'Importación completada',
+                    'sticky': False,
+                    'type': 'success',
                 },
+                'effect': {
+                    'fadeout': 'slow',
+                    'message': 'Importación completada con éxito',
+                    'type': 'rainbow_man',
+                }
             }
+
         return False
     
     def decode_file(self, archivo):

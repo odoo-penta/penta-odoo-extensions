@@ -148,6 +148,8 @@ class ArchivoModel(models.Model):
                         break
 
             record.factura_id = found or False
+            if found and record.state != 'descargado':
+                record.state = 'descargado'
 
     def action_confirm_register(self):
         # Definir el registro con las claves y valores necesarios
@@ -166,7 +168,8 @@ class ArchivoModel(models.Model):
         record = self.env['account.move'].search([
             ('l10n_ec_authorization_number', '=', registro.get('CLAVE_ACCESO', '')),
             ('ref', '=', registro.get('SERIE_COMPROBANTE', '')),
-            ('company_id', '=', self.env.company.id)
+            ('company_id', '=', self.env.company.id),
+            ('state', '!=', 'cancel')  
         ])
         if not record:
             # Pasar el registro a la función process_record

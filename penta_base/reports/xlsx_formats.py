@@ -2,6 +2,14 @@
 from odoo.tools.misc import xlsxwriter
 
 
+def _calc_col_width(text, min_width=10, max_width=40):
+    """
+    Calcula el ancho de columna basado en el texto
+    """
+    if not text:
+        return min_width
+    return min(max(len(text) + 2, min_width), max_width)
+
 def get_xlsx_formats(workbook):
     """
     Devuelve un diccionario con formatos estándar para reportes XLSX

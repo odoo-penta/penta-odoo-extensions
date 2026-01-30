@@ -1,7 +1,7 @@
 # /tu_modulo/__manifest__.py
 {
     'name': 'Penta Documentos Electronicos',
-    'version': '18.0.0.0.1',
+    'version': '18.0.0.0.2',
     'category': 'Tools',
     'summary': 'Módulo para subir y gestionar archivos de texto para facturas de proveedor',
     'author': 'Pentalab',

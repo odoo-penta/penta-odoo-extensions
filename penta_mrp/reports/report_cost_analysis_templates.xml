@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_cost_analysis_mo">
+        <t t-call="web.external_layout">
+            <main>
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+
+                        <h2>Análisis de Costos de Producción</h2>
+
+                        <!-- ================= DATOS GENERALES ================= -->
+                        <table class="table table-sm">
+                            <tr>
+                                <td>Orden</td>
+                                <td><t t-esc="o.name"/></td>
+                                <td>Producto</td>
+                                <td><t t-esc="o.product_id.display_name"/></td>
+                            </tr>
+                            <tr>
+                                <td>Cantidad</td>
+                                <td><t t-esc="o.product_qty"/></td>
+                                <td>Fecha finalización</td>
+                                <td><t t-esc="o.date_finished"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- ================= COSTO DE COMPONENTES ================= -->
+                        <h4>Costo de Componentes</h4>
+
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Componente</th>
+                                    <th class="text-right">Cantidad</th>
+                                    <th class="text-right">Costo Unit.</th>
+                                    <th class="text-right">Costo Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_componentes" t-value="0.0"/>
+
+                                <t t-foreach="o.move_raw_ids" t-as="move">
+                                    <t t-set="subtotal"
+                                        t-value="round(move.quantity * move.product_id.standard_price, 2)"/>
+
+                                    <tr>
+                                        <td class="text-right"><t t-esc="move.product_id.display_name"/></td>
+                                        <td class="text-center"><t t-esc="move.quantity"/></td>
+                                        <td class="text-center">
+                                            <t t-esc="move.product_id.standard_price"/>
+                                        </td>
+                                        <td class="text-center"><t t-esc="subtotal"/></td>
+                                    </tr>
+
+                                    <t t-set="total_componentes"
+                                        t-value="total_componentes + subtotal"/>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3" class="text-right">Total Componentes</th>
+                                    <th class="text-center"><t t-esc="total_componentes"/></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- ================= COSTO DE OPERACIONES ================= -->
+                        <h4>Costo de Operaciones</h4>
+
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Operación</th>
+                                    <th class="text-right">Horas</th>
+                                    <th class="text-right">Costo / Hora</th>
+                                    <th class="text-right">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_operaciones" t-value="0.0"/>
+
+                                <t t-foreach="o.workorder_ids" t-as="wo">
+                                    <t t-set="horas" t-value="wo.duration / 60.0"/>
+                                    <t t-set="costo_hora"
+                                    t-value="wo.workcenter_id.costs_hour"/>
+                                    <t t-set="subtotal"
+                                    t-value="horas * costo_hora"/>
+
+                                    <tr>
+                                        <td><t t-esc="wo.name"/></td>
+                                        <td class="text-center"><t t-esc="horas"/></td>
+                                        <td class="text-center"><t t-esc="costo_hora"/></td>
+                                        <td class="text-center"><t t-esc="subtotal"/></td>
+                                    </tr>
+
+                                    <t t-set="total_operaciones"
+                                    t-value="total_operaciones + subtotal"/>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3" class="text-left">Total Operaciones</th>
+                                    <th class="text-center"><t t-esc="total_operaciones"/></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- ================= COSTOS ADICIONALES ================= -->
+                        <h4>Costos Adicionales</h4>
+
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th class="text-right">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_adicionales" t-value="0.0"/>
+
+                                <t t-foreach="o.mrp_bom_cost_ids" t-as="cost">
+                                    <t t-set="subtotal" t-value="cost.value or 0.0"/>
+
+                                    <tr>
+                                        <td>
+                                            <t t-esc="cost.name or 'Costo adicional'"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="subtotal"/>
+                                        </td>
+                                    </tr>
+
+                                    <t t-set="total_adicionales"
+                                        t-value="total_adicionales + subtotal"/>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-left">Total Costos Adicionales</th>
+                                    <th class="text-center">
+                                        <t t-esc="total_adicionales"/>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- ================= RESUMEN ================= -->
+                        <h4>Resumen de Costos</h4>
+
+                        <t t-set="costo_total"
+                        t-value="total_componentes + total_operaciones + total_adicionales"/>
+
+                        <table class="table table-bordered table-sm">
+                            <tr>
+                                <th>Costo Total</th>
+                                <td class="text-center"><t t-esc="costo_total"/></td>
+                            </tr>
+                            <tr>
+                                <th>Costo Unitario</th>
+                                <td class="text-center">
+                                    <t t-esc="costo_total / o.product_qty"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </main>
+        </t>
+    </template>
+
+</odoo>

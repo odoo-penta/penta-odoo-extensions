@@ -25,6 +25,9 @@
     'version': '18.0.0.1.0',
     'depends': ['cost_standard_eljuri'],
     'data': [
+        'reports/report_cost_analysis.xml',
+        'reports/report_cost_analysis_templates.xml',
+        
         'views/mrp_operation_views.xml',
         'views/mrp_routing_views.xml',
         'views/mrp_bom_views.xml',

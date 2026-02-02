@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_cost_analysis_mo" model="ir.actions.report">
+        <field name="name">Análisis de Costos (Penta)</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">penta_mrp.report_cost_analysis_mo</field>
+        <field name="report_file">penta_mrp.report_cost_analysis_mo</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

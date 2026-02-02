@@ -33,3 +33,18 @@ class MrpProduction(models.Model):
                 continue
 
             wo.duration_expected = operations[op.id] * self.product_qty
+            
+    def open_journal_items_view(self):
+        self.ensure_one()
+        return {
+            'name': _('Journal Items'),
+            'view_mode': 'list',
+            'res_model': 'account.move.line',
+            'views': [(False, 'list')],
+            'type': 'ir.actions.act_window',
+            'domain': [
+                '|',
+                ('move_id.name', 'ilike', self.name),
+                ('move_id.ref', 'ilike', self.name),
+            ],
+        }

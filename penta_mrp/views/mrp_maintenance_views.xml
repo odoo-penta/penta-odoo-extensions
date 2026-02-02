@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="mrp_production_form_view_inherit_penta_mrp" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inherit.penta.mrp</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="open_journal_items_view"
+                        class="oe_stat_button"
+                        icon="fa-bars"
+                        type="object"
+                        invisible="state != 'done'">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Journal Items</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

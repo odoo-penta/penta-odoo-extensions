@@ -91,6 +91,9 @@ class ProcessLineWizard(models.TransientModel):
 
             production._post_inventory(cancel_backorder=False)
 
+        production.write({
+            'state': 'done'
+        })
         # -----------------------------
         # CERRAR SOLO SI YA SE PRODUJO EN SU TOTALIDAD
         # -----------------------------

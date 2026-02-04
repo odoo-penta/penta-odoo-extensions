@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_method_form_inherit_bancarizacion" model="ir.ui.view">
+        <field name="name">l10n_ec.sri.payment.form.inherit.bancarizacion</field>
+        <field name="model">l10n_ec.sri.payment</field>
+        <field name="inherit_id" ref="l10n_ec.view_payment_method_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="validate_minimum_amount"/>
+                <field name="minimum_amount" invisible="not validate_minimum_amount"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_payment_method_tree_inherit_bancarizacion" model="ir.ui.view">
+        <field name="name">l10n_ec.sri.payment.tree.inherit.bancarizacion</field>
+        <field name="model">l10n_ec.sri.payment</field>
+        <field name="inherit_id" ref="l10n_ec.view_payment_method_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="validate_minimum_amount"/>
+                <field name="minimum_amount"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

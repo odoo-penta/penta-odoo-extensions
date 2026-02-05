@@ -10,4 +10,19 @@
 
     </template>
 
+    <template id="portal_my_purchase_order_hide_total_rfq" inherit_id="purchase.portal_my_purchase_order">
+
+        <!-- Ocultar total en RFQ -->
+        <xpath expr="//t[@t-set='title']" position="replace">
+            <t t-set="title">
+                <t t-if="order.state in ['purchase', 'done']">
+                    <h2 t-field="order.amount_total"
+                        data-id="total_amount"
+                        class="mb-0 text-break"/>
+                </t>
+            </t>
+        </xpath>
+
+    </template>
+
 </odoo>

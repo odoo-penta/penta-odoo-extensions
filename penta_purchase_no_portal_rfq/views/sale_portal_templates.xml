@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="portal_purchase_order_hide_unit_price" inherit_id="sale_management.sale_order_portal_content_inherit_sale_management">
+
+        <!-- Eliminar encabezado Precio Unitario -->
+        <xpath expr="//th[@name='th_option_unit_price']" position="replace"/>
+
+        <!-- Eliminar celda Precio Unitario -->
+        <xpath expr="//td[@name='td_option_unit_price']" position="replace"/>
+
+    </template>
+
+</odoo>

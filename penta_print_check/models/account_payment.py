@@ -52,14 +52,16 @@ class AccountPayment(models.Model):
         """ Override to support the specific format for the cheques."""
         super(AccountPayment, self)._compute_check_amount_in_words()
         for pay in self:
+            if not pay.currency_id:
+                pay.check_amount_in_words = False
+                continue
+
             integer_part, decimal_part = split_amount(pay.amount)
             if pay.currency_id:
                 amount_text = pay.currency_id.amount_to_text(integer_part).strip()
                 amount_text = amount_text.replace('Dollars', '').replace('Dollar', '').replace('Dólares', '').replace('Dólar', '').strip()
-                amount_text += f' {str(decimal_part).ljust(2, "0")}/100 Dólares'
+                amount_text += f' {decimal_part:02d}/100 Dólares'
                 pay.check_amount_in_words = amount_text
-            else:
-                pay.check_amount_in_words = False
                 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):

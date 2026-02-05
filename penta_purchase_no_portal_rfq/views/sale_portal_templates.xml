@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <template id="portal_purchase_order_hide_unit_price" inherit_id="sale_management.sale_order_portal_content_inherit_sale_management">
+    <template id="purchase_order_portal_content_hide_prices_rfq" inherit_id="purchase.purchase_order_portal_content">
 
-        <!-- Eliminar encabezado Precio Unitario -->
-        <xpath expr="//th[@name='th_option_unit_price']" position="replace"/>
-
-        <!-- Eliminar celda Precio Unitario -->
-        <xpath expr="//td[@name='td_option_unit_price']" position="replace"/>
+        <!-- Quitar precios en RFQ (sent) -->
+        <xpath expr="//t[@t-set='display_price_and_taxes']" position="replace">
+            <t t-set="display_price_and_taxes" t-value="not update_dates and order.state in ['purchase', 'done']"/>
+        </xpath>
 
     </template>
 

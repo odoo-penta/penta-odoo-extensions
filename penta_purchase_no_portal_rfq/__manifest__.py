@@ -20,9 +20,9 @@
     'website': 'https://pentalab.tech/',
     "license": "LGPL-3",
     'category': 'Uncategorized',
-    "version": "18.0.0.0.1",
+    "version": "18.0.0.0.2",
     "depends": [
-        'sale_management',
+        'purchase',
     ],
     "data": [
         'views/sale_portal_templates.xml',

@@ -5,6 +5,7 @@
     <field name="model">sri.motor.subclass</field>
     <field name="arch" type="xml">
       <list>
+        <field name="product_tmpl_id"/>
         <field name="subclass_subcategory_code"/>
         <field name="subclass_code"/>
         <field name="sri_id"/>
@@ -29,22 +30,30 @@
         <sheet>
           <group>
             <group>
+              <field name="product_tmpl_id"/>
               <field name="subclass_subcategory_code"/>
               <field name="subclass_code"/>
               <field name="sri_id"/>
               <field name="sri_value"/>
-              <field name="date_in"/>
+              <field name="date_in"/> 
             </group>
-            <group string="Atributos">
-              <field name="brand_name"/>
-              <field name="model_value_id"/>
+            <group>
               <field name="year_value_id"/>
-              <field name="country_value_id"/>
               <field name="class_value_id"/>
               <field name="type_value_id"/>
+              <field name="model_value_id"/>
+              <field name="brand_name"/>
+              <field name="country_value_id"/>
               <field name="tonnage_value_id"/>
+              <field name="cylinder_value_id"/>
+              <field name="fuel_value_id"/>
+              <field name="bodywork_value_id"/>
+              <field name="color_value_id"/>
+              <field name="weight_value_id"/>
+              <field name="capacity_value_id"/>
             </group>
           </group>
+
         </sheet>
       </form>
     </field>
@@ -56,7 +65,10 @@
     <field name="view_mode">list,form</field>
   </record>
 
-  <menuitem id="menu_sri_motor_root" name="SRI" parent="mrp.menu_mrp_root" sequence="60"/>
-  <menuitem id="menu_sri_motor_subclass" name="Subcategoría Subclase de Motos"
-            parent="menu_sri_motor_root" action="action_sri_motor_subclass" sequence="10"/>
+  <menuitem id="menu_sri_motor_subclass"
+    name="Subcategoría subclase de motos"
+    parent="mrp.menu_mrp_configuration"
+    action="action_sri_motor_subclass"
+    sequence="9999" />
+
 </odoo>

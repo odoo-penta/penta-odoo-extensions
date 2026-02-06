@@ -1,74 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<record id="view_mrp_production_inherit" model="ir.ui.view">
+    <record id="view_mrp_production_inherit" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <!-- Botones cabecera-->
+            <!--  Botones cabecera -->
             <xpath expr="//header" position="inside">
-                <button name="action_open_generate_cpn_pdi_wizard"
-                        type="object"
-                        string="Generar CPN y PDI"
-                        class="oe_highlight"
-                        invisible="state != 'done'"/>
-                <button name="action_generate_xml"
-                        type="object"
-                        string="Generar XML"
-                        invisible="state != 'done'"/>
+                <button name="action_open_generate_cpn_pdi_wizard" type="object"
+                    string="Generar CPN y PDI" class="oe_highlight"
+                    invisible="state != 'done' or cpn_pdi_generated_at" />
+                <button name="action_generate_xml" type="object" string="Generar XML"
+                    invisible="state != 'done'" />
             </xpath>
-            <!-- Debajo de fecha programada  -->
-            <xpath expr="//field[@name='date_start']" position="after">
-                <field name="cpn_pdi_generated_at" readonly="1"/>
+            <!--  Debajo de fecha programada   -->
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="cpn_pdi_generated_at" string="Fecha CPN/PDI generado" />
             </xpath>
             <xpath expr="//header/field[@name='show_lock']" position="after">
-                <field name="product_is_serial" invisible="1"/>
+                <field name="product_is_serial" invisible="1" />
             </xpath>
-            <xpath expr="//header/button[@name='action_confirm']" position='after'>
-                <button class="btn-primary" name="%(penta_mrp_auto_process_all.process_line_wizard_action)d" string="Multi Production" type="action" invisible="not product_is_serial or state not in ('confirmed', 'progress')"/>
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
+                <button class="btn-primary"
+                    name="%(penta_mrp_auto_process_all.process_line_wizard_action)d"
+                    string="Production" type="action"
+                    invisible="not product_is_serial or state not in ('confirmed', 'progress') or qty_producing == product_qty" />
+                <button class="btn-primary" name="action_auto_produce" string="Auto Production"
+                    type="object"
+                    invisible="not product_is_serial or state not in ('confirmed', 'progress')" />
+                <button name="action_button_done"
+                    invisible="state in ('draft', 'cancel', 'done', 'confirmed', 'progress') or not product_is_serial"
+                    string="Mark as Done" type="object" class="oe_highlight" data-hotkey="g" />
             </xpath>
-            <xpath expr="//sheet/group/group/label[3]" position='replace'>
-                <label for="lot_producing_id" invisible="product_is_serial or state == 'draft' or product_tracking in ('none', False)"/>
+            <xpath expr="//sheet/group/group/label[3]" position="replace">
+                <label for="lot_producing_id"
+                    invisible="product_is_serial or state == 'draft' or product_tracking in ('none', False)" />
             </xpath>
-            <xpath expr="//sheet/group/group/div[3]" position='replace'>
-                <div class="o_row" invisible="product_is_serial or state == 'draft' or product_tracking in ('none', False)">
+            <xpath expr="//sheet/group/group/div[3]" position="replace">
+                <div class="o_row"
+                    invisible="product_is_serial or state == 'draft' or product_tracking in ('none', False)">
                     <field name="lot_producing_id"
-                        context="{'default_product_id': product_id, 'default_company_id': company_id}" invisible="product_tracking in ('none', False)"/>
-                    <button name="action_generate_serial" type="object" class="btn btn-primary fa fa-plus-square-o" aria-label="Creates a new serial/lot number" title="Creates a new serial/lot number" role="img" invisible="product_tracking in ('none', False) or lot_producing_id != False"/>
+                        context="{'default_product_id': product_id, 'default_company_id': company_id}"
+                        invisible="product_tracking in ('none', False)" />
+                    <button name="action_generate_serial" type="object"
+                        class="btn btn-primary fa fa-plus-square-o"
+                        aria-label="Creates a new serial/lot number"
+                        title="Creates a new serial/lot number" role="img"
+                        invisible="product_tracking in ('none', False) or lot_producing_id != False" />
                 </div>
             </xpath>
-            <xpath expr="//header/button[@name='button_mark_done'][1]" position='replace'>
-                <field name="qty_producing" invisible="1"/>
-                <button name="button_mark_done" invisible="product_is_serial or state in ('draft', 'cancel', 'done', 'to_close') or qty_producing == 0 or move_raw_ids" string="Validate" type="object" class="oe_highlight"
-                            confirm="There are no components to consume. Are you still sure you want to continue?" data-hotkey="g"/>
-            </xpath>
-            <xpath expr="//header/button[@name='button_mark_done'][2]" position='replace'>
-                <button name="button_mark_done" invisible="product_is_serial or state in ('draft', 'cancel', 'done', 'to_close') or qty_producing == 0 or move_raw_ids" string="Validate" type="object" class="oe_highlight" data-hotkey="g"/>
-            </xpath>
-            <xpath expr="//header/button[@name='button_mark_done'][3]" position='replace'>
+            <xpath expr="//header/button[@name='button_mark_done'][1]" position="replace">
+                <field name="qty_producing" invisible="1" />
                 <button name="button_mark_done"
-                    invisible="product_is_serial or not move_raw_ids
-                        or ((state not in ('confirmed','progress') or qty_producing != 0) and state != 'to_close')"
-                    string="Mark as Done" type="object" class="oe_highlight" data-hotkey="g"/>
+                    invisible="product_is_serial or state in ('draft', 'cancel', 'done', 'to_close') or qty_producing == 0 or move_raw_ids"
+                    string="Validate" type="object" class="oe_highlight"
+                    confirm="There are no components to consume. Are you still sure you want to continue?"
+                    data-hotkey="g" />
             </xpath>
-            <xpath expr="//header/button[@name='button_mark_done'][4]" position='replace'>
+            <xpath expr="//header/button[@name='button_mark_done'][2]" position="replace">
                 <button name="button_mark_done"
-                    invisible="product_is_serial or move_raw_ids
-                        or ((state not in ('confirmed','progress') or qty_producing != 0) and state != 'to_close')"
+                    invisible="product_is_serial or state in ('draft', 'cancel', 'done', 'to_close') or qty_producing == 0 or move_raw_ids"
+                    string="Validate" type="object" class="oe_highlight" data-hotkey="g" />
+            </xpath>
+            <xpath expr="//header/button[@name='button_mark_done'][3]" position="replace">
+                <button name="button_mark_done"
+                    invisible="product_is_serial or not move_raw_ids or ((state not in ('confirmed','progress') or qty_producing != 0) and state != 'to_close')"
+                    string="Mark as Done" type="object" class="oe_highlight" data-hotkey="g" />
+            </xpath>
+            <xpath expr="//header/button[@name='button_mark_done'][4]" position="replace">
+                <button name="button_mark_done"
+                    invisible="product_is_serial or move_raw_ids or ((state not in ('confirmed','progress') or qty_producing != 0) and state != 'to_close')"
                     string="Mark as Done" type="object" class="oe_highlight" data-hotkey="g"
-                        confirm="There are no components to consume. Are you still sure you want to continue?"/>
+                    confirm="There are no components to consume. Are you still sure you want to continue?" />
             </xpath>
-            <xpath expr="//page[@name='components']" position='after'>
-                <page string="Finished product" name="process_line" invisible="not product_is_serial">
+            <xpath expr="//page[@name='components']" position="after">
+                <page string="Finished product" name="process_line"
+                    invisible="not product_is_serial">
                     <field name="finished_move_line_ids">
                         <list editable="bottom">
-                            <field name="company_id" column_invisible='1'/>
-                            <field name="product_uom_category_id" column_invisible='1'/>
-                            <field name="product_id"/>
-                            <field name="lot_id"/>
-                            <field name="qty_done"/>
-                            <field name="product_uom_id"/>
-                            <field name="state" widget="badge"/>
+                            <field name="company_id" column_invisible="1" />
+                            <field name="product_uom_category_id" column_invisible="1" />
+                            <field name="product_id" />
+                            <field name="lot_id" />
+                            <field name="cpn_display" />
+                            <field name="pdi_display" />
+                            <field name="qty_done" />
+                            <field name="product_uom_id" />
+                            <field name="state" widget="badge" />
                         </list>
                     </field>
                 </page>

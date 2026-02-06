@@ -10,21 +10,15 @@
       <!--MRP -->
       <xpath expr="//app[@name='mrp']" position="inside">
         <block title="CPN / PDI">
-          <!-- Prefijo CPN -->
-          <setting id="penta_cpn_prefix" string="Prefijo CPN (1 carácter)">
-            <field name="cpn_prefix" placeholder="Ej: A"/>
-            <div class="text-muted">Se concatenará con el número de CPN (8 dígitos).</div>
-          </setting>
-
           <!-- Secuencia CPN -->
           <setting id="penta_cpn_sequence" string="Secuencia CPN (8 dígitos)">
-            <field name="cpn_sequence_id" options="{'no_create_edit': False}"/>
+            <field name="cpn_sequence_id" options="{'no_create_edit': False}" />
             <div class="text-muted">Usar padding = 8. Se incrementa con cada CPN generado.</div>
           </setting>
 
           <!-- Secuencia PDI -->
           <setting id="penta_pdi_sequence" string="Secuencia PDI (8 dígitos)">
-            <field name="pdi_sequence_id" options="{'no_create_edit': False}"/>
+            <field name="pdi_sequence_id" options="{'no_create_edit': False}" />
             <div class="text-muted">Usar padding = 8. Editable el inicio desde el wizard.</div>
           </setting>
         </block>

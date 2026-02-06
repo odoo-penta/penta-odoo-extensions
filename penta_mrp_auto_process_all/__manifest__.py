@@ -22,17 +22,15 @@
     'website': "https://pentalab.tech/",
     'license': 'OPL-1',
     'category': 'Manufacturing',
-    'version': '18.0.3.0.3',
+    'version': '18.0.4.0.4',
     'depends': [
-        'mrp'
+        'mrp',
+        'product_brand',
     ],
     'data': [
         "data/ir_sequence_data.xml",
-        
         'security/ir.model.access.csv',
-        
         'wizard/produce_line_wizard_view.xml',
-        
         "views/res_config_settings_views.xml",
         'views/mrp_view.xml',
         'views/product_views.xml',

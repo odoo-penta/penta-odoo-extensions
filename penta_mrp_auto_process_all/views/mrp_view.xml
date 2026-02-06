@@ -74,7 +74,7 @@
                     confirm="There are no components to consume. Are you still sure you want to continue?" />
             </xpath>
             <xpath expr="//page[@name='components']" position="after">
-                <page string="Finished product" name="process_line"
+                <page string="Producto Terminado" name="process_line"
                     invisible="not product_is_serial">
                     <field name="finished_move_line_ids">
                         <list editable="bottom">

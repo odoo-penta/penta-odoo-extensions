@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_stock_quant_pdi_optional_hide" model="ir.ui.view">
+        <field name="name">stock.quant.pdi.optional.hide</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="penta_mrp_auto_process_all.view_mrp_auto_process_list_inherit_motor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_pdi']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_valuation_pdi_optional_hide" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.pdi.optional.hide</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="penta_mrp_auto_process_all.view_stock_valuation_autoprocess_list_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_pdi']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_pdi_optional_hide" model="ir.ui.view">
+        <field name="name">stock.move.line.pdi.optional.hide</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="penta_mrp_auto_process_all.view_stock_autoprocess_list_cluster"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_pdi']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

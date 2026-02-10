@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='lot_id']" position="after">
-                <field name="lot_motor_number" optional="show"/>
-                <field name="lot_ramv" optional="show"/>
+                <field name="lot_motor_number" optional="hide"/>
+                <field name="lot_ramv" optional="hide"/>
             </xpath>
 
         </field>

@@ -10,8 +10,8 @@
                 <attribute name="string">Serial/lote/chasis</attribute>
             </field>
             <xpath expr="//field[@name='lot_name']" position="after">
-                <field name="motor_number" readonly="1" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
-                <field name="ramv" readonly="1" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
+                <field name="motor_number" readonly="1" optional="hide" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
+                <field name="ramv" readonly="1" optional="hide" column_invisible="parent.has_tracking == 'none' or not parent.show_lots_text"/>
             </xpath>
         </field>
     </record>
@@ -22,8 +22,8 @@
         <field name="inherit_id" ref="stock.view_move_line_tree" />
         <field name="arch" type="xml">
             <field name="lot_id" position="after">
-                <field name="motor_number" optional="show"/>
-                <field name="ramv" optional="show"/>
+                <field name="motor_number" optional="hide"/>
+                <field name="ramv" optional="hide"/>
             </field>
         </field>
     </record>

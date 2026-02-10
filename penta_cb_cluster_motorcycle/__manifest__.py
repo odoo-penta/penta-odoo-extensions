@@ -33,6 +33,7 @@
         'import_module',
         'account',
         'sale_management',
+        'penta_mrp_auto_process_all',
     ],
     'data': [
         "security/ir.model.access.csv",
@@ -52,6 +53,7 @@
         'views/project_wizard.xml',
         'views/stock_quant_views.xml',
         'views/stock_valuation_layer_views.xml',
+        'views/pdi_optional_views.xml',
         
     ],
     'post_init_hook': 'post_init_hook',

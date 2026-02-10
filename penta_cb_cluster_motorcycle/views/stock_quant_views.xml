@@ -6,9 +6,19 @@
         <field name="model">stock.quant</field>
         <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_default_code" optional="hide"/>
+                <field name="product_name" optional="hide"/>
+            </xpath>
             <xpath expr="//field[@name='lot_id']" position="after">
-                <field name="lot_motor_number" optional="show"/>
-                <field name="lot_ramv" optional="show"/>
+                <field name="lot_motor_number" optional="hide"/>
+                <field name="lot_ramv" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field name="warehouse_id" optional="hide"/>
             </xpath>
 
         </field>
@@ -29,6 +39,9 @@
                 <filter string="RAMV"
                         name="filter_with_ramv"
                         domain="[('lot_ramv','!=',False)]"/>
+                <filter string="Almacen"
+                        name="group_by_warehouse"
+                        context="{'group_by': 'warehouse_id'}"/>
             </search>
         </field>
     </record>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Mostrar "Importe permitido" en Categorías de gastos (hr_expense) -->
+    <record id="view_product_product_expense_form_viaticos" model="ir.ui.view">
+        <field name="name">product.product.expense.form.viaticos</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="hr_expense.product_product_expense_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath  expr="//label[@for='standard_price']" position="before">
+                <field name="importe_permitido"
+                       class="w-50"
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_viaticos_pdf" model="ir.actions.report">
+        <field name="name">Solicitud de Viaticos (PDF)</field>
+        <field name="model">approval.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">penta_viaticos.report_viaticos_pdf_document</field>
+        <field name="report_file">penta_viaticos.report_viaticos_pdf_document</field>
+        <field name="binding_model_id" ref="approvals.model_approval_request"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Viaticos - %s' % (object.name or '')</field>
+    </record>
+    <record id="action_report_viaticos_xlsx" model="ir.actions.report">
+        <field name="name">Solicitud de Viaticos (Excel)</field>
+        <field name="model">approval.request</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">penta_viaticos.report_viaticos_xlsx</field>
+        <field name="report_file">penta_viaticos.report_viaticos_xlsx</field>
+        <field name="binding_model_id" ref="approvals.model_approval_request"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Viaticos - %s' % (object.name or '')</field>
+    </record>
+
+</odoo>

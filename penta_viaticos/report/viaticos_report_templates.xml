@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_viaticos_pdf_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <style>
+                            .vt-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                table-layout: fixed;
+                                font-size: 10px;
+                            }
+                            .vt-table th, .vt-table td {
+                                border: 1px solid #cfd6df;
+                                padding: 4px 4px;
+                                vertical-align: top;
+                                word-wrap: break-word;
+                                overflow-wrap: break-word;
+                            }
+                            .vt-table th {
+                                background: #1e5da3;
+                                color: #ffffff;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                white-space: normal;
+                                line-height: 1.1;
+                                font-size: 9px;
+                            }
+                            .vt-num {
+                                text-align: right;
+                                white-space: nowrap;
+                            }
+                            .vt-total td {
+                                background: #eef4fb;
+                                font-weight: 700;
+                            }
+                        </style>
+
+                        <h2>Solicitud de Viaticos</h2>
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Solicitud</strong></td>
+                                    <td><span t-esc="o.name"/></td>
+                                    <td><strong>Fecha solicitud</strong></td>
+                                    <td><span t-esc="o.create_date and o.create_date.strftime('%Y-%m-%d') or ''"/></td>
+                                </tr>
+                                <tr>
+                                     <td><strong>Solicitante</strong></td>
+                                    <td><span t-esc="o.request_owner_id.name"/></td>
+                                    <td><strong>Cargo</strong></td>
+                                    <td><span t-esc="o.viaticos_job_title or ''"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Desde: </strong></td>
+                                    <td><span t-esc="o.date_start and o.date_start.strftime('%Y-%m-%d')or ''"/></td>
+                                    <td><strong>Hasta: </strong></td>
+                                    <td><span t-esc="o.date_end and o.date_end.strftime('%Y-%m-%d') or ''"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ciudad origen</strong></td>
+                                    <td><span t-esc="o.viaticos_city_origin_id.name or ''"/></td>
+                                    <td><strong>Ciudad destino</strong></td>
+                                    <td><span t-esc="o.viaticos_city_destination_id.name or ''"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total paga empleado</strong></td>
+                                    <td><span t-esc="o.viaticos_total_employee"/></td>
+                                    <td><strong>Total paga empresa</strong></td>
+                                    <td><span t-esc="o.viaticos_total_company"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <t t-set="detail_lines" t-value="o.product_line_ids"/>
+                        <t t-if="detail_lines and len(detail_lines) &gt; 0">
+                            <h3>Detalle</h3>
+                            <table class="vt-table">
+                                <colgroup>
+                                    <col style="width:8%"/>
+                                    <col style="width:13%"/>
+                                    <col style="width:14%"/>
+                                    <col style="width:9%"/>
+                                    <col style="width:10%"/>
+                                    <col style="width:11%"/>
+                                    <col style="width:11%"/>
+                                    <col style="width:11%"/>
+                                    <col style="width:11%"/>
+                                    <col style="width:10%"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Producto</th>
+                                        <th>Descripcion</th>
+                                        <th class="vt-num">Cantidad</th>
+                                        <th>Unidad</th>
+                                        <th class="vt-num">Importe<br/>solicitado</th>
+                                        <th class="vt-num">Total<br/>solicitado</th>
+                                        <th class="vt-num">Importe<br/>permitido</th>
+                                        <th class="vt-num">Total<br/>permitido</th>
+                                        <th>Pagado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="detail_lines" t-as="l">
+                                        <td><span t-esc="l.viaticos_date or ''"/></td>
+                                        <td><span t-esc="l.product_id.display_name or ''"/></td>
+                                        <td><span t-esc="l.description or ''"/></td>
+                                        <td class="vt-num"><span t-esc="l.quantity"/></td>
+                                        <td><span t-esc="l.product_uom_id.name or ''"/></td>
+                                        <td class="vt-num"><span t-esc="l.viaticos_importe_solicitado"/></td>
+                                        <td class="vt-num"><span t-esc="l.viaticos_total_solicitado"/></td>
+                                        <td class="vt-num"><span t-esc="l.viaticos_importe_permitido"/></td>
+                                        <td class="vt-num"><span t-esc="l.viaticos_total_permitido"/></td>
+                                        <td>
+                                            <span t-esc="l.viaticos_paid_by == 'employee' and 'Empleado' or (l.viaticos_paid_by == 'company' and 'Empresa' or '')"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="vt-total">
+                                        <td colspan="5"><strong>Totales del detalle</strong></td>
+                                        <td class="vt-num"><strong>Solicitado</strong></td>
+                                        <td class="vt-num"><strong><span t-esc="sum(detail_lines.mapped('viaticos_total_solicitado'))"/></strong></td>
+                                        <td><strong>Permitido</strong></td>
+                                        <td class="vt-num" colspan="2"><strong><span t-esc="sum(detail_lines.mapped('viaticos_total_permitido'))"/></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

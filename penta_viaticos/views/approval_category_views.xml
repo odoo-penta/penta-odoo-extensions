@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_approval_category_form_viaticos" model="ir.ui.view">
+        <field name="name">approval.category.form.viaticos</field>
+        <field name="model">approval.category</field>
+        <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[1]" position="inside">
+                <group string="Viáticos">
+                    <field name="viaticos_control"/>
+                    <field name="viaticos_city_origin_policy"
+                           widget="radio" options="{'horizontal': true}"
+                           invisible="not viaticos_control"/>
+                    <field name="viaticos_city_destination_policy"
+                           options="{'horizontal': true}"
+                           widget="radio" invisible="not viaticos_control"/>
+                    <field name="viaticos_date_from_allowed"
+                           options="{'horizontal': true}"
+                           invisible="not viaticos_control"/>
+                    <field name="viaticos_date_to_allowed"
+                           options="{'horizontal': true}"
+                           invisible="not viaticos_control"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

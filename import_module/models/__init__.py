@@ -18,3 +18,4 @@ from . import stock_move_line
 from . import import_report_field #Reporte Importaciones
 from . import import_report_line
 from . import res_config_settings
+from . import bank_rec_widget

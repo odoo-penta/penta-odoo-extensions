@@ -5,7 +5,8 @@
         <field name="arch" type="xml">
             <form string="Reporte">
                     <group>
-                        <field name="archivo" />
+                        <field name="archivo" filename="archivo_nombre"/>
+                        <field name="archivo_nombre" invisible="1"/>
                     </group>
                 <footer>
                     <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>

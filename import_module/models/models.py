@@ -346,18 +346,33 @@ class import_module(models.Model):
 
     account_move_count=fields.Integer(string="account_move_count", compute="compute_account_move_count")
 
+    # def get_account_move_count(self):
+    #     self.ensure_one()
+    #     return{
+    #         'type':'ir.actions.act_window',
+    #         'name':'Prueba',
+    #         'view_mode':'list,form',
+    #         'res_model':'account.move',
+    #         'domain': [
+    #             ('id_import', '=', self.id),
+    #             ('move_type', '=', 'in_invoice'),   # <-- Solo facturas proveedor
+    #         ],
+    #         'context':"{'create':False}"
+    #     }
     def get_account_move_count(self):
         self.ensure_one()
-        return{
-            'type':'ir.actions.act_window',
-            'name':'Prueba',
-            'view_mode':'list,form',
-            'res_model':'account.move',
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Líneas contables de la importación',
+            'view_mode': 'list,form',
+            'res_model': 'account.move.line',
             'domain': [
                 ('id_import', '=', self.id),
-                ('move_type', '=', 'in_invoice'),   # <-- Solo facturas proveedor
+                ('is_landed_costs_line', '=', True),
             ],
-            'context':"{'create':False}"
+            'context': {
+                'create': False,
+            }
         }
 
     def compute_account_move_count(self):

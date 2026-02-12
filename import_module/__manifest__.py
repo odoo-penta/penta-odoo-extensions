@@ -1,13 +1,14 @@
 {
     'name': 'Import Module.',
     'sumary':'Modulo de importaciones Pentalab',
-    'version': '1.0',
+    'version': '18.0.0.0.1',
     'author': 'Pentalab',
     'license': 'LGPL-3',
     'depends': ['base','account','purchase','stock','account_accountant','stock_landed_costs','stock_account'],
     'data':[
         "security/ir.model.access.csv",
         #Data
+        "data/action_create_landed_cost.xml",
         # "data/scheduled_actions.xml"
         # "data/cron_data.xml"
         #Views
@@ -38,6 +39,12 @@
         "data/import_report_fields.xml",#Data Reporte Completo Importaciones
         "data/import_boarding_data.xml",#Data para tabla import_boarding
     ],
+    'assets': {
+        'web.assets_backend': [
+            'import_module/static/src/components/bank_rec_widget.js',
+            'import_module/static/src/components/bank_rec_widget_view.xml',
+        ],
+    },
     "post_init_hook": "post_init_create_company_sequences",
     'installable': True,
     'icon': 'import_module/static/description/icon.png',

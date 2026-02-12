@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="action_create_landed_cost_from_lines" model="ir.actions.server">
+            <field name="name">Crear costos en destino</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="binding_model_id" ref="account.model_account_move_line"/>
+            <field name="binding_view_types">list</field>
+            <field name="binding_type">action</field>
+            <field name="state">code</field>
+            <field name="code">
+imports = records.mapped('id_import')
+pickings = imports.mapped('stock_picking_ids').filtered(lambda p: p.state == 'done')
+
+cost_lines = records.filtered(
+    lambda l: not l.used_in_landed_cost
+              and l.product_id
+              and l.product_id.product_tmpl_id.landed_cost_ok
+)
+
+if pickings and cost_lines:
+    action = {
+        "type": "ir.actions.act_window",
+        "name": "Costos en destino",
+        "res_model": "stock.landed.cost",
+        "view_mode": "form",
+        "target": "current",
+        "context": {
+            "default_picking_ids": [(6, 0, pickings.ids)],
+            "default_cost_lines": [(0, 0, {
+                "product_id": line.product_id.id,
+                "name": line.name,
+                "account_id": line.account_id.id,
+                "price_unit": abs(line.balance),
+                "split_method": "by_current_cost_price",
+                "account_move_id": line.move_id.id,
+            }) for line in cost_lines],
+            "default_source_move_line_ids": cost_lines.ids,
+            "default_id_import": imports and imports[0].id or False,
+        },
+    }
+else:
+    raise UserError("No hay pickings listos o líneas de costo válidas.")
+            </field>
+        </record>
+
+    </data>
+</odoo>

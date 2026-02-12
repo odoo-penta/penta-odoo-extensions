@@ -40,7 +40,6 @@ class AccountMove(models.Model):
 
     def action_post(self):
         
-        # Validar contra archivo.model antes de publicar
         for recor in self:
             if recor.is_authorization_pressed:
                 recor._check_total_vs_archivo_model()

@@ -41,13 +41,19 @@
                                 invisible="state == 'new'">
                             <field string="Compras" name="purchase_order_count" widget="statinfo"/>
                         </button>
-                        <button class="oe_stat_button"
+                        <!-- <button class="oe_stat_button"
                                 name="get_account_move_count"
                                 type="object"
                                 icon="fa-pencil-square-o"
                                 invisible="state == 'new'">
                             <field string="Facturas" name="account_move_count" widget="statinfo"/>
-                        </button>
+                        </button> -->
+                        <button name="get_account_move_count"
+                                type="object"
+                                string="Facturas"
+                                icon="fa-pencil-square-o"
+                                class="btn-primary"
+                                invisible="state == 'new'"/>
                         <button class="oe_stat_button"
                                 name="get_landed_costs_count"
                                 type="object"

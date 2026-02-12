@@ -19,6 +19,19 @@ class stock_landed_cost_module(models.Model):
         string='Líneas de Impuesto'
     )
 
+    source_move_line_ids = fields.Many2many(
+        'account.move.line',
+        string="Líneas contables origen"
+    )
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        move_lines = self.env.context.get('default_source_move_line_ids')
+        if move_lines:
+            res['source_move_line_ids'] = [(6, 0, move_lines)]
+        return res
+
     def action_backfill_move_import_ids(self):
         """Rellena id_import en moves existentes a partir de liquidaciones."""
         for lc in self.search([('id_import', '!=', False)]):
@@ -44,6 +57,10 @@ class stock_landed_cost_module(models.Model):
     def button_validate(self):
         res = super().button_validate()
         self._propagate_import_to_move()
+        for cost in self:
+            cost.source_move_line_ids.write({
+                'used_in_landed_cost': True
+            })
         return res
 
     def write(self, vals):

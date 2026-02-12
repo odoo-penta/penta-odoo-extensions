@@ -11,6 +11,16 @@ class account_move_module(models.Model):
         domain="[('state', '=', 'process')]"
     )
 
+
+    @api.onchange('id_import')
+    def _onchange_id_import_propagate_lines(self):
+        for move in self:
+            if not move.id_import:
+                continue
+
+            for line in move.invoice_line_ids:
+                line.id_import = move.id_import
+
     def action_open_choose_landed_cost_wizard(self):
         self.ensure_one()
         return {
@@ -100,11 +110,71 @@ class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
     # Trae la guía de importación desde la factura/asiento
+    # id_import = fields.Many2one(
+    #     'x.import',
+    #     string='Guía de importación',
+    #     related='move_id.id_import',
+    #     store=True,       # <— guarda en DB para poder filtrar/ordenar/agrup.
+    #     index=True,
+    #     readonly=True,
+    # )
+
     id_import = fields.Many2one(
         'x.import',
         string='Guía de importación',
-        related='move_id.id_import',
-        store=True,       # <— guarda en DB para poder filtrar/ordenar/agrup.
-        index=True,
-        readonly=True,
+        domain="[('state','=','process')]"
     )
+
+
+    used_in_landed_cost = fields.Boolean(
+        string="Usado en costo en destino",
+        default=False,
+        copy=False
+    )
+
+
+    @api.onchange('product_id')
+    def _onchange_product_set_import(self):
+        for line in self:
+            if line.move_id.id_import and not line.id_import:
+                line.id_import = line.move_id.id_import
+                
+    # @api.model
+    # def create(self, vals):
+    #     if vals.get('move_id') and not vals.get('id_import') and vals.get('product_id'):
+    #         move = self.env['account.move'].browse(vals['move_id'])
+    #         if move.id_import:
+    #             vals['id_import'] = move.id_import.id
+    #     return super().create(vals)
+    
+
+    # @api.model
+    # def create(self, vals):
+    #     line = super().create(vals)
+
+    #     move = line.move_id
+    #     if (
+    #         move
+    #         and move.move_type == 'entry'
+    #         and line.id_import
+    #         and not move.id_import
+    #     ):
+    #         move.id_import = line.id_import.id
+
+    #     return line
+
+    @api.model
+    def create(self, vals):
+        line = super().create(vals)
+        move = line.move_id
+
+        if not move or move.move_type != 'entry':
+            return line
+
+        if line.id_import and not move.id_import:
+            move.id_import = line.id_import.id
+
+        elif not line.id_import and move.id_import:
+            line.id_import = move.id_import.id
+
+        return line

@@ -1,3 +1,4 @@
+from typing import Self
 from odoo import models, fields, api
 import base64
 import requests
@@ -18,6 +19,9 @@ class ArchivoModel(models.Model):
     _name = 'archivo.model'
     _rec_name = 'numero_factura'
     _description = 'Modelo para gestionar archivos de texto'
+    _sql_constraints = [
+        ('clave_acceso_unique', 'unique(clave_acceso)', 'La clave de acceso ya existe.')
+    ]
 
     fecha_subida = fields.Datetime(string='Fecha de Subida', default=fields.Datetime.now)
 
@@ -27,14 +31,12 @@ class ArchivoModel(models.Model):
         default=lambda self: self.env.company,
     )
 
-
     etiquetas_xml_html = fields.Html(
         string="Etiquetas / Productos Odoo",
         sanitize=True,
         sanitize_tags=True,
         store=True,         
     )
-
 
     clave_acceso = fields.Char(string='Clave de Acceso')
 
@@ -88,7 +90,16 @@ class ArchivoModel(models.Model):
         readonly=True
     )
     name_emisor = fields.Char(string="Razón Social Emisor")
+    
     type_doc = fields.Char(string="Tipo Comprobante")
+
+    bank_withholding = fields.Boolean(string="Retención Bancaria")
+
+    withholding_line_ids = fields.One2many(
+        'withholding.line',
+        'archivo_id',
+        string='Líneas de Retención'
+    )
 
     @api.depends('numero_factura')
     def _compute_factura_relacionada(self):
@@ -151,44 +162,63 @@ class ArchivoModel(models.Model):
             if found and record.state != 'descargado':
                 record.state = 'descargado'
 
+
     def action_confirm_register(self):
-        # Definir el registro con las claves y valores necesarios
+        self.ensure_one()
+
+        # -------------------------
+        # Tipo de comprobante (correcto)
+        tipo_comprobante = self.type_doc
+
+        # -------------------------
+        # Registro base para XML
         registro = {
             'CLAVE_ACCESO': self.clave_acceso,
-            'TIPO_COMPROBANTE': 'Factura' if 'fac' in self.numero_factura[:3].lower() else 'Retención',
+            'TIPO_COMPROBANTE': tipo_comprobante,
             'SERIE_COMPROBANTE': self.serie_comprobante,
-            'FECHA_EMISION': self.fecha_emision.strftime("%d/%m/%Y") if self.fecha_emision else None,
+            'FECHA_EMISION': self.fecha_emision.strftime('%d/%m/%Y') if self.fecha_emision else None,
             'RUC_EMISOR': self.identificacion_emisor,
             'IDENTIFICACION_RECEPTOR': self.identificacion_receptor,
             'IMPORTE_TOTAL': self.importe_total,
             'IVA': self.iva,
-            'VALOR_SIN_IMPUESTOS': self.valor_sin_impuestos
+            'VALOR_SIN_IMPUESTOS': self.valor_sin_impuestos,
         }
 
-        record = self.env['account.move'].search([
-            ('l10n_ec_authorization_number', '=', registro.get('CLAVE_ACCESO', '')),
-            ('ref', '=', registro.get('SERIE_COMPROBANTE', '')),
-            ('company_id', '=', self.env.company.id),
-            ('state', '!=', 'cancel')  
-        ])
-        if not record:
-            # Pasar el registro a la función process_record
-            if self.process_record(registro):
-                self.write({'state':'descargado'})
-            else:
-                self.write({'state':'rechazado'})
+        # -------------------------
+        # Validar si ya existe en contabilidad
+        move = self.env['account.move'].search([
+            ('l10n_ec_authorization_number', '=', self.clave_acceso),
+            ('company_id', '=', self.company_id.id),
+            ('state', '!=', 'cancel'),
+        ], limit=1)
+
+        if move:
+            self.state = 'rechazado'
+            raise UserError(
+                f"El comprobante {self.serie_comprobante}\n"
+                f"con clave de acceso:\n{self.clave_acceso}\n"
+                f"ya se encuentra registrado en contabilidad."
+            )
+
+        # -------------------------
+        # Generar XML
+        try:
+            ok = self.process_record(registro)
+        except Exception as e:
+            self.state = 'rechazado'
+            raise UserError(f"Error al generar el XML:\n{str(e)}")
+
+        # -------------------------
+        # Resultado
+        if ok:
+            self.state = 'descargado'
         else:
-            self.write({'state':'rechazado'})
-            raise UserError(registro.get('SERIE_COMPROBANTE', '')+' con clave de acceso:\n'+registro.get('CLAVE_ACCESO', '')+'\nya se encuentra registrado.')
+            self.state = 'rechazado'
 
     def process_record(self, registro):
         print("process_record")
         clave_acceso = registro.get('CLAVE_ACCESO', '')
-        
-        return self.process_comprobante(clave_acceso, registro)
 
-    def process_comprobante(self, clave_acceso, registro):
-        print("ingresando comprobante")
         max_retries = 5
         backoff_base = 1  # segundos
 
@@ -197,7 +227,7 @@ class ArchivoModel(models.Model):
             ok, root, err_msg = self.send_soap_request(clave_acceso)
             if ok and self.is_valid_response(root):
                 try:
-                    self.save_comprobante(root, clave_acceso, registro)
+                    self.save_comprobante(root)
                     self.write({'numero_documento_modificado': ' '})
                     return True
                 except Exception as e:
@@ -211,13 +241,12 @@ class ArchivoModel(models.Model):
                 time.sleep(backoff_base * attempt)
 
         # Si llegó aquí, falló todo
-        ahora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.write({
             'state': 'rechazado',
-            'numero_documento_modificado': f"XML no recuperado del SRI - {ahora} - {last_err_msg or 'Error desconocido'}",
+            'numero_documento_modificado': f"XML no recuperado del SRI - {now} - {last_err_msg or 'Error desconocido'}",
         })
         return False
-
 
     def send_soap_request(self, clave_acceso):
         """
@@ -334,52 +363,128 @@ class ArchivoModel(models.Model):
             except Exception as e:
                 raise UserError(f"No se pudo procesar el XML guardado:\n{str(e)}")
 
-
-    def save_comprobante(self, root, clave_acceso, registro):
+    def save_comprobante(self, root):
         print("save_comprobante")
         decoded_text = html.unescape(root.find('.//comprobante').text)
         encoded_xml = base64.b64encode(decoded_text.encode('utf-8'))
 
-
         self.write({'xml_file':encoded_xml,'xml_filename':'archivo.xml'})
+
 
         try:
             comprobante_root = ET.fromstring(decoded_text)
-            etiquetas = [
-                det.find('descripcion').text.strip()
-                for det in comprobante_root.findall('.//detalle')
-                if det.find('descripcion') is not None
-            ]
 
-            # Construimos una tabla simple con dos columnas
-            table_html  = "<table class='table table-sm o_table' style='width:100%;'>"
-            table_html += "<thead><tr><th>Etiqueta XML</th><th>Producto Odoo</th></tr></thead><tbody>"
+            if self.type_doc == 'Factura':
+            
+                etiquetas = [
+                    det.find('descripcion').text.strip()
+                    for det in comprobante_root.findall('.//detalle')
+                    if det.find('descripcion') is not None
+                ]
 
-            for etiqueta in etiquetas:
-                # Buscar producto en homologación
-                homolog = self.env['product.homologation'].search(
-                    [('etiqueta', '=', etiqueta)], limit=1
-                )
-                if homolog and homolog.product_variant_id:
-                    code = homolog.product_variant_id.default_code or ''
-                    name = homolog.product_variant_id.name
-                    producto = f"[{code}] {name}"
+                # Construimos una tabla simple con dos columnas
+                table_html  = "<table class='table table-sm o_table' style='width:100%;'>"
+                table_html += "<thead><tr><th>Etiqueta XML</th><th>Producto Odoo</th></tr></thead><tbody>"
+
+                for etiqueta in etiquetas:
+                    # Buscar producto en homologación
+                    homolog = self.env['product.homologation'].search(
+                        [('etiqueta', '=', etiqueta)], limit=1
+                    )
+                    if homolog and homolog.product_variant_id:
+                        code = homolog.product_variant_id.default_code or ''
+                        name = homolog.product_variant_id.name
+                        producto = f"[{code}] {name}"
+                    else:
+                        producto = "<span style='color:red;'>No homologado</span>"
+
+
+                    table_html += f"<tr><td>{etiqueta}</td><td>{producto}</td></tr>"
+
+                table_html += "</tbody></table>"
+                print(table_html)
+
+                # Guardamos la tabla directamente en el campo
+                self.etiquetas_xml_html = table_html
+
+            elif self.type_doc == 'Comprobante de Retención':
+                lines = []
+
+                impuestos = comprobante_root.findall('.//impuestos/impuesto')
+
+                if impuestos:
+                    for imp in impuestos:
+                        porcentaje = float(imp.findtext('porcentajeRetener', '0') or 0)
+
+                        tax = self.env['account.tax'].search([
+                            ('tax_group_id.name', 'in', [
+                                'Retención IVA en Compras',
+                                'Purchase Profit Withhold',
+                            ]),
+                            ('amount_type', '=', 'percent'),
+                        ], limit=0)
+
+
+                        tax = tax.filtered(
+                            lambda t: abs(t.amount) == porcentaje
+                        )[:1]
+
+                        numdoc_sustento = imp.findtext('numDocSustento', '')
+                        base_imponible = float(imp.findtext('baseImponible', '0'))
+                        porcentaje = float(imp.findtext('porcentajeRetener', '0'))
+                        valor_retenido = float(imp.findtext('valorRetenido', '0'))
+
+                        lines.append(
+                            (0, 0, {
+                                'tipo_retencion': tax.id,
+                                'numdoc_sustento': numdoc_sustento,
+                                'base_imponible': base_imponible,
+                                'porcentaje_retenido': porcentaje,
+                                'valor_retenido': valor_retenido,
+                                })
+                            )
                 else:
-                    producto = "<span style='color:red;'>No homologado</span>"
+                    retenciones = comprobante_root.findall('.//retenciones/retencion')
+                    doc_sustento = comprobante_root.find('.//docSustento/numDocSustento')
+                    for ret in retenciones:
+                        porcentaje = float(ret.findtext('porcentajeRetener', '0') or 0)
+
+                        tax = self.env['account.tax'].search([
+                            ('tax_group_id.name', 'in', [
+                                'Retención IVA en Compras',
+                                'Purchase Profit Withhold',
+                            ]),
+                            ('amount_type', '=', 'percent'),
+                        ], limit=0)
 
 
-                table_html += f"<tr><td>{etiqueta}</td><td>{producto}</td></tr>"
+                        tax = tax.filtered(
+                            lambda t: abs(t.amount) == porcentaje
+                        )[:1]
 
-            table_html += "</tbody></table>"
-            print(table_html)
+                        base_imponible = float(ret.findtext('baseImponible', '0'))
+                        porcentaje = float(ret.findtext('porcentajeRetener', '0'))
+                        valor_retenido = float(ret.findtext('valorRetenido', '0'))
 
-            # Guardamos la tabla directamente en el campo
-            self.etiquetas_xml_html = table_html
+                        lines.append(
+                            (0, 0, {
+                                'tipo_retencion': tax.id,
+                                'numdoc_sustento': doc_sustento.text,
+                                'base_imponible': base_imponible,
+                                'porcentaje_retenido': porcentaje,
+                                'valor_retenido': valor_retenido,
+                                })
+                            )
+                
 
+                self.write({
+                    'withholding_line_ids': [(5, 0, 0)] + lines
+                })
+                                
         except Exception as e:
             print("No se pudieron extraer etiquetas:", e)
 
-    def action_generate_invoice(self):
+    def action_generate_document(self):
         """
         Botón disponible SOLO en estado 'descargado'.
         Crea la factura o la retención y avanza el workflow.
@@ -390,7 +495,7 @@ class ArchivoModel(models.Model):
 
             # reconstruir el XML desde el binario
             xml_text = base64.b64decode(rec.xml_file or b'').decode('utf-8')
-            root     = ET.fromstring(xml_text)
+            root = ET.fromstring(xml_text)
 
             # recrear el diccionario 'registro' usando los campos del propio record
             registro = {
@@ -405,7 +510,6 @@ class ArchivoModel(models.Model):
                 'VALOR_SIN_IMPUESTOS'  : rec.valor_sin_impuestos,
             }
 
-            # ---- dentro de action_generate_invoice() ----
             xml_text = base64.b64decode(rec.xml_file or b'').decode('utf-8')
 
             # ➜ Creamos un pequeño wrapper que imita la estructura original
@@ -415,10 +519,11 @@ class ArchivoModel(models.Model):
 
             # Ahora pasamos wrapper_root (no xml_text) a create_invoice
             receptor = rec.create_or_get_partner(registro)
-            rec.create_invoice(wrapper_root, receptor, registro)
+            result = rec.create_invoice(wrapper_root, receptor, registro)
 
-            # opcional: pasar directamente a 'validado'
-            rec.write({'state': 'validado'})
+            if isinstance(result, dict):
+                return result
+
 
     def create_or_get_partner(self, registro):
         """
@@ -544,204 +649,256 @@ class ArchivoModel(models.Model):
                     factura.l10n_ec_sri_payment_id = sri_payment
                 else:
                     _logger.warning("No se encontró código de forma de pago en sri.payment: %s", forma_pago)
+            if factura:
+                self.write({'state': 'validado'})
 
             return factura
 
-        else:
-            _logger.info("Entrando a lógica de retención")
-            
-            #Retencion
-            num_doc_sustento = None
+        elif tipo_comprobante == 'Retención':
+            withholding = self.withholding_line_ids[0]
+            num_doc_sustento = withholding.numdoc_sustento
+            num_doc_sustento_fact = self._format_num_doc_sustento(num_doc_sustento)
+            # --------------------------------
+            # BUSCAR FACTURA
+            invoice = self.env['account.move'].search([
+                ('move_type', '=', 'out_invoice'),
+                ('name', '=', f'Fact {num_doc_sustento_fact}'),
+                ('partner_id.vat', '=', self.identificacion_emisor),
+                ('state', '=', 'posted')
+            ], limit=1)
 
-            detalles_retencion = self.extract_retention_details(root)
-            _logger.info("Detalles retención: %s", detalles_retencion)
-
-            if detalles_retencion:
-                comprobante_node = root.find('.//comprobante')
-                if comprobante_node is not None and comprobante_node.text:
-                    try:
-                        comprobante_root = ET.fromstring(comprobante_node.text)
-                        num_doc_sustento = comprobante_root.findtext('.//docsSustento/docSustento/numDocSustento')
-                        _logger.info("numDocSustento encontrado en nodo <comprobante>: %s", num_doc_sustento)
-                    except Exception as e:
-                        _logger.warning("Error al procesar nodo <comprobante>: %s", e)
+            if invoice and self.bank_withholding:
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'Factura encontrada',
+                    'res_model': 'withholding.confirm.wizard',
+                    'view_mode': 'form',
+                    'target': 'new',
+                    'context': {
+                        'default_archivo_id': self.id,
+                        'default_invoice_id': invoice.id,
+                    }
+                }
             else:
-                _logger.info("Intentando estructura alternativa con XML embebido dentro de <comprobante>...")
-                comprobante_node = root.find('.//comprobante')
-                if comprobante_node is not None and comprobante_node.text:
-                    try:
-                        comprobante_root = ET.fromstring(comprobante_node.text)
-                        detalles_retencion = self.extract_retention_details_alt(comprobante_root)
-                        _logger.info("Detalles alternativos de retención: %s", detalles_retencion)
+                self.create_retention()
+    
+    def create_retention(self):
 
-                        impuestos_list = comprobante_root.findall('.//impuestos/impuesto')
-                        _logger.info("Cantidad de nodos <impuesto> encontrados: %s", len(impuestos_list))
-                        for impuesto_xml in impuestos_list:
-                            num_doc_sustento = impuesto_xml.findtext('numDocSustento')
-                            _logger.info("Leyendo numDocSustento desde nodo <impuesto>: %s", num_doc_sustento)
-                            if num_doc_sustento:
-                                break
-                    except Exception as e:
-                        _logger.warning("Error al parsear XML interno en <comprobante>: %s", e)
-                else:
-                    _logger.warning("No se encontró el nodo <comprobante> o está vacío.")
+        xml_text = base64.b64decode(self.xml_file or b'').decode('utf-8')
+        root = ET.fromstring(xml_text)
+        wrapper_root = ET.Element('root')
+        comprobante_node  = ET.SubElement(wrapper_root, 'comprobante')
+        comprobante_node.text = xml_text      # CDATA en el flujo original
 
-            if not num_doc_sustento:
-                raise UserError("No se encontró el número de documento de sustento en el XML.")
+        registro = {
+            'CLAVE_ACCESO'         : self.clave_acceso,
+            'TIPO_COMPROBANTE'     : 'Factura' if 'fac' in (self.numero_factura or '')[:3].lower() else 'Retención',
+            'SERIE_COMPROBANTE'    : self.serie_comprobante,
+            'FECHA_EMISION'        : self.fecha_emision.strftime("%d/%m/%Y") if self.fecha_emision else None,
+            'RUC_EMISOR'           : self.identificacion_emisor,
+            'IDENTIFICACION_RECEPTOR': self.identificacion_receptor,
+            'IMPORTE_TOTAL'        : self.importe_total,
+            'IVA'                  : self.iva,
+            'VALOR_SIN_IMPUESTOS'  : self.valor_sin_impuestos,
+        }
+        
+        num_doc_sustento = None
 
-            # Formatear número de documento
-            try:
-                parte1 = num_doc_sustento[:3]
-                parte2 = num_doc_sustento[3:6]
-                parte3 = num_doc_sustento[6:]
-                num_doc_sustento_formateado = f"Ret {parte1}-{parte2}-{parte3}"
-            except Exception as e:
-                _logger.warning("Error al formatear numDocSustento '%s': %s", num_doc_sustento, e)
-                num_doc_sustento_formateado = num_doc_sustento
+        detalles_retencion = self.extract_retention_details(wrapper_root)
+        _logger.info("Detalles retención: %s", detalles_retencion)
 
-            fecha_formateada = self.format_date(registro.get('FECHA_EMISION'))
+        if detalles_retencion:
+            comprobante_node = wrapper_root.find('.//comprobante')
+            if comprobante_node is not None and comprobante_node.text:
+                try:
+                    comprobante_root = ET.fromstring(comprobante_node.text)
+                    num_doc_sustento = comprobante_root.findtext('.//docsSustento/docSustento/numDocSustento')
+                    _logger.info("numDocSustento encontrado en nodo <comprobante>: %s", num_doc_sustento)
+                except Exception as e:
+                    _logger.warning("Error al procesar nodo <comprobante>: %s", e)
+        else:
+            _logger.info("Intentando estructura alternativa con XML embebido dentro de <comprobante>...")
+            comprobante_node = wrapper_root.find('.//comprobante')
+            if comprobante_node is not None and comprobante_node.text:
+                try:
+                    comprobante_root = ET.fromstring(comprobante_node.text)
+                    detalles_retencion = self.extract_retention_details_alt(comprobante_root)
+                    _logger.info("Detalles alternativos de retención: %s", detalles_retencion)
 
-            # Buscar la configuración de diario para retenciones
-            config = self.env['advance.config.docs'].search([], limit=1)
-            if not config or not config.advance_docs_journal_id:
-                raise UserError("No se ha configurado un Diario de Retenciones en 'Configuración de Diario de Retenciones'.")
+                    impuestos_list = comprobante_root.findall('.//impuestos/impuesto')
+                    _logger.info("Cantidad de nodos <impuesto> encontrados: %s", len(impuestos_list))
+                    for impuesto_xml in impuestos_list:
+                        num_doc_sustento = impuesto_xml.findtext('numDocSustento')
+                        _logger.info("Leyendo numDocSustento desde nodo <impuesto>: %s", num_doc_sustento)
+                        if num_doc_sustento:
+                            break
+                except Exception as e:
+                    _logger.warning("Error al parsear XML interno en <comprobante>: %s", e)
+            else:
+                _logger.warning("No se encontró el nodo <comprobante> o está vacío.")
 
-            journal = config.advance_docs_journal_id
+        if not num_doc_sustento:
+            raise UserError("No se encontró el número de documento de sustento en el XML.")
 
-            if not journal:
-                raise UserError("No existe un Diario configurado para Retenciones")
+        # Formatear número de documento
+        try:
+            parte1 = num_doc_sustento[:3]
+            parte2 = num_doc_sustento[3:6]
+            parte3 = num_doc_sustento[6:]
+            num_doc_sustento_formateado = f"Ret {parte1}-{parte2}-{parte3}"
+        except Exception as e:
+            _logger.warning("Error al formatear numDocSustento '%s': %s", num_doc_sustento, e)
+            num_doc_sustento_formateado = num_doc_sustento
 
-            account_move = self.env['account.move'].search([
-                ('company_id', '=', self.env.company.id),
-                ('name', '=', num_doc_sustento_formateado),
+        fecha_formateada = self.format_date(registro.get('FECHA_EMISION'))
+
+        # Buscar la configuración de diario para retenciones
+        config = self.env['advance.config.docs'].search([], limit=1)
+        if not config or not config.advance_docs_journal_id:
+            raise UserError("No se ha configurado un Diario de Retenciones en 'Configuración de Diario de Retenciones'.")
+
+        journal = config.advance_docs_journal_id
+
+        if not journal:
+            raise UserError("No existe un Diario configurado para Retenciones")
+        withholding = self.withholding_line_ids[0]
+        num_doc_sustento = withholding.numdoc_sustento
+        num_doc_sustento_fact = self._format_num_doc_sustento(num_doc_sustento)
+        account_move = self.env['account.move'].search([
+            ('move_type', '=', 'out_invoice'),
+                ('name', '=', f'Fact {num_doc_sustento_fact}'),
+                ('partner_id.vat', '=', self.identificacion_emisor),
+                ('state', '=', 'posted')
+        ], limit=1)
+
+        if self.bank_withholding or not account_move:
+
+            #raise UserError('La factura de sustento ' + num_doc_sustento_formateado + ' no se encuentra en el sistema.')
+            # Crear docuemnto automáticamente si no se encuentra
+            account_move = self.env['account.move'].create({
+                'partner_id': account_move.partner_id.id,
+                'journal_id': journal.id,
+                'date': fecha_formateada,
+                'invoice_date': fecha_formateada,
+                'l10n_ec_withhold_date': fecha_formateada,
+                'invoice_origin': num_doc_sustento_formateado,
+                'ref': registro.get('SERIE_COMPROBANTE'),
+                'currency_id': self.env.company.currency_id.id,
+                'l10n_latam_use_documents': True,
+                'l10n_latam_document_type_id': self.env['l10n_latam.document.type'].search([('code', '=', '07')], limit=1).id,
+            })
+
+            # Crear líneas de retención
+            lines = []
+
+            for detalle in detalles_retencion:
+                impuesto_id = detalle['tipo_retencion']
+                cuenta_id = detalle['cuenta']
+                base_imponible = detalle['base_imponible']
+
+                impuesto = self.env['account.tax'].browse(impuesto_id)
+
+                if not cuenta_id:
+                    raise UserError("El impuesto '%s' no tiene cuenta contable configurada." % impuesto.name)
+
+                lines.append((0, 0, {
+                    'move_id': account_move.id,
+                    'name': f"Retención {impuesto.name}",
+                    'account_id': cuenta_id,
+                    'credit': base_imponible,
+                    'debit': 0.0,
+                    'tax_ids': [(6, 0, [impuesto_id])],
+                }))
+
+            account_move.write({'l10n_ec_withhold_line_ids': lines})
+
+            # Ajustar líneas automáticas
+            for line in account_move.l10n_ec_withhold_line_ids:
+                account_move.line_ids.create({
+                    'move_id': account_move.id,
+                    'name': line.name,
+                    'account_id': line.account_id.id,
+                    'debit': line.credit,
+                    'credit': 0.0
+                })
+            if account_move:
+                self.write({'state': 'validado'})
+            for line in account_move.line_ids:
+               if line.name == "Balance automático de línea":
+                   nuevo_account_id = journal.account_withhold.id
+                   line.write({'account_id': nuevo_account_id,'name': 'Retención'})
+        else:
+            # Validar que la fecha de la factura coincida con la fecha de la retención
+            # if account_move.date != fecha_formateada:
+            #     raise UserError(
+            #         "La fecha contable de la factura (%s) no coincide con la fecha de emisión de la retención (%s)." %
+            #         (account_move.date.strftime('%Y-%m-%d'), fecha_formateada)
+            #     )
+            
+            # Validar que la base imponible de la retención coincida con la de la factura
+            base_retencion_total = sum([float(det['base_imponible']) for det in detalles_retencion])
+            base_factura = account_move.amount_untaxed
+
+            if round(base_retencion_total, 2) != round(base_factura, 2):
+                raise UserError(
+                    "La base imponible de la retención (%.2f) no coincide con el valor imponible de la factura (%.2f)." %
+                    (base_retencion_total, base_factura)
+                )
+            
+            # Validar que no exista otra retención activa para esta factura
+            retenciones_existentes = self.env['account.move'].search([
+                ('move_type', '=', 'entry'),
+                ('l10n_ec_related_withhold_line_ids.l10n_ec_withhold_invoice_id', '=', account_move.id),
+                ('state', '!=', 'cancel'),
+                ('company_id', '=', self.env.company.id)
             ])
 
-            if not account_move:
-                #raise UserError('La factura de sustento ' + num_doc_sustento_formateado + ' no se encuentra en el sistema.')
-                # Crear docuemnto automáticamente si no se encuentra
-                account_move = self.env['account.move'].create({
-                    'partner_id': account_move.partner_id.id,
-                    'journal_id': journal.id,
-                    'date': fecha_formateada,
-                    'invoice_date': fecha_formateada,
-                    'l10n_ec_withhold_date': fecha_formateada,
-                    'invoice_origin': num_doc_sustento_formateado,
-                    'ref': registro.get('SERIE_COMPROBANTE'),
-                    'currency_id': self.env.company.currency_id.id,
-                    'l10n_latam_use_documents': True,
-                    'l10n_latam_document_type_id': self.env['l10n_latam.document.type'].search([('code', '=', '07')], limit=1).id,
-                })
+            if retenciones_existentes:
+                ret = retenciones_existentes[0]
+                raise UserError(_(
+                    "Ya existe una retención activa asociada a esta factura:\n"
+                    "- Número: %s\n"
+                    "Solo puede registrar una nueva si la anterior está anulada."
+                ) % (ret.name))
 
-                # Crear líneas de retención
-                lines = []
+            # Si no hay retención existente → crear nueva
+            
+            account = self.env['account.move'].create({
+                'move_type': 'entry',
+                'partner_id': account_move.partner_id.id,
+                'invoice_date': fecha_formateada,
+                'company_id': self.env.company.id,
+                'ref': registro.get('SERIE_COMPROBANTE'),
+                'l10n_ec_withhold_date': fecha_formateada,
+                'journal_id': journal.id,
+                'l10n_latam_document_number': registro.get('SERIE_COMPROBANTE'),
+                'l10n_latam_document_type_id': self.env['l10n_latam.document.type'].search([
+                    ('code', '=', '07')
+                ], limit=1).id,
+                'l10n_ec_authorization_number': registro.get('CLAVE_ACCESO'),
+                'amount_total': sum([float(detalle['valor_retenido']) for detalle in detalles_retencion]),
+                'amount_tax': 0.0,
+                'amount_untaxed': 0.0,
+            })
 
-                for detalle in detalles_retencion:
-                    impuesto_id = detalle['tipo_retencion']
-                    cuenta_id = detalle['cuenta']
-                    base_imponible = detalle['base_imponible']
+            account.write({'l10n_ec_related_withhold_line_ids': [(0, 0, {
+                'move_id': account.id,
+                'account_id': detalle['cuenta'],
+                'balance': float(detalle['base_imponible']),
+                'price_unit': float(detalle['base_imponible']),
+                'price_subtotal': 0,
+                'l10n_ec_withhold_invoice_id': account_move.id,
+                'tax_ids': [detalle['tipo_retencion']]
+            }) for detalle in detalles_retencion]})
 
-                    impuesto = self.env['account.tax'].browse(impuesto_id)
+            for line in account.l10n_ec_related_withhold_line_ids:
+                if line.l10n_ec_withhold_invoice_id:
+                    line.write({'l10n_ec_withhold_invoice_id': account_move.id})
 
-                    if not cuenta_id:
-                        raise UserError("El impuesto '%s' no tiene cuenta contable configurada." % impuesto.name)
+            if account:
+                self.write({'state': 'validado'})
+            return account
 
-                    lines.append((0, 0, {
-                        'move_id': account_move.id,
-                        'name': f"Retención {impuesto.name}",
-                        'account_id': cuenta_id,
-                        'credit': base_imponible,
-                        'debit': 0.0,
-                        'tax_ids': [(6, 0, [impuesto_id])],
-                    }))
-
-                account_move.write({'l10n_ec_withhold_line_ids': lines})
-
-                # Ajustar líneas automáticas
-                for line in account_move.l10n_ec_withhold_line_ids:
-                    account_move.line_ids.create({
-                        'move_id': account_move.id,
-                        'name': line.name,
-                        'account_id': line.account_id.id,
-                        'debit': line.credit,
-                        'credit': 0.0
-                    })
-
-                #for line in account_move.line_ids:
-                #    if line.name == "Balance automático de línea":
-                #        nuevo_account_id = journal.account_withhold.id
-                #        line.write({'account_id': nuevo_account_id})
-            else:
-                # Validar que la fecha de la factura coincida con la fecha de la retención
-                if account_move.date != fecha_formateada:
-                    raise UserError(
-                        "La fecha contable de la factura (%s) no coincide con la fecha de emisión de la retención (%s)." %
-                        (account_move.date.strftime('%Y-%m-%d'), fecha_formateada)
-                    )
-                
-                # Validar que la base imponible de la retención coincida con la de la factura
-                base_retencion_total = sum([float(det['base_imponible']) for det in detalles_retencion])
-                base_factura = account_move.amount_untaxed
-
-                if round(base_retencion_total, 2) != round(base_factura, 2):
-                    raise UserError(
-                        "La base imponible de la retención (%.2f) no coincide con el valor imponible de la factura (%.2f)." %
-                        (base_retencion_total, base_factura)
-                    )
-                
-                # Validar que no exista otra retención activa para esta factura
-                retenciones_existentes = self.env['account.move'].search([
-                    ('move_type', '=', 'entry'),
-                    ('l10n_ec_related_withhold_line_ids.l10n_ec_withhold_invoice_id', '=', account_move.id),
-                    ('state', '!=', 'cancel'),
-                    ('company_id', '=', self.env.company.id)
-                ])
-
-                if retenciones_existentes:
-                    ret = retenciones_existentes[0]
-                    raise UserError(_(
-                        "Ya existe una retención activa asociada a esta factura:\n"
-                        "- Número: %s\n"
-                        "Solo puede registrar una nueva si la anterior está anulada."
-                    ) % (ret.name))
-
-                # Si no hay retención existente → crear nueva
-                
-                account = self.env['account.move'].create({
-                    'move_type': 'entry',
-                    'partner_id': account_move.partner_id.id,
-                    'invoice_date': fecha_formateada,
-                    'company_id': self.env.company.id,
-                    'ref': registro.get('SERIE_COMPROBANTE'),
-                    'l10n_ec_withhold_date': fecha_formateada,
-                    'journal_id': journal.id,
-                    'l10n_latam_document_number': registro.get('SERIE_COMPROBANTE'),
-                    'l10n_latam_document_type_id': self.env['l10n_latam.document.type'].search([
-                        ('code', '=', '07')
-                    ], limit=1).id,
-                    'l10n_ec_authorization_number': registro.get('CLAVE_ACCESO'),
-                    'amount_total': sum([float(detalle['valor_retenido']) for detalle in detalles_retencion]),
-                    'amount_tax': 0.0,
-                    'amount_untaxed': 0.0,
-                })
-
-                account.write({'l10n_ec_related_withhold_line_ids': [(0, 0, {
-                    'move_id': account.id,
-                    'account_id': detalle['cuenta'],
-                    'balance': float(detalle['base_imponible']),
-                    'price_unit': float(detalle['base_imponible']),
-                    'price_subtotal': 0,
-                    'l10n_ec_withhold_invoice_id': account_move.id,
-                    'tax_ids': [detalle['tipo_retencion']]
-                }) for detalle in detalles_retencion]})
-
-                for line in account.l10n_ec_related_withhold_line_ids:
-                    if line.l10n_ec_withhold_invoice_id:
-                        line.write({'l10n_ec_withhold_invoice_id': account_move.id})
-
-                return account
-
-
-                    
     def extract_invoice_details(self, root):
         detalles_producto = []
         comprobante_root = ET.fromstring(root.find('.//comprobante').text)
@@ -894,7 +1051,7 @@ class ArchivoModel(models.Model):
                     ('description', 'ilike', 'retencion'),
                 ])
             else:
-                continue  # Tipo de retención no reconocido
+                continue 
 
             porcentaje_entero = int(round(porcentaje_retenido))
 
@@ -959,3 +1116,29 @@ class ArchivoModel(models.Model):
                 },
             },
         }
+
+    def _format_num_doc_sustento(self, num):
+        num = (num or '').strip()
+
+        # Solo números
+        num = ''.join(filter(str.isdigit, num))
+
+        if len(num) < 7:
+            return num  # no es válido, devuélvelo igual
+
+        establecimiento = num[:3]
+        punto_emision = num[3:6]
+        secuencial = num[6:]
+
+        return f"{establecimiento}-{punto_emision}-{secuencial}"
+
+    class WithholdingLine(models.Model):
+        _name = 'withholding.line'
+        _description = 'Línea de Retención'
+        
+        archivo_id = fields.Many2one('archivo.model', string='Archivo')
+        numdoc_sustento = fields.Char(string='Número de Documento Sustento')
+        tipo_retencion = fields.Many2one('account.tax', string='Tipo de Retención')
+        base_imponible = fields.Float(string='Base Imponible')
+        porcentaje_retenido = fields.Float(string='Porcentaje Retenido')
+        valor_retenido = fields.Float(string='Valor Retenido')

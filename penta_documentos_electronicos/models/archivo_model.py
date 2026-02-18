@@ -1,4 +1,4 @@
-from typing import Self
+#from typing import Self
 from odoo import models, fields, api
 import base64
 import requests

@@ -6,6 +6,19 @@ from odoo.exceptions import UserError
 class ApprovalRequest(models.Model):
     _inherit = "approval.request"
 
+    viaticos_control = fields.Boolean(
+        related="category_id.viaticos_control",
+        readonly=True,
+    )
+    viaticos_city_origin_policy = fields.Selection(
+        related="category_id.viaticos_city_origin_policy",
+        readonly=True,
+    )
+    viaticos_city_destination_policy = fields.Selection(
+        related="category_id.viaticos_city_destination_policy",
+        readonly=True,
+    )
+
     viaticos_city_origin_id = fields.Many2one(
         "res.country.state.city", string="Ciudad origen", tracking=True
     )
@@ -101,9 +114,7 @@ class ApprovalRequest(models.Model):
             total = (rec.viaticos_total_employee or 0.0) + (rec.viaticos_total_company or 0.0)
             rec.amount = total
 
-    @api.onchange("category_id", "date_start", "date_end", "product_line_ids")
-    def _onchange_viaticos_hospedaje_warning(self):
-        """Advertencia no bloqueante si noches y hospedaje no coinciden."""
+    def _check_viaticos_hospedaje_nights(self):
         for rec in self:
             if not rec.category_id.viaticos_control or not rec.date_start or not rec.date_end:
                 continue
@@ -123,15 +134,16 @@ class ApprovalRequest(models.Model):
                     hospedaje_qty += line.quantity or 0.0
 
             if hospedaje_qty != float(nights):
-                return {
-                    "warning": {
-                        "title": _("Advertencia de hospedaje"),
-                        "message": _(
-                            "El viaje cubre %(nights)s noche(s) y el detalle de hospedaje suma %(qty)s. "
-                            "Revise los registros de hospedaje."
-                        ) % {"nights": nights, "qty": hospedaje_qty},
-                    }
-                }
+                raise UserError(
+                    _(
+                        "El viaje cubre %(nights)s noche(s) y el detalle de hospedaje suma %(qty)s. "
+                        "Revise los registros de hospedaje antes de Enviar."
+                    ) % {"nights": nights, "qty": hospedaje_qty}
+                )
+
+    def action_confirm(self):
+        self._check_viaticos_hospedaje_nights()
+        return super().action_confirm()
 
     def action_approve(self):
         for rec in self:

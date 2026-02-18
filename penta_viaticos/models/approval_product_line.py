@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+from markupsafe import Markup, escape
 
 
 class ApprovalProductLine(models.Model):
@@ -129,9 +130,11 @@ class ApprovalProductLine(models.Model):
             for line in self:
                 req = line.approval_request_id
                 if req and req.category_id.viaticos_control and line.id in before:
+                    body = Markup(
+                        "Linea de viaticos actualizada.<br/>Antes: %s<br/>Despues: %s"
+                    ) % (escape(before[line.id]), escape(line._viaticos_line_summary()))
                     req.message_post(
-                        body=_("Linea de viaticos actualizada.<br/>Antes: %(before)s<br/>Despues: %(after)s")
-                        % {"before": before[line.id], "after": line._viaticos_line_summary()}
+                        body=body
                     )
         return res
 

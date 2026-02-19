@@ -34,8 +34,8 @@
         'views/stock_move_line.xml',
         "reports/report.xml",
         "reports/report_templates.xml",
-        "views/import_report_line_views.xml",
         "views/import_report_views.xml",#View Reporte Completo Importaciones
+        "views/import_report_line_views.xml",
         "data/import_report_fields.xml",#Data Reporte Completo Importaciones
         "data/import_boarding_data.xml",#Data para tabla import_boarding
     ],

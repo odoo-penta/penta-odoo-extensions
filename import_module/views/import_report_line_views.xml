@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="action_penta_import_report_line" model="ir.actions.act_window">
-        <field name="name">Importaciones</field>
-        <field name="res_model">penta.import.report.line</field>
-        <field name="view_mode">list,pivot,form</field>
-        <field name="view_id" ref="import_module.view_penta_import_report_line_list"/>
-        <field name="target">current</field>
-    </record>
+
     <!-- Vista lista -->
     <record id="view_penta_import_report_line_list" model="ir.ui.view">
         <field name="name">penta.import.report.line.list</field>
@@ -81,6 +75,12 @@
         </field>
     </record>
 
-
+    <record id="action_penta_import_report_line" model="ir.actions.act_window">
+        <field name="name">Importaciones</field>
+        <field name="res_model">penta.import.report.line</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field name="view_id" ref="import_module.view_penta_import_report_line_list"/>
+        <field name="target">current</field>
+    </record>
 
 </odoo>

@@ -16,6 +16,7 @@
     'description': 'Agrega soporte para idiomas en el reporte de aprobaciones',
     'author': 'Pentalab',
     'website': 'https://pentalab.tech',
+    "license": "LGPL-3",
     'category': 'Accounting/Localization',
     'depends': ['base','l10n_ec_edi'],
     'data': [

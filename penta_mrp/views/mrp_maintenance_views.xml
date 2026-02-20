@@ -27,7 +27,7 @@
             <field name="inherit_id" ref="cost_standard_eljuri.mrp_production_form_inherit_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='product_uom_qty_per_unit_bom']" position="after">
-                    <field name="price_total" string="Costo Total Estandar" force_save="1"/>
+                    <field name="price_total" string="Costo Estandar" force_save="1"/>
                 </xpath>
             </field>
         </record>
